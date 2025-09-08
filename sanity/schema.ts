@@ -1,4 +1,5 @@
 import { type SchemaTypeDefinition } from 'sanity'
+import { type SanityValidationRule } from '../src/types/sanity'
 
 // Schéma pour les enfants
 const child = {
@@ -10,19 +11,19 @@ const child = {
 			name: 'firstName',
 			title: 'Prénom',
 			type: 'string',
-			validation: (Rule: any) => Rule.required(),
+			validation: (Rule: SanityValidationRule) => Rule.required(),
 		},
 		{
 			name: 'lastName',
 			title: 'Nom de famille',
 			type: 'string',
-			validation: (Rule: any) => Rule.required(),
+			validation: (Rule: SanityValidationRule) => Rule.required(),
 		},
 		{
 			name: 'birthDate',
 			title: 'Date de naissance',
 			type: 'date',
-			validation: (Rule: any) => Rule.required(),
+			validation: (Rule: SanityValidationRule) => Rule.required(),
 		},
 		{
 			name: 'photo',
@@ -72,7 +73,7 @@ const activity = {
 			name: 'title',
 			title: 'Titre',
 			type: 'string',
-			validation: (Rule: any) => Rule.required(),
+			validation: (Rule: SanityValidationRule) => Rule.required(),
 		},
 		{
 			name: 'description',
@@ -122,19 +123,19 @@ const staff = {
 			name: 'firstName',
 			title: 'Prénom',
 			type: 'string',
-			validation: (Rule: any) => Rule.required(),
+			validation: (Rule: SanityValidationRule) => Rule.required(),
 		},
 		{
 			name: 'lastName',
 			title: 'Nom',
 			type: 'string',
-			validation: (Rule: any) => Rule.required(),
+			validation: (Rule: SanityValidationRule) => Rule.required(),
 		},
 		{
 			name: 'role',
 			title: 'Poste',
 			type: 'string',
-			validation: (Rule: any) => Rule.required(),
+			validation: (Rule: SanityValidationRule) => Rule.required(),
 		},
 		{
 			name: 'photo',
@@ -168,7 +169,7 @@ const news = {
 			name: 'title',
 			title: 'Titre',
 			type: 'string',
-			validation: (Rule: any) => Rule.required(),
+			validation: (Rule: SanityValidationRule) => Rule.required(),
 		},
 		{
 			name: 'slug',
@@ -178,7 +179,7 @@ const news = {
 				source: 'title',
 				maxLength: 96,
 			},
-			validation: (Rule: any) => Rule.required(),
+			validation: (Rule: SanityValidationRule) => Rule.required(),
 		},
 		{
 			name: 'excerpt',
@@ -205,7 +206,7 @@ const news = {
 			name: 'publishedAt',
 			title: 'Date de publication',
 			type: 'datetime',
-			validation: (Rule: any) => Rule.required(),
+			validation: (Rule: SanityValidationRule) => Rule.required(),
 		},
 		{
 			name: 'featured',

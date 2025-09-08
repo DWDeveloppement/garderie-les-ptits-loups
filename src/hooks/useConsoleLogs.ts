@@ -7,7 +7,7 @@ export type LogEntry = {
 	timestamp: Date
 	level: 'log' | 'warn' | 'error' | 'info'
 	message: string
-	data?: any
+	data?: unknown
 }
 
 export function useConsoleLogs() {
@@ -21,7 +21,7 @@ export function useConsoleLogs() {
 		const originalInfo = console.info
 
 		// Fonction pour ajouter un log
-		const addLog = (level: LogEntry['level'], message: string, data?: any) => {
+		const addLog = (level: LogEntry['level'], message: string, data?: unknown) => {
 			const logEntry: LogEntry = {
 				id: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
 				timestamp: new Date(),

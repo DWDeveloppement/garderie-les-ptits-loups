@@ -72,7 +72,7 @@ export function SuccessAnimation({ isVisible, onComplete }: SuccessAnimationProp
 					Message envoyé !
 				</h3>
 				<p className="text-gray-600 text-sm">
-					Votre message a été transmis avec succès à l'équipe de la garderie.
+					Votre message a été transmis avec succès à l&apos;équipe de la garderie.
 				</p>
 			</div>
 		</div>

@@ -5,7 +5,7 @@ import { ChevronRight, X } from "lucide-react"
 import Link from "next/link"
 import { useState } from "react"
 
-interface MobileMenuProps {
+type MobileMenuProps = {
   isOpen: boolean
   onClose: () => void
 }
