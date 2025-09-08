@@ -12,7 +12,7 @@ Ajoutez ces variables à votre fichier `.env.local` :
 
 ```bash
 # Google reCAPTCHA v3
-NEXT_PUBLIC_RECAPTCHA_SITE_KEY=votre_site_key_ici
+RECAPTCHA_SITE_KEY=votre_site_key_ici
 RECAPTCHA_SECRET_KEY=votre_secret_key_ici
 ```
 
@@ -26,7 +26,7 @@ RECAPTCHA_SECRET_KEY=votre_secret_key_ici
      - `localhost` (pour le développement)
      - `votre-domaine.com` (pour la production)
 3. **Récupérer les clés** :
-   - **Site Key** → `NEXT_PUBLIC_RECAPTCHA_SITE_KEY`
+   - **Site Key** → `RECAPTCHA_SITE_KEY`
    - **Secret Key** → `RECAPTCHA_SECRET_KEY`
 
 ### 3. Clés de Test (Développement)
@@ -34,7 +34,7 @@ RECAPTCHA_SECRET_KEY=votre_secret_key_ici
 Pour le développement, vous pouvez utiliser les clés de test de Google :
 
 ```bash
-NEXT_PUBLIC_RECAPTCHA_SITE_KEY=6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI
+RECAPTCHA_SITE_KEY=6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI
 RECAPTCHA_SECRET_KEY=6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe
 ```
 
@@ -78,7 +78,7 @@ RECAPTCHA_SECRET_KEY=6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe
 ## 🚨 Dépannage
 
 ### Erreur "reCAPTCHA non disponible"
-- Vérifiez `NEXT_PUBLIC_RECAPTCHA_SITE_KEY`
+- Vérifiez `RECAPTCHA_SITE_KEY`
 - Vérifiez la connexion internet
 - Vérifiez les domaines autorisés
 

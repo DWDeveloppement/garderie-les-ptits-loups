@@ -4,6 +4,7 @@
 */
 
 import { useFormValidation } from '@/hooks/useFormValidation'
+import { useRecaptcha } from '@/hooks/useRecaptcha'
 import * as Form from '@radix-ui/react-form'
 import { Button } from './ui/button'
 import { Spinner } from './ui/spinner'
@@ -25,6 +26,9 @@ const ContactForm = () => {
 	
 	// Hook pour les toasts
 	const { showSuccess, showError, ToastContainer } = useToast()
+	
+	// Hook reCAPTCHA pour afficher le statut
+	const { isRecaptchaAvailable } = useRecaptcha()
 
 	// Gestionnaire de soumission avec toasts
 	const handleSubmit = async () => {
@@ -174,6 +178,20 @@ const ContactForm = () => {
 				</Button>
 			</div>
 		</Form.Root>
+		
+		{/* Badge reCAPTCHA visible pour debug */}
+		<div className='mt-4 flex justify-center'>
+			<div className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
+				isRecaptchaAvailable 
+					? 'bg-green-100 text-green-800 border border-green-200' 
+					: 'bg-orange-100 text-orange-800 border border-orange-200'
+			}`}>
+				<div className={`w-2 h-2 rounded-full mr-2 ${
+					isRecaptchaAvailable ? 'bg-green-500' : 'bg-orange-500'
+				}`}></div>
+				{isRecaptchaAvailable ? 'reCAPTCHA v3 Actif' : 'reCAPTCHA Non Disponible'}
+			</div>
+		</div>
 		
 		{/* Container pour les toasts */}
 		<ToastContainer />

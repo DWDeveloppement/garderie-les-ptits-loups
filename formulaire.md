@@ -50,7 +50,7 @@
 
 ### 🔑 Configuration des Variables d'Environnement
 - [ ] Créer les clés reCAPTCHA sur Google Console (optionnel)
-- [ ] Configurer `NEXT_PUBLIC_RECAPTCHA_SITE_KEY` (optionnel)
+- [ ] Configurer `RECAPTCHA_SITE_KEY` (optionnel)
 - [ ] Configurer `RECAPTCHA_SECRET_KEY` (optionnel)
 - [X] Tester avec les clés de développement ✅
 
@@ -82,23 +82,32 @@
 - [X] Instructions de dépannage ✅
 - [X] Variables d'environnement documentées ✅
 
-## 🎯 **STATUT ACTUEL : FORMULAIRE FONCTIONNEL SANS reCAPTCHA**
+## 🎯 **STATUT ACTUEL : FORMULAIRE AVEC reCAPTCHA ACTIVÉ**
 
-### ✅ **Mode Test Actif**
-- [X] **reCAPTCHA temporairement désactivé** pour validation du formulaire de base
-- [X] **Formulaire entièrement fonctionnel** avec Resend
+### ✅ **Mode Production Actif**
+- [X] **reCAPTCHA v3 officiellement activé** avec clés de production
+- [X] **Formulaire entièrement fonctionnel** avec Resend + reCAPTCHA
 - [X] **Validation côté client** active et optimisée
-- [X] **Envoi d'emails** opérationnel
+- [X] **Protection anti-spam** active avec score minimum 0.5
+- [X] **Envoi d'emails** opérationnel avec sécurité
 - [X] **Déploiement Vercel** réussi et testé
 
 ### 🔧 **Configuration Actuelle**
 ```typescript
-// Mode test : reCAPTCHA désactivé temporairement
-// - Hook useRecaptcha commenté
-// - Provider RecaptchaProvider commenté  
-// - Validation serveur reCAPTCHA commentée
-// - Formulaire fonctionne avec Resend uniquement
+// Mode production : reCAPTCHA v3 activé
+// - Hook useRecaptcha actif
+// - Provider RecaptchaProvider actif
+// - Validation serveur reCAPTCHA active
+// - Protection anti-spam complète
 ```
+
+### 🔑 **Clés reCAPTCHA Configurées**
+- [X] **Site Key** : Configurée dans Vercel
+- [X] **Secret Key** : Configurée dans Vercel
+- [X] **Domaines autorisés** : 
+  - `garderie-les-ptits-loups.vercel.app`
+  - `garderie-les-ptits-loups-git-main-pataco80s-projects.vercel.app`
+  - `localhost`
 
 ## 📦 Package et Implémentation Détaillée
 
@@ -113,7 +122,7 @@ npm install react-google-recaptcha-v3
 ### Variables d'Environnement Requises
 ```bash
 # .env.local
-NEXT_PUBLIC_RECAPTCHA_SITE_KEY=6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI
+RECAPTCHA_SITE_KEY=6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI
 RECAPTCHA_SECRET_KEY=6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe
 ```
 
@@ -210,8 +219,9 @@ Si vous souhaitez réactiver reCAPTCHA plus tard :
    - `src/app/contact/layout.tsx`
 
 2. **Configurer les clés** dans Vercel :
-   - `NEXT_PUBLIC_RECAPTCHA_SITE_KEY`
+   - `RECAPTCHA_SITE_KEY`
    - `RECAPTCHA_SECRET_KEY`
+   >Attention: Parfois `RECAPTCHA_SITE_KEY` peut être mentionnée `NEXT_PUBLIC_RECAPTCHA_SITE_KEY`. Vercel refuse le préfixe `NEXT_PUBLIC_`. Cette proposition peut parfois être faite si usage de IA.
 
 3. **Redéployer** le projet
 

@@ -7,10 +7,10 @@ type RecaptchaProviderProps = {
 }
 
 export function RecaptchaProvider({ children }: RecaptchaProviderProps) {
-	const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY
+	const siteKey = process.env.RECAPTCHA_SITE_KEY
 
 	if (!siteKey) {
-		console.warn('NEXT_PUBLIC_RECAPTCHA_SITE_KEY non configurée')
+		console.warn('RECAPTCHA_SITE_KEY non configurée')
 		return <>{children}</>
 	}
 
@@ -23,6 +23,9 @@ export function RecaptchaProvider({ children }: RecaptchaProviderProps) {
 				appendTo: 'head',
 				nonce: undefined,
 			}}
+			// Mode debug pour rendre reCAPTCHA visible
+			useRecaptchaNet={false}
+			useEnterprise={false}
 		>
 			{children}
 		</GoogleReCaptchaProvider>
