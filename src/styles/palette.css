@@ -1,0 +1,188 @@
+/* ATTENTION IMPORTANT POUR CURSOR IA: Tailwind CSS V4 utilise uniquement @import 'tailwindcss' et pas les base, utilities,etc et pas d'import de @import 'tailwindcss/preflight' car il casse les styles */
+
+:root {
+  /* Purple Colors */
+  /* Background Colors */
+  --purple-1: oklch(0.993 0.0039 324.9);
+  --purple-2: oklch(0.983 0.0075 324.9);
+
+  /* Interactive Components Colors */
+  --purple-3: oklch(0.957 0.0223 324.9);
+  --purple-4: oklch(0.929 0.0355 324.9);
+  --purple-5: oklch(0.898 0.0468 324.9);
+
+  /* Borders and Separators Colors */
+  --purple-6: oklch(0.86 0.0589 324.9);
+  --purple-7: oklch(0.809 0.0745 324.9);
+  --purple-8: oklch(0.742 0.0977 324.9);
+
+  /* Solid Colors */
+  --purple-9: oklch(0.511 0.1407 324.9);
+  --purple-10: oklch(0.462 0.1407 324.9);
+
+  /* Accessible Text Colors */
+  --purple-11: oklch(0.521 0.1407 324.9);
+  --purple-12: oklch(0.338 0.1017 324.9);
+
+  /* Contrast Colors */
+  --purple-contrast: #fff;
+
+  /* Surface Colors */
+  --purple-surface: color(display-p3 0.9804 0.9647 0.9843 / 80%);
+
+  /* Indicator Colors */
+  --purple-indicator: oklch(0.511 0.1407 324.9);
+
+  /* Track Colors */
+  --purple-track: oklch(0.511 0.1407 324.9);
+
+  /* Orange Colors */
+  /* Background Colors */
+  --orange-1: oklch(0.994 0.0198 66.57);
+  --orange-2: oklch(0.982 0.0264 66.57);
+  --orange-bg-light: oklch(0.997 0.0099 66.57); /* 50% plus clair que orange-1 */
+
+  /* Interactive Components Colors */
+  --orange-3: oklch(0.956 0.0404 66.57);
+  --orange-4: oklch(0.932 0.0605 66.57);
+  --orange-5: oklch(0.91 0.0684 66.57);
+
+  /* Borders and Separators Colors */
+  --orange-6: oklch(0.886 0.0889 66.57);
+  --orange-7: oklch(0.853 0.111 66.57);
+  --orange-8: oklch(0.792 0.1484 66.57);
+
+  /* Solid Colors */
+  --orange-9: oklch(0.641 0.1836 66.57);
+  --orange-10: oklch(0.606 0.1713 66.57);
+
+  /* Accessible Text Colors */
+  --orange-11: oklch(0.498 0.1408 66.57);
+  --orange-12: oklch(0.243 0.1418 66.57);
+
+  /* Contrast Colors */
+  --orange-contrast: #fff;
+
+  /* Surface Colors */
+  --orange-surface: color(display-p3 1 1 1 / 80%);
+
+  /* Indicator Colors */
+  --orange-indicator: oklch(0.641 0.1836 66.57);
+
+  /* Track Colors */
+  --orange-track: oklch(0.641 0.1836 66.57);
+}
+
+/* Theme Color Variables */
+@theme colors {
+  /* Purple Theme Colors */
+  --color-purple-1: var(--purple-1);
+  --color-purple-2: var(--purple-2);
+  --color-purple-3: var(--purple-3);
+  --color-purple-4: var(--purple-4);
+  --color-purple-5: var(--purple-5);
+  --color-purple-6: var(--purple-6);
+  --color-purple-7: var(--purple-7);
+  --color-purple-8: var(--purple-8);
+  --color-purple-9: var(--purple-9);
+  --color-purple-10: var(--purple-10);
+  --color-purple-11: var(--purple-11);
+  --color-purple-12: var(--purple-12);
+  --color-purple-contrast: var(--purple-contrast);
+  --color-purple-surface: var(--purple-surface);
+  --color-purple-indicator: var(--purple-indicator);
+  --color-purple-track: var(--purple-track);
+
+  /* Orange Theme Colors */
+  --color-orange-1: var(--orange-1);
+  --color-orange-2: var(--orange-2);
+  --color-orange-bg-light: var(--orange-bg-light);
+  --color-orange-3: var(--orange-3);
+  --color-orange-4: var(--orange-4);
+  --color-orange-5: var(--orange-5);
+  --color-orange-6: var(--orange-6);
+  --color-orange-7: var(--orange-7);
+  --color-orange-8: var(--orange-8);
+  --color-orange-9: var(--orange-9);
+  --color-orange-10: var(--orange-10);
+  --color-orange-11: var(--orange-11);
+  --color-orange-12: var(--orange-12);
+  --color-orange-contrast: var(--orange-contrast);
+  --color-orange-surface: var(--orange-surface);
+  --color-orange-indicator: var(--orange-indicator);
+  --color-orange-track: var(--orange-track);
+}
+
+:root,
+.light,
+.light-theme {
+  --purple-1: #f9f6f9;
+  --purple-2: #f6f2f6;
+  --purple-3: #f2e6f3;
+  --purple-4: #eed9ee;
+  --purple-5: #e7cce8;
+  --purple-6: #debddf;
+  --purple-7: #d2a9d4;
+  --purple-8: #c38ec6;
+  --purple-9: #8d4592;
+  --purple-10: #7e3783;
+  --purple-11: #89418e;
+  --purple-12: #502154;
+
+  --purple-a1: #fa2f9605;
+  --purple-a2: #a4186e09;
+  --purple-a3: #a5089a15;
+  --purple-a4: #a7039922;
+  --purple-a5: #9801942f;
+  --purple-a6: #8c048a3f;
+  --purple-a7: #82018453;
+  --purple-a8: #7d02816f;
+  --purple-a9: #65006ab9;
+  --purple-a10: #5b0062c7;
+  --purple-a11: #620068bd;
+  --purple-a12: #37013cde;
+
+  --purple-contrast: #fff;
+  --purple-surface: #f5f0f5cc;
+  --purple-indicator: #8d4592;
+  --purple-track: #8d4592;
+}
+
+@supports (color: color(display-p3 1 1 1)) {
+  @media (color-gamut: p3) {
+    :root,
+    .light,
+    .light-theme {
+      --purple-1: oklch(97.7% 0.0039 324.9);
+      --purple-2: oklch(96.5% 0.0075 324.9);
+      --purple-3: oklch(93.8% 0.0223 324.9);
+      --purple-4: oklch(90.9% 0.0355 324.9);
+      --purple-5: oklch(87.7% 0.0468 324.9);
+      --purple-6: oklch(83.8% 0.0589 324.9);
+      --purple-7: oklch(78.5% 0.0745 324.9);
+      --purple-8: oklch(71.7% 0.0977 324.9);
+      --purple-9: oklch(51.1% 0.1407 324.9);
+      --purple-10: oklch(46.2% 0.1407 324.9);
+      --purple-11: oklch(49.7% 0.1407 324.9);
+      --purple-12: oklch(33.8% 0.1017 324.9);
+
+      --purple-a1: color(display-p3 0.7333 0 0.4941 / 0.016);
+      --purple-a2: color(display-p3 0.4902 0 0.3725 / 0.032);
+      --purple-a3: color(display-p3 0.5373 0 0.5451 / 0.08);
+      --purple-a4: color(display-p3 0.5176 0 0.5569 / 0.128);
+      --purple-a5: color(display-p3 0.498 0 0.5294 / 0.18);
+      --purple-a6: color(display-p3 0.4549 0 0.498 / 0.24);
+      --purple-a7: color(display-p3 0.4078 0.0039 0.4627 / 0.316);
+      --purple-a8: color(display-p3 0.4039 0 0.4667 / 0.424);
+      --purple-a9: color(display-p3 0.3294 0 0.3843 / 0.708);
+      --purple-a10: color(display-p3 0.298 0 0.349 / 0.764);
+      --purple-a11: color(display-p3 0.3216 0 0.3725 / 0.724);
+      --purple-a12: color(display-p3 0.1725 0 0.2078 / 0.856);
+
+      --purple-contrast: #fff;
+      --purple-surface: color(display-p3 0.9569 0.9412 0.9608 / 0.8);
+      --purple-indicator: oklch(51.1% 0.1407 324.9);
+      --purple-track: oklch(51.1% 0.1407 324.9);
+    }
+  }
+}
