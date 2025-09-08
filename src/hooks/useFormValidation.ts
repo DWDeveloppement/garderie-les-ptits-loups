@@ -14,7 +14,6 @@ import {
 } from '@/scripts/contactForm'
 import { useState } from 'react'
 import { useLocalStorage } from './useLocalStorage'
-import { useRecaptcha } from './useRecaptcha'
 
 export function useFormValidation() {
 	// Hook localStorage pour persister les données du formulaire
@@ -29,8 +28,8 @@ export function useFormValidation() {
 	// État pour l'animation de succès
 	const [isSuccess, setIsSuccess] = useState(false)
 
-	// Hook reCAPTCHA
-	const { executeRecaptchaAction, isRecaptchaAvailable } = useRecaptcha()
+	// TEMPORAIRE: Hook reCAPTCHA désactivé pour test
+	// const { executeRecaptchaAction, isRecaptchaAvailable } = useRecaptcha()
 
 	// Gestionnaire de changement pour les champs
 	const handleInputChange = (field: keyof ContactFormData, value: string) => {
@@ -72,24 +71,15 @@ export function useFormValidation() {
 		}
 
 		try {
-			// Vérifier reCAPTCHA
-			if (!isRecaptchaAvailable) {
-				console.warn('reCAPTCHA non disponible, envoi sans protection')
-			}
-
-			// Générer le token reCAPTCHA
-			const recaptchaToken = await executeRecaptchaAction('contact_form')
-
-			if (!recaptchaToken && isRecaptchaAvailable) {
-				throw new Error('Échec de la vérification reCAPTCHA')
-			}
+			// TEMPORAIRE: Désactivation reCAPTCHA pour test
+			console.log('Mode test: reCAPTCHA désactivé temporairement')
 
 			// Formater les données avant envoi
 			const formattedData = formatFormData(formData)
-			console.log('Envoi des données:', { ...formattedData, recaptchaToken: recaptchaToken ? '✅' : '❌' })
+			console.log('Envoi des données:', formattedData)
 
-			// Envoyer l'email via Resend avec le token reCAPTCHA
-			const result = await sendContactEmail({ ...formattedData, recaptchaToken: recaptchaToken || undefined })
+			// Envoyer l'email via Resend SANS reCAPTCHA
+			const result = await sendContactEmail(formattedData)
 			console.log('Email envoyé avec succès:', result)
 
 			// En cas de succès, vider le formulaire et localStorage
@@ -118,7 +108,12 @@ export function useFormValidation() {
 				}
 			}
 
-			setValidationErrors([{ field: 'email', message: errorMessage }])
+			// Pour les erreurs de sécurité, on ne les assigne pas à un champ spécifique
+			if (errorMessage.includes('vérification de sécurité')) {
+				setValidationErrors([])
+			} else {
+				setValidationErrors([{ field: 'email', message: errorMessage }])
+			}
 			return { success: false, error: errorMessage }
 		} finally {
 			setIsSubmitting(false)

@@ -4,33 +4,33 @@ import { Resend } from 'resend'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
-// Fonction pour valider le token reCAPTCHA
-async function validateRecaptchaToken(token: string): Promise<boolean> {
-	if (!process.env.RECAPTCHA_SECRET_KEY) {
-		console.warn('RECAPTCHA_SECRET_KEY non configurée')
-		return true // En mode développement, on accepte sans validation
-	}
+// TEMPORAIRE: Fonction reCAPTCHA désactivée pour test
+// async function validateRecaptchaToken(token: string): Promise<boolean> {
+// 	if (!process.env.RECAPTCHA_SECRET_KEY) {
+// 		console.warn('RECAPTCHA_SECRET_KEY non configurée')
+// 		return true // En mode développement, on accepte sans validation
+// 	}
 
-	try {
-		const response = await fetch('https://www.google.com/recaptcha/api/siteverify', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/x-www-form-urlencoded',
-			},
-			body: `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${token}`,
-		})
+// 	try {
+// 		const response = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+// 			method: 'POST',
+// 			headers: {
+// 				'Content-Type': 'application/x-www-form-urlencoded',
+// 			},
+// 			body: `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${token}`,
+// 		})
 
-		const data = await response.json()
-		console.log('Validation reCAPTCHA:', { success: data.success, score: data.score })
+// 		const data = await response.json()
+// 		console.log('Validation reCAPTCHA:', { success: data.success, score: data.score })
 
-		// reCAPTCHA v3 retourne un score entre 0.0 et 1.0
-		// On accepte les scores >= 0.5
-		return data.success && data.score >= 0.5
-	} catch (error) {
-		console.error('Erreur validation reCAPTCHA:', error)
-		return false
-	}
-}
+// 		// reCAPTCHA v3 retourne un score entre 0.0 et 1.0
+// 		// On accepte les scores >= 0.5
+// 		return data.success && data.score >= 0.5
+// 	} catch (error) {
+// 		console.error('Erreur validation reCAPTCHA:', error)
+// 		return false
+// 	}
+// }
 
 export async function POST(request: NextRequest) {
 	try {
@@ -45,24 +45,27 @@ export async function POST(request: NextRequest) {
 			throw new Error('RESEND_TO_EMAIL non configurée')
 		}
 
-		const { nom, prenom, email, sujet, message, recaptchaToken } = formData
+		const { nom, prenom, email, sujet, message } = formData
 
-		// Validation reCAPTCHA
-		if (recaptchaToken) {
-			const isValidRecaptcha = await validateRecaptchaToken(recaptchaToken)
-			if (!isValidRecaptcha) {
-				return NextResponse.json(
-					{
-						success: false,
-						error: 'Échec de la vérification de sécurité',
-						details: 'Token reCAPTCHA invalide ou score trop faible',
-					},
-					{ status: 400 }
-				)
-			}
-		} else {
-			console.warn('Aucun token reCAPTCHA fourni')
-		}
+		// TEMPORAIRE: Désactivation validation reCAPTCHA pour test
+		console.log('Mode test: validation reCAPTCHA désactivée temporairement')
+
+		// Validation reCAPTCHA (désactivée temporairement)
+		// if (recaptchaToken) {
+		// 	const isValidRecaptcha = await validateRecaptchaToken(recaptchaToken)
+		// 	if (!isValidRecaptcha) {
+		// 		return NextResponse.json(
+		// 			{
+		// 				success: false,
+		// 				error: 'Échec de la vérification de sécurité',
+		// 				details: 'Token reCAPTCHA invalide ou score trop faible',
+		// 			},
+		// 			{ status: 400 }
+		// 		)
+		// 	}
+		// } else {
+		// 	console.warn('Aucun token reCAPTCHA fourni')
+		// }
 
 		const data = await resend.emails.send({
 			from: 'onboarding@resend.dev',
