@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Garderie Les P'tits Loups
 
-## Getting Started
+Une application web moderne pour la gestion d'une garderie, construite avec Next.js, Radix UI et Sanity CMS.
 
-First, run the development server:
+## Technologies utilisées
 
+- **Next.js 14** - Framework React avec App Router
+- **TypeScript** - Typage statique
+- **Tailwind CSS** - Framework CSS utilitaire
+- **Radix UI** - Composants UI accessibles
+- **Sanity** - CMS headless
+- **Lucide React** - Icônes
+
+## Installation
+
+1. Clonez le projet et installez les dépendances :
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Configurez les variables d'environnement :
+   - Copiez `.env.example` vers `.env.local`
+   - Remplissez les variables Sanity avec vos vraies valeurs
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Configurez Sanity :
+```bash
+# Créez un nouveau projet Sanity sur sanity.io
+# Puis ajoutez vos identifiants dans .env.local
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Démarrage
 
-## Learn More
+### Mode développement
+```bash
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+### Studio Sanity
+```bash
+npm run sanity
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Structure du projet
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `/src/app` - Pages Next.js (App Router)
+- `/src/components` - Composants React réutilisables
+- `/src/lib` - Utilitaires et configuration
+- `/sanity` - Configuration et schémas Sanity
 
-## Deploy on Vercel
+## Fonctionnalités
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Interface moderne et responsive
+- Gestion des enfants inscrits
+- Suivi des activités
+- Gestion de l'équipe
+- Système d'actualités
+- Backend CMS avec Sanity
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Configuration Sanity
+
+Le projet inclut des schémas pour :
+- **Enfants** : informations personnelles, allergies, contacts d'urgence
+- **Activités** : description, groupe d'âge, matériel nécessaire
+- **Équipe** : profils du personnel, qualifications
+- **Actualités** : articles et annonces
+
+## Variables d'environnement requises
+
+```env
+NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id
+NEXT_PUBLIC_SANITY_DATASET=production
+NEXT_PUBLIC_SANITY_API_VERSION=2024-01-01
+```
