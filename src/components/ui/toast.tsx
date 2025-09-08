@@ -66,7 +66,7 @@ function ToastComponent({ toast, onRemove }: ToastProps) {
 
 	return (
 		<div
-			className={`fixed top-4 right-4 z-50 transition-all duration-300 transform ${
+			className={`fixed bottom-4 right-4 z-50 transition-all duration-300 transform ${
 				isVisible ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'
 			}`}
 		>
@@ -125,7 +125,7 @@ export function useToast() {
 	}
 
 	const ToastContainer = () => (
-		<div className="fixed top-4 right-4 z-50 space-y-2">
+		<div className="fixed bottom-4 right-4 z-50 space-y-2">
 			{toasts.map(toast => (
 				<ToastComponent
 					key={toast.id}

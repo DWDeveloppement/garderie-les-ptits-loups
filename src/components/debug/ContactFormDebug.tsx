@@ -90,6 +90,23 @@ export function ContactFormDebug({
 						</div>
 					</div>
                 </div>
+				
+				{/* Statut reCAPTCHA v2 */}
+				<div className="mb-4">
+					<div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
+						<div className="flex items-center space-x-2 mb-2">
+							<div className="w-2 h-2 rounded-full bg-green-500"></div>
+							<span className="text-sm font-medium text-gray-700">reCAPTCHA v2</span>
+						</div>
+						
+						<div className="text-xs text-gray-600 space-y-1">
+							<div>Status: 🟢 Case à cocher visible</div>
+							<div>Mode: Production</div>
+							<div>Protection: Anti-spam avec validation manuelle</div>
+						</div>
+					</div>
+				</div>
+				
 				<div>
 					<div className="flex justify-between items-center mb-2">
 						<h3 className="text-sm font-semibold text-orange-11">

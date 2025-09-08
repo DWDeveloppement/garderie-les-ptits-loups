@@ -14,7 +14,7 @@ import {
 } from '@/scripts/contactForm'
 import { useState } from 'react'
 import { useLocalStorage } from './useLocalStorage'
-import { useRecaptcha } from './useRecaptcha'
+// reCAPTCHA v2 sera géré directement dans le composant ContactForm
 
 export function useFormValidation() {
 	// Hook localStorage pour persister les données du formulaire
@@ -29,8 +29,7 @@ export function useFormValidation() {
 	// État pour l'animation de succès
 	const [isSuccess, setIsSuccess] = useState(false)
 
-	// Hook reCAPTCHA pour la protection anti-spam
-	const { executeRecaptchaAction, isRecaptchaAvailable } = useRecaptcha()
+	// reCAPTCHA v2 sera géré directement dans le composant ContactForm
 
 	// Gestionnaire de changement pour les champs
 	const handleInputChange = (field: keyof ContactFormData, value: string) => {
@@ -72,29 +71,13 @@ export function useFormValidation() {
 		}
 
 		try {
-			// Vérifier reCAPTCHA
-			if (!isRecaptchaAvailable) {
-				console.warn('reCAPTCHA non disponible, envoi sans protection')
-			}
-
-			// Générer le token reCAPTCHA
-			console.log('🛡️ Génération du token reCAPTCHA...')
-			const recaptchaToken = await executeRecaptchaAction('contact_form')
-
-			if (!recaptchaToken && isRecaptchaAvailable) {
-				throw new Error('Échec de la vérification reCAPTCHA')
-			}
-
+			// reCAPTCHA v2 sera validé dans le composant ContactForm
 			// Formater les données avant envoi
 			const formattedData = formatFormData(formData)
-			console.log('📤 Envoi des données:', {
-				...formattedData,
-				recaptchaToken: recaptchaToken ? '✅ Token généré' : '❌ Pas de token',
-				recaptchaStatus: isRecaptchaAvailable ? '🟢 Actif' : '🟡 Non disponible',
-			})
+			console.log('📤 Envoi des données:', formattedData)
 
-			// Envoyer l'email via Resend avec le token reCAPTCHA
-			const result = await sendContactEmail({ ...formattedData, recaptchaToken: recaptchaToken || undefined })
+			// Envoyer l'email via Resend
+			const result = await sendContactEmail(formattedData)
 			console.log('Email envoyé avec succès:', result)
 
 			// En cas de succès, vider le formulaire et localStorage

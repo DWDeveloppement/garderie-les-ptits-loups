@@ -4,7 +4,7 @@ import { Resend } from 'resend'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
-// Fonction pour valider le token reCAPTCHA
+// Fonction pour valider le token reCAPTCHA v2
 async function validateRecaptchaToken(token: string): Promise<boolean> {
 	if (!process.env.RECAPTCHA_SECRET_KEY) {
 		console.warn('RECAPTCHA_SECRET_KEY non configurée')
@@ -21,13 +21,12 @@ async function validateRecaptchaToken(token: string): Promise<boolean> {
 		})
 
 		const data = await response.json()
-		console.log('Validation reCAPTCHA:', { success: data.success, score: data.score })
+		console.log('Validation reCAPTCHA v2:', { success: data.success, hostname: data.hostname })
 
-		// reCAPTCHA v3 retourne un score entre 0.0 et 1.0
-		// On accepte les scores >= 0.5
-		return data.success && data.score >= 0.5
+		// reCAPTCHA v2 retourne success: true/false
+		return data.success === true
 	} catch (error) {
-		console.error('Erreur validation reCAPTCHA:', error)
+		console.error('Erreur validation reCAPTCHA v2:', error)
 		return false
 	}
 }
