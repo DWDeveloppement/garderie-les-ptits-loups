@@ -24,8 +24,9 @@ export function ContactFormDebug({
 	}
 	
 	const handleTestFieldValidation = (field: keyof ContactFormData) => {
-		const fieldError = validateField(field, formData[field])
-		console.log(`Test validation champ ${field}:`, { value: formData[field], error: fieldError })
+		const fieldValue = formData[field] || ''
+		const fieldError = validateField(field, fieldValue)
+		console.log(`Test validation champ ${field}:`, { value: fieldValue, error: fieldError })
 	}
 
 	return (
