@@ -44,7 +44,20 @@ export async function POST(request: NextRequest) {
 			throw new Error('RESEND_TO_EMAIL non configurée')
 		}
 
-		const { nom, prenom, email, sujet, message, recaptchaToken } = formData
+		const { nom, prenom, email, phone, sujet, message, website, recaptchaToken } = formData
+
+		// Validation du champ honeypot (anti-bot)
+		if (website && website.trim().length > 0) {
+			console.warn('Suspicion de bot détectée - champ honeypot rempli:', website)
+			return NextResponse.json(
+				{
+					success: false,
+					error: 'Suspicion de bot détectée',
+					details: 'Le formulaire semble être soumis par un bot',
+				},
+				{ status: 400 }
+			)
+		}
 
 		// Validation reCAPTCHA
 		if (recaptchaToken) {
@@ -78,6 +91,7 @@ export async function POST(request: NextRequest) {
             <h3 style="margin: 0 0 10px 0; color: #92400E;">Informations du contact</h3>
             <p style="margin: 5px 0;"><strong>Nom :</strong> ${prenom} ${nom}</p>
             <p style="margin: 5px 0;"><strong>Email :</strong> ${email}</p>
+			<p style="margin: 5px 0;"><strong>Téléphone :</strong> ${phone}</p>
             <p style="margin: 5px 0;"><strong>Sujet :</strong> ${sujet}</p>
           </div>
           

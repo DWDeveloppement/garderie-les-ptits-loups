@@ -1,13 +1,16 @@
 // Script de gestion du formulaire de contact
 // Validation, types et utilitaires
+// les placeholder sont dans le composant ContactForm.tsx pour guider l'utilisateur
 
 // Structure du formulaire
 export type ContactFormData = {
 	nom: string
 	prenom: string
 	email: string
+	phone: string
 	sujet: string
 	message: string
+	website?: string // Champ honeypot anti-bot
 	recaptchaToken?: string
 }
 
@@ -22,14 +25,23 @@ export const defaultFormData: ContactFormData = {
 	nom: '',
 	prenom: '',
 	email: '',
+	phone: '',
 	sujet: '',
 	message: '',
+	website: '', // Champ honeypot vide par défaut
 }
 
 // Fonction utilitaire pour valider l'email
 export const isValidEmail = (email: string): boolean => {
 	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 	return emailRegex.test(email)
+}
+
+// Validation utilitaire pour le téléphone
+export const isValidPhone = (phone: string): boolean => {
+	const phoneRegex = /^\+?[0-9\s]+$/ // accepte le préfixe + et les espaces
+	const cleanPhone = phone.replace(/\s/g, '') // Nétoie les espaces pour une meilleure validation
+	return phoneRegex.test(cleanPhone)
 }
 
 // Validation complète du formulaire
@@ -57,6 +69,11 @@ export const validateForm = (data: ContactFormData): ValidationError[] => {
 		errors.push({ field: 'email', message: "Format d'email invalide" })
 	}
 
+	// Validation du téléphone (optionnel)
+	if (data.phone && !isValidPhone(data.phone)) {
+		errors.push({ field: 'phone', message: 'Format de téléphone invalide' })
+	}
+
 	// Validation du sujet
 	if (!data.sujet.trim()) {
 		errors.push({ field: 'sujet', message: 'Sujet requis' })
@@ -69,6 +86,12 @@ export const validateForm = (data: ContactFormData): ValidationError[] => {
 		errors.push({ field: 'message', message: 'Message requis' })
 	} else if (data.message.trim().length < 10) {
 		errors.push({ field: 'message', message: 'Message doit contenir au moins 10 caractères' })
+	}
+
+	// Validation du champ honeypot (anti-bot)
+	if (data.website && data.website.trim().length > 0) {
+		// Si le champ honeypot est rempli, c'est probablement un bot
+		errors.push({ field: 'website', message: 'Suspicion de bot détectée' })
 	}
 
 	return errors
@@ -101,6 +124,12 @@ export const validateField = (field: keyof ContactFormData, value: string): Vali
 			}
 			break
 
+		case 'phone':
+			if (value && !isValidPhone(value)) {
+				return { field: 'phone', message: 'Format de téléphone invalide' }
+			}
+			break
+
 		case 'sujet':
 			if (!value.trim()) {
 				return { field: 'sujet', message: 'Sujet requis' }
@@ -114,6 +143,13 @@ export const validateField = (field: keyof ContactFormData, value: string): Vali
 				return { field: 'message', message: 'Message requis' }
 			} else if (value.trim().length < 10) {
 				return { field: 'message', message: 'Message doit contenir au moins 10 caractères' }
+			}
+			break
+
+		case 'website':
+			// Champ honeypot : si rempli, c'est probablement un bot
+			if (value && value.trim().length > 0) {
+				return { field: 'website', message: 'Suspicion de bot détectée' }
 			}
 			break
 	}
@@ -137,8 +173,10 @@ export const formatFormData = (data: ContactFormData) => {
 		nom: data.nom.trim(),
 		prenom: data.prenom.trim(),
 		email: data.email.trim().toLowerCase(),
+		phone: data.phone.trim(),
 		sujet: data.sujet.trim(),
 		message: data.message.trim(),
+		// Le champ 'website' (honeypot) est exclu de l'envoi
 	}
 }
 

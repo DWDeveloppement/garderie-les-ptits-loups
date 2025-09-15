@@ -1,14 +1,19 @@
 /**Ici on va mettre le formulaire de contact déja pret dans le fichier ContactFormSection.tsx 
  * On exporte le formulaire dans la section ContactFormSection.tsx
  * ici on fait le rendu du formulaire en passant les props, hooks,etc... du formulaire qui sont nécéssaires.
+ * Des placeholders sont présents dans le composant pour guider l'utilisateur.
 */
 'use client'
 import { useFormValidation } from '@/hooks/useFormValidation'
 import { useRecaptchaV2 } from '@/hooks/useRecaptchaV2'
 import * as Form from '@radix-ui/react-form'
+import { Mail, MessageSquare, Phone, User } from 'lucide-react'
+import { HoneypotField } from './forms/HoneypotField'
+import { InputField } from './forms/InputField'
+import { TextareaField } from './forms/TextareaField'
+import { RecaptchaV2 } from './shared/recaptcha-v2'
+import { Spinner } from './shared/spinner'
 import { Button } from './ui/button'
-import { RecaptchaV2 } from './ui/recaptcha-v2'
-import { Spinner } from './ui/spinner'
 import { useToast } from './ui/toast'
 
 const ContactForm = () => {
@@ -53,134 +58,127 @@ const ContactForm = () => {
 			showError('Erreur d\'envoi', result?.error || MESSAGES.ERROR_GENERAL)
 		}
 	}
-
 	return (
 		<>
-			<Form.Root className='w-full max-w-2xl mt-16'>
-				<div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+			<Form.Root className='w-full flex flex-col max-w-4xl mt-16'>
+				<div className='grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12 mb-12'>
 					{/* Nom */}
-					<Form.Field className='mb-4 grid' name='nom'>
-						<div className='flex items-baseline justify-between'>
-							<Form.Label className='text-sm font-medium text-orange-12'>Nom</Form.Label>
-							{getFieldError('nom') && <span className='text-xs text-red-500'>{getFieldError('nom')}</span>}
-						</div>
-						<Form.Control asChild>
-							<input
-								className={`w-full px-3 py-2 border rounded-md bg-white text-orange-12 focus:outline-none focus:ring-2 focus:ring-purple-7 focus:border-transparent ${
-									hasFieldError('nom') ? 'border-red-500' : 'border-orange-6'
-								} ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
-								type='text'
-								value={formData.nom}
-								onChange={(e) => handleInputChange('nom', e.target.value)}
-								onBlur={() => handleFieldBlur('nom')}
-								required
-								disabled={isSubmitting}
-							/>
-						</Form.Control>
-					</Form.Field>
+					<InputField
+						name="nom"
+						label="Nom"
+						type="text"
+						placeholder="Votre nom"
+						value={formData.nom}
+						onChange={(value) => handleInputChange('nom', value)}
+						onBlur={() => handleFieldBlur('nom')}
+						required
+						disabled={isSubmitting}
+						icon={User}
+						hasError={hasFieldError('nom')}
+						errorMessage={getFieldError('nom')}
+					/>
 
 					{/* Prénom */}
-					<Form.Field className='mb-4 grid' name='prenom'>
-						<div className='flex items-baseline justify-between'>
-							<Form.Label className='text-sm font-medium text-orange-12'>Prénom</Form.Label>
-							{getFieldError('prenom') && <span className='text-xs text-red-500'>{getFieldError('prenom')}</span>}
-						</div>
-						<Form.Control asChild>
-							<input
-								className={`w-full px-3 py-2 border rounded-md bg-white text-orange-12 focus:outline-none focus:ring-2 focus:ring-purple-7 focus:border-transparent ${
-									hasFieldError('prenom') ? 'border-red-500' : 'border-orange-6'
-								} ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
-								type='text'
-								value={formData.prenom}
-								onChange={(e) => handleInputChange('prenom', e.target.value)}
-								onBlur={() => handleFieldBlur('prenom')}
-								required
-								disabled={isSubmitting}
-							/>
-						</Form.Control>
-					</Form.Field>
+					<InputField
+						name="prenom"
+						label="Prénom"
+						type="text"
+						placeholder="Votre prénom"
+						value={formData.prenom}
+						onChange={(value) => handleInputChange('prenom', value)}
+						onBlur={() => handleFieldBlur('prenom')}
+						required
+						disabled={isSubmitting}
+						icon={User}
+						hasError={hasFieldError('prenom')}
+						errorMessage={getFieldError('prenom')}
+					/>
 
 					{/* Email */}
-					<Form.Field className='mb-4 grid' name='email'>
-						<div className='flex items-baseline justify-between'>
-							<Form.Label className='text-sm font-medium text-orange-12'>Email</Form.Label>
-							{getFieldError('email') && <span className='text-xs text-red-500'>{getFieldError('email')}</span>}
-						</div>
-						<Form.Control asChild>
-							<input
-								className={`w-full px-3 py-2 border rounded-md bg-white text-orange-12 focus:outline-none focus:ring-2 focus:ring-purple-7 focus:border-transparent ${
-									hasFieldError('email') ? 'border-red-500' : 'border-orange-6'
-								} ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
-								type='email'
-								value={formData.email}
-								onChange={(e) => handleInputChange('email', e.target.value)}
-								onBlur={() => handleFieldBlur('email')}
-								required
-								disabled={isSubmitting}
-							/>
-						</Form.Control>
-					</Form.Field>
+					<InputField
+						name="email"
+						label="Email"
+						type="email"
+						placeholder="Votre email"
+						value={formData.email}
+						onChange={(value) => handleInputChange('email', value)}
+						onBlur={() => handleFieldBlur('email')}
+						required
+						disabled={isSubmitting}
+						icon={Mail}
+						hasError={hasFieldError('email')}
+						errorMessage={getFieldError('email')}
+					/>
+
+					{/* Téléphone */}
+					<InputField
+						name="phone"
+						label="Téléphone (optionnel)"
+						type="tel"
+						placeholder="Votre téléphone (optionnel)"
+						value={formData.phone}
+						onChange={(value) => handleInputChange('phone', value)}
+						onBlur={() => handleFieldBlur('phone')}
+						disabled={isSubmitting}
+						icon={Phone}
+						hasError={hasFieldError('phone')}
+						errorMessage={getFieldError('phone')}
+					/>
 				</div>
 				{/* Sujet */}
-				<Form.Field className='mb-4 grid' name='sujet'>
-					<div className='flex items-baseline justify-between'>
-						<Form.Label className='text-sm font-medium text-orange-12'>Sujet</Form.Label>
-						{getFieldError('sujet') && <span className='text-xs text-red-500'>{getFieldError('sujet')}</span>}
-					</div>
-					<Form.Control asChild>
-						<input
-							className={`w-full px-3 py-2 border rounded-md bg-white text-orange-12 focus:outline-none focus:ring-2 focus:ring-purple-7 focus:border-transparent ${
-								hasFieldError('sujet') ? 'border-red-500' : 'border-orange-6'
-							} ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
-							type='text'
-							value={formData.sujet}
-							onChange={(e) => handleInputChange('sujet', e.target.value)}
-							onBlur={() => handleFieldBlur('sujet')}
-							required
-							disabled={isSubmitting}
-						/>
-					</Form.Control>
-				</Form.Field>
+				<InputField
+					name="sujet"
+					label="Sujet"
+					type="text"
+					placeholder="Votre sujet"
+					value={formData.sujet}
+					onChange={(value) => handleInputChange('sujet', value)}
+					onBlur={() => handleFieldBlur('sujet')}
+					required
+					disabled={isSubmitting}
+					icon={MessageSquare}
+					hasError={hasFieldError('sujet')}
+					errorMessage={getFieldError('sujet')}
+					className='mb-12'
+				/>
 
 				{/* Message */}
-				<Form.Field className='mb-4 grid' name='message'>
-					<div className='flex items-baseline justify-between'>
-						<Form.Label className='text-sm font-medium text-orange-12'>Message</Form.Label>
-						{getFieldError('message') && <span className='text-xs text-red-500'>{getFieldError('message')}</span>}
-					</div>
-					<Form.Control asChild>
-						<textarea
-							className={`w-full px-3 py-2 border rounded-md bg-white text-orange-12 focus:outline-none focus:ring-2 focus:ring-purple-7 focus:border-transparent resize-none min-h-[120px] ${
-								hasFieldError('message') ? 'border-red-500' : 'border-orange-6'
-							} ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
-							value={formData.message}
-							onChange={(e) => handleInputChange('message', e.target.value)}
-							onBlur={() => handleFieldBlur('message')}
-							required
-							disabled={isSubmitting}
-						/>
-					</Form.Control>
-				</Form.Field>
+				<TextareaField
+					name="message"
+					label="Message"
+					placeholder="Votre message"
+					value={formData.message}
+					onChange={(value) => handleInputChange('message', value)}
+					onBlur={() => handleFieldBlur('message')}
+					required
+					disabled={isSubmitting}
+					icon={MessageSquare}
+					hasError={hasFieldError('message')}
+					errorMessage={getFieldError('message')}
+					minHeight="120px"
+					className='mb-12'
+				/>
+
+				{/* Champ Honeypot - Anti-bot invisible */}
+				<HoneypotField
+					value={formData.website || ''}
+					onChange={(value) => handleInputChange('website', value)}
+				/>
 
 				{/* reCAPTCHA v2 - Placement correct avant les boutons */}
-				<RecaptchaV2
-					onVerify={handleRecaptchaVerify}
-					onExpire={handleRecaptchaExpire}
-					onError={handleRecaptchaError}
-					className='mt-6'
-				/>
-				
+				<RecaptchaV2 onVerify={handleRecaptchaVerify} onExpire={handleRecaptchaExpire} onError={handleRecaptchaError} />
+
 				{/* Message d'erreur reCAPTCHA */}
 				{recaptchaError && (
-					<div className="mt-2 text-center">
-						<p className="text-sm text-red-600">{recaptchaError}</p>
+					<div className='mt-2 text-center'>
+						<p className='text-sm text-red-600'>{recaptchaError}</p>
 					</div>
 				)}
 
 				{/* Boutons */}
-				<div className='flex gap-4 md:justify-between mt-6 '>
+				<div className='flex gap-4 justify-around mt-8'>
 					<Button
-						size='lg'
+						size='3'
 						type='button'
 						className='bg-purple-9 hover:bg-purple-10 text-white relative'
 						onClick={handleSubmit}
@@ -189,7 +187,7 @@ const ContactForm = () => {
 						{isSubmitting ? 'Envoi en cours...' : 'Envoyer'}
 					</Button>
 					<Button
-						size='lg'
+						size='3'
 						type='button'
 						variant='outline'
 						className='border-orange-6 text-orange-12 hover:bg-orange-2'
