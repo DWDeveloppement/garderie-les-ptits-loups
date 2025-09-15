@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "@radix-ui/themes/styles.css";
 @import "../styles/palette.css";
 
 :root {
@@ -24,4 +25,21 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Orange comme grayColor pour Radix Theme */
+:root {
+  /* Orange scale pour remplacer gray */
+  --gray-1: oklch(0.994 0.0198 66.57);
+  --gray-2: oklch(0.982 0.0264 66.57);
+  --gray-3: oklch(0.956 0.0404 66.57);
+  --gray-4: oklch(0.932 0.0605 66.57);
+  --gray-5: oklch(0.91 0.0684 66.57);
+  --gray-6: oklch(0.886 0.0889 66.57);
+  --gray-7: oklch(0.853 0.111 66.57);
+  --gray-8: oklch(0.792 0.1484 66.57);
+  --gray-9: oklch(0.641 0.1836 66.57);
+  --gray-10: oklch(0.606 0.1713 66.57);
+  --gray-11: oklch(0.498 0.1408 66.57);
+  --gray-12: oklch(0.243 0.1418 66.57);
 }
