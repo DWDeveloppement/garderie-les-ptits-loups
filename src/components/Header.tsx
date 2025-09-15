@@ -35,7 +35,7 @@ export function Header() {
 
 					{/* Menu Mobile */}
 					<div className='md:hidden'>
-						<Button variant='ghost' size='icon' onClick={toggleMenu} className='text-orange-11 hover:bg-orange-3'>
+						<Button variant='ghost' size='3' onClick={toggleMenu} className='text-orange-11 hover:bg-orange-3'>
 							{isMenuOpen ? <X className='h-6 w-6' /> : <Menu className='h-6 w-6' />}
 						</Button>
 					</div>

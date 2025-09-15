@@ -139,7 +139,7 @@ export function PedagogySection({
         <RichTextRenderer content={content} />
         
         {/* Citation en bas de section */}
-        <div className="mt-12">
+        <div className="mt-12 flex justify-center max-w-2xl mx-auto">
           <RichTextRenderer content={quote} />
         </div>
       </div>

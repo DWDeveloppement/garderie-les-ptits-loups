@@ -23,7 +23,7 @@ export function RichTextRenderer({ content, className = "" }: RichTextRendererPr
       const author = children?.[1]?.text || ''
       
       return (
-				<Card key={index} className='relative w-full max-w-2xl mx-auto pt-8 mt-32 mb-8 bg-purple-2 border-purple-6 shadow-lg'>
+				<Card key={index} className='!flex flex-col justify-center items-center relative w-full max-w-2xl mx-auto !pt-12 mt-32 mb-8 bg-purple-2 border-purple-6 shadow-lg !overflow-visible !contain-none'>
 					{/* Icône de citation centrée en haut */}
 					<div className='absolute -top-12 left-1/2 -translate-x-1/2 flex justify-center items-center'>
 						<Quote className='p-4 h-24 w-24 text-purple-9 rounded-full bg-purple-2 border-purple-9 border-4' />
@@ -31,10 +31,10 @@ export function RichTextRenderer({ content, className = "" }: RichTextRendererPr
 
 					<CardContent className='p-6 text-center'>
 						{/* Texte de la citation */}
-						<blockquote className='text-lg italic text-purple-11 leading-relaxed mb-4'>{quoteText}</blockquote>
+						<blockquote className='text-2xl italic text-purple-11 leading-relaxed mb-4'>{quoteText}</blockquote>
 
 						{/* Auteur de la citation */}
-						{author && <cite className='block text-sm font-semibold text-purple-10 not-italic'>— {author}</cite>}
+						{author && <cite className='block text-md font-semibold text-purple-10 not-italic'>— {author}</cite>}
 					</CardContent>
 				</Card>
 			)

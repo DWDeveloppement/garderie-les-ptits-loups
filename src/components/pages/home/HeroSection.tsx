@@ -9,7 +9,7 @@ export function HeroSection() {
         <div className="flex flex-col-reverse lg:flex-row gap-8 lg:gap-12 items-center">
           
           {/* Contenu Gauche - Texte et Boutons */}
-          <div className="space-y-6 max-w-[60%]">
+          <div className="flex flex-col flex-wrap items-center space-y-6 w-full md:max-w-[60%]">
             <h1 className="text-3xl lg:text-5xl font-bold text-orange-12 leading-tight">
               Bienvenue chez<br />
               <span className="text-purple-9">Les P&apos;tits Loups</span>

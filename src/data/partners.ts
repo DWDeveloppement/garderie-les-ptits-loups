@@ -8,9 +8,9 @@ export const partners = [
 	},
 	{
 		id: 2,
-		name: 'Association Suisse des Crèches',
-		website: 'https://www.acsc.ch',
-		tooltip: "Voir le site de l'Association Suisse des Crèches",
-		logo: '/bbnageurs.webp',
+		name: 'Huming Birds',
+		website: 'http://www.hummingbirdsmusic.ch/',
+		tooltip: 'Voir le site de Huming Birds',
+		logo: '/hummingbirds.webp',
 	},
 ]
