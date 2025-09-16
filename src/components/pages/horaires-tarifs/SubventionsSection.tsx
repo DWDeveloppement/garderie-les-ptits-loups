@@ -1,6 +1,6 @@
 'use client'
-
-import { FileText, MapPin, Phone } from 'lucide-react'
+//Suivant la complexité du useMobile pour la détection de mobile, soit on fait le conditional rendering dans ce fichier directement soit par le TablePricingResponsive.tsx
+import { MapPin } from 'lucide-react'
 
 export function SubventionsSection() {
   return (
@@ -27,6 +27,7 @@ export function SubventionsSection() {
           </div>
           
           <div className="grid md:grid-cols-2 gap-8">
+            TablePriceResponsive component
             <div>
               <h4 className="text-lg font-semibold text-purple-11 mb-4">Mont-sur-Lausanne</h4>
               <div className="space-y-4">
@@ -72,95 +73,6 @@ export function SubventionsSection() {
               </div>
             </div>
           </div>
-        </div>
-
-        {/* Autres aides financières */}
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
-          {/* Aide cantonale */}
-          <div className="bg-gradient-to-br from-orange-2 to-orange-4 rounded-xl p-8 shadow-lg">
-            <div className="flex items-center mb-6">
-              <div className="flex items-center justify-center w-12 h-12 bg-orange-9 rounded-lg mr-4">
-                <FileText className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="text-xl font-semibold text-orange-12">Aide Cantonale</h3>
-            </div>
-            <div className="space-y-4">
-              <div className="py-2">
-                <h4 className="font-semibold text-orange-11 mb-1">Subvention cantonale</h4>
-                <p className="text-orange-10 text-sm">Aide financière du canton de Vaud</p>
-              </div>
-              <div className="py-2">
-                <h4 className="font-semibold text-orange-11 mb-1">Conditions</h4>
-                <p className="text-orange-10 text-sm">Revenus modestes, famille monoparentale</p>
-              </div>
-              <div className="py-2">
-                <h4 className="font-semibold text-orange-11 mb-1">Montant</h4>
-                <p className="text-orange-10 text-sm">Variable selon la situation</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Déductions fiscales */}
-          <div className="bg-gradient-to-br from-purple-3 to-orange-2 rounded-xl p-8 shadow-lg">
-            <div className="flex items-center mb-6">
-              <div className="flex items-center justify-center w-12 h-12 bg-purple-9 rounded-lg mr-4">
-                <FileText className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="text-xl font-semibold text-purple-12">Déductions Fiscales</h3>
-            </div>
-            <div className="space-y-4">
-              <div className="py-2">
-                <h4 className="font-semibold text-purple-11 mb-1">Déduction garde</h4>
-                <p className="text-purple-10 text-sm">Jusqu&apos;à CHF 10&apos;100 par enfant</p>
-              </div>
-              <div className="py-2">
-                <h4 className="font-semibold text-purple-11 mb-1">Conditions</h4>
-                <p className="text-purple-10 text-sm">Activité professionnelle des parents</p>
-              </div>
-              <div className="py-2">
-                <h4 className="font-semibold text-purple-11 mb-1">Documentation</h4>
-                <p className="text-purple-10 text-sm">Attestation de frais de garde</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Contact pour informations */}
-        <div className="bg-orange-1 rounded-xl p-8 border border-orange-6">
-          <div className="text-center">
-            <h3 className="text-xl font-semibold text-purple-12 mb-4">
-              Besoin d&apos;aide pour vos démarches ?
-            </h3>
-            <p className="text-orange-10 mb-6 max-w-2xl mx-auto">
-              Notre équipe est là pour vous accompagner dans vos démarches administratives 
-              et vous aider à optimiser les aides financières disponibles.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="tel:+41211234567"
-                className="inline-flex items-center justify-center px-6 py-3 bg-purple-9 text-white rounded-lg hover:bg-purple-10 transition-colors"
-              >
-                <Phone className="w-5 h-5 mr-2" />
-                Appeler maintenant
-              </a>
-              <a
-                href="/contact"
-                className="inline-flex items-center justify-center px-6 py-3 bg-white text-purple-9 border border-purple-9 rounded-lg hover:bg-purple-1 transition-colors"
-              >
-                <FileText className="w-5 h-5 mr-2" />
-                Demander un rendez-vous
-              </a>
-            </div>
-          </div>
-        </div>
-
-        {/* Note importante */}
-        <div className="mt-12 bg-purple-2 rounded-lg p-6 border-l-4 border-purple-9">
-          <p className="text-purple-11">
-            <strong>Important :</strong> Les conditions et montants des subventions peuvent évoluer. 
-            Nous vous recommandons de vérifier les informations les plus récentes auprès des 
-            services compétents et de nous contacter pour toute question.
-          </p>
         </div>
       </div>
     </section>
