@@ -11,7 +11,7 @@ export function StaticMap({
   height = 'auto',  
   ratio = '1920/1080'
 }: StaticMapProps) {
-  const { urls, openSmartDirections, copyAddress } = useMapLocation(location)
+  const { urls, copyAddress } = useMapLocation(location)
 
   return (
 		<div className={`space-y-4 w-full max-w-4xl mx-auto ${className}`}>

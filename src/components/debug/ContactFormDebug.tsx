@@ -68,7 +68,7 @@ export function ContactFormDebug({
 					<h3 className="text-sm font-semibold text-orange-11 mb-2">Test de validation :</h3>
 					<div className="space-y-2">
 						<Button 
-							size="sm" 
+							size="2" 
 							variant="outline" 
 							onClick={handleTestValidation}
 							className="text-xs mr-2"
@@ -79,7 +79,7 @@ export function ContactFormDebug({
 							{['nom', 'prenom', 'email', 'sujet', 'message'].map((field) => (
 								<Button
 									key={field}
-									size="sm"
+									size="2"
 									variant="outline"
 									onClick={() => handleTestFieldValidation(field as keyof ContactFormData)}
 									className="text-xs"
@@ -113,7 +113,7 @@ export function ContactFormDebug({
 							Logs console ({logs.length}) :
 						</h3>
 						<Button 
-							size="sm" 
+							size="2" 
 							variant="outline" 
 							onClick={clearLogs}
 							className="text-xs h-6 px-2"

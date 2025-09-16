@@ -25,7 +25,7 @@ export function DynamicMap({
     zIndex,
     ratio
   })
-  const { urls, openSmartDirections, copyAddress } = useMapLocation(location)
+  const { urls, copyAddress } = useMapLocation(location)
 
   return (
 		<div className={`space-y-4 w-full max-w-4xl mx-auto ${className}`}>

@@ -45,7 +45,7 @@ export default function ContactDirections({ label = DEFAULT_LABEL, addressText =
 			// Desktop / autres
 			window.open(googleMapsDir, '_blank', 'noopener,noreferrer')
 		}
-	}, [appleMapsDir, googleMapsDir])
+	}, [appleMapsDir, googleMapsDir, gmapsIOS])
 
 	const copyAddress = async () => {
 		try {

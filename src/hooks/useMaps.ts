@@ -58,7 +58,7 @@ export function useMapLocation(location: MapLocation) {
 }
 
 // Hook pour les cartes statiques (OpenStreetMap uniquement)
-export function useStaticMap({ location, zoom = 15, mapType = 'roadmap', style = 'default' }: StaticMapProps) {
+export function useStaticMap({ location, zoom = 15 }: StaticMapProps) {
 	// Génération de l'URL pour OpenStreetMap Static API
 	const mapUrl = useMemo(() => {
 		// Utilisation de OpenStreetMap Static API (gratuite)

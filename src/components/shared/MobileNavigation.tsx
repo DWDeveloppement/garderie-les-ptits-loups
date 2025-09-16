@@ -9,7 +9,6 @@ type MobileNavigationProps = {
   location?: MapLocation
   phoneNumber?: string
   email?: string
-  autoHide?: boolean
   showBackToTop?: boolean
 }
 
@@ -17,7 +16,6 @@ export function MobileNavigation({
   location,
   phoneNumber,
   email,
-  autoHide = true,
   showBackToTop = true
 }: MobileNavigationProps) {
   const { width } = useWindowSize()

@@ -30,7 +30,7 @@ export function BottomBar({
   email = "contact@garderie-ptits-loups.ch",
   className = '' 
 }: BottomBarProps) {
-  const { urls, openSmartDirections } = useMapLocation(location)
+  const { openSmartDirections } = useMapLocation(location)
 
   return (
     <nav
