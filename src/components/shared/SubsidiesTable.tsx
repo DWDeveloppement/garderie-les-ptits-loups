@@ -1,87 +1,63 @@
 'use client'
 
-import { SubsidiesData } from '@/data/prices'
+import { SubsidiesDocument } from '@/data/prices'
+import { useEffect, useState } from 'react'
 
 type SubsidiesTableProps = {
-	subsidies: SubsidiesData
+	subsidies: SubsidiesDocument
 }
 
 export function SubsidiesTable({ subsidies }: SubsidiesTableProps) {
-	return (
-		<section className="mb-16">
-			<div className="text-center mb-8">
-				<h2 className="text-2xl font-bold text-purple-12 mb-2">
-					{subsidies.title}
-				</h2>
-				<p className="text-orange-10">
-					Réductions applicables selon vos revenus mensuels
-				</p>
-			</div>
+	const [isSmallScreen, setIsSmallScreen] = useState(false)
 
-			{/* Version Desktop */}
-			<div className="hidden md:block">
-				<div className="bg-white rounded-lg shadow-lg overflow-hidden">
-					<table className="w-full">
-						<thead className="bg-purple-9 text-white">
-							<tr>
-								<th className="py-4 px-6 text-left font-semibold">
-									Tranche de revenus
-								</th>
-								<th className="py-4 px-6 text-center font-semibold">
-									Réduction
-								</th>
-								<th className="py-4 px-6 text-left font-semibold">
-									Description
-								</th>
-							</tr>
-						</thead>
-						<tbody>
-							{subsidies.items.map((item, index) => (
-								<tr 
-									key={index}
-									className={`border-b border-orange-4 ${
-										index % 2 === 0 ? 'bg-orange-1' : 'bg-white'
-									}`}
-								>
-									<td className="py-4 px-6 font-medium text-purple-11">
-										{item.incomeRange}
-									</td>
-									<td className="py-4 px-6 text-center">
-										<span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold bg-orange-9 text-white">
-											{item.reduction}%
-										</span>
-									</td>
-									<td className="py-4 px-6 text-orange-10">
-										{item.description}
-									</td>
-								</tr>
-							))}
-						</tbody>
-					</table>
-				</div>
-			</div>
+	useEffect(() => {
+		const checkScreenSize = () => setIsSmallScreen(window.innerWidth <= 375)
+		checkScreenSize()
+		window.addEventListener('resize', checkScreenSize)
+		return () => window.removeEventListener('resize', checkScreenSize)
+	}, [])
 
-			{/* Version Mobile */}
-			<div className="md:hidden space-y-4">
+	// Rendu simplifié pour petits écrans (≤375px)
+	if (isSmallScreen) {
+		return (
+			<div className='space-y-3'>
 				{subsidies.items.map((item, index) => (
-					<div 
+					<div
 						key={index}
-						className="bg-white rounded-lg shadow-lg p-4 border-l-4 border-purple-9"
-					>
-						<div className="flex justify-between items-start mb-2">
-							<h3 className="font-semibold text-purple-11 text-sm">
-								{item.incomeRange}
-							</h3>
-							<span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-semibold bg-orange-9 text-white">
-								{item.reduction}%
-							</span>
-						</div>
-						<p className="text-orange-10 text-sm">
-							{item.description}
-						</p>
+						className='bg-white p-4 rounded-lg border border-orange-6 shadow-sm hover:shadow-md transition-shadow duration-200'>
+						<div className='text-xs font-medium text-orange-11 uppercase mb-2 tracking-wider'>Revenus</div>
+						<div className='text-sm font-medium text-purple-11 mb-3 leading-relaxed'>{item.incomeRange}</div>
+						<div className='text-xs font-medium text-orange-11 uppercase mb-2 tracking-wider'>Subvention</div>
+						<div className='text-sm text-orange-10 font-semibold'>CHF {item.reductionDaily.toFixed(2)}</div>
 					</div>
 				))}
 			</div>
-		</section>
+		)
+	}
+
+	// Rendu tableau HTML natif pour écrans plus grands (>375px)
+	return (
+		<div className='overflow-x-auto rounded-lg shadow-sm border border-orange-6'>
+			<table className='w-full'>
+				<thead>
+					<tr className='bg-orange-2 border-b border-orange-6'>
+						<th className='px-6 py-4 text-left text-xs font-semibold text-orange-11 uppercase tracking-wider'>
+							{subsidies.labelIncomeRange}
+						</th>
+						<th className='px-6 py-4 text-left text-xs font-semibold text-orange-11 uppercase tracking-wider'>
+							{subsidies.labelReduction}
+						</th>
+					</tr>
+				</thead>
+				<tbody className='bg-white divide-y divide-orange-6'>
+					{subsidies.items.map((item, index) => (
+						<tr key={index} className={`hover:bg-orange-1 transition-colors duration-200 ${index % 2 === 0 ? 'bg-white' : 'bg-orange-1'}`}>
+							<td className='px-6 py-4 text-sm font-medium text-purple-11 whitespace-nowrap'>{item.incomeRange}</td>
+							<td className='px-6 py-4 text-sm text-orange-10 font-semibold whitespace-nowrap'>CHF {item.reductionDaily.toFixed(2)}</td>
+						</tr>
+					))}
+				</tbody>
+			</table>
+		</div>
 	)
 }

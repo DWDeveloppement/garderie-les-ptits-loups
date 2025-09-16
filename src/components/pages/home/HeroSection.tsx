@@ -20,7 +20,7 @@ export function HeroSection() {
               apprendre et s&apos;épanouir avec joie dans notre garderie familiale.
             </p>
             
-              <Button size="lg" asChild className="bg-purple-9 hover:bg-purple-10 text-purple-contrast">
+              <Button size="4" asChild className="bg-purple-9 hover:bg-purple-10 text-purple-contrast">
                 <Link href="/contact">
                   Nous contacter
                 </Link>

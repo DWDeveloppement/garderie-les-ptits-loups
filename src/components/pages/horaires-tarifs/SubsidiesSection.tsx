@@ -2,7 +2,7 @@
 
 import { Card, CardContent } from '@/components/ui/card'
 import { SubsidiesDocument } from '@/data/prices'
-import { ResponsiveSubsidiesTable } from './ResponsiveSubsidiesTable'
+import { SubsidiesTable } from '../../shared/SubsidiesTable'
 
 type SubsidiesSectionProps = {
 	subsidies: SubsidiesDocument
@@ -26,7 +26,7 @@ export function SubsidiesSection({ subsidies }: SubsidiesSectionProps) {
 				</Card>
 
 				{/* Tableau des subventions */}
-				<ResponsiveSubsidiesTable subsidies={subsidies} />
+				<SubsidiesTable subsidies={subsidies} />
 
 				{/* Note importante */}
 				<Card className="mt-12 bg-purple-2 border-l-4 border-purple-9">

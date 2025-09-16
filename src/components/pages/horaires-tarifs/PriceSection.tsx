@@ -1,7 +1,7 @@
 'use client'
 
 import { PriceDocument } from '@/data/prices'
-import { PricingList } from './PricingList'
+import { PricingList } from '../../shared/PricingList'
 type PriceSectionProps = {
 	section: PriceDocument
 }

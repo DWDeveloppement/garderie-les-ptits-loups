@@ -2,9 +2,9 @@
  * Page complète avec horaires, tarifs et informations sur les subventions
  */
 import { HeroHorairesTarifsSection } from "@/components/pages/horaires-tarifs/HeroHorairesTarifsSection"
+import { PriceSection } from "@/components/pages/horaires-tarifs/PriceSection"
+import { SubsidiesSection } from '@/components/pages/horaires-tarifs/SubsidiesSection'
 import { ParalaxImage } from "@/components/ParalaxImage"
-import { PriceSection } from "@/components/shared/PriceSection"
-import { SubsidiesSection } from '@/components/shared/SubsidiesSection'
 import { nurserieData, subventionsData, trotteursGrandsData } from '@/data/prices'
 
 export default function HorairesTarifsPage() {

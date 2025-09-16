@@ -18,14 +18,14 @@ export function HeroGlobal({
   className = ""
 }: HeroGlobalProps) {
   const { elementRef, imageTransform, textTransform, overlayOpacity } = useScrollParallax({
-    speed: 15,
-    scale: 0.05,
-    textSpeed: -10,
-    overlayIntensity: 0.2
+    speed: 20,
+    scale: 0.1,
+    textSpeed: -15,
+    overlayIntensity: 0.3
   })
 
   return (
-    <section ref={elementRef} className={`relative h-96 overflow-hidden ${className}`}>
+    <section ref={elementRef} className={`relative h-96 overflow-hidden pt-20 ${className}`}>
       {/* Image de fond avec effet parallax */}
       <div 
         className="absolute inset-0 transform"
