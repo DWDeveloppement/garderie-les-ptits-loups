@@ -5,4 +5,4 @@ export { useScrollDirection, useScrollToTop } from './useScroll'
 export { useDynamicMap, useMapLocation, useStaticMap } from './useMaps'
 
 // Hooks de fenêtre
-export { useMobileMenuControl, useWindowSize } from './useWindowSize'
+export { useBreakpoint, useMobileMenuControl, useWindowSize } from './useWindowSize'

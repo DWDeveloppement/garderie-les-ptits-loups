@@ -1,21 +1,14 @@
 'use client'
 
 import { SubsidiesDocument } from '@/data/prices'
-import { useEffect, useState } from 'react'
+import { useBreakpoint } from '@/hooks/useWindowSize'
 
 type SubsidiesTableProps = {
 	subsidies: SubsidiesDocument
 }
 
 export function SubsidiesTable({ subsidies }: SubsidiesTableProps) {
-	const [isSmallScreen, setIsSmallScreen] = useState(false)
-
-	useEffect(() => {
-		const checkScreenSize = () => setIsSmallScreen(window.innerWidth <= 375)
-		checkScreenSize()
-		window.addEventListener('resize', checkScreenSize)
-		return () => window.removeEventListener('resize', checkScreenSize)
-	}, [])
+	const { isSmallScreen } = useBreakpoint()
 
 	// Rendu simplifié pour petits écrans (≤375px)
 	if (isSmallScreen) {

@@ -1,9 +1,18 @@
 'use client'
+import { BREAKPOINTS, BreakpointSize, getCurrentBreakpoint, isDesktop, isMobile, isSmallScreen, isTablet } from '@/types/breakpoints'
 import { useEffect, useState } from 'react'
 
 type WindowSize = {
 	width: number
 	height: number
+}
+
+type DeviceInfo = {
+	currentBreakpoint: BreakpointSize
+	isMobile: boolean
+	isTablet: boolean
+	isDesktop: boolean
+	isSmallScreen: boolean
 }
 
 export function useWindowSize() {
@@ -34,20 +43,39 @@ export function useWindowSize() {
 	return windowSize
 }
 
+// Hook amélioré avec informations sur les breakpoints
+export function useBreakpoint() {
+	const { width, height } = useWindowSize()
+
+	const deviceInfo: DeviceInfo = {
+		currentBreakpoint: getCurrentBreakpoint(width),
+		isMobile: isMobile(width),
+		isTablet: isTablet(width),
+		isDesktop: isDesktop(width),
+		isSmallScreen: isSmallScreen(width),
+	}
+
+	return {
+		width,
+		height,
+		...deviceInfo,
+		// Fonctions utilitaires
+		isBreakpoint: (breakpoint: BreakpointSize) => width >= BREAKPOINTS[breakpoint],
+		isBelowBreakpoint: (breakpoint: BreakpointSize) => width < BREAKPOINTS[breakpoint],
+		isAboveBreakpoint: (breakpoint: BreakpointSize) => width >= BREAKPOINTS[breakpoint],
+	}
+}
+
 // Hook spécialisé pour le menu mobile
-export function useMobileMenuControl(
-	isMenuOpen: boolean,
-	closeMenu: () => void,
-	breakpoint: number = 768 // md breakpoint par défaut
-) {
-	const { width } = useWindowSize()
+export function useMobileMenuControl(isMenuOpen: boolean, breakpointSize: BreakpointSize, closeMenu: () => void) {
+	const { width, isMobile, isBreakpoint } = useBreakpoint()
 
 	useEffect(() => {
-		// Si on passe au desktop (width >= breakpoint) et que le menu est ouvert
-		if (width >= breakpoint && isMenuOpen) {
+		// Si on passe au breakpoint spécifié et que le menu est ouvert
+		if (isBreakpoint(breakpointSize) && isMenuOpen) {
 			closeMenu()
 		}
-	}, [width, breakpoint, isMenuOpen, closeMenu])
+	}, [isMenuOpen, closeMenu, isBreakpoint, breakpointSize])
 
-	return { width, isMobile: width < breakpoint }
+	return { width, isMobile, isBreakpoint }
 }

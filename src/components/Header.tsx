@@ -14,7 +14,7 @@ export function Header() {
   const closeMenu = () => setIsMenuOpen(false);
 
   // Hook pour fermer le menu mobile automatiquement au passage desktop
-  useMobileMenuControl(isMenuOpen, closeMenu, 768); // 768px = breakpoint md de Tailwind
+  useMobileMenuControl(isMenuOpen, 'md',closeMenu); // 768px = breakpoint md de Tailwind
 
   return (
 		<header className='flex items-center bg-purple-1 shadow-sm sticky top-0 z-30 border-b border-orange-6 h-18'>
