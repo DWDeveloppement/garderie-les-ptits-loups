@@ -1,5 +1,14 @@
 'use client'
-import { BREAKPOINTS, BreakpointSize, getCurrentBreakpoint, isDesktop, isMobile, isSmallScreen, isTablet } from '@/types/breakpoints'
+import {
+	BREAKPOINTS,
+	BreakpointSize,
+	getCurrentBreakpoint,
+	isCustomBreakpoint,
+	isDesktop,
+	isMobile,
+	isSmallScreen,
+	isTablet,
+} from '@/types/breakpoints'
 import { useEffect, useState } from 'react'
 
 type WindowSize = {
@@ -60,9 +69,26 @@ export function useBreakpoint() {
 		height,
 		...deviceInfo,
 		// Fonctions utilitaires
-		isBreakpoint: (breakpoint: BreakpointSize) => width >= BREAKPOINTS[breakpoint],
-		isBelowBreakpoint: (breakpoint: BreakpointSize) => width < BREAKPOINTS[breakpoint],
-		isAboveBreakpoint: (breakpoint: BreakpointSize) => width >= BREAKPOINTS[breakpoint],
+		isBreakpoint: (breakpoint: BreakpointSize) => {
+			if (breakpoint === 'custom') {
+				throw new Error('Use isCustom() function for custom breakpoints')
+			}
+			return width >= BREAKPOINTS[breakpoint]
+		},
+		isBelowBreakpoint: (breakpoint: BreakpointSize) => {
+			if (breakpoint === 'custom') {
+				throw new Error('Use isCustom() function for custom breakpoints')
+			}
+			return width < BREAKPOINTS[breakpoint]
+		},
+		isAboveBreakpoint: (breakpoint: BreakpointSize) => {
+			if (breakpoint === 'custom') {
+				throw new Error('Use isCustom() function for custom breakpoints')
+			}
+			return width >= BREAKPOINTS[breakpoint]
+		},
+		// Fonction pour breakpoint custom
+		isCustom: (customValue: number) => isCustomBreakpoint(width, customValue),
 	}
 }
 

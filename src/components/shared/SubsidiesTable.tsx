@@ -8,10 +8,10 @@ type SubsidiesTableProps = {
 }
 
 export function SubsidiesTable({ subsidies }: SubsidiesTableProps) {
-	const { isSmallScreen } = useBreakpoint()
+	const { isCustom } = useBreakpoint()
 
-	// Rendu simplifié pour petits écrans (≤375px)
-	if (isSmallScreen) {
+	// Rendu simplifié pour écrans < 460px (test avec breakpoint custom)
+	if (isCustom(450)) {
 		return (
 			<div className='space-y-3'>
 				{subsidies.items.map((item, index) => (

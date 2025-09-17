@@ -1,0 +1,443 @@
+{
+	"nurserieData": {
+		"_id": "nurserie",
+		"_type": "priceDocument",
+		"prixAuMois": {
+			"label": "Prix au mois",
+			"journeeComplete": {
+				"label": "Journée complète",
+				"items": [
+					{
+						"description": "1 jour / semaine",
+						"price": 540
+					},
+					{
+						"description": "2 jours / semaine",
+						"price": 1080
+					},
+					{
+						"description": "3 jours / semaine",
+						"price": 1620
+					},
+					{
+						"description": "4 jours / semaine",
+						"price": 2160
+					},
+					{
+						"description": "5 jours / semaine",
+						"price": 2700
+					}
+				]
+			},
+			"matinRepas": {
+				"label": "Matin avec repas",
+				"items": [
+					{
+						"description": "1 jour / semaine",
+						"price": 540
+					},
+					{
+						"description": "2 jours / semaine",
+						"price": 1080
+					},
+					{
+						"description": "3 jours / semaine",
+						"price": 1620
+					},
+					{
+						"description": "4 jours / semaine",
+						"price": 2160
+					},
+					{
+						"description": "5 jours / semaine",
+						"price": 2700
+					}
+				]
+			},
+			"matinSansRepas": {
+				"label": "Matin sans repas",
+				"items": [
+					{
+						"description": "1 jour / semaine",
+						"price": 540
+					},
+					{
+						"description": "2 jours / semaine",
+						"price": 1080
+					},
+					{
+						"description": "3 jours / semaine",
+						"price": 1620
+					},
+					{
+						"description": "4 jours / semaine",
+						"price": 2160
+					},
+					{
+						"description": "5 jours / semaine",
+						"price": 2700
+					}
+				]
+			},
+			"apresMidiRepas": {
+				"label": "Après-midi avec repas",
+				"items": [
+					{
+						"description": "1 jour / semaine",
+						"price": 540
+					},
+					{
+						"description": "2 jours / semaine",
+						"price": 1080
+					},
+					{
+						"description": "3 jours / semaine",
+						"price": 1620
+					},
+					{
+						"description": "4 jours / semaine",
+						"price": 2160
+					},
+					{
+						"description": "5 jours / semaine",
+						"price": 2700
+					}
+				]
+			},
+			"apresMidiSansRepas": {
+				"label": "Après-midi sans repas",
+				"items": [
+					{
+						"description": "1 jour / semaine",
+						"price": 540
+					},
+					{
+						"description": "2 jours / semaine",
+						"price": 1080
+					},
+					{
+						"description": "3 jours / semaine",
+						"price": 1620
+					},
+					{
+						"description": "4 jours / semaine",
+						"price": 2160
+					},
+					{
+						"description": "5 jours / semaine",
+						"price": 2700
+					}
+				]
+			}
+		},
+		"prixAuJour": {
+			"label": "Prix au jour",
+			"journeeComplete": {
+				"label": "Journée complète",
+				"items": [
+					{
+						"description": "de 7h.00 à 18h.00 (repas inclus)",
+						"price": 135
+					}
+				]
+			},
+			"matinee": {
+				"label": "Matinée",
+				"items": [
+					{
+						"description": "de 7h.00 à 11h.15 (sans repas)",
+						"price": 80
+					},
+					{
+						"description": "de 7h.00 à 12h.30 (repas inclus)",
+						"price": 85
+					},
+					{
+						"description": "de 7h.00 à 14h.30 (repas et sieste inclus)",
+						"price": 85
+					}
+				]
+			},
+			"apresMidi": {
+				"label": "Après-midi",
+				"items": [
+					{
+						"description": "de 14h.30 à 18h.00 (sans repas)",
+						"price": 80
+					},
+					{
+						"description": "de 14h.30 à 18h.00 (repas inclus)",
+						"price": 85
+					},
+					{
+						"description": "de 14h.30 à 18h.00 (repas et sieste inclus)",
+						"price": 85
+					}
+				]
+			}
+		}
+	},
+	"trotteursGrandsData": {
+		"_id": "trotteurs-grands",
+		"_type": "priceDocument",
+		"prixAuMois": {
+			"label": "Prix au mois",
+			"journeeComplete": {
+				"label": "Journée complète",
+				"items": [
+					{
+						"description": "1 jour / semaine",
+						"price": 480
+					},
+					{
+						"description": "2 jours / semaine",
+						"price": 960
+					},
+					{
+						"description": "3 jours / semaine",
+						"price": 1440
+					},
+					{
+						"description": "4 jours / semaine",
+						"price": 1920
+					},
+					{
+						"description": "5 jours / semaine",
+						"price": 2400
+					}
+				]
+			},
+			"matinRepas": {
+				"label": "Matinée avec repas",
+				"items": [
+					{
+						"description": "1 jour / semaine",
+						"price": 480
+					},
+					{
+						"description": "2 jours / semaine",
+						"price": 960
+					},
+					{
+						"description": "3 jours / semaine",
+						"price": 1440
+					},
+					{
+						"description": "4 jours / semaine",
+						"price": 1920
+					},
+					{
+						"description": "5 jours / semaine",
+						"price": 2400
+					}
+				]
+			},
+			"matinSansRepas": {
+				"label": "Matinée sans repas",
+				"items": [
+					{
+						"description": "1 jour / semaine",
+						"price": 480
+					},
+					{
+						"description": "2 jours / semaine",
+						"price": 960
+					},
+					{
+						"description": "3 jours / semaine",
+						"price": 1440
+					},
+					{
+						"description": "4 jours / semaine",
+						"price": 1920
+					},
+					{
+						"description": "5 jours / semaine",
+						"price": 2400
+					}
+				]
+			},
+			"apresMidiRepas": {
+				"label": "Après-midi avec repas",
+				"items": [
+					{
+						"description": "1 jour / semaine",
+						"price": 480
+					},
+					{
+						"description": "2 jours / semaine",
+						"price": 960
+					},
+					{
+						"description": "3 jours / semaine",
+						"price": 1440
+					},
+					{
+						"description": "4 jours / semaine",
+						"price": 1920
+					},
+					{
+						"description": "5 jours / semaine",
+						"price": 2400
+					}
+				]
+			},
+			"apresMidiSansRepas": {
+				"label": "Après-midi sans repas",
+				"items": [
+					{
+						"description": "1 jour / semaine",
+						"price": 480
+					},
+					{
+						"description": "2 jours / semaine",
+						"price": 960
+					},
+					{
+						"description": "3 jours / semaine",
+						"price": 1440
+					},
+					{
+						"description": "4 jours / semaine",
+						"price": 1920
+					},
+					{
+						"description": "5 jours / semaine",
+						"price": 2400
+					}
+				]
+			}
+		},
+		"prixAuJour": {
+			"label": "Prix au jour",
+			"journeeComplete": {
+				"label": "Journée complète",
+				"items": [
+					{
+						"description": "de 7h.00 à 18h.00 (repas inclus)",
+						"price": 120
+					}
+				]
+			},
+			"matinee": {
+				"label": "Matinée",
+				"items": [
+					{
+						"description": "de 7h.00 à 11h.15 (sans repas)",
+						"price": 70
+					},
+					{
+						"description": "de 7h.00 à 12h.30 (repas inclus)",
+						"price": 75
+					},
+					{
+						"description": "de 7h.00 à 14h.30 (repas et sieste inclus)",
+						"price": 75
+					}
+				]
+			},
+			"apresMidi": {
+				"label": "Après-midi",
+				"items": [
+					{
+						"description": "de 12h.30 à 18h.00 (sans repas)",
+						"price": 70
+					},
+					{
+						"description": "de 11h.30 à 18h.00 (repas inclus)",
+						"price": 75
+					},
+					{
+						"description": "de 11h.30 à 18h.00 (repas et sieste inclus)",
+						"price": 75
+					}
+				]
+			}
+		}
+	},
+	"subventionsData": {
+		"_id": "subventions",
+		"_type": "subsidiesDocument",
+		"title": "Subventions communales de Mont-sur-Lausanne",
+		"labelIncomeRange": "Revenus annuels familial",
+		"labelReduction": "subvention accordée/jour",
+		"items": [
+			{
+				"incomeRange": "Moins de CHF 60'000",
+				"reductionDaily": 74.77
+			},
+			{
+				"incomeRange": "De CHF 60'001 à CHF 66'000",
+				"reductionDaily": 70.62
+			},
+			{
+				"incomeRange": "De CHF 66'001 à CHF 72'000",
+				"reductionDaily": 66.46
+			},
+			{
+				"incomeRange": "De CHF 72'001 à CHF 78'000",
+				"reductionDaily": 62.31
+			},
+			{
+				"incomeRange": "De CHF 78'001 à CHF 84'000",
+				"reductionDaily": 58.16
+			},
+			{
+				"incomeRange": "De CHF 84'001 à CHF 90'000",
+				"reductionDaily": 54
+			},
+			{
+				"incomeRange": "De CHF 90'001 à CHF 96'000",
+				"reductionDaily": 49.85
+			},
+			{
+				"incomeRange": "De CHF 96'001 à CHF 102'000",
+				"reductionDaily": 45.69
+			},
+			{
+				"incomeRange": "De CHF 102'001 à CHF 108'000",
+				"reductionDaily": 41.54
+			},
+			{
+				"incomeRange": "De CHF 108'001 à CHF 114'000",
+				"reductionDaily": 37.39
+			},
+			{
+				"incomeRange": "De CHF 114'001 à CHF 120'000",
+				"reductionDaily": 33.23
+			},
+			{
+				"incomeRange": "De CHF 120'001 à CHF 126'000",
+				"reductionDaily": 29.08
+			},
+			{
+				"incomeRange": "De CHF 126'001 à CHF 132'000",
+				"reductionDaily": 24.93
+			},
+			{
+				"incomeRange": "De CHF 132'001 à CHF 138'000",
+				"reductionDaily": 20.77
+			},
+			{
+				"incomeRange": "De CHF 138'001 à CHF 144'000",
+				"reductionDaily": 16.62
+			},
+			{
+				"incomeRange": "De CHF 144'001 à CHF 150'000",
+				"reductionDaily": 12.46
+			},
+			{
+				"incomeRange": "De CHF 150'001 à CHF 156'000",
+				"reductionDaily": 8.31
+			},
+			{
+				"incomeRange": "De CHF 156'001 à CHF 162'000",
+				"reductionDaily": 4.16
+			},
+			{
+				"incomeRange": "Plus de CHF 162'000",
+				"reductionDaily": 0
+			}
+		]
+	}
+}

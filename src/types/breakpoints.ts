@@ -1,5 +1,5 @@
 // Types pour les breakpoints Tailwind CSS
-export type BreakpointSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'
+export type BreakpointSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'custom'
 
 // Valeurs des breakpoints Tailwind (en pixels)
 export const BREAKPOINTS = {
@@ -16,6 +16,9 @@ export type BreakpointValues = typeof BREAKPOINTS
 
 // Fonction utilitaire pour vérifier si une taille correspond à un breakpoint
 export function isBreakpoint(width: number, breakpoint: BreakpointSize): boolean {
+	if (breakpoint === 'custom') {
+		throw new Error('Use isCustom() function for custom breakpoints')
+	}
 	return width >= BREAKPOINTS[breakpoint]
 }
 
@@ -47,4 +50,9 @@ export function isDesktop(width: number): boolean {
 // Fonction pour vérifier si on est petit écran (xs + sm + md)
 export function isSmallScreen(width: number): boolean {
 	return width < BREAKPOINTS.lg
+}
+
+// Fonction pour vérifier un breakpoint custom
+export function isCustomBreakpoint(width: number, customValue: number): boolean {
+	return width < customValue
 }
