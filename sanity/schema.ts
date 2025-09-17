@@ -1,64 +1,182 @@
 import { type SchemaTypeDefinition } from 'sanity'
 import { type SanityValidationRule } from '../src/types/sanity'
 
-// Schéma pour les enfants
-const child = {
-	name: 'child',
-	title: 'Enfant',
+// Import des schémas de base
+import { about, contact, home, schedule, sectors, spaces } from './schemas'
+
+// ============================================================================
+// SCHÉMAS POUR LES TARIFS ET SUBVENTIONS
+// ============================================================================
+
+// Schéma pour les éléments de prix
+const priceItem = {
+	name: 'priceItem',
+	title: 'Élément de prix',
+	type: 'object',
+	fields: [
+		{
+			name: 'description',
+			title: 'Description',
+			type: 'string',
+			validation: (Rule: SanityValidationRule) => Rule.required(),
+		},
+		{
+			name: 'price',
+			title: 'Prix (CHF)',
+			type: 'number',
+			validation: (Rule: SanityValidationRule) => Rule.required().min(0),
+		},
+	],
+}
+
+// Schéma pour les blocs de prix (journée complète, matinée, etc.)
+const pricingBlock = {
+	name: 'pricingBlock',
+	title: 'Bloc de tarification',
+	type: 'object',
+	fields: [
+		{
+			name: 'label',
+			title: 'Libellé',
+			type: 'string',
+			validation: (Rule: SanityValidationRule) => Rule.required(),
+		},
+		{
+			name: 'items',
+			title: 'Éléments de prix',
+			type: 'array',
+			of: [{ type: 'priceItem' }],
+			validation: (Rule: SanityValidationRule) => Rule.required().min(1),
+		},
+	],
+}
+
+// Schéma pour les sections de prix (mensuel/journalier)
+const pricingSection = {
+	name: 'pricingSection',
+	title: 'Section de tarification',
+	type: 'object',
+	fields: [
+		{
+			name: 'label',
+			title: 'Libellé',
+			type: 'string',
+			validation: (Rule: SanityValidationRule) => Rule.required(),
+		},
+		{
+			name: 'journeeComplete',
+			title: 'Journée complète',
+			type: 'pricingBlock',
+		},
+		{
+			name: 'matinRepas',
+			title: 'Matin avec repas',
+			type: 'pricingBlock',
+		},
+		{
+			name: 'matinSansRepas',
+			title: 'Matin sans repas',
+			type: 'pricingBlock',
+		},
+		{
+			name: 'apresMidiRepas',
+			title: 'Après-midi avec repas',
+			type: 'pricingBlock',
+		},
+		{
+			name: 'apresMidiSansRepas',
+			title: 'Après-midi sans repas',
+			type: 'pricingBlock',
+		},
+		{
+			name: 'matinee',
+			title: 'Matinée',
+			type: 'pricingBlock',
+		},
+		{
+			name: 'apresMidi',
+			title: 'Après-midi',
+			type: 'pricingBlock',
+		},
+	],
+}
+
+// Schéma pour les documents de prix
+const priceDocument = {
+	name: 'priceDocument',
+	title: 'Document de tarifs',
 	type: 'document',
 	fields: [
 		{
-			name: 'firstName',
-			title: 'Prénom',
+			name: 'title',
+			title: 'Titre',
 			type: 'string',
 			validation: (Rule: SanityValidationRule) => Rule.required(),
 		},
 		{
-			name: 'lastName',
-			title: 'Nom de famille',
+			name: 'prixAuMois',
+			title: 'Prix au mois',
+			type: 'pricingSection',
+		},
+		{
+			name: 'prixAuJour',
+			title: 'Prix au jour',
+			type: 'pricingSection',
+		},
+	],
+}
+
+// Schéma pour les éléments de subvention
+const subsidyItem = {
+	name: 'subsidyItem',
+	title: 'Élément de subvention',
+	type: 'object',
+	fields: [
+		{
+			name: 'incomeRange',
+			title: 'Tranche de revenus',
 			type: 'string',
 			validation: (Rule: SanityValidationRule) => Rule.required(),
 		},
 		{
-			name: 'birthDate',
-			title: 'Date de naissance',
-			type: 'date',
+			name: 'reductionDaily',
+			title: 'Réduction journalière (CHF)',
+			type: 'number',
+			validation: (Rule: SanityValidationRule) => Rule.required().min(0),
+		},
+	],
+}
+
+// Schéma pour les documents de subventions
+const subsidiesDocument = {
+	name: 'subsidiesDocument',
+	title: 'Document de subventions',
+	type: 'document',
+	fields: [
+		{
+			name: 'title',
+			title: 'Titre',
+			type: 'string',
 			validation: (Rule: SanityValidationRule) => Rule.required(),
 		},
 		{
-			name: 'photo',
-			title: 'Photo',
-			type: 'image',
-			options: {
-				hotspot: true,
-			},
+			name: 'labelIncomeRange',
+			title: 'Libellé tranche de revenus',
+			type: 'string',
+			validation: (Rule: SanityValidationRule) => Rule.required(),
 		},
 		{
-			name: 'allergies',
-			title: 'Allergies',
-			type: 'text',
+			name: 'labelReduction',
+			title: 'Libellé réduction',
+			type: 'string',
+			validation: (Rule: SanityValidationRule) => Rule.required(),
 		},
 		{
-			name: 'emergencyContact',
-			title: "Contact d'urgence",
-			type: 'object',
-			fields: [
-				{
-					name: 'name',
-					title: 'Nom',
-					type: 'string',
-				},
-				{
-					name: 'phone',
-					title: 'Téléphone',
-					type: 'string',
-				},
-				{
-					name: 'relationship',
-					title: 'Lien de parenté',
-					type: 'string',
-				},
-			],
+			name: 'items',
+			title: 'Éléments de subvention',
+			type: 'array',
+			of: [{ type: 'subsidyItem' }],
+			validation: (Rule: SanityValidationRule) => Rule.required().min(1),
 		},
 	],
 }
@@ -218,5 +336,25 @@ const news = {
 }
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-	types: [child, activity, staff, news],
+	types: [
+		// Schémas de base
+		home,
+		about,
+		contact,
+		schedule,
+		spaces,
+		sectors,
+		// Types de base pour les tarifs
+		priceItem,
+		pricingBlock,
+		pricingSection,
+		subsidyItem,
+		// Documents principaux
+		priceDocument,
+		subsidiesDocument,
+		// Contenu général
+		activity,
+		staff,
+		news,
+	],
 }
