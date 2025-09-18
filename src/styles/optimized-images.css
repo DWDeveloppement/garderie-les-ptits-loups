@@ -1,0 +1,217 @@
+/**
+ * Styles pour les images optimisées Sanity
+ * Styles spécifiques selon l'usage et les variantes
+ */
+
+/* ============================================================================
+   CONTAINER DE BASE
+   ============================================================================ */
+
+.optimized-image {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: var(--radius, 8px);
+  background-color: var(--color-gray-100);
+}
+
+/* Container AspectRatio de Radix UI */
+.optimized-image [data-radix-aspect-ratio-wrapper] {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.optimized-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.optimized-image:hover img {
+  transform: scale(1.02);
+}
+
+/* ============================================================================
+   VARIANTS PAR USAGE
+   ============================================================================ */
+
+/* Hero Images */
+.optimized-image--hero {
+  border-radius: var(--radius-lg, 12px);
+  box-shadow: var(--shadow-lg);
+}
+
+.optimized-image--hero img {
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Gallery Images */
+.optimized-image--gallery {
+  border-radius: var(--radius, 8px);
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+}
+
+.optimized-image--gallery:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+/* Section Images */
+.optimized-image--section {
+  border-radius: var(--radius, 8px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Thumbnail Images */
+.optimized-image--thumbnail {
+  border-radius: var(--radius-sm, 4px);
+  box-shadow: var(--shadow-xs);
+}
+
+/* Article Images */
+.optimized-image--article {
+  border-radius: var(--radius, 8px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ============================================================================
+   CAPTION ET CREDIT
+   ============================================================================ */
+
+.optimized-image__caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  color: white;
+  padding: var(--spacing-md, 16px);
+  font-size: var(--text-sm, 14px);
+  line-height: 1.4;
+  margin: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.optimized-image:hover .optimized-image__caption {
+  opacity: 1;
+}
+
+.optimized-image__credit {
+  position: absolute;
+  top: var(--spacing-sm, 8px);
+  right: var(--spacing-sm, 8px);
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: var(--spacing-xs, 4px) var(--spacing-sm, 8px);
+  border-radius: var(--radius-sm, 4px);
+  font-size: var(--text-xs, 12px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.optimized-image:hover .optimized-image__credit {
+  opacity: 1;
+}
+
+/* ============================================================================
+   RESPONSIVE
+   Aligné avec les breakpoints Tailwind CSS (src/types/breakpoints.ts)
+   ============================================================================ */
+
+/* md: Medium devices (tablets) - 768px */
+@media (max-width: 768px) {
+  .optimized-image--hero {
+    border-radius: var(--radius, 8px);
+  }
+}
+
+/* sm: Small devices (landscape phones) - 640px */
+@media (max-width: 640px) {
+  /* Styles spécifiques pour petits écrans */
+}
+
+/* xs: Extra small devices (portrait phones) - 0px */
+@media (max-width: 320px) {
+  /* Styles spécifiques pour très petits écrans */
+}
+
+/* ============================================================================
+   LOADING STATES
+   ============================================================================ */
+
+.optimized-image--loading {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ============================================================================
+   ERROR STATES
+   ============================================================================ */
+
+.optimized-image--error {
+  background-color: var(--color-gray-200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-gray-500);
+  font-size: var(--text-sm, 14px);
+}
+
+.optimized-image--error::before {
+  content: "🖼️";
+  font-size: var(--text-xl, 20px);
+  margin-right: var(--spacing-sm, 8px);
+}
+
+/* ============================================================================
+   ACCESSIBILITY
+   ============================================================================ */
+
+.optimized-image:focus-within {
+  outline: 2px solid var(--color-primary, #007bff);
+  outline-offset: 2px;
+}
+
+.optimized-image img:focus {
+  outline: none;
+}
+
+/* ============================================================================
+   PRINT STYLES
+   ============================================================================ */
+
+@media print {
+  .optimized-image {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  
+  .optimized-image__caption,
+  .optimized-image__credit {
+    opacity: 1;
+    position: static;
+    background: none;
+    color: black;
+    padding: var(--spacing-sm, 8px) 0;
+  }
+  
+  .optimized-image__credit {
+    text-align: right;
+    font-size: var(--text-xs, 12px);
+  }
+}
