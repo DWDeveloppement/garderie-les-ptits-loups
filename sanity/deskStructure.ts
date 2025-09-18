@@ -23,4 +23,7 @@ export const deskStructure = (S: StructureBuilder) =>
 
 			// Espaces - Documents multiples
 			S.listItem().title('Espaces').child(S.documentList().title('Espaces').filter('_type == "spaces"')),
+
+			// Médiathèque gérée par sanity-plugin-media (http://localhost:3333/media)
+			// Plus besoin d'item dans la structure car le plugin fournit son propre onglet
 		])
