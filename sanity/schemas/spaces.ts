@@ -1,4 +1,10 @@
+// Schema pour les espaces
+/*
+ * Ce shema définit les espaces de la garderie et les relations avec les différents secteurs de la garderie. Un espace n'est associé qu'à un seul secteur via le champ selecteur de secteur.
+ * Il permet de créer des espaces avec une image, un titre, un secteur et un contenu en RichText.
+ */
 import { type Rule, type SchemaTypeDefinition } from 'sanity'
+import { mediaSEOField } from '../plugins/mediaSEO'
 
 export const spaces: SchemaTypeDefinition = {
 	name: 'spaces',
@@ -11,118 +17,37 @@ export const spaces: SchemaTypeDefinition = {
 			type: 'string',
 			validation: (Rule: Rule) => Rule.required().max(100),
 		},
+		// selecteur de secteur en relation avec sectors.ts au format input type select avec le titre du secteur mais suppression du bouggon add new
 		{
-			name: 'subtitle',
-			title: 'Sous-titre',
-			type: 'string',
-			validation: (Rule: Rule) => Rule.max(200),
-		},
-		{
-			name: 'heroImage',
-			title: 'Image hero',
-			type: 'image',
+			name: 'sector',
+			title: 'Secteur',
+			type: 'reference',
+			to: [{ type: 'sectors' }],
 			options: {
-				hotspot: true,
+				disableNew: true,
 			},
 		},
+		// Image de l'espace featured avec SEO automatique
 		{
-			name: 'description',
-			title: 'Description générale',
-			type: 'text',
-			rows: 4,
+			...mediaSEOField,
+			name: 'featuredImage',
+			title: 'Image featured',
 			validation: (Rule: Rule) => Rule.required(),
 		},
+		// Contenu de l'espace en RichText
 		{
-			name: 'spaces',
-			title: 'Espaces',
+			name: 'content',
+			title: 'Contenu',
+			// Bloc de RichText
 			type: 'array',
-			of: [
-				{
-					type: 'object',
-					name: 'space',
-					fields: [
-						{
-							name: 'name',
-							title: "Nom de l'espace",
-							type: 'string',
-							validation: (Rule: Rule) => Rule.required(),
-						},
-						{
-							name: 'description',
-							title: 'Description',
-							type: 'text',
-							rows: 3,
-							validation: (Rule: Rule) => Rule.required(),
-						},
-						{
-							name: 'capacity',
-							title: 'Capacité',
-							type: 'number',
-							validation: (Rule: Rule) => Rule.required().min(1),
-						},
-						{
-							name: 'ageGroup',
-							title: "Groupe d'âge",
-							type: 'string',
-							options: {
-								list: [
-									{ title: '0-1 an', value: '0-1' },
-									{ title: '1-2 ans', value: '1-2' },
-									{ title: '2-3 ans', value: '2-3' },
-									{ title: '3+ ans', value: '3+' },
-									{ title: 'Tous âges', value: 'all' },
-								],
-							},
-						},
-						{
-							name: 'features',
-							title: 'Équipements',
-							type: 'array',
-							of: [{ type: 'string' }],
-						},
-						{
-							name: 'images',
-							title: 'Images',
-							type: 'array',
-							of: [
-								{
-									type: 'image',
-									options: {
-										hotspot: true,
-									},
-								},
-							],
-						},
-					],
-					preview: {
-						select: {
-							title: 'name',
-							subtitle: 'description',
-							media: 'images.0',
-						},
-					},
-				},
-			],
-		},
-		{
-			name: 'gallery',
-			title: 'Galerie générale',
-			type: 'array',
-			of: [
-				{
-					type: 'image',
-					options: {
-						hotspot: true,
-					},
-				},
-			],
+			of: [{ type: 'block' }],
+			validation: (Rule: Rule) => Rule.required(),
 		},
 	],
 	preview: {
 		select: {
 			title: 'title',
-			subtitle: 'subtitle',
-			media: 'heroImage',
+			media: 'featuredImage',
 		},
 	},
 }
