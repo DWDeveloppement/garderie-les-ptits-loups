@@ -3,7 +3,7 @@
 // ============================================================================
 
 export { about } from './about'
-export { customAsset } from './assets'
+export { assets } from './assets'
 export { contact } from './contact'
 export { home } from './home'
 export { schedule } from './schedule'

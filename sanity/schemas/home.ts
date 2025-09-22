@@ -48,7 +48,7 @@ export const home: SchemaTypeDefinition = {
 						{
 							...mediaSEOField,
 							name: 'heroImage',
-							title: 'Image hero',
+							title: 'Image Hero',
 							validation: (Rule: Rule) => Rule.required(),
 						},
 						{

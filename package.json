@@ -15,7 +15,8 @@
 		"review": "npm run clean && npm run build && npm run start",
 		"sanity": "sanity dev",
 		"sanity:build": "sanity build",
-		"sanity:deploy": "sanity deploy"
+		"sanity:deploy": "sanity deploy",
+		"cleanup:media": "node scripts/cleanup-unused-media.mjs"
 	},
 	"dependencies": {
 		"@hookform/resolvers": "^5.2.1",
@@ -47,7 +48,6 @@
 		"react-google-recaptcha": "^3.1.0",
 		"react-hook-form": "^7.62.0",
 		"resend": "^6.0.2",
-		"sanity-plugin-media": "^4.0.0",
 		"styled-components": "^6.1.19",
 		"tailwind-merge": "^3.3.1",
 		"zod": "^4.1.5"
