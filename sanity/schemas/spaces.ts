@@ -4,7 +4,7 @@
  * Il permet de créer des espaces avec une image, un titre, un secteur et un contenu en RichText.
  */
 import { type Rule, type SchemaTypeDefinition } from 'sanity'
-import { mediaSEOField } from '../plugins/mediaSEO'
+import { imageField } from '../components/ImageField'
 
 export const spaces: SchemaTypeDefinition = {
 	name: 'spaces',
@@ -29,7 +29,7 @@ export const spaces: SchemaTypeDefinition = {
 		},
 		// Image de l'espace featured avec SEO automatique
 		{
-			...mediaSEOField,
+			...imageField,
 			name: 'featuredImage',
 			title: 'Image featured',
 			validation: (Rule: Rule) => Rule.required(),

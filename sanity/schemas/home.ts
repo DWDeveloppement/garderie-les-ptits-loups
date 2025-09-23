@@ -1,5 +1,5 @@
 import { type Rule, type SchemaTypeDefinition } from 'sanity'
-import { mediaSEOField } from '../plugins/mediaSEO'
+import { imageField } from '../components/ImageField'
 
 export const home: SchemaTypeDefinition = {
 	name: 'home',
@@ -46,7 +46,7 @@ export const home: SchemaTypeDefinition = {
 							validation: (Rule: Rule) => Rule.max(200),
 						},
 						{
-							...mediaSEOField,
+							...imageField,
 							name: 'heroImage',
 							title: 'Image Hero',
 							validation: (Rule: Rule) => Rule.required(),
@@ -80,12 +80,9 @@ export const home: SchemaTypeDefinition = {
 											rows: 3,
 										},
 										{
+											...imageField,
 											name: 'image',
 											title: 'Image',
-											type: 'image',
-											options: {
-												hotspot: true,
-											},
 										},
 									],
 									preview: {
@@ -143,12 +140,9 @@ export const home: SchemaTypeDefinition = {
 											rows: 3,
 										},
 										{
+											...imageField,
 											name: 'image',
 											title: 'Image',
-											type: 'image',
-											options: {
-												hotspot: true,
-											},
 										},
 									],
 									preview: {
