@@ -9,11 +9,3 @@ export { cachedFetch, clearCache, client, getCacheSize } from './client'
 export { getPrices, getSubsidies } from './queries'
 
 // Images et optimisation
-export {
-	getGalleryImageUrl,
-	getOptimizedImageUrl,
-	getResponsiveImageSrcSet,
-	getThumbnailUrl,
-	transformToPhotoAlbumFormat,
-	urlFor,
-} from './image-url'

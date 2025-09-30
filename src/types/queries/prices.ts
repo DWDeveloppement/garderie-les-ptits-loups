@@ -28,3 +28,49 @@ export type PricesTypesProps = {
 		}[]
 	}
 }
+
+// Types pour les données JSON (compatibles avec horaires-tarifs.json)
+export type PriceItem = {
+	description: string
+	price: number
+}
+
+export type PricingSection = {
+	label: string
+	items: PriceItem[]
+}
+
+export type PricingBlockMensuel = {
+	label: string
+	journeeComplete: PricingSection
+	matinRepas: PricingSection
+	matinSansRepas: PricingSection
+	apresMidiRepas: PricingSection
+	apresMidiSansRepas: PricingSection
+}
+
+export type PricingBlockJournalier = {
+	label: string
+	journeeComplete: PricingSection
+	matinee: PricingSection
+	apresMidi: PricingSection
+}
+
+export type PriceDocument = {
+	_id: string
+	_type: string
+	prixAuMois: PricingBlockMensuel
+	prixAuJour: PricingBlockJournalier
+}
+
+export type SubsidiesDocument = {
+	_id: string
+	_type: string
+	title: string
+	labelIncomeRange: string
+	labelReduction: string
+	items: {
+		incomeRange: string
+		reductionDaily: number
+	}[]
+}

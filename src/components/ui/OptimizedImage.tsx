@@ -1,16 +1,24 @@
 /**
- * Composant OptimizedImage pour l'affichage optimisé des images Sanity
- * Utilise les standards de qualité et génère automatiquement les variantes
+ * Composant OptimizedImage pour l'affichage optimisé des images JSON
+ * Utilise Next.js Image pour l'optimisation automatique
  * Utilise les composants Radix UI (aspect-ratio) et tailwindcss.
- * Migration de aspect-ratio de radix ui vers aspect-ratio de shadcn ui plus tard.
  */
 
 import * as AspectRatio from '@radix-ui/react-aspect-ratio'
 import Image from 'next/image'
-import { getImagePropsByUsage, type ImageUsage, type SanityImage } from '../../../lib/sanity/image-optimization'
+
+// Types pour les images JSON
+type JsonImage = {
+  imageUrl: string
+  imageAlt: string
+  caption?: string
+  credit?: string
+}
+
+type ImageUsage = 'hero' | 'gallery' | 'section' | 'thumbnail' | 'article' | 'other'
 
 type OptimizedImageProps = {
-  image: SanityImage
+  image: JsonImage
   usage: ImageUsage
   alt?: string
   caption?: string
@@ -33,10 +41,22 @@ export function OptimizedImage({
   showCredit = false
 }: OptimizedImageProps) {
   // Utiliser l'alt text fourni ou celui de l'image
-  const altText = alt || image.alt || ''
+  const altText = alt || image.imageAlt || ''
   
-  // Obtenir les props d'image optimisées
-  const imageProps = getImagePropsByUsage(image, usage)
+  // Configuration des dimensions selon l'usage
+  const getImageConfig = (usage: ImageUsage) => {
+    const configs = {
+      hero: { width: 1200, height: 600, aspectRatio: 2 },
+      gallery: { width: 800, height: 600, aspectRatio: 4/3 },
+      section: { width: 600, height: 400, aspectRatio: 3/2 },
+      thumbnail: { width: 300, height: 200, aspectRatio: 3/2 },
+      article: { width: 500, height: 300, aspectRatio: 5/3 },
+      other: { width: 400, height: 300, aspectRatio: 4/3 }
+    }
+    return configs[usage] || configs.other
+  }
+  
+  const config = getImageConfig(usage)
   
   // Utiliser la légende fournie ou celle de l'image
   const imageCaption = caption || image.caption || ''
@@ -46,12 +66,15 @@ export function OptimizedImage({
   
   return (
     <figure className={`optimized-image optimized-image--${usage} ${className}`}>
-      <AspectRatio.Root ratio={imageProps.aspectRatio}>
+      <AspectRatio.Root ratio={config.aspectRatio}>
         <Image
-          {...imageProps}
+          src={image.imageUrl}
           alt={altText}
+          width={config.width}
+          height={config.height}
           priority={priority}
           fill
+          className="object-cover"
         />
       </AspectRatio.Root>
       

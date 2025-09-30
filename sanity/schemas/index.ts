@@ -3,7 +3,6 @@
 // ============================================================================
 
 export { about } from './about'
-export { assets } from './assets'
 export { contact } from './contact'
 export { home } from './home'
 export { schedule } from './schedule'

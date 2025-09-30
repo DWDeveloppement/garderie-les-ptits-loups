@@ -1,5 +1,4 @@
 import { type Rule, type SchemaTypeDefinition } from 'sanity'
-import { imageField } from '../components/ImageField'
 
 export const home: SchemaTypeDefinition = {
 	name: 'home',
@@ -46,9 +45,20 @@ export const home: SchemaTypeDefinition = {
 							validation: (Rule: Rule) => Rule.max(200),
 						},
 						{
-							...imageField,
 							name: 'heroImage',
 							title: 'Image Hero',
+							type: 'image',
+							options: {
+								hotspot: true,
+							},
+							fields: [
+								{
+									name: 'alt',
+									title: 'Texte alternatif',
+									type: 'string',
+									validation: (Rule: Rule) => Rule.required(),
+								},
+							],
 							validation: (Rule: Rule) => Rule.required(),
 						},
 						{
@@ -80,9 +90,20 @@ export const home: SchemaTypeDefinition = {
 											rows: 3,
 										},
 										{
-											...imageField,
 											name: 'image',
 											title: 'Image',
+											type: 'image',
+											options: {
+												hotspot: true,
+											},
+											fields: [
+												{
+													name: 'alt',
+													title: 'Texte alternatif',
+													type: 'string',
+													validation: (Rule: Rule) => Rule.required(),
+												},
+											],
 										},
 									],
 									preview: {
@@ -140,9 +161,20 @@ export const home: SchemaTypeDefinition = {
 											rows: 3,
 										},
 										{
-											...imageField,
 											name: 'image',
 											title: 'Image',
+											type: 'image',
+											options: {
+												hotspot: true,
+											},
+											fields: [
+												{
+													name: 'alt',
+													title: 'Texte alternatif',
+													type: 'string',
+													validation: (Rule: Rule) => Rule.required(),
+												},
+											],
 										},
 									],
 									preview: {
