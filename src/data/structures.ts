@@ -1,0 +1,34 @@
+import { Baby, Footprints, Smile } from 'lucide-react'
+
+export const structures = [
+	{
+		id: 'nurserie',
+		title: 'La Nurserie',
+		ageRange: '0 à 24 mois',
+		description:
+			'Un espace douillet et sécurisé spécialement conçu pour les tout-petits. Nos professionnelles qualifiées accompagnent les premiers pas de votre bébé dans un environnement adapté à ses besoins.',
+		icon: Baby,
+		features: ['Espace de change équipé', 'Zone de repos calme', "Jeux d'éveil sensoriels", 'Suivi personnalisé'],
+		color: 'text-purple-9',
+	},
+	{
+		id: 'trotteurs',
+		title: 'Les Trotteurs',
+		ageRange: '24 à 36 mois',
+		description:
+			"L'âge de la découverte ! Nos espaces permettent aux enfants d'explorer en toute sécurité tout en développant leur autonomie et leurs capacités sociales.",
+		icon: Footprints,
+		features: ['Espace motricité', 'Activités créatives', 'Apprentissage propreté', 'Socialisation douce'],
+		color: 'text-orange-9',
+	},
+	{
+		id: 'grands',
+		title: 'Les Grands',
+		ageRange: 'Dès 36 mois',
+		description:
+			"Préparation à l'école dans la joie ! Nos activités éducatives stimulent la curiosité et préparent les enfants aux apprentissages futurs.",
+		icon: Smile,
+		features: ['Activités pré-scolaires', 'Développement langage', 'Jeux collaboratifs', 'Préparation école'],
+		color: 'text-purple-9',
+	},
+]
