@@ -3,6 +3,7 @@ import { Baby, Footprints, Smile } from 'lucide-react'
 export const structures = [
 	{
 		id: 'nurserie',
+		slug: 'nurserie',
 		title: 'La Nurserie',
 		ageRange: '0 à 24 mois',
 		description:
@@ -13,6 +14,7 @@ export const structures = [
 	},
 	{
 		id: 'trotteurs',
+		slug: 'trotteurs',
 		title: 'Les Trotteurs',
 		ageRange: '24 à 36 mois',
 		description:
@@ -23,11 +25,20 @@ export const structures = [
 	},
 	{
 		id: 'grands',
+		slug: 'grands',
 		title: 'Les Grands',
 		ageRange: 'Dès 36 mois',
 		description:
 			"Préparation à l'école dans la joie ! Nos activités éducatives stimulent la curiosité et préparent les enfants aux apprentissages futurs.",
 		icon: Smile,
+		features: ['Activités pré-scolaires', 'Développement langage', 'Jeux collaboratifs', 'Préparation école'],
+		color: 'text-purple-9',
+	},
+	{
+		id: 'otherSpaces',
+		slug: 'other-spaces',
+		title: 'Nos autres espaces',
+		description: 'Nos autres espaces',
 		features: ['Activités pré-scolaires', 'Développement langage', 'Jeux collaboratifs', 'Préparation école'],
 		color: 'text-purple-9',
 	},
