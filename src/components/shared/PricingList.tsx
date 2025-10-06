@@ -9,8 +9,17 @@ type PricingListProps = {
 }
 
 export function PricingList({ pricingLabel, pricingData }: PricingListProps) {
+	// Format CHF (fr-CH)
+	const formatCHF = (value: number) =>
+		new Intl.NumberFormat('fr-CH', {
+			style: 'currency',
+			currency: 'CHF',
+			minimumFractionDigits: 2,
+			maximumFractionDigits: 2,
+		}).format(value)
+
 	// Fonction helper pour rendre un tableau
-	const renderTable = (items: PriceItem[]) => (
+	const renderTable = (items: PriceItem[] & Array<{ priceText?: string }>) => (
 		<div className="overflow-x-auto">
 			<table className="min-w-full divide-y divide-orange-6">
 				<thead className="bg-orange-2">
@@ -30,7 +39,7 @@ export function PricingList({ pricingLabel, pricingData }: PricingListProps) {
 								{item.description}
 							</td>
 							<td className="px-6 py-4 whitespace-nowrap text-sm text-orange-10">
-								{item.price}
+								{item.priceText ? item.priceText : formatCHF(item.price)}
 							</td>
 						</tr>
 					))}

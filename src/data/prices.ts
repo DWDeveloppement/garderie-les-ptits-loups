@@ -2,6 +2,7 @@
 export type PriceItem = {
 	description: string
 	price: number
+	priceText?: string
 }
 
 // Type de base réutilisable (DRY)

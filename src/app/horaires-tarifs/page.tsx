@@ -5,24 +5,32 @@ import { HeroHorairesTarifsSection } from "@/components/pages/horaires-tarifs/He
 import { PriceSection } from "@/components/pages/horaires-tarifs/PriceSection"
 import { SubsidiesSection } from '@/components/pages/horaires-tarifs/SubsidiesSection'
 import { ParalaxImage } from "@/components/ParalaxImage"
-import { nurserieData, subventionsData, trotteursGrandsData } from '@/data/prices'
+import { subventionsData } from '@/data/prices'
+import { adaptSanityToPriceDocument } from '../../../lib/sanity/adapters/prices'
+import { fetchMonthlyNursery } from '../../../lib/sanity/queries/prices'
 
-export default function HorairesTarifsPage() {
+export default async function HorairesTarifsPage() {
+  // Récupérer les données Sanity
+  const sanityData = await fetchMonthlyNursery()
+  
+  // Adapter les données Sanity vers le format des composants
+  const adaptedData = adaptSanityToPriceDocument(sanityData)
+  
   return (
 		<div className='min-h-screen'>
 			<HeroHorairesTarifsSection />
-			<PriceSection section={nurserieData} />
-		  <PriceSection section={trotteursGrandsData} />
-		  <div className="w-full max-w-6xl mx-auto">
-			<div className="w-full grid grid-cols-1 items-start justify-center md:grid-cols-2 gap-8">
-				<div className="w-full">
-					  <h2 className="text-2xl font-bold text-purple-12">Tarifs accordéon test</h2>
-					  <div className="w-full">
-						  {/* TODO: ajouter le contenu de l'accordéon test */}
+			
+			{/* Section Sanity adaptée */}
+			{adaptedData ? (
+				<PriceSection section={adaptedData} />
+			) : (
+				<div className='w-full py-16 px-4 sm:px-6 lg:px-8 bg-purple-1'>
+					<div className='w-full max-w-6xl mx-auto'>
+						<p className='text-center text-gray-600'>Aucun document Sanity trouvé.</p>
 					</div>
 				</div>
-			</div>
-		  </div>
+			)}
+			
 			<ParalaxImage />
 			<SubsidiesSection subsidies={subventionsData} />
 		</div>

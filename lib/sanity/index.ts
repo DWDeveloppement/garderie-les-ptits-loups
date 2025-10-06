@@ -3,9 +3,9 @@
 // ============================================================================
 
 // Client et configuration
-export { cachedFetch, clearCache, client, getCacheSize } from './client'
+export { cachedFetch, clearCache, client, getCacheSize, sanityClient } from './client'
 
-// Queries et fonctions de récupération
-export { getPrices, getSubsidies } from './queries'
+// Queries modulaires
+export * as prices from './queries/prices'
 
 // Images et optimisation

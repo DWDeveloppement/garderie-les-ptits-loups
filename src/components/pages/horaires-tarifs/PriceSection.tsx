@@ -2,17 +2,23 @@
 
 import { PriceDocument } from '@/data/prices'
 import { PricingList } from '../../shared/PricingList'
+
 type PriceSectionProps = {
 	section: PriceDocument
+	heading?: string
 }
 
 
-export function PriceSection({ section }: PriceSectionProps) {
+export function PriceSection({ section, heading }: PriceSectionProps) {
+	const inferredTitle = section._id?.toLowerCase().includes('nur')
+		? 'La Nurserie (0 – 24 mois)'
+		: 'Trotteurs et Grands (2 – 6 ans)'
+
 	return (
 		<section className=' w-full py-16 px-4 sm:px-6 lg:px-8 bg-purple-1'>
 			<div className='w-full max-w-6xl mx-auto gap-2'>
 				<h2 className='text-2xl font-bold text-purple-12'>
-					{section._id === 'nurserie' ? 'La Nurserie (0 – 24 mois)' : 'Trotteurs et Grands (2 – 6 ans)'}
+					{heading ?? inferredTitle}
 				</h2>
 				<div className='w-full grid grid-cols-1 items-start justify-center md:grid-cols-2 gap-8'>
 					{/** Prix au mois */}

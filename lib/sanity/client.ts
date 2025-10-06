@@ -1,17 +1,25 @@
-import { createClient } from '@sanity/client'
+import { createClient } from 'next-sanity'
 
 // ============================================================================
-// CLIENT SANITY - Configuration optimisée
+// CLIENT SANITY - Configuration centralisée
 // ============================================================================
 
-export const client = createClient({
-	projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
-	dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
+const baseConfig = {
+	projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || process.env.SANITY_STUDIO_PROJECT_ID || 'your-project-id',
+	dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || process.env.SANITY_STUDIO_DATASET || 'production',
 	useCdn: process.env.NODE_ENV === 'production',
 	apiVersion: '2024-01-01',
-	token: process.env.SANITY_API_TOKEN, // Pour les mutations si nécessaire
-	perspective: 'published', // Utiliser seulement le contenu publié
-})
+} as const
+
+export const client = createClient(
+	process.env.SANITY_API_TOKEN
+		? {
+				...baseConfig,
+				token: process.env.SANITY_API_TOKEN,
+				perspective: 'published',
+			}
+		: { ...baseConfig }
+)
 
 // ============================================================================
 // CONFIGURATION DE CACHE

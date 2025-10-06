@@ -27,7 +27,7 @@ export function StructureSection() {
 									<Card className='flex flex-col justify-start items-center h-full hover:shadow-lg transition-all duration-300 hover:-translate-y-1 bg-white border-orange-6 hover:border-purple-7 cursor-pointer !p-0'>
 										<CardHeader className='flex flex-col justify-start items-center gap-4'>
 											<div className='flex justify-center'>
-												<IconComponent className='h-24 w-24 text-purple-9 group-hover:text-purple-10 transition-colors' />
+												
 											</div>
 											<CardTitle className='text-purple-10 text-2xl group-hover:text-purple-9 transition-colors'>
 												{structure.title}
