@@ -3,7 +3,6 @@
 // Interface conditionnelle selon le type de document
 
 import { SchemaTypeDefinition, type Rule } from 'sanity'
-
 // Document principal pour les prix
 export const prices: SchemaTypeDefinition = {
 	name: 'prices',
@@ -60,7 +59,8 @@ export const prices: SchemaTypeDefinition = {
 					},
 				],
 			},
-			validation: (Rule: Rule) => Rule.required(),
+			validation: (Rule: Rule) =>
+				Rule.custom((val, ctx) => (ctx?.document?.documentType === 'accordion' ? (val ? true : 'Requis pour les tarifs accordéon') : true)),
 		},
 		{
 			name: 'accordionItems',
@@ -68,7 +68,10 @@ export const prices: SchemaTypeDefinition = {
 			type: 'array',
 			hidden: ({ document }) => document?.documentType !== 'accordion',
 			of: [{ type: 'accordionItem' }],
-			validation: (Rule: Rule) => Rule.required().min(1),
+			validation: (Rule: Rule) =>
+				Rule.custom((val, ctx) =>
+					ctx?.document?.documentType === 'accordion' ? (Array.isArray(val) && val.length > 0 ? true : 'Au moins un item requis') : true
+				),
 		},
 		{
 			name: 'tableContent',
@@ -81,7 +84,14 @@ export const prices: SchemaTypeDefinition = {
 					title: 'Items de subvention',
 					type: 'array',
 					of: [{ type: 'subsidyItem' }],
-					validation: (Rule: Rule) => Rule.required().min(1),
+					validation: (Rule: Rule) =>
+						Rule.custom((val, ctx) =>
+							ctx?.document?.documentType === 'table'
+								? Array.isArray(val) && val.length > 0
+									? true
+									: 'Au moins une ligne de subvention'
+								: true
+						),
 				},
 			],
 		},
@@ -138,24 +148,24 @@ export const accordionItem: SchemaTypeDefinition = {
 			validation: (Rule: Rule) => Rule.required(),
 		},
 		{
-			name: 'priceContent',
-			title: 'AccordionContent',
+			name: 'priceItems',
+			title: 'Items de prix',
 			type: 'array',
-			of: [{ type: 'block' }, { type: 'code' }],
+			of: [{ type: 'priceItem' }],
 			validation: (Rule: Rule) => Rule.required().min(1),
 		},
 	],
 	preview: {
 		select: {
 			title: 'accordionTitle',
-			subtitle: 'priceContent',
+			priceItems: 'priceItems',
 		},
 		prepare(selection) {
-			const { title, subtitle } = selection
-			const hasContent = subtitle && subtitle.length > 0
+			const { title, priceItems } = selection
+			const itemCount = priceItems ? priceItems.length : 0
 			return {
 				title: title,
-				subtitle: hasContent ? 'Contenu riche' : 'Aucun contenu',
+				subtitle: `${itemCount} item(s) de prix`,
 			}
 		},
 	},
@@ -176,8 +186,8 @@ export const priceItem: SchemaTypeDefinition = {
 		{
 			name: 'price',
 			title: 'Prix (CHF)',
-			type: 'number',
-			validation: (Rule: Rule) => Rule.required().min(0),
+			type: 'string',
+			validation: (Rule: Rule) => Rule.required(),
 		},
 	],
 	preview: {
@@ -210,8 +220,8 @@ export const subsidyItem: SchemaTypeDefinition = {
 		{
 			name: 'subsidy',
 			title: 'Subvention (CHF/jour)',
-			type: 'number',
-			validation: (Rule: Rule) => Rule.required().min(0),
+			type: 'string',
+			validation: (Rule: Rule) => Rule.required(),
 		},
 	],
 	preview: {

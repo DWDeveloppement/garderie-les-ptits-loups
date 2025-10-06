@@ -1,19 +1,68 @@
 import { groq } from 'next-sanity'
 import { client } from '../client'
 
-type Block = { _type: string; code?: string; children?: Array<{ text?: string }> }
-type AccordionItem = { accordionTitle: string; priceContent: Block[] }
+// Types Sanity simplifiés pour consommation directe
+export type SanityPriceItem = { service: string; price: string }
+export type SanityAccordionItem = { accordionTitle: string; priceItems: SanityPriceItem[] }
 
+// Requêtes pour les 4 documents d'accordéon
 export const qMonthlyNursery = groq`*[_type == "prices" && documentType == "accordion" && frequentationType == "monthly-nursery"][0]{
 	frequentationType,
 	accordionItems[]{
 		accordionTitle,
-		priceContent
+		priceItems[]{service, price}
+	}
+}`
+
+export const qDailyNursery = groq`*[_type == "prices" && documentType == "accordion" && frequentationType == "daily-nursery"][0]{
+	frequentationType,
+	accordionItems[]{
+		accordionTitle,
+		priceItems[]{service, price}
+	}
+}`
+
+export const qMonthlyTG = groq`*[_type == "prices" && documentType == "accordion" && frequentationType == "monthly-trotteurs-grands"][0]{
+	frequentationType,
+	accordionItems[]{
+		accordionTitle,
+		priceItems[]{service, price}
+	}
+}`
+
+export const qDailyTG = groq`*[_type == "prices" && documentType == "accordion" && frequentationType == "daily-trotteurs-grands"][0]{
+	frequentationType,
+	accordionItems[]{
+		accordionTitle,
+		priceItems[]{service, price}
+	}
+}`
+
+// Requête pour le document Subventions (table)
+export const qSubsidies = groq`*[_type == "prices" && documentType == "table"][0]{
+	tableContent{
+		subsidyItems[]{ incomeRange, subsidy }
 	}
 }`
 
 export async function fetchMonthlyNursery() {
-	return client.fetch<{ frequentationType?: string; accordionItems: AccordionItem[] } | null>(qMonthlyNursery)
+	return client.fetch<{ frequentationType?: string; accordionItems: SanityAccordionItem[] } | null>(qMonthlyNursery)
+}
+
+export async function fetchDailyNursery() {
+	return client.fetch<{ frequentationType?: string; accordionItems: SanityAccordionItem[] } | null>(qDailyNursery)
+}
+
+export async function fetchMonthlyTG() {
+	return client.fetch<{ frequentationType?: string; accordionItems: SanityAccordionItem[] } | null>(qMonthlyTG)
+}
+
+export async function fetchDailyTG() {
+	return client.fetch<{ frequentationType?: string; accordionItems: SanityAccordionItem[] } | null>(qDailyTG)
+}
+
+export async function fetchSubsidies() {
+	return client.fetch<{ tableContent?: { subsidyItems: { incomeRange: string; subsidy: number }[] } } | null>(qSubsidies)
 }
 
 export function getFrequentationLabel(value?: string): string {
@@ -24,13 +73,4 @@ export function getFrequentationLabel(value?: string): string {
 		'daily-trotteurs-grands': 'Tarifs journaliers (Trotteurs & Grands)',
 	}
 	return value && map[value] ? map[value] : 'Tarifs'
-}
-
-export function extractFirstCode(blocks: Block[] | undefined): string {
-	if (!blocks) return ''
-	const codeBlock = blocks.find((b) => b._type === 'code')
-	if (codeBlock?.code) return codeBlock.code
-	const first = blocks[0]
-	if (first?.children?.length) return first.children.map((c) => c.text || '').join('')
-	return ''
 }

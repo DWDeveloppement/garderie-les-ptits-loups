@@ -1,8 +1,14 @@
 import { PriceDocument, PricingBlockJournalier, PricingBlockMensuel } from '@/data/prices'
+import type { SanityAccordionItem } from '../queries/prices'
 
 // Types Sanity
 type Block = { _type: string; code?: string; children?: Array<{ text?: string }> }
-type AccordionItem = { accordionTitle: string; priceContent: Block[] }
+type PriceItem = { service: string; price: number }
+type AccordionItem = {
+	accordionTitle: string
+	priceItems?: PriceItem[]
+	priceContent?: Block[]
+}
 type SanityPricesData = { frequentationType?: string; accordionItems: AccordionItem[] }
 
 /**
@@ -10,7 +16,7 @@ type SanityPricesData = { frequentationType?: string; accordionItems: AccordionI
  */
 function parseCodeContent(code: string): { description: string; price: number; priceText?: string }[] {
 	const lines = code.split('\n').filter((line) => line.trim())
-	const items: { description: string; price: number }[] = []
+	const items: { description: string; price: number; priceText?: string }[] = []
 
 	for (const line of lines) {
 		// Format attendu: "Description | Prix" ou "Description\tPrix"
@@ -33,7 +39,11 @@ function parseCodeContent(code: string): { description: string; price: number; p
 			const parsed = parseFloat(priceStr)
 
 			// Stocker le texte brut en priorité, garder un nombre si parse réussi
-			items.push({ description, price: isNaN(parsed) ? 0 : parsed, priceText: parts[1] })
+			items.push({
+				description,
+				price: isNaN(parsed) ? 0 : parsed,
+				priceText: parts[1],
+			})
 		}
 	}
 
@@ -42,9 +52,25 @@ function parseCodeContent(code: string): { description: string; price: number; p
 
 /**
  * Crée un PricingSection à partir d'un AccordionItem
+ * Utilise priceItems en priorité, fallback vers priceContent si nécessaire
  */
 function createPricingSection(item: AccordionItem): { label: string; items: { description: string; price: number; priceText?: string }[] } {
-	const code = item.priceContent.find((b) => b._type === 'code')?.code || ''
+	// Priorité 1: Utiliser priceItems structurés si disponibles
+	if (item.priceItems && item.priceItems.length > 0) {
+		const items = item.priceItems.map((priceItem) => ({
+			description: priceItem.service,
+			price: priceItem.price,
+			priceText: `CHF ${priceItem.price}.-`,
+		}))
+
+		return {
+			label: item.accordionTitle,
+			items,
+		}
+	}
+
+	// Fallback: Parser le contenu du bloc code
+	const code = item.priceContent?.find((b) => b._type === 'code')?.code || ''
 	const items = parseCodeContent(code)
 
 	return {
@@ -91,5 +117,49 @@ export function adaptSanityToPriceDocument(sanityData: SanityPricesData | null):
 		_type: 'priceDocument',
 		prixAuMois,
 		prixAuJour,
+	}
+}
+
+// =====================================
+// Adapters simples -> PricingList blocks
+// =====================================
+
+type MaybeDoc = { accordionItems?: SanityAccordionItem[] } | null | undefined
+
+export function adaptAccordionToMensuel(doc: MaybeDoc): PricingBlockMensuel {
+	const find = (title: string) => doc?.accordionItems?.find((a) => a.accordionTitle === title)
+	const toItems = (acc?: SanityAccordionItem) =>
+		(acc?.priceItems || []).map((it) => ({ description: it.service, price: 0, priceText: it.price }))
+
+	const journee = find('Journée complète')
+	const matinRepas = find('Matin avec repas')
+	const matinSansRepas = find('Matin sans repas')
+	const apresRepas = find('Après-midi avec repas')
+	const apresSansRepas = find('Après-midi sans repas')
+
+	return {
+		label: 'Prix au mois',
+		journeeComplete: { label: journee?.accordionTitle || 'Journée complète', items: toItems(journee) },
+		matinRepas: { label: matinRepas?.accordionTitle || 'Matin avec repas', items: toItems(matinRepas) },
+		matinSansRepas: { label: matinSansRepas?.accordionTitle || 'Matin sans repas', items: toItems(matinSansRepas) },
+		apresMidiRepas: { label: apresRepas?.accordionTitle || 'Après-midi avec repas', items: toItems(apresRepas) },
+		apresMidiSansRepas: { label: apresSansRepas?.accordionTitle || 'Après-midi sans repas', items: toItems(apresSansRepas) },
+	}
+}
+
+export function adaptAccordionToJournalier(doc: MaybeDoc): PricingBlockJournalier {
+	const find = (title: string) => doc?.accordionItems?.find((a) => a.accordionTitle === title)
+	const toItems = (acc?: SanityAccordionItem) =>
+		(acc?.priceItems || []).map((it) => ({ description: it.service, price: 0, priceText: it.price }))
+
+	const journee = find('Journée complète') || find('Journée')
+	const matinee = find('Matinée')
+	const apres = find('Après-midi')
+
+	return {
+		label: 'Prix au jour',
+		journeeComplete: { label: journee?.accordionTitle || 'Journée complète', items: toItems(journee) },
+		matinee: { label: matinee?.accordionTitle || 'Matinée', items: toItems(matinee) },
+		apresMidi: { label: apres?.accordionTitle || 'Après-midi', items: toItems(apres) },
 	}
 }
