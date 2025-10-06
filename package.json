@@ -13,7 +13,7 @@
 		"refresh": "npm run clean && npm run dev",
 		"rebuild": "npm run clean && npm run build",
 		"review": "npm run clean && npm run build && npm run start",
-		"sanity": "sanity dev",
+		"sanity": "sanity dev -p 3333",
 		"sanity:build": "sanity build",
 		"sanity:deploy": "sanity deploy",
 		"cleanup:media": "node scripts/cleanup-unused-media.mjs"
@@ -34,7 +34,9 @@
 		"@radix-ui/react-tooltip": "^1.2.8",
 		"@radix-ui/themes": "^3.2.1",
 		"@sanity/client": "^7.10.0",
+		"@sanity/icons": "^3.7.4",
 		"@sanity/image-url": "^1.2.0",
+		"@sanity/ui": "^3.1.8",
 		"@sanity/vision": "^4.6.1",
 		"@types/leaflet": "^1.9.20",
 		"class-variance-authority": "^0.7.1",

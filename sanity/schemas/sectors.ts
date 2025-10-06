@@ -3,6 +3,8 @@
  * Ce shema définit les secteurs de la garderie et les relations avec les différents espaces de la garderie.
  * Il permet de créer des secteurs avec une image, un titre, un contenu en RichText et une galerie.
  * un toggle pour activer le Card.
+ * Dans ce shema, on y insère les champs communs à tous les secteurs.
+ * on emporte du seo, un hero de page un espace gallerie et un contener pour insérer les espaces du secteur.
  */
 import { type Rule, type SchemaTypeDefinition } from 'sanity'
 

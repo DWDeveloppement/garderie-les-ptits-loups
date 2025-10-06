@@ -2,9 +2,9 @@
 // EXPORT DES SCHÉMAS DE BASE
 // ============================================================================
 
-export { about } from './about'
-export { contact } from './contact'
-export { home } from './home'
-export { schedule } from './schedule'
-export { sectors } from './sectors'
-export { spaces } from './spaces'
+export { aboutPage } from '../schemas/pages/about'
+export { contactPage } from '../schemas/pages/contact'
+export { home } from '../schemas/pages/home'
+export { schedulePage } from '../schemas/pages/schedule'
+export { sectors } from '../schemas/sectors'
+export { spaces } from '../schemas/spaces'
