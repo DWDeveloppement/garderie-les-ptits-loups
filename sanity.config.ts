@@ -1,3 +1,4 @@
+import { table } from '@sanity/table'
 import { visionTool } from '@sanity/vision'
 import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
@@ -16,6 +17,7 @@ export default defineConfig({
 	dataset: process.env.SANITY_STUDIO_DATASET || process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
 
 	plugins: [
+		table(),
 		structureTool({
 			structure: deskStructure,
 			defaultDocumentNode: (S, { schemaType, documentId }) => {

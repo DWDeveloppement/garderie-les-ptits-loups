@@ -12,7 +12,17 @@ export default function HorairesTarifsPage() {
 		<div className='min-h-screen'>
 			<HeroHorairesTarifsSection />
 			<PriceSection section={nurserieData} />
-			<PriceSection section={trotteursGrandsData} />
+		  <PriceSection section={trotteursGrandsData} />
+		  <div className="w-full max-w-6xl mx-auto">
+			<div className="w-full grid grid-cols-1 items-start justify-center md:grid-cols-2 gap-8">
+				<div className="w-full">
+					  <h2 className="text-2xl font-bold text-purple-12">Tarifs accordéon test</h2>
+					  <div className="w-full">
+						  {/* TODO: ajouter le contenu de l'accordéon test */}
+					</div>
+				</div>
+			</div>
+		  </div>
 			<ParalaxImage />
 			<SubsidiesSection subsidies={subventionsData} />
 		</div>

@@ -5,10 +5,57 @@ import { aboutPage, contactPage, home, schedulePage, sectors, spaces } from './s
 // Import des composants réutilisables
 import { content, gallery, hero, imageParalax, seo, spacesComponent } from './schemas/components'
 // Import des schémas de prix
-import { priceItem, prices, subsidyItem } from './schemas/prices'
+import { accordionItem, priceItem, prices, subsidyItem } from './schemas/prices'
+
+// Définition du type code pour les blocs de code
+const codeBlock: SchemaTypeDefinition = {
+	name: 'code',
+	title: 'Code',
+	type: 'object',
+	fields: [
+		{
+			name: 'code',
+			title: 'Code',
+			type: 'text',
+			rows: 10,
+		},
+		{
+			name: 'language',
+			title: 'Langage',
+			type: 'string',
+			options: {
+				list: [
+					{ title: 'Plain Text', value: 'text' },
+					{ title: 'JavaScript', value: 'javascript' },
+					{ title: 'TypeScript', value: 'typescript' },
+					{ title: 'HTML', value: 'html' },
+					{ title: 'CSS', value: 'css' },
+					{ title: 'JSON', value: 'json' },
+				],
+			},
+			initialValue: 'text',
+		},
+	],
+	preview: {
+		select: {
+			title: 'code',
+			subtitle: 'language',
+		},
+		prepare(selection) {
+			const { title, subtitle } = selection
+			const preview = title ? title.substring(0, 50) + (title.length > 50 ? '...' : '') : 'Code vide'
+			return {
+				title: preview,
+				subtitle: subtitle || 'text',
+			}
+		},
+	},
+}
 
 export const schema: { types: SchemaTypeDefinition[] } = {
 	types: [
+		// Type code personnalisé
+		codeBlock,
 		// Composants réutilisables
 		seo,
 		hero,
@@ -27,6 +74,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
 		spaces,
 		// Prix et Tarifs
 		prices,
+		accordionItem,
 		priceItem,
 		subsidyItem,
 		// Mediatheque (à ajouter)

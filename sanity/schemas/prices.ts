@@ -63,11 +63,11 @@ export const prices: SchemaTypeDefinition = {
 			validation: (Rule: Rule) => Rule.required(),
 		},
 		{
-			name: 'priceItems',
-			title: 'Prestations de fréquentation',
+			name: 'accordionItems',
+			title: 'AccordionItems',
 			type: 'array',
 			hidden: ({ document }) => document?.documentType !== 'accordion',
-			of: [{ type: 'priceItem' }],
+			of: [{ type: 'accordionItem' }],
 			validation: (Rule: Rule) => Rule.required().min(1),
 		},
 		{
@@ -125,7 +125,43 @@ export const prices: SchemaTypeDefinition = {
 	},
 }
 
-// Composant pour les items de prix (accordéons)
+// Composant pour les items d'accordéon
+export const accordionItem: SchemaTypeDefinition = {
+	name: 'accordionItem',
+	title: 'AccordionItem',
+	type: 'object',
+	fields: [
+		{
+			name: 'accordionTitle',
+			title: 'AccordionTrigger',
+			type: 'string',
+			validation: (Rule: Rule) => Rule.required(),
+		},
+		{
+			name: 'priceContent',
+			title: 'AccordionContent',
+			type: 'array',
+			of: [{ type: 'block' }, { type: 'code' }],
+			validation: (Rule: Rule) => Rule.required().min(1),
+		},
+	],
+	preview: {
+		select: {
+			title: 'accordionTitle',
+			subtitle: 'priceContent',
+		},
+		prepare(selection) {
+			const { title, subtitle } = selection
+			const hasContent = subtitle && subtitle.length > 0
+			return {
+				title: title,
+				subtitle: hasContent ? 'Contenu riche' : 'Aucun contenu',
+			}
+		},
+	},
+}
+
+// Composant pour les items de prix (dans les accordéons)
 export const priceItem: SchemaTypeDefinition = {
 	name: 'priceItem',
 	title: 'Item de prix',
