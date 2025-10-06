@@ -1,11 +1,14 @@
 'use client'
 
 import { Card, CardContent } from '@/components/ui/card'
-import { SubsidiesDocument } from '@/data/prices'
 import { SubsidiesTable } from '../../shared/SubsidiesTable'
 
 type SubsidiesSectionProps = {
-	subsidies: SubsidiesDocument
+	subsidies: {
+		labelIncomeRange: string
+		labelReduction: string
+		items: { incomeRange: string; subsidy: string }[]
+	}
 }
 
 export function SubsidiesSection({ subsidies }: SubsidiesSectionProps) {
@@ -15,9 +18,7 @@ export function SubsidiesSection({ subsidies }: SubsidiesSectionProps) {
 				{/* En-tête de section */}
 				<Card className="mb-12">
 					<CardContent className="text-center py-8">
-						<h2 className="text-3xl md:text-4xl font-bold text-purple-12 mb-4">
-							{subsidies.title}
-						</h2>
+					<h2 className="text-3xl md:text-4xl font-bold text-purple-12 mb-4">Subventions communales</h2>
 						<p className="text-lg text-orange-10 max-w-3xl mx-auto">
 							Consultez les subventions communales disponibles selon vos revenus annuels.
 							Les montants sont calculés automatiquement et déduits de votre facture mensuelle.

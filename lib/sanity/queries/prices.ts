@@ -62,7 +62,7 @@ export async function fetchDailyTG() {
 }
 
 export async function fetchSubsidies() {
-	return client.fetch<{ tableContent?: { subsidyItems: { incomeRange: string; subsidy: number }[] } } | null>(qSubsidies)
+	return client.fetch<{ tableContent?: { subsidyItems: { incomeRange: string; subsidy: string }[] } } | null>(qSubsidies)
 }
 
 export function getFrequentationLabel(value?: string): string {

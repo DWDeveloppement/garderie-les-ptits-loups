@@ -5,17 +5,18 @@ import { HeroHorairesTarifsSection } from "@/components/pages/horaires-tarifs/He
 import { SubsidiesSection } from '@/components/pages/horaires-tarifs/SubsidiesSection'
 import { ParalaxImage } from "@/components/ParalaxImage"
 import { PricingList } from '@/components/shared/PricingList'
-import { subventionsData } from '@/data/prices'
+// plus de mock; lecture Sanity directe
 // Rendu direct des accordéons Sanity sans mapping
-import { fetchDailyNursery, fetchDailyTG, fetchMonthlyNursery, fetchMonthlyTG } from '../../../lib/sanity/queries/prices'
+import { fetchDailyNursery, fetchDailyTG, fetchMonthlyNursery, fetchMonthlyTG, fetchSubsidies } from '../../../lib/sanity/queries/prices'
 
 export default async function HorairesTarifsPage() {
   // Récupérer les 4 documents Sanity en parallèle
-  const [monthlyNursery, dailyNursery, monthlyTG, dailyTG] = await Promise.all([
+  const [monthlyNursery, dailyNursery, monthlyTG, dailyTG, subsidiesDoc] = await Promise.all([
     fetchMonthlyNursery(),
     fetchDailyNursery(),
     fetchMonthlyTG(),
     fetchDailyTG(),
+    fetchSubsidies(),
   ])
 
   return (
@@ -44,8 +45,15 @@ export default async function HorairesTarifsPage() {
 			</section>
 
 			<ParalaxImage />
-			{/* Subventions (Ici on passe directement le document subventionsData mock pour l'instant)*/}
-			<SubsidiesSection subsidies={subventionsData} />
+			{/* Subventions depuis Sanity (sans fallback) */}
+			<SubsidiesSection subsidies={{
+				labelIncomeRange: 'Revenus annuels familial',
+				labelReduction: 'subvention accordée/jour',
+				items: (subsidiesDoc?.tableContent?.subsidyItems || []).map((it) => ({
+					incomeRange: it.incomeRange,
+					subsidy: `${it.subsidy}`,
+				})),
+			}} />
 		</div>
 	)
 }

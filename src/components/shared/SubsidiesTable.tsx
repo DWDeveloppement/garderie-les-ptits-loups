@@ -1,10 +1,13 @@
 'use client'
 
-import { SubsidiesDocument } from '@/data/prices'
 import { useBreakpoint } from '@/hooks/useWindowSize'
 
 type SubsidiesTableProps = {
-	subsidies: SubsidiesDocument
+	subsidies: {
+		labelIncomeRange: string
+		labelReduction: string
+		items: { incomeRange: string; subsidy: string }[]
+	}
 }
 
 export function SubsidiesTable({ subsidies }: SubsidiesTableProps) {
@@ -21,7 +24,7 @@ export function SubsidiesTable({ subsidies }: SubsidiesTableProps) {
 						<div className='text-xs font-medium text-orange-11 uppercase mb-2 tracking-wider'>Revenus</div>
 						<div className='text-sm font-medium text-purple-11 mb-3 leading-relaxed'>{item.incomeRange}</div>
 						<div className='text-xs font-medium text-orange-11 uppercase mb-2 tracking-wider'>Subvention</div>
-						<div className='text-sm text-orange-10 font-semibold'>CHF {item.reductionDaily.toFixed(2)}</div>
+						<div className='text-sm text-orange-10 font-semibold'>{`${item.subsidy}`}</div>
 					</div>
 				))}
 			</div>
@@ -46,7 +49,7 @@ export function SubsidiesTable({ subsidies }: SubsidiesTableProps) {
 					{subsidies.items.map((item, index) => (
 						<tr key={index} className={`hover:bg-orange-1 transition-colors duration-200 ${index % 2 === 0 ? 'bg-white' : 'bg-orange-1'}`}>
 							<td className='px-6 py-4 text-sm font-medium text-purple-11 whitespace-nowrap'>{item.incomeRange}</td>
-							<td className='px-6 py-4 text-sm text-orange-10 font-semibold whitespace-nowrap'>CHF {item.reductionDaily.toFixed(2)}</td>
+							<td className='px-6 py-4 text-sm text-orange-10 font-semibold whitespace-nowrap'>{`${item.subsidy}`}</td>
 						</tr>
 					))}
 				</tbody>
