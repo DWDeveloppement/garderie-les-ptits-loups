@@ -15,13 +15,10 @@ export const aboutPage: SchemaTypeDefinition = {
 		},
 		{
 			name: 'slug',
-			title: 'Slug',
+			title: 'Slug (non modifiable)',
 			type: 'slug',
-			options: {
-				source: 'title',
-				maxLength: 96,
-			},
-			initialValue: { current: 'about' },
+			readOnly: true,
+			initialValue: { current: 'a-propos' },
 			validation: (Rule: Rule) => Rule.required(),
 		},
 		{

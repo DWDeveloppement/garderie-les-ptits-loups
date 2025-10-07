@@ -15,12 +15,9 @@ export const schedulePage: SchemaTypeDefinition = {
 		},
 		{
 			name: 'slug',
-			title: 'Slug',
+			title: 'Slug (non modifiable)',
 			type: 'slug',
-			options: {
-				source: 'title',
-				maxLength: 96,
-			},
+			readOnly: true,
 			initialValue: { current: 'horaires-tarifs' },
 			validation: (Rule: Rule) => Rule.required(),
 		},

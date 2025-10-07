@@ -12,17 +12,14 @@ export const contactPage: SchemaTypeDefinition = {
 			initialValue: 'Contact',
 			validation: (Rule: Rule) => Rule.required(),
 		},
-		{
-			name: 'slug',
-			title: 'Slug',
-			type: 'slug',
-			options: {
-				source: 'title',
-				maxLength: 96,
-			},
-			initialValue: { current: 'contact' },
-			validation: (Rule: Rule) => Rule.required(),
-		},
+	{
+		name: 'slug',
+		title: 'Slug (non modifiable)',
+		type: 'slug',
+		readOnly: true,
+		initialValue: { current: 'contact' },
+		validation: (Rule: Rule) => Rule.required(),
+	},
 		{
 			name: 'heroImage',
 			title: 'Image Hero',

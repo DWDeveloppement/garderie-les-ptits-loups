@@ -20,17 +20,26 @@ export const sectors: SchemaTypeDefinition = {
 			type: 'string',
 			validation: (Rule: Rule) => Rule.required().max(100),
 		},
-		// Slug du secteur
-		{
-			name: 'slug',
-			title: 'Slug',
-			type: 'slug',
-			options: {
-				source: 'title',
-				maxLength: 96,
+	// Slug du secteur (auto-généré avec préfixe "la-structure/")
+	{
+		name: 'slug',
+		title: 'Slug',
+		type: 'slug',
+		options: {
+			source: 'title',
+			slugify: (input: string) => {
+				const base = input
+					.toLowerCase()
+					.normalize('NFD')
+					.replace(/[\u0300-\u036f]/g, '') // Retire accents
+					.replace(/[^a-z0-9]+/g, '-') // Remplace espaces et caractères spéciaux par -
+					.replace(/^-+|-+$/g, '') // Retire - en début/fin
+				return `la-structure/${base}`
 			},
-			validation: (Rule: Rule) => Rule.required(),
+			maxLength: 96,
 		},
+		validation: (Rule: Rule) => Rule.required(),
+	},
 		// Tranche d'âge du secteur (format card)
 		{
 			name: 'ageRange',

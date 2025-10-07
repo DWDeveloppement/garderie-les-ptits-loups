@@ -1,5 +1,5 @@
 import { type Rule, type SchemaTypeDefinition } from 'sanity'
-import { content, gallery, hero, imageParalax, seo, spacesComponent } from '../components'
+import { hero, seo } from '../components'
 
 // Désactivé: page fixe gérée dans le code Next
 export const home: SchemaTypeDefinition = {
@@ -13,51 +13,19 @@ export const home: SchemaTypeDefinition = {
 			type: 'string',
 			validation: (Rule: Rule) => Rule.required().max(100),
 		},
+		{
+			name: 'slug',
+			title: 'Slug (non modifiable)',
+			type: 'slug',
+			readOnly: true,
+			initialValue: { current: '/' },
+			validation: (Rule: Rule) => Rule.required(),
+		},
 		// Tab Contenu de Page (ouvert par défaut)
 		{
-			name: 'content',
-			title: 'Contenu de Page',
-			type: 'object',
-			options: {
-				collapsible: false,
-				collapsed: false,
-			},
-			fields: [
-				{
-					name: 'sectionHero',
-					title: 'Section Hero',
-					type: hero.name,
-					options: {
-						collapsible: true,
-						collapsed: true,
-					},
-				},
-				{
-					name: 'sections',
-					title: 'Sections de contenu',
-					type: 'array',
-					of: [
-						{
-							type: content.name,
-						},
-						{
-							type: gallery.name,
-						},
-						{
-							type: imageParalax.name,
-						},
-					],
-				},
-				{
-					name: 'sectionStructure',
-					title: 'Section La Structure',
-					type: spacesComponent.name,
-					options: {
-						collapsible: true,
-						collapsed: false,
-					},
-				},
-			],
+			name: 'sectionHero',
+			title: 'Section Hero',
+			type: hero.name,
 		},
 
 		// Tab SEO (fermé par défaut)
