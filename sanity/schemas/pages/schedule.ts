@@ -1,4 +1,5 @@
 import { type Rule, type SchemaTypeDefinition } from 'sanity'
+import { imageParalax } from '../components'
 
 export const schedulePage: SchemaTypeDefinition = {
 	name: 'schedulePage',
@@ -40,179 +41,85 @@ export const schedulePage: SchemaTypeDefinition = {
 			],
 			validation: (Rule: Rule) => Rule.required(),
 		},
+		// ===== NOUVELLES SECTIONS =====
+		// 1) Section tarifs (titre + référence vers document de tarifs)
 		{
-			name: 'hours',
-			title: 'Horaires',
+			name: 'tarifsSectionNurserie',
+			title: 'Section Tarifs Nurserie',
 			type: 'object',
 			fields: [
+				{ name: 'title', title: 'Titre', type: 'string', validation: (Rule: Rule) => Rule.required() },
 				{
-					name: 'title',
-					title: 'Titre de la section',
-					type: 'string',
-					initialValue: 'Nos horaires',
-				},
-				{
-					name: 'description',
-					title: 'Description',
-					type: 'text',
-					rows: 3,
-				},
-				{
-					name: 'schedule',
-					title: 'Planning',
-					type: 'array',
-					of: [
-						{
-							type: 'object',
-							fields: [
-								{
-									name: 'day',
-									title: 'Jour',
-									type: 'string',
-									options: {
-										list: [
-											{ title: 'Lundi', value: 'monday' },
-											{ title: 'Mardi', value: 'tuesday' },
-											{ title: 'Mercredi', value: 'wednesday' },
-											{ title: 'Jeudi', value: 'thursday' },
-											{ title: 'Vendredi', value: 'friday' },
-											{ title: 'Samedi', value: 'saturday' },
-											{ title: 'Dimanche', value: 'sunday' },
-										],
-									},
-									validation: (Rule: Rule) => Rule.required(),
-								},
-								{
-									name: 'openTime',
-									title: "Heure d'ouverture",
-									type: 'string',
-									validation: (Rule: Rule) => Rule.required(),
-								},
-								{
-									name: 'closeTime',
-									title: 'Heure de fermeture',
-									type: 'string',
-									validation: (Rule: Rule) => Rule.required(),
-								},
-								{
-									name: 'closed',
-									title: 'Fermé',
-									type: 'boolean',
-									initialValue: false,
-								},
-							],
-						},
-					],
+					name: 'priceRef',
+					title: 'Document de tarifs',
+					type: 'reference',
+					to: [{ type: 'prices' }],
+					options: {
+						filter: 'documentType == "accordion" && (frequentationType == "monthly-nursery" || frequentationType == "daily-nursery")',
+						disableNew: true,
+					},
+					// juste choisir dans la liste, pas de add new item
+					validation: (Rule: Rule) => Rule.required(),
 				},
 			],
 		},
 		{
-			name: 'pricing',
-			title: 'Tarifs',
+			name: 'tarifsSectionTG',
+			title: 'Section Tarifs Trotteurs et Grands',
 			type: 'object',
 			fields: [
+				{ name: 'title', title: 'Titre', type: 'string', validation: (Rule: Rule) => Rule.required() },
 				{
-					name: 'title',
-					title: 'Titre de la section',
-					type: 'string',
-					initialValue: 'Nos tarifs',
-				},
-				{
-					name: 'description',
-					title: 'Description',
-					type: 'text',
-					rows: 3,
-				},
-				{
-					name: 'sections',
-					title: 'Sections de tarifs',
-					type: 'array',
-					of: [
-						{
-							type: 'object',
-							fields: [
-								{
-									name: 'title',
-									title: 'Titre de la section',
-									type: 'string',
-									validation: (Rule: Rule) => Rule.required(),
-								},
-								{
-									name: 'ageRange',
-									title: "Tranche d'âge",
-									type: 'string',
-									validation: (Rule: Rule) => Rule.required(),
-								},
-								{
-									name: 'prices',
-									title: 'Tarifs',
-									type: 'array',
-									of: [
-										{
-											type: 'object',
-											fields: [
-												{
-													name: 'description',
-													title: 'Description',
-													type: 'string',
-													validation: (Rule: Rule) => Rule.required(),
-												},
-												{
-													name: 'price',
-													title: 'Prix',
-													type: 'number',
-													validation: (Rule: Rule) => Rule.required().min(0),
-												},
-											],
-										},
-									],
-								},
-							],
-						},
-					],
+					name: 'priceRef',
+					title: 'Document de tarifs',
+					type: 'reference',
+					to: [{ type: 'prices' }],
+					options: {
+						filter:
+							'documentType == "accordion" && (frequentationType == "monthly-trotteurs-grands" || frequentationType == "daily-trotteurs-grands")',
+						disableNew: true,
+					},
+					// juste choisir dans la liste, pas de add new item
+					validation: (Rule: Rule) => Rule.required(),
 				},
 			],
 		},
+		// 2) Image Parallaxe
 		{
-			name: 'subsidies',
-			title: 'Subventions',
+			name: 'parallax',
+			title: 'Image Parallaxe',
+			type: imageParalax.name,
+		},
+
+		// 3) Section tarifs avec description (titre + description multiline + référence)
+		{
+			name: 'subsidiesTable',
+			title: 'tableau des subventions',
 			type: 'object',
 			fields: [
+				{ name: 'title', title: 'Titre', type: 'string', validation: (Rule: Rule) => Rule.required() },
 				{
-					name: 'title',
-					title: 'Titre de la section',
-					type: 'string',
-					initialValue: 'Subventions communales',
+					name: 'body',
+					type: 'array',
+					title: 'Saisir le texte des coditions de subsides',
+					of: [
+						{
+							type: 'block', // This enables rich text editing with block content
+						},
+					],
 				},
+
 				{
-					name: 'description',
-					title: 'Description',
-					type: 'text',
-					rows: 3,
-				},
-				{
-					name: 'table',
+					name: 'tableauSubsidies',
 					title: 'Tableau des subventions',
-					type: 'array',
-					of: [
-						{
-							type: 'object',
-							fields: [
-								{
-									name: 'incomeRange',
-									title: 'Tranche de revenus',
-									type: 'string',
-									validation: (Rule: Rule) => Rule.required(),
-								},
-								{
-									name: 'subsidy',
-									title: 'Subvention',
-									type: 'number',
-									validation: (Rule: Rule) => Rule.required().min(0),
-								},
-							],
-						},
-					],
+					type: 'reference',
+					to: [{ type: 'prices' }],
+					options: {
+						filter: 'documentType == "table"',
+						disableNew: true,
+					},
+					// juste choisir dans la liste, pas de add new item
+					validation: (Rule: Rule) => Rule.required(),
 				},
 			],
 		},

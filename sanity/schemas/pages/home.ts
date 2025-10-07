@@ -1,6 +1,7 @@
 import { type Rule, type SchemaTypeDefinition } from 'sanity'
 import { content, gallery, hero, imageParalax, seo, spacesComponent } from '../components'
 
+// Désactivé: page fixe gérée dans le code Next
 export const home: SchemaTypeDefinition = {
 	name: 'home',
 	title: "Page d'accueil",

@@ -1,72 +1,35 @@
 import { StructureBuilder } from 'sanity/structure'
-import { ALLOWED_FIXED_PAGES, isDeveloper } from './config/roles'
+// Affichage simple pour utilisateurs (pas d'ajout)
 
 export const deskStructure = (S: StructureBuilder) => {
-	console.log('🏗️ deskStructure appelé avec S:', S) // Debug
-
-	// Récupérer l'utilisateur actuel (à implémenter)
-	const currentUser = null // TODO: Récupérer l'utilisateur connecté
-	const userIsDeveloper = isDeveloper(currentUser)
-
-	console.log('👤 Utilisateur actuel:', currentUser) // Debug
-	console.log('🔧 Est développeur:', userIsDeveloper) // Debug
-
 	return S.list()
 		.title('Contenu')
 		.items([
-			// Pages Statiques / Fixes - Documents multiples
-			// Page Accueil, À propos, Contact, Horaires & Tarifs
-			// Pages Fixes - Gestion conditionnelle selon le rôle
+			// Pages fixes (uniquement 4 docs, pas de création)
 			S.listItem()
 				.title('Pages Fixes')
 				.child(
 					S.list()
 						.title('Pages Fixes')
 						.items([
-							// Pages existantes
-							...ALLOWED_FIXED_PAGES.map((page) =>
-								S.listItem()
-									.title(page.title)
-									.icon(() => {
-										const icons: { [key: string]: string } = {
-											home: '🏠',
-											aboutPage: '📄',
-											contactPage: '📞',
-											schedulePage: '📅',
-										}
-										return icons[page.type] || '📄'
-									})
-									.child(
-										userIsDeveloper
-											? S.document().schemaType(page.type).documentId(page.id)
-											: S.documentList()
-													.title(page.title)
-													.filter(`_type == "${page.type}" && _id == "${page.id}"`)
-													.apiVersion('2023-05-03')
-													.canHandleIntent(() => false) // Empêche la création
-													.menuItems([]) // Supprime les options de menu (delete, etc.)
-									)
-							),
-							// Bouton d'ajout (développeur uniquement)
-							...(userIsDeveloper
-								? [
-										S.divider(),
-										S.listItem()
-											.title('+ Nouvelle page fixe')
-											.icon(() => '➕')
-											.child(
-												S.documentList()
-													.title('Créer une nouvelle page')
-													.filter(`_type in [${ALLOWED_FIXED_PAGES.map((p) => `"${p.type}"`).join(', ')}]`)
-													.apiVersion('2023-05-03')
-													.canHandleIntent(() => true)
-											),
-									]
-								: []),
+							S.listItem()
+								.icon(() => '🏠')
+								.title("Page d'accueil")
+								.child(S.document().schemaType('home').documentId('home')),
+							S.listItem()
+								.icon(() => '👤')
+								.title('Page À propos')
+								.child(S.document().schemaType('aboutPage').documentId('aboutPage')),
+							S.listItem()
+								.icon(() => '📞')
+								.title('Page Contact')
+								.child(S.document().schemaType('contactPage').documentId('contactPage')),
+							S.listItem()
+								.icon(() => '📅')
+								.title('Page Horaires & Tarifs')
+								.child(S.document().schemaType('schedulePage').documentId('schedulePage')),
 						])
 				),
-
-			// Contient des documents dont la structure du schema peut différer d'une page à l'autre. Voir comment solutionner cela en ayant un Schema global et un Schema pour chaque page. Le Schema global gère le nom de la page, le slug, le titre, la description, un hero de page un blocde contenu variable en fonction de la page. Un bloc poour gérer le SEO. de chaque page.
 
 			// La Structure - Documents multiples
 			S.listItem()

@@ -1,5 +1,5 @@
 // Composant ImageParalax réutilisable
-import { type SchemaTypeDefinition } from 'sanity'
+import { type Rule, type SchemaTypeDefinition } from 'sanity'
 
 export const imageParalax: SchemaTypeDefinition = {
 	name: 'imageParalax',
@@ -18,18 +18,10 @@ export const imageParalax: SchemaTypeDefinition = {
 					name: 'alt',
 					title: 'Texte alternatif',
 					type: 'string',
+					validation: (Rule: Rule) => Rule.required(),
 				},
 			],
-		},
-		{
-			name: 'overlay',
-			title: 'Overlay',
-			type: 'boolean',
-		},
-		{
-			name: 'overlayText',
-			title: 'Texte overlay',
-			type: 'string',
+			validation: (Rule: Rule) => Rule.required(),
 		},
 	],
 }

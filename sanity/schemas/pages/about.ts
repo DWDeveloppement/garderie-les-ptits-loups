@@ -1,5 +1,6 @@
 import { type Rule, type SchemaTypeDefinition } from 'sanity'
 
+// Désactivé: page fixe gérée dans le code Next
 export const aboutPage: SchemaTypeDefinition = {
 	name: 'aboutPage',
 	title: 'À Propos',
