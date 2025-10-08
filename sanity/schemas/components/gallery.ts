@@ -1,5 +1,5 @@
 // Composant Gallery réutilisable
-import { type SchemaTypeDefinition } from 'sanity'
+import { type Rule, type SchemaTypeDefinition } from 'sanity'
 
 export const gallery: SchemaTypeDefinition = {
 	name: 'gallery',
@@ -17,22 +17,27 @@ export const gallery: SchemaTypeDefinition = {
 			type: 'array',
 			of: [
 				{
-					type: 'image',
-					options: {
-						hotspot: true,
-					},
+					type: 'object',
 					fields: [
 						{
-							name: 'alt',
-							title: 'Texte alternatif',
-							type: 'string',
+							name: 'image',
+							title: 'Image',
+							type: 'seoImage',
 						},
 						{
 							name: 'caption',
 							title: 'Légende',
 							type: 'string',
+							validation: (Rule: Rule) => Rule.required(),
+							description: "Texte affiché sous l'image",
 						},
 					],
+					preview: {
+						select: {
+							title: 'caption',
+							media: 'image',
+						},
+					},
 				},
 			],
 		},

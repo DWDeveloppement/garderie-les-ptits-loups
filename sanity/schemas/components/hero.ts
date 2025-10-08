@@ -1,5 +1,5 @@
 // Composant Hero réutilisable
-import { type Rule, type SchemaTypeDefinition } from 'sanity'
+import { type SchemaTypeDefinition } from 'sanity'
 
 export const hero: SchemaTypeDefinition = {
 	name: 'hero',
@@ -9,25 +9,14 @@ export const hero: SchemaTypeDefinition = {
 		{
 			name: 'image',
 			title: 'Image',
-			type: 'image',
-			options: {
-				hotspot: true,
-			},
-			fields: [
-				{
-					name: 'alt',
-					title: 'Texte alternatif',
-					type: 'string',
-					validation: (Rule: Rule) => Rule.required(),
-				},
-			],
-			validation: (Rule: Rule) => Rule.required(),
+			type: 'seoImage',
 		},
+		// Small description pour un texte d'introduction dans un composant card.
 		{
 			name: 'description',
-			title: 'Small description',
+			title: "Texte d'introduction des pages.",
 			type: 'text',
-			rows: 3,
+			rows: 4,
 		},
 	],
 }

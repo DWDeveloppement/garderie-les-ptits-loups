@@ -46,7 +46,24 @@ export const deskStructure = (S: StructureBuilder) => {
 				.child(S.documentList().title('Prix et Tarifs').filter('_type == "prices"').apiVersion('2023-05-03')),
 			// Médiathèque personnalisée avec nos champs SEO
 			S.listItem()
-				.title('Médiathèque SEO')
-				.child(S.documentList().title('Médiathèque SEO').filter('_type == "assets"').apiVersion('2023-05-03')),
+				.title('Galleries photos')
+				.child(
+					S.list()
+						.title('Galleries photos')
+						.items([
+							S.listItem()
+								.title('La Nurserie')
+								.child(S.documentList().title('La Nurserie').filter('_type == "gallery"').apiVersion('2023-05-03')),
+							S.listItem()
+								.title('Les Trotteurs')
+								.child(S.documentList().title('LesTrotteurs').filter('_type == "gallery"').apiVersion('2023-05-03')),
+							S.listItem()
+								.title('Les Grands')
+								.child(S.documentList().title('Les Grands').filter('_type == "gallery"').apiVersion('2023-05-03')),
+							S.listItem()
+								.title('Les Autres Espaces')
+								.child(S.documentList().title('Autres Espaces').filter('_type == "gallery"').apiVersion('2023-05-03')),
+						])
+				),
 		])
 }

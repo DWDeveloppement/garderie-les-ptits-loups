@@ -3,7 +3,7 @@ import { type SchemaTypeDefinition } from 'sanity'
 // Import des schémas de base
 import { aboutPage, contactPage, home, schedulePage, sectors, spaces } from './schemas'
 // Import des composants réutilisables
-import { content, gallery, hero, imageParalax, seo, spacesComponent } from './schemas/components'
+import { content, gallery, hero, imageParalax, seo, seoImage, spacesComponent } from './schemas/components'
 // Import des schémas de prix
 import { accordionItem, priceItem, prices, subsidyItem } from './schemas/prices'
 
@@ -58,6 +58,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
 		codeBlock,
 		// Composants réutilisables
 		seo,
+		seoImage,
 		hero,
 		gallery,
 		content,
