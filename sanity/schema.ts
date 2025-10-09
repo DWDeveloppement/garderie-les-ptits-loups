@@ -1,9 +1,9 @@
 import { type SchemaTypeDefinition } from 'sanity'
 
 // Import des schémas de base
-import { aboutPage, contactPage, home, schedulePage, sectorPage, sectors, spacePage, spaces } from './schemas'
+import { aboutPage, contactPage, home, schedulePage, sectorPage, spacePage } from './schemas'
 // Import des composants réutilisables
-import { content, gallery, hero, imageParalax, seo, seoImage, spacesComponent } from './schemas/components'
+import { hero, imageParalax, seo, seoImage } from './schemas/components'
 // Import des schémas de prix
 import { accordionItem, priceItem, prices, subsidyItem } from './schemas/prices'
 
@@ -60,9 +60,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
 		seo,
 		seoImage,
 		hero,
-		gallery,
-		content,
-		spacesComponent,
 		imageParalax,
 		// Pages Fixes
 		home,
@@ -73,15 +70,10 @@ export const schema: { types: SchemaTypeDefinition[] } = {
 		sectorPage,
 		// Pages Espaces (fixes)
 		spacePage,
-		// Sectors (ancienne structure, à désactiver si plus utilisée)
-		sectors,
-		// Spaces (ancienne structure, à désactiver si plus utilisée)
-		spaces,
 		// Prix et Tarifs
 		prices,
 		accordionItem,
 		priceItem,
 		subsidyItem,
-		// Mediatheque (à ajouter)
 	],
 }
