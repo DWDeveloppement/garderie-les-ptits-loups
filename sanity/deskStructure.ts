@@ -5,12 +5,12 @@ export const deskStructure = (S: StructureBuilder) => {
 	return S.list()
 		.title('Contenu')
 		.items([
-			// Pages fixes (uniquement 4 docs, pas de création)
+			// Pages fixes générales
 			S.listItem()
-				.title('Pages Fixes')
+				.title('Pages Générales')
 				.child(
 					S.list()
-						.title('Pages Fixes')
+						.title('Pages Générales')
 						.items([
 							S.listItem()
 								.icon(() => '🏠')
@@ -31,39 +31,98 @@ export const deskStructure = (S: StructureBuilder) => {
 						])
 				),
 
-			// La Structure - Documents multiples
+			// La Structure - 4 secteurs fixes
 			S.listItem()
 				.title('La Structure')
-				.child(S.documentList().title('La Structure').filter('_type == "sectors"').apiVersion('2023-05-03')),
+				.icon(() => '🏛️')
+				.child(
+					S.list()
+						.title('La Structure')
+						.items([
+							S.listItem()
+								.icon(() => '👶')
+								.title('La Nurserie')
+								.child(S.document().schemaType('sectorPage').documentId('nurserie')),
+							S.listItem()
+								.icon(() => '🚼')
+								.title('Les Trotteurs')
+								.child(S.document().schemaType('sectorPage').documentId('trotteurs')),
+							S.listItem()
+								.icon(() => '🧒')
+								.title('Les Grands')
+								.child(S.document().schemaType('sectorPage').documentId('grands')),
+							S.listItem()
+								.icon(() => '🏢')
+								.title('Les Autres Espaces')
+								.child(S.document().schemaType('sectorPage').documentId('autres-espaces')),
+						])
+				),
 
-			// Espaces - Documents multiples
-			S.listItem().title('Espaces').child(S.documentList().title('Espaces').filter('_type == "spaces"').apiVersion('2023-05-03')),
+			// Espaces - 12 espaces fixes groupés par secteur
+			S.listItem()
+				.title('Les Espaces')
+				.icon(() => '🚪')
+				.child(
+					S.list()
+						.title('Espaces')
+						.items([
+							// Nurserie
+							S.listItem()
+								.title('Nurserie')
+								.child(
+									S.list()
+										.title('Espaces Nurserie')
+										.items([
+											S.listItem().title('Salle de jeux').child(S.document().schemaType('spacePage').documentId('pnurseryPlaygroundSpace')),
+											S.listItem().title('Espace Repos').child(S.document().schemaType('spacePage').documentId('nurseryRestSpace')),
+											S.listItem().title('Espace Soins').child(S.document().schemaType('spacePage').documentId('nurseryCareSpace')),
+										])
+								),
+							// Trotteurs
+							S.listItem()
+								.title('Trotteurs')
+								.child(
+									S.list()
+										.title('Espaces Trotteurs')
+										.items([
+											S.listItem()
+												.title('Salle de jeux')
+												.child(S.document().schemaType('spacePage').documentId('trotteursPlaygroundSpace')),
+											S.listItem().title('Espace Repos').child(S.document().schemaType('spacePage').documentId('trotteursRestSpace')),
+											S.listItem().title('Espace soins').child(S.document().schemaType('spacePage').documentId('trotteursCareSpace')),
+										])
+								),
+							// Grands
+							S.listItem()
+								.title('Grands')
+								.child(
+									S.list()
+										.title('Espaces Grands')
+										.items([
+											S.listItem().title('Espace jeux').child(S.document().schemaType('spacePage').documentId('grandsPlaygroundSpace')),
+											S.listItem().title('Espace repos').child(S.document().schemaType('spacePage').documentId('grandsRestSpace')),
+											S.listItem().title('Espace soins').child(S.document().schemaType('spacePage').documentId('grandsCareSpace')),
+										])
+								),
+							// Autres Espaces
+							S.listItem()
+								.title('Autres Espaces')
+								.child(
+									S.list()
+										.title('Autres Espaces')
+										.items([
+											S.listItem().title('Le Jardin').child(S.document().schemaType('spacePage').documentId('gardenSpace')),
+											S.listItem().title('La Cuisine').child(S.document().schemaType('spacePage').documentId('kitchenSpace')),
+											S.listItem().title("L'armoire à bricolages").child(S.document().schemaType('spacePage').documentId('bricolageSpace')),
+										])
+								),
+						])
+				),
 
-			// Prix et Tarifs - Documents multiples
+			// Prix et Tarifs - Documents multiples (conservé)
 			S.listItem()
 				.title('Prix et Tarifs')
 				.icon(() => '💰')
 				.child(S.documentList().title('Prix et Tarifs').filter('_type == "prices"').apiVersion('2023-05-03')),
-			// Médiathèque personnalisée avec nos champs SEO
-			S.listItem()
-				.title('Galleries photos')
-				.child(
-					S.list()
-						.title('Galleries photos')
-						.items([
-							S.listItem()
-								.title('La Nurserie')
-								.child(S.documentList().title('La Nurserie').filter('_type == "gallery"').apiVersion('2023-05-03')),
-							S.listItem()
-								.title('Les Trotteurs')
-								.child(S.documentList().title('LesTrotteurs').filter('_type == "gallery"').apiVersion('2023-05-03')),
-							S.listItem()
-								.title('Les Grands')
-								.child(S.documentList().title('Les Grands').filter('_type == "gallery"').apiVersion('2023-05-03')),
-							S.listItem()
-								.title('Les Autres Espaces')
-								.child(S.documentList().title('Autres Espaces').filter('_type == "gallery"').apiVersion('2023-05-03')),
-						])
-				),
 		])
 }

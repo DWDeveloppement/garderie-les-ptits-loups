@@ -1,7 +1,7 @@
 import { type SchemaTypeDefinition } from 'sanity'
 
 // Import des schémas de base
-import { aboutPage, contactPage, home, schedulePage, sectors, spaces } from './schemas'
+import { aboutPage, contactPage, home, schedulePage, sectorPage, sectors, spacePage, spaces } from './schemas'
 // Import des composants réutilisables
 import { content, gallery, hero, imageParalax, seo, seoImage, spacesComponent } from './schemas/components'
 // Import des schémas de prix
@@ -69,9 +69,13 @@ export const schema: { types: SchemaTypeDefinition[] } = {
 		aboutPage,
 		contactPage,
 		schedulePage,
-		// Sectors
+		// Pages Secteurs (fixes)
+		sectorPage,
+		// Pages Espaces (fixes)
+		spacePage,
+		// Sectors (ancienne structure, à désactiver si plus utilisée)
 		sectors,
-		// Spaces
+		// Spaces (ancienne structure, à désactiver si plus utilisée)
 		spaces,
 		// Prix et Tarifs
 		prices,
