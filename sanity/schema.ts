@@ -3,7 +3,7 @@ import { type SchemaTypeDefinition } from 'sanity'
 // Import des schémas de base
 import { aboutPage, contactPage, home, schedulePage, sectorPage, spacePage } from './schemas'
 // Import des composants réutilisables
-import { hero, imageParalax, seo, seoImage } from './schemas/components'
+import { basicImage, galleryImage, hero, heroImage, paralaxImage, seo, seoImage } from './schemas/components'
 // Import des schémas de prix
 import { accordionItem, priceItem, prices, subsidyItem } from './schemas/prices'
 
@@ -56,11 +56,15 @@ export const schema: { types: SchemaTypeDefinition[] } = {
 	types: [
 		// Type code personnalisé
 		codeBlock,
+		// Composants images (base et spécialisés)
+		basicImage,
+		heroImage,
+		galleryImage,
+		seoImage, // Legacy - À terme, remplacer par basicImage partout
 		// Composants réutilisables
 		seo,
-		seoImage,
 		hero,
-		imageParalax,
+		paralaxImage,
 		// Pages Fixes
 		home,
 		aboutPage,

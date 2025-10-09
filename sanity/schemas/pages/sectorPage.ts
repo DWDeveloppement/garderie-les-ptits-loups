@@ -1,6 +1,6 @@
 import { type Rule, type SchemaTypeDefinition } from 'sanity'
 import { GalleryInput } from '../../components/GalleryInput'
-import { hero, imageParalax, seo } from '../components'
+import { hero, paralaxImage, seo } from '../components'
 
 export const sectorPage: SchemaTypeDefinition = {
 	name: 'sectorPage',
@@ -49,7 +49,7 @@ export const sectorPage: SchemaTypeDefinition = {
 		{
 			name: 'parallax',
 			title: 'Image Parallaxe',
-			type: imageParalax.name,
+			type: paralaxImage.name,
 		},
 		// Contenu en rich-text
 		{
@@ -68,7 +68,7 @@ export const sectorPage: SchemaTypeDefinition = {
 			},
 			of: [
 				{
-					type: 'seoImage',
+					type: 'galleryImage',
 				},
 			],
 			components: {

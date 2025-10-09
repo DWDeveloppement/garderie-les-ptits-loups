@@ -1,5 +1,5 @@
 import { type Rule, type SchemaTypeDefinition } from 'sanity'
-import { hero, seo } from '../components'
+import { hero, paralaxImage, seo } from '../components'
 
 // Désactivé: page fixe gérée dans le code Next
 export const home: SchemaTypeDefinition = {
@@ -27,7 +27,12 @@ export const home: SchemaTypeDefinition = {
 			title: 'Section Hero',
 			type: hero.name,
 		},
-
+		// 2) Image Parallaxe
+		{
+			name: 'parallax',
+			title: 'Image Parallaxe',
+			type: paralaxImage.name,
+		},
 		// Tab SEO (fermé par défaut)
 		{
 			name: 'seo',

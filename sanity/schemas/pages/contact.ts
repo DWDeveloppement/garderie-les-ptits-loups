@@ -1,4 +1,5 @@
 import { type Rule, type SchemaTypeDefinition } from 'sanity'
+import { hero, paralaxImage } from '../components'
 
 export const contactPage: SchemaTypeDefinition = {
 	name: 'contactPage',
@@ -20,22 +21,11 @@ export const contactPage: SchemaTypeDefinition = {
 			initialValue: { current: 'contact' },
 			validation: (Rule: Rule) => Rule.required(),
 		},
+		// Tab Contenu de Page (ouvert par défaut)
 		{
-			name: 'heroImage',
-			title: 'Image Hero',
-			type: 'image',
-			options: {
-				hotspot: true,
-			},
-			fields: [
-				{
-					name: 'alt',
-					title: 'Texte alternatif',
-					type: 'string',
-					validation: (Rule: Rule) => Rule.required(),
-				},
-			],
-			validation: (Rule: Rule) => Rule.required(),
+			name: 'sectionHero',
+			title: 'Section Hero',
+			type: hero.name,
 		},
 		{
 			name: 'contactInfo',
@@ -94,6 +84,12 @@ export const contactPage: SchemaTypeDefinition = {
 					validation: (Rule: Rule) => Rule.min(1).max(20),
 				},
 			],
+		},
+		// 2) Image Parallaxe
+		{
+			name: 'parallax',
+			title: 'Image Parallaxe',
+			type: paralaxImage.name,
 		},
 		{
 			name: 'form',

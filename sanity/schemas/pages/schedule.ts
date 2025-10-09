@@ -1,5 +1,5 @@
 import { type Rule, type SchemaTypeDefinition } from 'sanity'
-import { imageParalax } from '../components'
+import { hero, paralaxImage } from '../components'
 
 export const schedulePage: SchemaTypeDefinition = {
 	name: 'schedulePage',
@@ -21,22 +21,11 @@ export const schedulePage: SchemaTypeDefinition = {
 			initialValue: { current: 'horaires-tarifs' },
 			validation: (Rule: Rule) => Rule.required(),
 		},
+		// Tab Contenu de Page (ouvert par défaut)
 		{
-			name: 'heroImage',
-			title: 'Image Hero',
-			type: 'image',
-			options: {
-				hotspot: true,
-			},
-			fields: [
-				{
-					name: 'alt',
-					title: 'Texte alternatif',
-					type: 'string',
-					validation: (Rule: Rule) => Rule.required(),
-				},
-			],
-			validation: (Rule: Rule) => Rule.required(),
+			name: 'sectionHero',
+			title: 'Section Hero',
+			type: hero.name,
 		},
 		// ===== NOUVELLES SECTIONS =====
 		// 1) Section tarifs (titre + référence vers document de tarifs)
@@ -85,7 +74,7 @@ export const schedulePage: SchemaTypeDefinition = {
 		{
 			name: 'parallax',
 			title: 'Image Parallaxe',
-			type: imageParalax.name,
+			type: paralaxImage.name,
 		},
 
 		// 3) Section tarifs avec description (titre + description multiline + référence)

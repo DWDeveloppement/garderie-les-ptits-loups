@@ -1,4 +1,5 @@
 import { type Rule, type SchemaTypeDefinition } from 'sanity'
+import { hero, paralaxImage } from '../components'
 
 // Désactivé: page fixe gérée dans le code Next
 export const aboutPage: SchemaTypeDefinition = {
@@ -21,22 +22,11 @@ export const aboutPage: SchemaTypeDefinition = {
 			initialValue: { current: 'a-propos' },
 			validation: (Rule: Rule) => Rule.required(),
 		},
+		// Tab Contenu de Page (ouvert par défaut)
 		{
-			name: 'heroImage',
-			title: 'Image Hero',
-			type: 'image',
-			options: {
-				hotspot: true,
-			},
-			fields: [
-				{
-					name: 'alt',
-					title: 'Texte alternatif',
-					type: 'string',
-					validation: (Rule: Rule) => Rule.required(),
-				},
-			],
-			validation: (Rule: Rule) => Rule.required(),
+			name: 'sectionHero',
+			title: 'Section Hero',
+			type: hero.name,
 		},
 		{
 			name: 'content',
@@ -62,6 +52,12 @@ export const aboutPage: SchemaTypeDefinition = {
 				},
 			],
 			validation: (Rule: Rule) => Rule.required(),
+		},
+		// 2) Image Parallaxe
+		{
+			name: 'parallax',
+			title: 'Image Parallaxe',
+			type: paralaxImage.name,
 		},
 		{
 			name: 'team',

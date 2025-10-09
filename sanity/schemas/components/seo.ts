@@ -28,19 +28,12 @@ export const seo: SchemaTypeDefinition = {
 			of: [{ type: 'string' }],
 			description: 'Mots-clés pour le référencement',
 		},
-		// Open Graph (Facebook, LinkedIn)
+		// Image de partage unique (Open Graph + Twitter)
 		{
-			name: 'ogImage',
-			title: 'Image Open Graph (réseaux sociaux)',
-			type: 'seoImage',
-			description: 'Image pour le partage sur Facebook, LinkedIn (recommandé: 1200x630px)',
-		},
-		// Twitter Card
-		{
-			name: 'twitterImage',
-			title: 'Image Twitter Card',
-			type: 'seoImage',
-			description: 'Image pour le partage sur Twitter (recommandé: 1200x675px)',
+			name: 'shareImage',
+			title: 'Image de partage (réseaux sociaux)',
+			type: 'basicImage',
+			description: 'Image pour le partage sur Facebook, LinkedIn, Twitter (dimensions optimisées automatiquement)',
 		},
 	],
 }

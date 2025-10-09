@@ -9,7 +9,7 @@ export const hero: SchemaTypeDefinition = {
 		{
 			name: 'image',
 			title: 'Image',
-			type: 'seoImage',
+			type: 'basicImage',
 		},
 		// Small description pour un texte d'introduction dans un composant card.
 		{

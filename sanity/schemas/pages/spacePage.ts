@@ -17,7 +17,7 @@ export const spacePage: SchemaTypeDefinition = {
 		{
 			name: 'image',
 			title: 'Image',
-			type: 'seoImage',
+			type: 'basicImage',
 			validation: (Rule: Rule) => Rule.required(),
 		},
 		// Description en rich-text
