@@ -7,6 +7,7 @@
  * on emporte du seo, un hero de page un espace gallerie et un contener pour insérer les espaces du secteur.
  */
 import { type Rule, type SchemaTypeDefinition } from 'sanity'
+import { GalleryInput } from '../components/GalleryInput'
 
 export const sectors: SchemaTypeDefinition = {
 	name: 'sectors',
@@ -101,14 +102,17 @@ export const sectors: SchemaTypeDefinition = {
 			name: 'gallery',
 			title: 'Galerie',
 			type: 'array',
+			options: {
+				layout: 'grid',
+			},
 			of: [
 				{
-					type: 'image',
-					options: {
-						hotspot: true,
-					},
+					type: 'seoImage',
 				},
 			],
+			components: {
+				input: GalleryInput,
+			},
 		},
 		//
 	],
