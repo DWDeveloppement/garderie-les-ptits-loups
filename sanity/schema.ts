@@ -1,7 +1,7 @@
 import { type SchemaTypeDefinition } from 'sanity'
 
 // Import des schémas de base
-import { aboutPage, contactPage, home, schedulePage, sectorPage, spacePage } from './schemas'
+import { aboutPage, contactPage, home, schedulePage, sectorPage, spacePage, testimonials } from './schemas'
 // Import des composants réutilisables
 import { basicImage, galleryImage, hero, heroImage, paralaxImage, seo, seoImage } from './schemas/components'
 // Import des schémas de prix
@@ -79,5 +79,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
 		accordionItem,
 		priceItem,
 		subsidyItem,
+		// Témoignages
+		testimonials,
 	],
 }

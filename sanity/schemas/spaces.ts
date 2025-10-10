@@ -1,5 +1,5 @@
 import { type Rule, type SchemaTypeDefinition } from 'sanity'
-import { seo } from '../components'
+import { seo } from './components'
 
 export const spacePage: SchemaTypeDefinition = {
 	name: 'spacePage',

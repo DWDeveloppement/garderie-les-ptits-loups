@@ -8,6 +8,7 @@ export const deskStructure = (S: StructureBuilder) => {
 			// Pages fixes générales
 			S.listItem()
 				.title('Pages Générales')
+				.icon(() => '📄')
 				.child(
 					S.list()
 						.title('Pages Générales')
@@ -124,5 +125,10 @@ export const deskStructure = (S: StructureBuilder) => {
 				.title('Prix et Tarifs')
 				.icon(() => '💰')
 				.child(S.documentList().title('Prix et Tarifs').filter('_type == "prices"').apiVersion('2023-05-03')),
+			// Témoignages - Documents multiples avec add document
+			S.listItem()
+				.title('Témoignages')
+				.icon(() => '🎉')
+				.child(S.documentList().title('Témoignages').filter('_type == "testimonials"').apiVersion('2023-05-03')),
 		])
 }

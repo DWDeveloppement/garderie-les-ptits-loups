@@ -23,7 +23,7 @@ export const basicImage: SchemaTypeDefinition = {
 			title: 'Afficher les options avancées',
 			type: 'boolean',
 			initialValue: false,
-			description: 'Active les options de crédit et d\'infobulle',
+			description: "Active les options de crédit et d'infobulle",
 		},
 		// Crédit de l'image (visible seulement si options activées)
 		{
