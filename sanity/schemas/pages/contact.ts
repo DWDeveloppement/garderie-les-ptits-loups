@@ -1,5 +1,6 @@
 import { type Rule, type SchemaTypeDefinition } from 'sanity'
-import { hero, paralaxImage } from '../components'
+import { ReadOnlySlug } from '../../components/ReadOnlySlug'
+import { hero, paralaxImage, seo } from '../components'
 
 export const contactPage: SchemaTypeDefinition = {
 	name: 'contactPage',
@@ -13,171 +14,143 @@ export const contactPage: SchemaTypeDefinition = {
 			initialValue: 'Contact',
 			validation: (Rule: Rule) => Rule.required(),
 		},
-		{
-			name: 'slug',
-			title: 'Slug (non modifiable)',
-			type: 'slug',
-			readOnly: true,
-			initialValue: { current: 'contact' },
-			validation: (Rule: Rule) => Rule.required(),
-		},
-		// Tab Contenu de Page (ouvert par défaut)
+		// === CONTENU DE LA PAGE ===
 		{
 			name: 'sectionHero',
 			title: 'Section Hero',
 			type: hero.name,
 		},
+		// Informations de contact centralisées (réutilisables dans footer, map, etc.)
 		{
 			name: 'contactInfo',
 			title: 'Informations de Contact',
 			type: 'object',
+			description: "Informations centralisées réutilisables dans toute l'application (footer, map, etc.)",
+			options: {
+				collapsible: false,
+			},
 			fields: [
+				{
+					name: 'name',
+					title: 'Nom de la garderie',
+					type: 'string',
+					initialValue: "Garderie Les P'tits Loups",
+					validation: (Rule: Rule) => Rule.required(),
+				},
 				{
 					name: 'address',
 					title: 'Adresse',
 					type: 'string',
+					placeholder: 'Rue de la Paix 123',
+					validation: (Rule: Rule) => Rule.required(),
+				},
+				{
+					name: 'postalCode',
+					title: 'Code postal',
+					type: 'string',
+					placeholder: '1000',
+					validation: (Rule: Rule) => Rule.required(),
+				},
+				{
+					name: 'city',
+					title: 'Ville',
+					type: 'string',
+					placeholder: 'Lausanne',
+					validation: (Rule: Rule) => Rule.required(),
+				},
+				{
+					name: 'country',
+					title: 'Pays',
+					type: 'string',
+					initialValue: 'Suisse',
 					validation: (Rule: Rule) => Rule.required(),
 				},
 				{
 					name: 'phone',
 					title: 'Téléphone',
 					type: 'string',
+					placeholder: '+41 21 XXX XX XX',
 					validation: (Rule: Rule) => Rule.required(),
 				},
 				{
 					name: 'email',
 					title: 'Email',
 					type: 'string',
+					placeholder: 'contact@leptitsloups.ch',
 					validation: (Rule: Rule) => Rule.required().email(),
 				},
 				{
-					name: 'hours',
-					title: 'Horaires',
+					name: 'openingHours',
+					title: "Horaires d'accueil",
 					type: 'text',
 					rows: 3,
+					placeholder: 'Lundi - Vendredi: 8h00 - 18h00',
+					description: "Horaires d'ouverture/d'accueil (différent des horaires de garde)",
 					validation: (Rule: Rule) => Rule.required(),
 				},
-			],
-		},
-		{
-			name: 'map',
-			title: 'Carte',
-			type: 'object',
-			fields: [
+				// Coordonnées GPS pour la carte
 				{
 					name: 'latitude',
-					title: 'Latitude',
+					title: 'Latitude (pour la carte)',
 					type: 'number',
-					validation: (Rule: Rule) => Rule.required(),
+					initialValue: 46.541742,
+					validation: (Rule: Rule) => Rule.required().min(-90).max(90),
+					description: 'Coordonnée GPS latitude (ex: 46.541742)',
 				},
 				{
 					name: 'longitude',
-					title: 'Longitude',
+					title: 'Longitude (pour la carte)',
 					type: 'number',
-					validation: (Rule: Rule) => Rule.required(),
+					initialValue: 6.636635,
+					validation: (Rule: Rule) => Rule.required().min(-180).max(180),
+					description: 'Coordonnée GPS longitude (ex: 6.636635)',
 				},
 				{
 					name: 'zoom',
-					title: 'Zoom',
+					title: 'Niveau de zoom (carte)',
 					type: 'number',
 					initialValue: 15,
 					validation: (Rule: Rule) => Rule.min(1).max(20),
+					description: 'Niveau de zoom pour la carte (1-20, recommandé: 15)',
 				},
 			],
 		},
-		// 2) Image Parallaxe
+		// Image Parallaxe
 		{
 			name: 'parallax',
 			title: 'Image Parallaxe',
 			type: paralaxImage.name,
 		},
-		{
-			name: 'form',
-			title: 'Formulaire de Contact',
-			type: 'object',
-			fields: [
-				{
-					name: 'title',
-					title: 'Titre du formulaire',
-					type: 'string',
-					initialValue: 'Nous contacter',
-				},
-				{
-					name: 'description',
-					title: 'Description',
-					type: 'text',
-					rows: 2,
-				},
-				{
-					name: 'fields',
-					title: 'Champs du formulaire',
-					type: 'array',
-					of: [
-						{
-							type: 'object',
-							fields: [
-								{
-									name: 'name',
-									title: 'Nom du champ',
-									type: 'string',
-									validation: (Rule: Rule) => Rule.required(),
-								},
-								{
-									name: 'type',
-									title: 'Type',
-									type: 'string',
-									options: {
-										list: [
-											{ title: 'Texte', value: 'text' },
-											{ title: 'Email', value: 'email' },
-											{ title: 'Téléphone', value: 'tel' },
-											{ title: 'Message', value: 'textarea' },
-										],
-									},
-									validation: (Rule: Rule) => Rule.required(),
-								},
-								{
-									name: 'required',
-									title: 'Obligatoire',
-									type: 'boolean',
-									initialValue: false,
-								},
-							],
-						},
-					],
-				},
-			],
-		},
+		// === SEO & CONFIGURATION ===
 		{
 			name: 'seo',
 			title: 'SEO',
+			type: seo.name,
+			options: {
+				collapsible: true,
+				collapsed: true,
+			},
+		},
+		// Configuration développeur (slug, paramètres techniques)
+		{
+			name: 'devConfig',
+			title: '⚙️ Configuration développeur',
 			type: 'object',
+			description: "Paramètres techniques - Uniquement à l'usage du développeur",
 			options: {
 				collapsible: true,
 				collapsed: true,
 			},
 			fields: [
 				{
-					name: 'metaTitle',
-					title: 'Meta Title',
-					type: 'string',
-					initialValue: "Contact - Garderie Les P'tits Loups",
-					validation: (Rule: Rule) => Rule.max(60),
-				},
-				{
-					name: 'metaDescription',
-					title: 'Meta Description',
-					type: 'text',
-					rows: 3,
-					initialValue: "Contactez-nous pour plus d'informations sur notre garderie et nos services.",
-					validation: (Rule: Rule) => Rule.max(160),
-				},
-				{
-					name: 'keywords',
-					title: 'Mots-clés',
-					type: 'array',
-					of: [{ type: 'string' }],
-					initialValue: ['contact', 'adresse', 'téléphone', 'email', 'horaires'],
+					name: 'slug',
+					title: 'Slug (URL de la page)',
+					type: 'slug',
+					initialValue: { current: 'contact' },
+					validation: (Rule: Rule) => Rule.required(),
+					components: {
+						input: ReadOnlySlug,
+					},
 				},
 			],
 		},
@@ -185,7 +158,7 @@ export const contactPage: SchemaTypeDefinition = {
 	preview: {
 		select: {
 			title: 'title',
-			media: 'heroImage',
+			media: 'sectionHero.image',
 		},
 	},
 }
