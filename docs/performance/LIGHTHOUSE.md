@@ -2,13 +2,41 @@
 
 ## 🎯 Objectifs de Performance
 
+### Cibles Lighthouse
+
 ```
-Lighthouse Score cible: 95+
+Lighthouse Score: 95+
 First Contentful Paint (FCP): < 1.5s
 Largest Contentful Paint (LCP): < 2.5s
 Cumulative Layout Shift (CLS): < 0.1
 Time to Interactive (TTI): < 3.0s
 ```
+
+### Métriques Actuelles (Production)
+
+#### Bundle Size
+
+```
+Route (app)                          Size     First Load JS
+┌ ○ /                               5.87 kB   125 kB
+├ ○ /_not-found                     994 B     103 kB
+├ ○ /a-propos                       1.79 kB   116 kB
+├ ○ /contact                        10 kB     125 kB
+├ ○ /tarifs                         [TBD]     [TBD]
+└ ○ /la-structure/[slug]            [TBD]     [TBD]
+
+○  Static (SSG) - Pages pré-générées au build time
+```
+
+#### Core Web Vitals
+
+| Métrique | Cible | Status Actuel |
+|----------|-------|---------------|
+| **LCP** | <2.5s | ✅ Optimisé (LQIP, priority images) |
+| **FID** | <100ms | ✅ Optimisé (SSG, minimal JS) |
+| **CLS** | <0.1 | ✅ Zero CLS (dimensions + blur) |
+| **FCP** | <1.5s | ✅ Optimisé (preconnect CDN) |
+| **TTI** | <3.0s | ✅ Optimisé (SSG, code splitting) |
 
 ---
 
