@@ -10,6 +10,14 @@ export const prices: SchemaTypeDefinition = {
 	type: 'document',
 	fields: [
 		{
+			name: 'title',
+			title: 'Titre du document',
+			type: 'string',
+			placeholder: 'Ex: "Tarifs au mois" ou "Prestations quotidiennes"',
+			validation: (Rule: Rule) => Rule.required(),
+			description: 'Titre descriptif pour identifier ce document de prix',
+		},
+		{
 			name: 'documentType',
 			title: 'Type de document',
 			type: 'string',
@@ -99,37 +107,35 @@ export const prices: SchemaTypeDefinition = {
 	preview: {
 		select: {
 			title: 'title',
-			subtitle: 'documentType',
+			documentType: 'documentType',
 			frequentationType: 'frequentationType',
 		},
 		prepare(selection) {
-			const { title, subtitle, frequentationType } = selection
+			const { title, documentType, frequentationType } = selection
 
 			// Labels pour les types de fréquentation
 			const frequentationLabels: { [key: string]: string } = {
-				'monthly-nursery': 'Tarifs mensuels (Nurserie)',
-				'daily-nursery': 'Tarifs journaliers (Nurserie)',
-				'monthly-trotteurs-grands': 'Tarifs mensuels (Trotteurs & Grands)',
-				'daily-trotteurs-grands': 'Tarifs journaliers (Trotteurs & Grands)',
+				'monthly-nursery': 'Mensuel - Nurserie',
+				'daily-nursery': 'Journalier - Nurserie',
+				'monthly-trotteurs-grands': 'Mensuel - Trotteurs & Grands',
+				'daily-trotteurs-grands': 'Journalier - Trotteurs & Grands',
 			}
 
 			// Labels pour les types de document
 			const typeLabels: { [key: string]: string } = {
-				accordion: 'Tarifs mensuels',
+				accordion: 'Tarifs',
 				table: 'Subventions',
 			}
 
-			// Utiliser le label de fréquentation comme titre principal si disponible
-			let mainTitle = frequentationType && frequentationLabels[frequentationType] ? frequentationLabels[frequentationType] : title
-
-			// Pour les documents de type "table" (subventions), utiliser un titre par défaut
-			if (subtitle === 'table' && !mainTitle) {
-				mainTitle = 'Subventions'
+			// Sous-titre : Type + Fréquentation
+			let subtitle = typeLabels[documentType] || documentType
+			if (frequentationType && frequentationLabels[frequentationType]) {
+				subtitle = frequentationLabels[frequentationType]
 			}
 
 			return {
-				title: mainTitle,
-				subtitle: typeLabels[subtitle] || subtitle,
+				title: title || 'Sans titre',
+				subtitle: subtitle,
 			}
 		},
 	},
@@ -187,7 +193,9 @@ export const priceItem: SchemaTypeDefinition = {
 			name: 'price',
 			title: 'Prix (CHF)',
 			type: 'string',
+			placeholder: 'Ex: "22.-" ou "33.25"',
 			validation: (Rule: Rule) => Rule.required(),
+			description: 'Format texte: "22.-" (sans centimes) ou "33.25" (avec centimes)',
 		},
 	],
 	preview: {
@@ -221,7 +229,9 @@ export const subsidyItem: SchemaTypeDefinition = {
 			name: 'subsidy',
 			title: 'Subvention (CHF/jour)',
 			type: 'string',
+			placeholder: 'Ex: "45.-" ou "45.50"',
 			validation: (Rule: Rule) => Rule.required(),
+			description: 'Format texte: "45.-" (sans centimes) ou "45.50" (avec centimes)',
 		},
 	],
 	preview: {
