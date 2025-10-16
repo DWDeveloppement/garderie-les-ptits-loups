@@ -4,33 +4,33 @@ export const navigationMenu = [
 		href: '/',
 	},
 	{
-		label: 'A propos',
-		href: '/about',
+		label: 'À propos',
+		href: '/a-propos',
 	},
 	{
 		label: 'Notre Structure',
 		subMenu: [
 			{
 				label: 'La Nurserie',
-				href: '/nurserie',
+				href: '/la-structure/nurserie',
 			},
 			{
 				label: 'Les Trotteurs',
-				href: '/trotteurs',
+				href: '/la-structure/trotteurs',
 			},
 			{
 				label: 'Les Grands',
-				href: '/grands',
+				href: '/la-structure/grands',
 			},
 			{
 				label: 'Nos autres espaces',
-				href: '/autres-espaces',
+				href: '/la-structure/autres-espaces',
 			},
 		],
 	},
 	{
-		label: 'Horaires & Tarifs',
-		href: '/horaires-tarifs',
+		label: 'Tarifs',
+		href: '/tarifs',
 	},
 	{
 		label: 'Contact',
