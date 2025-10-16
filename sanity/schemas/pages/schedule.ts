@@ -1,93 +1,99 @@
 import { type Rule, type SchemaTypeDefinition } from 'sanity'
-import { hero, paralaxImage } from '../components'
+import { ReadOnlySlug } from '../../components/ReadOnlySlug'
+import { hero, paralaxImage, seo } from '../components'
 
 export const schedulePage: SchemaTypeDefinition = {
 	name: 'schedulePage',
-	title: 'Horaires & Tarifs',
+	title: 'Tarifs',
 	type: 'document',
 	fields: [
 		{
 			name: 'title',
 			title: 'Titre',
 			type: 'string',
-			initialValue: 'Horaires & Tarifs',
+			initialValue: 'Tarifs',
 			validation: (Rule: Rule) => Rule.required(),
 		},
-		{
-			name: 'slug',
-			title: 'Slug (non modifiable)',
-			type: 'slug',
-			readOnly: true,
-			initialValue: { current: 'horaires-tarifs' },
-			validation: (Rule: Rule) => Rule.required(),
-		},
-		// Tab Contenu de Page (ouvert par défaut)
+		// === CONTENU DE LA PAGE ===
 		{
 			name: 'sectionHero',
 			title: 'Section Hero',
 			type: hero.name,
 		},
-		// ===== NOUVELLES SECTIONS =====
-		// 1) Section tarifs (titre + référence vers document de tarifs)
+		// ===== SECTIONS TARIFS =====
+		// Section tarifs Nurserie (titre + références vers documents de tarifs)
 		{
 			name: 'tarifsSectionNurserie',
-			title: 'Section Tarifs Nurserie',
+			title: 'Tarifs Nurserie',
 			type: 'object',
+			description: 'Section des tarifs mensuels et journaliers pour la Nurserie',
 			fields: [
-				{ name: 'title', title: 'Titre', type: 'string', validation: (Rule: Rule) => Rule.required() },
+				{ name: 'title', title: 'Titre de la section', type: 'string', validation: (Rule: Rule) => Rule.required() },
 				{
-					name: 'priceRef',
-					title: 'Document de tarifs',
-					type: 'reference',
-					to: [{ type: 'prices' }],
-					options: {
-						filter: 'documentType == "accordion" && (frequentationType == "monthly-nursery" || frequentationType == "daily-nursery")',
-						disableNew: true,
-					},
-					// juste choisir dans la liste, pas de add new item
-					validation: (Rule: Rule) => Rule.required(),
+					name: 'priceRefs',
+					title: 'Tableaux des tarifs',
+					type: 'array',
+					description: 'Sélectionnez les documents de tarifs pour la Nurserie (mensuels + journaliers)',
+					of: [
+						{
+							type: 'reference',
+							to: [{ type: 'prices' }],
+							options: {
+								filter: 'documentType == "accordion" && (frequentationType == "monthly-nursery" || frequentationType == "daily-nursery")',
+								disableNew: true,
+							},
+						},
+					],
+					validation: (Rule: Rule) => Rule.required().min(1),
 				},
 			],
 		},
 		{
 			name: 'tarifsSectionTG',
-			title: 'Section Tarifs Trotteurs et Grands',
+			title: 'Tarifs Trotteurs & Grands',
 			type: 'object',
+			description: 'Section des tarifs mensuels et journaliers pour les Trotteurs et les Grands',
 			fields: [
-				{ name: 'title', title: 'Titre', type: 'string', validation: (Rule: Rule) => Rule.required() },
+				{ name: 'title', title: 'Titre de la section', type: 'string', validation: (Rule: Rule) => Rule.required() },
 				{
-					name: 'priceRef',
-					title: 'Document de tarifs',
-					type: 'reference',
-					to: [{ type: 'prices' }],
-					options: {
-						filter:
-							'documentType == "accordion" && (frequentationType == "monthly-trotteurs-grands" || frequentationType == "daily-trotteurs-grands")',
-						disableNew: true,
-					},
-					// juste choisir dans la liste, pas de add new item
-					validation: (Rule: Rule) => Rule.required(),
+					name: 'priceRefs',
+					title: 'Tableaux des tarifs',
+					type: 'array',
+					description: 'Sélectionnez les documents de tarifs pour Trotteurs & Grands (mensuels + journaliers)',
+					of: [
+						{
+							type: 'reference',
+							to: [{ type: 'prices' }],
+							options: {
+								filter:
+									'documentType == "accordion" && (frequentationType == "monthly-trotteurs-grands" || frequentationType == "daily-trotteurs-grands")',
+								disableNew: true,
+							},
+						},
+					],
+					validation: (Rule: Rule) => Rule.required().min(1),
 				},
 			],
 		},
-		// 2) Image Parallaxe
+		// Image Parallaxe (séparation visuelle)
 		{
 			name: 'parallax',
 			title: 'Image Parallaxe',
 			type: paralaxImage.name,
 		},
 
-		// 3) Section tarifs avec description (titre + description multiline + référence)
+		// ===== SECTION SUBVENTIONS =====
 		{
 			name: 'subsidiesTable',
-			title: 'tableau des subventions',
+			title: 'Tableau des Subventions',
 			type: 'object',
+			description: 'Section explicative sur les subventions avec tableau détaillé',
 			fields: [
-				{ name: 'title', title: 'Titre', type: 'string', validation: (Rule: Rule) => Rule.required() },
+				{ name: 'title', title: 'Titre de la section', type: 'string', validation: (Rule: Rule) => Rule.required() },
 				{
 					name: 'body',
 					type: 'array',
-					title: 'Saisir le texte des coditions de subsides',
+					title: 'Conditions pour bénéficier des subventions',
 					of: [
 						{
 							type: 'block', // This enables rich text editing with block content
@@ -109,36 +115,36 @@ export const schedulePage: SchemaTypeDefinition = {
 				},
 			],
 		},
+		// === SEO & CONFIGURATION ===
 		{
 			name: 'seo',
 			title: 'SEO',
+			type: seo.name,
+			options: {
+				collapsible: true,
+				collapsed: true,
+			},
+		},
+		// Configuration développeur (slug, paramètres techniques)
+		{
+			name: 'devConfig',
+			title: '⚙️ Configuration développeur',
 			type: 'object',
+			description: "Paramètres techniques - Uniquement à l'usage du développeur",
 			options: {
 				collapsible: true,
 				collapsed: true,
 			},
 			fields: [
 				{
-					name: 'metaTitle',
-					title: 'Meta Title',
-					type: 'string',
-					initialValue: "Horaires & Tarifs - Garderie Les P'tits Loups",
-					validation: (Rule: Rule) => Rule.max(60),
-				},
-				{
-					name: 'metaDescription',
-					title: 'Meta Description',
-					type: 'text',
-					rows: 3,
-					initialValue: "Découvrez nos horaires, tarifs et subventions pour la garderie Les P'tits Loups.",
-					validation: (Rule: Rule) => Rule.max(160),
-				},
-				{
-					name: 'keywords',
-					title: 'Mots-clés',
-					type: 'array',
-					of: [{ type: 'string' }],
-					initialValue: ['horaires', 'tarifs', 'subventions', 'garderie', 'crèche'],
+					name: 'slug',
+					title: 'Slug (URL de la page)',
+					type: 'slug',
+					initialValue: { current: 'tarifs' },
+					validation: (Rule: Rule) => Rule.required(),
+					components: {
+						input: ReadOnlySlug,
+					},
 				},
 			],
 		},
@@ -146,7 +152,7 @@ export const schedulePage: SchemaTypeDefinition = {
 	preview: {
 		select: {
 			title: 'title',
-			media: 'heroImage',
+			media: 'sectionHero.image',
 		},
 	},
 }
