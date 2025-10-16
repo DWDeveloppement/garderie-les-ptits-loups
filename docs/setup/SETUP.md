@@ -251,6 +251,105 @@ Pour rebuild automatiquement le site à chaque publication Sanity :
 
 ---
 
+## 🔗 Webhooks Sanity → Vercel (SSG Auto-Rebuild)
+
+### Principe
+
+Permettre au client de publier du contenu dans Sanity Studio et que le site se rebuild **automatiquement** sur Vercel.
+
+**Workflow :**
+```
+1. Client publie dans Sanity Studio
+   ↓
+2. Webhook Sanity → Vercel Deploy Hook
+   ↓
+3. Vercel rebuild automatique (~30-60s)
+   ↓
+4. Site mis à jour avec nouvelles données
+```
+
+### 1. Créer un Deploy Hook Vercel
+
+1. **Vercel Dashboard** → Sélectionner le projet
+2. **Settings** → **Git** → **Deploy Hooks**
+3. **Create Hook** :
+   - Name: `Sanity Publish`
+   - Branch: `main`
+4. **Copier l'URL** générée :
+   ```
+   https://api.vercel.com/v1/integrations/deploy/prj_XXXXX/YYYYY
+   ```
+
+### 2. Configurer le Webhook dans Sanity
+
+1. **Sanity Dashboard** → [sanity.io/manage](https://sanity.io/manage)
+2. Sélectionner le projet
+3. **API** → **Webhooks** → **Add webhook**
+4. Configuration :
+
+```yaml
+Name: Vercel Production Deploy
+URL: [URL du Deploy Hook Vercel]
+Dataset: production
+Trigger on: ☑ Create  ☑ Update  ☑ Delete
+HTTP method: POST
+API version: v2021-06-07
+```
+
+5. **Filter GROQ** (rebuild sélectif) :
+```groq
+_type in ["home", "aboutPage", "contactPage", "schedulePage", "sectorPage", "spaces", "prices", "testimonials"]
+```
+
+6. **Projection** (optionnel) :
+```groq
+{
+  _type,
+  _id,
+  title,
+  "publishedAt": _updatedAt
+}
+```
+
+7. **Save**
+
+### 3. Tester le Webhook
+
+**Test dans Sanity Studio :**
+1. Éditer n'importe quelle page
+2. Faire une petite modification
+3. Cliquer sur **Publish** 🟢
+4. Vérifier Vercel Dashboard → Deployments
+5. Un nouveau deployment devrait se lancer ! 🚀
+
+**Test dans Sanity Dashboard :**
+1. **API** → **Webhooks** → Sélectionner le webhook
+2. **Test webhook**
+3. Vérifier le statut dans les logs (200 = OK)
+
+### 4. Vérification des Logs
+
+**Sanity :**
+- **API** → **Webhooks** → [Webhook] → **Logs**
+- Voir tous les déclenchements et statuts
+
+**Vercel :**
+- **Deployments** → "Triggered by Deploy Hook"
+
+### Troubleshooting
+
+**Webhook ne se déclenche pas :**
+- Vérifier l'URL du Deploy Hook dans Sanity
+- Vérifier le filtre GROQ
+- Consulter les logs webhook dans Sanity
+- Vérifier que le document modifié est dans le filtre
+
+**Rebuilds trop fréquents :**
+- Affiner le filtre GROQ pour exclure certains types
+- Changer `Trigger on` pour uniquement `Update`
+
+---
+
 ## 🔧 Vérification de la Configuration
 
 ### Script de Test
