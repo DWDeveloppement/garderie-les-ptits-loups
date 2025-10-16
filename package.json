@@ -16,7 +16,12 @@
 		"sanity": "sanity dev -p 3333",
 		"sanity:build": "sanity build",
 		"sanity:deploy": "sanity deploy",
-		"cleanup:media": "node scripts/cleanup-unused-media.mjs"
+		"cleanup:media": "node scripts/cleanup-unused-media.mjs",
+		"fix:page": "node scripts/fix-page.mjs",
+		"fix:prices": "node scripts/fix-prices-types.mjs",
+		"kill:dev": "sh scripts/kill-ports.sh 3000 3333",
+		"kill:prod": "sh scripts/kill-ports.sh 3100",
+		"kill:all": "sh scripts/kill-ports.sh 3000 3100 3333"
 	},
 	"dependencies": {
 		"@hookform/resolvers": "^5.2.1",
@@ -62,6 +67,7 @@
 		"@types/react": "^19",
 		"@types/react-dom": "^19",
 		"@types/react-google-recaptcha": "^2.1.9",
+		"dotenv": "^17.2.3",
 		"eslint": "^9",
 		"eslint-config-next": "15.5.2",
 		"sanity": "^4.6.1",
