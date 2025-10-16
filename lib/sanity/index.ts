@@ -3,12 +3,24 @@
 // ============================================================================
 
 // Client et configuration
-export { cachedFetch, clearCache, client, getCacheSize, sanityClient } from './client'
+export { client, sanityFetch } from './client'
 
-// Queries modulaires
-export * as prices from './queries/prices'
-export * as sectors from './queries/sectors'
+// Queries modulaires (toutes les pages)
+export * from './queries'
 
 // Images et optimisation
-export { getBasicImageProps, getGalleryImageProps, getHeroImageProps, getSeoImageProps, getSeoShareImageProps } from './helpers/imageProps'
-export type { NextImageProps } from './helpers/imageProps'
+export {
+	getBasicImageProps,
+	getGalleryImageProps,
+	getGalleryImagePropsOptimized,
+	getHeroImageProps,
+	getHeroImagePropsOptimized,
+	getSeoImageProps,
+	getSeoShareImageProps,
+} from './helpers/imageProps'
+
+// Types
+export type { NextImageProps, NextImagePropsWithPriority } from './helpers/imageProps'
+
+// Query fragments (pour queries custom)
+export { BASIC_IMAGE_QUERY, GALLERY_IMAGE_QUERY, HERO_IMAGE_QUERY, IMAGE_QUERY_FRAGMENT, SEO_IMAGE_QUERY } from './helpers/imageProps'
