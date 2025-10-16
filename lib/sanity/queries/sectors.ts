@@ -1,12 +1,12 @@
 import { groq } from 'next-sanity'
-import { client } from '../client'
+import { sanityFetch } from '../client'
 import { BASIC_IMAGE_QUERY, GALLERY_IMAGE_QUERY } from '../helpers/imageProps'
 
 // Query pour récupérer un secteur avec toutes ses données
-export const qSectorPage = groq`*[_type == "sectorPage" && _id == $sectorId][0]{
+export const SECTOR_PAGE_QUERY = groq`*[_type == "sectorPage" && _id == $sectorId][0]{
 	_id,
 	title,
-	slug,
+	"slug": devConfig.slug.current,
 	sectionHero{
 		image${BASIC_IMAGE_QUERY},
 		description
@@ -31,7 +31,7 @@ export const qSectorPage = groq`*[_type == "sectorPage" && _id == $sectorId][0]{
 }`
 
 export async function fetchSectorPage(sectorId: string) {
-	return client.fetch(qSectorPage, { sectorId })
+	return sanityFetch(SECTOR_PAGE_QUERY, { sectorId }, { tag: `sector-${sectorId}` })
 }
 
 // Queries pour les 4 secteurs fixes
