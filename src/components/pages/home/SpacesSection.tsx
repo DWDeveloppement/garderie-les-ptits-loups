@@ -1,4 +1,4 @@
-import { spaces } from "@/data/spaces"
+import { linkedOtherSpaces } from "@/sanity"
 import Image from "next/image"
 
 export function SpacesSection() {
@@ -16,7 +16,7 @@ export function SpacesSection() {
         </div>
 
         <div className="flex flex-col gap-16">
-          {spaces.map((space, index) => {
+          {linkedOtherSpaces.map((space, index) => {
             const isEven = index % 2 === 0
             
             return (

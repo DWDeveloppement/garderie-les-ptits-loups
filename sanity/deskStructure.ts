@@ -26,8 +26,8 @@ export const deskStructure = (S: StructureBuilder) => {
 								.title('Page Contact')
 								.child(S.document().schemaType('contactPage').documentId('contactPage')),
 							S.listItem()
-								.icon(() => '📅')
-								.title('Page Horaires & Tarifs')
+								.icon(() => '💰')
+								.title('Page Tarifs')
 								.child(S.document().schemaType('schedulePage').documentId('schedulePage')),
 						])
 				),
@@ -74,7 +74,7 @@ export const deskStructure = (S: StructureBuilder) => {
 									S.list()
 										.title('Espaces Nurserie')
 										.items([
-											S.listItem().title('Salle de jeux').child(S.document().schemaType('spacePage').documentId('pnurseryPlaygroundSpace')),
+											S.listItem().title('Salle de jeux').child(S.document().schemaType('spacePage').documentId('nurseryPlaygroundSpace')),
 											S.listItem().title('Espace Repos').child(S.document().schemaType('spacePage').documentId('nurseryRestSpace')),
 											S.listItem().title('Espace Soins').child(S.document().schemaType('spacePage').documentId('nurseryCareSpace')),
 										])
