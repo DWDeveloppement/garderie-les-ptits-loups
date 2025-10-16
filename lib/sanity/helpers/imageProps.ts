@@ -12,6 +12,8 @@ type SanityImageAsset = {
 			height: number
 			aspectRatio: number
 		}
+		lqip?: string
+		blurhash?: string
 	}
 }
 
@@ -51,6 +53,15 @@ export type NextImageProps = {
 	height: number
 	title?: string
 	credit?: string
+	blurDataURL?: string
+	placeholder?: 'blur' | 'empty'
+}
+
+export type NextImagePropsWithPriority = NextImageProps & {
+	priority?: boolean
+	quality?: number
+	sizes?: string
+	loading?: 'lazy' | 'eager'
 }
 
 /**
@@ -67,6 +78,39 @@ export function getBasicImageProps(image: SanityBasicImage): NextImageProps {
 		// Logique infobulle: si activé, utilise tooltipText || alt, sinon undefined
 		title: enableCustomTooltip ? tooltipText?.trim() || alt : undefined,
 		credit: credit || "Garderie Les P'tits Loups",
+		blurDataURL: asset.metadata?.lqip,
+		placeholder: asset.metadata?.lqip ? 'blur' : 'empty',
+	}
+}
+
+/**
+ * Props optimisées pour images Hero (above the fold)
+ */
+export function getHeroImagePropsOptimized(image: SanityBasicImage): NextImagePropsWithPriority {
+	const baseProps = getBasicImageProps(image)
+
+	return {
+		...baseProps,
+		priority: true, // Preload (above the fold)
+		quality: 90, // Haute qualité pour hero
+		sizes: '100vw', // Full width
+		loading: 'eager', // Chargement immédiat
+	}
+}
+
+/**
+ * Props optimisées pour images Gallery (below the fold)
+ */
+export function getGalleryImagePropsOptimized(item: SanityGalleryImage): NextImagePropsWithPriority & { label: string } {
+	const baseProps = getBasicImageProps(item.image)
+
+	return {
+		...baseProps,
+		label: item.label,
+		priority: false, // Pas de preload
+		loading: 'lazy', // Lazy loading (below fold)
+		quality: 85, // Qualité légèrement réduite
+		sizes: '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw',
 	}
 }
 
@@ -128,6 +172,7 @@ export function getSeoShareImageProps(image: SanityBasicImage) {
 
 /**
  * Query fragment GROQ pour récupérer les métadonnées d'image
+ * Inclut dimensions + LQIP pour Zero CLS
  */
 export const IMAGE_QUERY_FRAGMENT = `
 	asset->{
@@ -138,7 +183,9 @@ export const IMAGE_QUERY_FRAGMENT = `
 				width,
 				height,
 				aspectRatio
-			}
+			},
+			lqip,
+			blurhash
 		}
 	}
 `
