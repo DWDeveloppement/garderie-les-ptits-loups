@@ -1,5 +1,6 @@
 import { type Rule, type SchemaTypeDefinition } from 'sanity'
-import { hero, paralaxImage } from '../components'
+import { ReadOnlySlug } from '../../components/ReadOnlySlug'
+import { hero, paralaxImage, seo } from '../components'
 
 // Désactivé: page fixe gérée dans le code Next
 export const aboutPage: SchemaTypeDefinition = {
@@ -14,127 +15,85 @@ export const aboutPage: SchemaTypeDefinition = {
 			initialValue: 'À Propos',
 			validation: (Rule: Rule) => Rule.required(),
 		},
-		{
-			name: 'slug',
-			title: 'Slug (non modifiable)',
-			type: 'slug',
-			readOnly: true,
-			initialValue: { current: 'a-propos' },
-			validation: (Rule: Rule) => Rule.required(),
-		},
-		// Tab Contenu de Page (ouvert par défaut)
+		// === CONTENU DE LA PAGE ===
 		{
 			name: 'sectionHero',
 			title: 'Section Hero',
 			type: hero.name,
 		},
 		{
-			name: 'content',
-			title: 'Contenu',
+			name: 'introduction',
+			title: 'Introduction',
 			type: 'array',
 			of: [
 				{
 					type: 'block',
 				},
 				{
-					type: 'image',
+					type: 'basicImage',
 					options: {
 						hotspot: true,
 					},
-					fields: [
-						{
-							name: 'alt',
-							title: 'Texte alternatif',
-							type: 'string',
-							validation: (Rule: Rule) => Rule.required(),
-						},
-					],
 				},
 			],
 			validation: (Rule: Rule) => Rule.required(),
 		},
 		// 2) Image Parallaxe
 		{
-			name: 'parallax',
+			name: 'parallaxOne',
 			title: 'Image Parallaxe',
 			type: paralaxImage.name,
 		},
+		// Histoire
 		{
-			name: 'team',
-			title: 'Équipe',
+			name: 'history',
+			title: 'Histoire',
 			type: 'array',
-			of: [
-				{
-					type: 'object',
-					fields: [
-						{
-							name: 'name',
-							title: 'Nom',
-							type: 'string',
-							validation: (Rule: Rule) => Rule.required(),
-						},
-						{
-							name: 'role',
-							title: 'Rôle',
-							type: 'string',
-							validation: (Rule: Rule) => Rule.required(),
-						},
-						{
-							name: 'description',
-							title: 'Description',
-							type: 'text',
-							rows: 3,
-						},
-						{
-							name: 'photo',
-							title: 'Photo',
-							type: 'image',
-							options: {
-								hotspot: true,
-							},
-							fields: [
-								{
-									name: 'alt',
-									title: 'Texte alternatif',
-									type: 'string',
-									validation: (Rule: Rule) => Rule.required(),
-								},
-							],
-						},
-					],
-				},
-			],
+			of: [{ type: 'block' }],
 		},
+		// Image Parallaxe
+		{
+			name: 'parallaxTwo',
+			title: 'Image Parallaxe',
+			type: paralaxImage.name,
+		},
+		// pédagogie
+		{
+			name: 'pedagogy',
+			title: 'Pédagogie',
+			type: 'array',
+			of: [{ type: 'block' }],
+		},
+		// === SEO & CONFIGURATION ===
 		{
 			name: 'seo',
 			title: 'SEO',
+			type: seo.name,
+			options: {
+				collapsible: true,
+				collapsed: true,
+			},
+		},
+		// Configuration développeur (slug, paramètres techniques)
+		{
+			name: 'devConfig',
+			title: '⚙️ Configuration développeur',
 			type: 'object',
+			description: "Paramètres techniques - Uniquement à l'usage du développeur",
 			options: {
 				collapsible: true,
 				collapsed: true,
 			},
 			fields: [
 				{
-					name: 'metaTitle',
-					title: 'Meta Title',
-					type: 'string',
-					initialValue: "À Propos - Garderie Les P'tits Loups",
-					validation: (Rule: Rule) => Rule.max(60),
-				},
-				{
-					name: 'metaDescription',
-					title: 'Meta Description',
-					type: 'text',
-					rows: 3,
-					initialValue: "Découvrez notre équipe et notre approche pédagogique pour l'épanouissement de votre enfant.",
-					validation: (Rule: Rule) => Rule.max(160),
-				},
-				{
-					name: 'keywords',
-					title: 'Mots-clés',
-					type: 'array',
-					of: [{ type: 'string' }],
-					initialValue: ['équipe', 'pédagogie', 'épanouissement', 'garderie', 'crèche'],
+					name: 'slug',
+					title: 'Slug (URL de la page)',
+					type: 'slug',
+					initialValue: { current: 'a-propos' },
+					validation: (Rule: Rule) => Rule.required(),
+					components: {
+						input: ReadOnlySlug,
+					},
 				},
 			],
 		},
@@ -142,7 +101,7 @@ export const aboutPage: SchemaTypeDefinition = {
 	preview: {
 		select: {
 			title: 'title',
-			media: 'heroImage',
+			media: 'sectionHero.image',
 		},
 	},
 }
