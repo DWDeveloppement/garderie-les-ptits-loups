@@ -19,6 +19,15 @@ export {
 	getSeoShareImageProps,
 } from './helpers/imageProps'
 
+// Gallery transformation
+export {
+	transformSanityImageToPhoto,
+	transformSanityGalleryToPhotos,
+	getOptimalGalleryLayout,
+	DEFAULT_GALLERY_CONFIG,
+	GALLERY_BREAKPOINTS
+} from './helpers/galleryTransform'
+
 // Types
 export type { NextImageProps, NextImagePropsWithPriority } from './helpers/imageProps'
 
