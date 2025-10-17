@@ -3,12 +3,12 @@
 
 'use client';
 
-import * as React from 'react';
-import YetAnotherLightbox from 'yet-another-react-lightbox';
-import Captions from 'yet-another-react-lightbox/plugins/captions';
-import 'yet-another-react-lightbox/styles.css';
-import 'yet-another-react-lightbox/plugins/captions.css';
-import type { Photo } from 'react-photo-album';
+import * as React from 'react'
+import type { Photo } from 'react-photo-album'
+import YetAnotherLightbox from 'yet-another-react-lightbox'
+import Captions from 'yet-another-react-lightbox/plugins/captions'
+import 'yet-another-react-lightbox/plugins/captions.css'
+import 'yet-another-react-lightbox/styles.css'
 
 export interface LightboxProps {
   /** Index de l'image active */
@@ -23,15 +23,18 @@ export interface LightboxProps {
 
 /**
  * Transform Photo to Lightbox Slide
- * Ajoute srcHigh pour haute résolution et caption/description pour le plugin Captions
+ * 
+ * Plugin Captions :
+ * - title → Barre du haut (on ne veut pas)
+ * - description → Barre du bas (on veut)
  */
 function photoToSlide(photo: Photo) {
   const customPhoto = photo as Photo & { srcHigh?: string; caption?: string };
   return {
     src: customPhoto.srcHigh || photo.src,
     alt: photo.alt,
-    title: customPhoto.caption || photo.title,
-    description: customPhoto.caption || photo.title,
+    // title: undefined,  // ← Pas de titre en haut
+    description: customPhoto.caption || photo.title,  // ← Label en bas uniquement
     width: photo.width,
     height: photo.height
   };
@@ -84,10 +87,16 @@ export function Lightbox({
       captions={{
         showToggle: true,
         descriptionTextAlign: 'center',
-        descriptionMaxLines: 3
+        descriptionMaxLines: 2
       }}
       styles={{
-        container: { backgroundColor: 'rgba(0, 0, 0, 0.9)' }
+        container: { backgroundColor: 'rgba(0, 0, 0, 0.9)' },
+        slide: {
+          paddingTop: '4rem',
+          paddingBottom: '4rem',
+          paddingLeft: '1rem',
+          paddingRight: '1rem'
+        }
       }}
     />
   );
