@@ -1,5 +1,5 @@
 // 📂 src/components/pages/sector/index.ts
 // 👉 Barrel export pour les composants de page secteur
 
-export { SectorPage, type SectorPageData, type SectorPageProps } from './SectorPage';
-
+export type { SectorPageData } from '@/types/sanity/sectorPage'
+export { SectorPage, type SectorPageProps } from './SectorPage'

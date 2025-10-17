@@ -3,16 +3,22 @@
 
 'use client';
 
-import * as React from 'react';
-import { PhotoAlbum, type Photo, type RenderPhoto } from 'react-photo-album';
-import Image from 'next/image';
-import { cn } from '@/lib/utils';
 import {
   galleryContainerVariants,
   galleryItemVariants,
   type GalleryContainerVariants,
   type GalleryItemVariants
-} from '@/components/ui/variants';
+} from '@/components/ui/variants'
+import { cn } from '@/lib/utils'
+import Image from 'next/image'
+import * as React from 'react'
+import {
+  ColumnsPhotoAlbum,
+  MasonryPhotoAlbum,
+  RowsPhotoAlbum,
+  type Photo,
+  type RenderPhoto
+} from 'react-photo-album'
 
 export interface GalleryProps extends GalleryContainerVariants {
   /** Photos à afficher */
@@ -59,16 +65,19 @@ export function Gallery({
   itemVariants,
   className
 }: GalleryProps) {
-  // Render photo custom avec Next/Image + variants
-  const renderPhoto: RenderPhoto = React.useCallback(
-    ({ photo, imageProps, wrapperStyle }) => {
+  // Custom render pour images avec Next/Image + variants
+  const renderImage: RenderPhoto = React.useCallback(
+    ({ onClick }, { photo, index, width, height }) => {
       const { src, alt, title } = photo;
-      const { style, ...restImageProps } = imageProps;
+      const customPhoto = photo as Photo & { blurDataURL?: string };
 
       return (
         <button
           type="button"
-          onClick={() => onPhotoClick?.(photos.indexOf(photo))}
+          onClick={(e) => {
+            onClick?.(e);
+            onPhotoClick?.(index);
+          }}
           className={cn(
             galleryItemVariants({
               hover: itemVariants?.hover || 'scale-opacity',
@@ -78,50 +87,49 @@ export function Gallery({
             }),
             onPhotoClick && 'cursor-pointer group'
           )}
-          style={wrapperStyle}
+          style={{ position: 'relative', width, height }}
           aria-label={`Ouvrir ${alt || title || 'image'} en grand`}
         >
           <Image
-            {...restImageProps}
             src={src}
             alt={alt || title || ''}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             quality={85}
-            placeholder={(photo as Photo & { blurDataURL?: string }).blurDataURL ? 'blur' : 'empty'}
-            blurDataURL={(photo as Photo & { blurDataURL?: string }).blurDataURL}
+            placeholder={customPhoto.blurDataURL ? 'blur' : 'empty'}
+            blurDataURL={customPhoto.blurDataURL}
             className="object-cover w-full h-full"
             loading="lazy"
           />
         </button>
       );
     },
-    [photos, onPhotoClick, itemVariants]
+    [onPhotoClick, itemVariants]
   );
 
   if (photos.length === 0) {
     return null;
   }
 
+  const spacingValue = spacing === 'none' ? 0 : spacing === 'xs' ? 4 : spacing === 'sm' ? 8 : spacing === 'md' ? 16 : spacing === 'lg' ? 24 : 32;
+
+  // Sélection du composant selon le layout
+  const PhotoAlbumComponent = layout === 'rows' ? RowsPhotoAlbum : layout === 'columns' ? ColumnsPhotoAlbum : MasonryPhotoAlbum;
+
   return (
     <div
       className={cn(
         galleryContainerVariants({ layout, spacing, rounded }),
+        'photo-album',
         className
       )}
     >
-      <PhotoAlbum
+      <PhotoAlbumComponent
         photos={photos}
-        layout={layout}
-        targetRowHeight={targetRowHeight}
-        spacing={spacing === 'none' ? 0 : spacing === 'xs' ? 4 : spacing === 'sm' ? 8 : spacing === 'md' ? 16 : spacing === 'lg' ? 24 : 32}
+        spacing={spacingValue}
         padding={0}
-        renderPhoto={renderPhoto}
-        componentsProps={{
-          containerProps: {
-            className: 'photo-album'
-          }
-        }}
+        render={{ photo: renderImage }}
+        {...(layout === 'rows' ? { targetRowHeight } : {})}
       />
     </div>
   );

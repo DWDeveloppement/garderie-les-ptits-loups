@@ -1,7 +1,7 @@
-import { SectorPage } from '@/components/pages/sector';
-import { fetchSectorPage } from 'lib/sanity/queries/sectors';
-import { notFound } from 'next/navigation';
-import type { Metadata } from 'next';
+import { SectorPage } from '@/components/pages/sector'
+import { fetchSectorPage } from 'lib/sanity/queries/sectors'
+import type { Metadata } from 'next'
+import { notFound } from 'next/navigation'
 
 // 4 secteurs fixes pour SSG
 const SECTOR_SLUGS = ['nurserie', 'trotteurs', 'grands', 'autres-espaces'] as const;
