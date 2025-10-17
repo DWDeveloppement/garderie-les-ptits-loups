@@ -4,15 +4,11 @@
 'use client';
 
 import * as React from 'react';
-import Yarl from 'yet-another-react-lightbox';
+import YetAnotherLightbox from 'yet-another-react-lightbox';
+import Captions from 'yet-another-react-lightbox/plugins/captions';
 import 'yet-another-react-lightbox/styles.css';
+import 'yet-another-react-lightbox/plugins/captions.css';
 import type { Photo } from 'react-photo-album';
-import { Icon } from '@/components/icons';
-import { cn } from '@/lib/utils';
-import {
-  lightboxControlVariants,
-  type LightboxControlVariants
-} from '@/components/ui/variants';
 
 export interface LightboxProps {
   /** Index de l'image active */
@@ -23,12 +19,11 @@ export interface LightboxProps {
   open: boolean;
   /** Callback à la fermeture */
   onClose: () => void;
-  /** Variants pour les contrôles */
-  controlVariants?: LightboxControlVariants;
 }
 
 /**
  * Transform Photo to Lightbox Slide
+ * Ajoute srcHigh pour haute résolution et caption/description pour le plugin Captions
  */
 function photoToSlide(photo: Photo) {
   const customPhoto = photo as Photo & { srcHigh?: string; caption?: string };
@@ -36,6 +31,7 @@ function photoToSlide(photo: Photo) {
     src: customPhoto.srcHigh || photo.src,
     alt: photo.alt,
     title: customPhoto.caption || photo.title,
+    description: customPhoto.caption || photo.title,
     width: photo.width,
     height: photo.height
   };
@@ -68,89 +64,30 @@ export function Lightbox({
   index,
   photos,
   open,
-  onClose,
-  controlVariants
+  onClose
 }: LightboxProps) {
   const slides = React.useMemo(
     () => photos.map(photoToSlide),
     [photos]
   );
 
-  // Custom render pour les boutons de contrôle
-  const renderPrevButton = React.useCallback(
-    () => (
-      <button
-        type="button"
-        aria-label="Image précédente"
-        className={cn(
-          lightboxControlVariants({
-            position: 'center-left',
-            variant: controlVariants?.variant || 'ghost',
-            size: controlVariants?.size || 'lg'
-          })
-        )}
-      >
-        <Icon name="chevronLeft" size="lg" aria-hidden />
-      </button>
-    ),
-    [controlVariants]
-  );
-
-  const renderNextButton = React.useCallback(
-    () => (
-      <button
-        type="button"
-        aria-label="Image suivante"
-        className={cn(
-          lightboxControlVariants({
-            position: 'center-right',
-            variant: controlVariants?.variant || 'ghost',
-            size: controlVariants?.size || 'lg'
-          })
-        )}
-      >
-        <Icon name="chevronRight" size="lg" aria-hidden />
-      </button>
-    ),
-    [controlVariants]
-  );
-
-  const renderCloseButton = React.useCallback(
-    () => (
-      <button
-        type="button"
-        aria-label="Fermer"
-        className={cn(
-          lightboxControlVariants({
-            position: 'top-right',
-            variant: controlVariants?.variant || 'ghost',
-            size: controlVariants?.size || 'md'
-          })
-        )}
-      >
-        <Icon name="close" size="md" aria-hidden />
-      </button>
-    ),
-    [controlVariants]
-  );
-
   return (
-    <Yarl
+    <YetAnotherLightbox
       open={open}
       index={index}
       slides={slides}
       close={onClose}
-      animation={{ fade: 300, swipe: 250, easing: { fade: 'ease', swipe: 'ease-out' } }}
-      controller={{ closeOnBackdropClick: true, closeOnPullDown: true, closeOnPullUp: true }}
-      carousel={{ finite: false, preload: 2, padding: '16px', spacing: '16px', imageFit: 'contain' }}
-      render={{
-        buttonPrev: renderPrevButton,
-        buttonNext: renderNextButton,
-        buttonClose: renderCloseButton
+      plugins={[Captions]}
+      animation={{ fade: 300, swipe: 250 }}
+      controller={{ closeOnBackdropClick: true }}
+      carousel={{ finite: false, preload: 2 }}
+      captions={{
+        showToggle: true,
+        descriptionTextAlign: 'center',
+        descriptionMaxLines: 3
       }}
       styles={{
-        container: { backgroundColor: 'rgba(0, 0, 0, 0.9)' },
-        slide: { padding: 0 }
+        container: { backgroundColor: 'rgba(0, 0, 0, 0.9)' }
       }}
     />
   );

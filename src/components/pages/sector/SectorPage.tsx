@@ -6,7 +6,7 @@ import { GalleryWithLightbox } from '@/components/gallery'
 import type { SectorPageData } from '@/types/sanity/sectorPage'
 import { PortableText } from '@portabletext/react'
 import { getHeroImageFillProps } from 'lib/sanity'
-import { getOptimalGalleryLayout, transformSanityGalleryToPhotos } from 'lib/sanity/helpers/galleryTransform'
+import { transformSanityGalleryToPhotos } from 'lib/sanity/helpers/galleryTransform'
 import Image from 'next/image'
 import Link from 'next/link'
 import * as React from 'react'
@@ -35,13 +35,8 @@ export function SectorPage({ data }: SectorPageProps) {
 
   // Transformer les images Sanity pour la galerie
   const photos = React.useMemo(
-    () => transformSanityGalleryToPhotos(gallery as never),
+    () => transformSanityGalleryToPhotos(gallery),
     [gallery]
-  );
-
-  const galleryLayout = React.useMemo(
-    () => getOptimalGalleryLayout(photos.length),
-    [photos.length]
   );
 
   return (
@@ -138,9 +133,10 @@ export function SectorPage({ data }: SectorPageProps) {
             <h2 className="text-3xl font-bold mb-8 text-center">Galerie</h2>
             <GalleryWithLightbox
               photos={photos}
-              layout={galleryLayout}
+              layout="rows"
               spacing="md"
               rounded="lg"
+              targetRowHeight={280}
             />
           </div>
         </section>
