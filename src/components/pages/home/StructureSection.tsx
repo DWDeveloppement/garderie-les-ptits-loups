@@ -20,15 +20,11 @@ export function StructureSection() {
 
         <div className="grid md:grid-cols-3 gap-8">
           {structures.map((structure) => {
-            const IconComponent = structure.icon;
             return (
 							<article key={structure.id} className='group'>
 								<Link href={`/${structure.id}`} className='flex h-full' aria-label={`Voir les détails de ${structure.title}`}>
 									<Card className='flex flex-col justify-start items-center h-full hover:shadow-lg transition-all duration-300 hover:-translate-y-1 bg-white border-orange-6 hover:border-purple-7 cursor-pointer !p-0'>
 										<CardHeader className='flex flex-col justify-start items-center gap-4'>
-											<div className='flex justify-center'>
-												
-											</div>
 											<CardTitle className='text-purple-10 text-2xl group-hover:text-purple-9 transition-colors'>
 												{structure.title}
 											</CardTitle>

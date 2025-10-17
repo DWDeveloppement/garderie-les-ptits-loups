@@ -103,6 +103,7 @@ export function getHeroImagePropsOptimized(image: SanityBasicImage): NextImagePr
  * Exclut width/height car incompatibles avec fill
  */
 export function getHeroImageFillProps(image: SanityBasicImage): Omit<NextImagePropsWithPriority, 'width' | 'height'> {
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const { width, height, ...baseProps } = getBasicImageProps(image)
 
 	return {
