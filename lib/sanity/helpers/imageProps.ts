@@ -99,6 +99,22 @@ export function getHeroImagePropsOptimized(image: SanityBasicImage): NextImagePr
 }
 
 /**
+ * Props optimisées pour images Hero en mode fill (position: relative + fill)
+ * Exclut width/height car incompatibles avec fill
+ */
+export function getHeroImageFillProps(image: SanityBasicImage): Omit<NextImagePropsWithPriority, 'width' | 'height'> {
+	const { width, height, ...baseProps } = getBasicImageProps(image)
+
+	return {
+		...baseProps,
+		priority: true, // Preload (above the fold)
+		quality: 90, // Haute qualité pour hero
+		sizes: '100vw', // Full width
+		loading: 'eager', // Chargement immédiat
+	}
+}
+
+/**
  * Props optimisées pour images Gallery (below the fold)
  */
 export function getGalleryImagePropsOptimized(item: SanityGalleryImage): NextImagePropsWithPriority & { label: string } {

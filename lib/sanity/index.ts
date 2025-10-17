@@ -13,6 +13,7 @@ export {
 	getBasicImageProps,
 	getGalleryImageProps,
 	getGalleryImagePropsOptimized,
+	getHeroImageFillProps,
 	getHeroImageProps,
 	getHeroImagePropsOptimized,
 	getSeoImageProps,
@@ -21,11 +22,11 @@ export {
 
 // Gallery transformation
 export {
-	transformSanityImageToPhoto,
-	transformSanityGalleryToPhotos,
-	getOptimalGalleryLayout,
 	DEFAULT_GALLERY_CONFIG,
-	GALLERY_BREAKPOINTS
+	GALLERY_BREAKPOINTS,
+	getOptimalGalleryLayout,
+	transformSanityGalleryToPhotos,
+	transformSanityImageToPhoto,
 } from './helpers/galleryTransform'
 
 // Types

@@ -5,7 +5,7 @@ import { DevJsonViewer } from '@/components/dev'
 import { GalleryWithLightbox } from '@/components/gallery'
 import type { SectorPageData } from '@/types/sanity/sectorPage'
 import { PortableText } from '@portabletext/react'
-import { getHeroImagePropsOptimized } from 'lib/sanity'
+import { getHeroImageFillProps } from 'lib/sanity'
 import { getOptimalGalleryLayout, transformSanityGalleryToPhotos } from 'lib/sanity/helpers/galleryTransform'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -51,10 +51,9 @@ export function SectorPage({ data }: SectorPageProps) {
         <section className="relative w-full h-[50vh] min-h-[400px] max-h-[600px] bg-muted">
           {sectionHero.image && (
             <Image
-              {...getHeroImagePropsOptimized(sectionHero.image as never)}
+              {...getHeroImageFillProps(sectionHero.image as never)}
               alt={title}
               fill
-              priority
               className="object-cover"
             />
           )}
@@ -87,7 +86,7 @@ export function SectorPage({ data }: SectorPageProps) {
                   {space.image && (
                     <div className="relative h-48 w-full bg-muted">
                       <Image
-                        {...getHeroImagePropsOptimized(space.image as never)}
+                        {...getHeroImageFillProps(space.image as never)}
                         alt={space.title}
                         fill
                         className="object-cover group-hover:scale-105 transition-transform duration-300"
@@ -115,11 +114,10 @@ export function SectorPage({ data }: SectorPageProps) {
       {parallax?.image && (
         <section className="relative w-full h-[40vh] min-h-[300px] bg-muted">
           <Image
-            {...getHeroImagePropsOptimized(parallax.image as never)}
+            {...getHeroImageFillProps(parallax.image as never)}
             alt="Séparateur visuel"
             fill
             className="object-cover"
-            loading="lazy"
           />
         </section>
       )}
