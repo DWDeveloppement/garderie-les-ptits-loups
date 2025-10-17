@@ -3,6 +3,7 @@
 
 import { DevJsonViewer } from '@/components/dev'
 import { GalleryWithLightbox } from '@/components/gallery'
+import type { SectorPageData } from '@/types/sanity/sectorPage'
 import { PortableText } from '@portabletext/react'
 import { getHeroImagePropsOptimized } from 'lib/sanity'
 import { getOptimalGalleryLayout, transformSanityGalleryToPhotos } from 'lib/sanity/helpers/galleryTransform'
@@ -10,36 +11,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import * as React from 'react'
 
-// Type pour les données du secteur depuis Sanity
-export interface SectorPageData {
-  _id: string;
-  title: string;
-  slug: string;
-  sectionHero?: {
-    image?: unknown;
-    description?: string;
-  };
-  linkedSpaces?: Array<{
-    _id: string;
-    title: string;
-    image?: unknown;
-    description?: string;
-  }>;
-  parallax?: {
-    image?: unknown;
-  };
-  content?: unknown; // Portable Text
-  gallery?: unknown[];
-  seo?: {
-    metaTitle?: string;
-    metaDescription?: string;
-    keywords?: string[];
-    shareImage?: unknown;
-  };
-}
-
 export interface SectorPageProps {
-  data: SectorPageData;
+  data: SectorPageData
 }
 
 /**
@@ -78,7 +51,7 @@ export function SectorPage({ data }: SectorPageProps) {
         <section className="relative w-full h-[50vh] min-h-[400px] max-h-[600px] bg-muted">
           {sectionHero.image && (
             <Image
-              {...getHeroImagePropsOptimized(sectionHero.image)}
+              {...getHeroImagePropsOptimized(sectionHero.image as never)}
               alt={title}
               fill
               priority
@@ -114,7 +87,7 @@ export function SectorPage({ data }: SectorPageProps) {
                   {space.image && (
                     <div className="relative h-48 w-full bg-muted">
                       <Image
-                        {...getHeroImagePropsOptimized(space.image)}
+                        {...getHeroImagePropsOptimized(space.image as never)}
                         alt={space.title}
                         fill
                         className="object-cover group-hover:scale-105 transition-transform duration-300"
@@ -126,9 +99,9 @@ export function SectorPage({ data }: SectorPageProps) {
                       {space.title}
                     </h3>
                     {space.description && (
-                      <p className="text-muted-foreground line-clamp-2">
-                        {space.description}
-                      </p>
+                      <div className="text-muted-foreground line-clamp-2">
+                        <PortableText value={space.description} />
+                      </div>
                     )}
                   </div>
                 </Link>
@@ -142,7 +115,7 @@ export function SectorPage({ data }: SectorPageProps) {
       {parallax?.image && (
         <section className="relative w-full h-[40vh] min-h-[300px] bg-muted">
           <Image
-            {...getHeroImagePropsOptimized(parallax.image)}
+            {...getHeroImagePropsOptimized(parallax.image as never)}
             alt="Séparateur visuel"
             fill
             className="object-cover"
@@ -152,10 +125,10 @@ export function SectorPage({ data }: SectorPageProps) {
       )}
 
       {/* Content Section (Portable Text) */}
-      {content && (
+      {content && content.length > 0 && (
         <section className="w-full py-16 px-4 sm:px-6 lg:px-8 bg-background">
           <div className="max-w-4xl mx-auto prose prose-lg">
-            <PortableText value={content as never} />
+            <PortableText value={content} />
           </div>
         </section>
       )}

@@ -13,7 +13,7 @@ type SanityImageAsset = {
 			aspectRatio: number
 		}
 		lqip?: string
-		blurhash?: string
+		blurhash?: string | null
 	}
 }
 

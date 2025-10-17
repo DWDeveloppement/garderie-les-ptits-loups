@@ -2,8 +2,8 @@
  * Client Sanity avec mesure de performance
  */
 
-import { createClient } from 'next-sanity'
 import imageUrlBuilder from '@sanity/image-url'
+import { createClient } from 'next-sanity'
 import { measureSanityQuery } from '../performance/measure'
 
 export const client = createClient({
@@ -22,7 +22,7 @@ export const imageBuilder = imageUrlBuilder(client)
 /**
  * Wrapper de fetch avec mesure de performance
  */
-export async function sanityFetch<T>(
+export async function sanityFetch<T = unknown>(
 	query: string,
 	params: Record<string, unknown> = {},
 	options: { tag?: string; cache?: RequestCache } = {}

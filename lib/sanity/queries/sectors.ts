@@ -1,3 +1,4 @@
+import type { SectorPageData } from '@/types/sanity/sectorPage'
 import { groq } from 'next-sanity'
 import { sanityFetch } from '../client'
 import { BASIC_IMAGE_QUERY, GALLERY_IMAGE_QUERY } from '../helpers/imageProps'
@@ -30,8 +31,8 @@ export const SECTOR_PAGE_QUERY = groq`*[_type == "sectorPage" && _id == $sectorI
 	}
 }`
 
-export async function fetchSectorPage(sectorId: string) {
-	return sanityFetch(SECTOR_PAGE_QUERY, { sectorId }, { tag: `sector-${sectorId}` })
+export async function fetchSectorPage(sectorId: string): Promise<SectorPageData> {
+	return sanityFetch<SectorPageData>(SECTOR_PAGE_QUERY, { sectorId }, { tag: `sector-${sectorId}` })
 }
 
 // Queries pour les 4 secteurs fixes

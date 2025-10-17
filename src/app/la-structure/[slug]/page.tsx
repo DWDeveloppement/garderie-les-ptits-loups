@@ -54,11 +54,11 @@ export async function generateMetadata({
 
   return {
     title: data.seo?.metaTitle || data.title,
-    description: data.seo?.metaDescription || data.sectionHero?.description,
+    description: data.seo?.metaDescription || data.sectionHero.description,
     keywords: data.seo?.keywords,
     openGraph: {
       title: data.seo?.metaTitle || data.title,
-      description: data.seo?.metaDescription || data.sectionHero?.description,
+      description: data.seo?.metaDescription || data.sectionHero.description,
       type: 'website'
     }
   };
