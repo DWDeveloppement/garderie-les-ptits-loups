@@ -1,14 +1,14 @@
 // 📂 src/components/pages/sector/SectorPage.tsx
 // 👉 Page complète pour un secteur (Nurserie, Trotteurs, Grands, Autres Espaces)
 
-import * as React from 'react';
-import { PortableText } from '@portabletext/react';
-import { GalleryWithLightbox } from '@/components/gallery';
-import { DevJsonViewer } from '@/components/dev';
-import { transformSanityGalleryToPhotos, getOptimalGalleryLayout } from 'lib/sanity/helpers/galleryTransform';
-import { getHeroImagePropsOptimized } from 'lib/sanity';
-import Image from 'next/image';
-import Link from 'next/link';
+import { DevJsonViewer } from '@/components/dev'
+import { GalleryWithLightbox } from '@/components/gallery'
+import { PortableText } from '@portabletext/react'
+import { getHeroImagePropsOptimized } from 'lib/sanity'
+import { getOptimalGalleryLayout, transformSanityGalleryToPhotos } from 'lib/sanity/helpers/galleryTransform'
+import Image from 'next/image'
+import Link from 'next/link'
+import * as React from 'react'
 
 // Type pour les données du secteur depuis Sanity
 export interface SectorPageData {
@@ -176,7 +176,7 @@ export function SectorPage({ data }: SectorPageProps) {
       )}
 
       {/* Dev Debug Viewer (dev only) */}
-      <DevJsonViewer data={data} title={`Sector: ${title}`} collapsed />
+      <DevJsonViewer data={data} slug={`la-structure/${data.slug}`} collapsed />
     </div>
   );
 }

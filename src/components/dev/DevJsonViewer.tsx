@@ -7,6 +7,7 @@ import * as React from 'react'
 
 interface DevJsonViewerProps {
 	data: unknown
+	slug?: string
 	title?: string
 	collapsed?: boolean
 }
@@ -17,10 +18,11 @@ interface DevJsonViewerProps {
  *
  * @example
  * ```tsx
- * <DevJsonViewer data={sectorData} title="Sector Page Data" />
+ * <DevJsonViewer data={pageData} slug="nurserie" />
+ * <DevJsonViewer data={pageData} slug="home" title="Page d'accueil" />
  * ```
  */
-export function DevJsonViewer({ data, title = 'Debug Data', collapsed = true }: DevJsonViewerProps) {
+export function DevJsonViewer({ data, slug, title, collapsed = true }: DevJsonViewerProps) {
 	const [isOpen, setIsOpen] = React.useState(!collapsed)
 	const [copySuccess, setCopySuccess] = React.useState(false)
 
@@ -30,6 +32,9 @@ export function DevJsonViewer({ data, title = 'Debug Data', collapsed = true }: 
 	}
 
 	const jsonString = JSON.stringify(data, null, 2)
+	
+	// Titre par défaut basé sur le slug ou custom
+	const displayTitle = title || (slug ? `/${slug}` : 'Debug Data')
 
 	const handleCopy = async () => {
 		try {
@@ -47,7 +52,8 @@ export function DevJsonViewer({ data, title = 'Debug Data', collapsed = true }: 
 			<div className="flex items-center justify-between border-b border-gray-700 bg-gray-800 px-4 py-2">
 				<div className="flex items-center gap-3">
 					<span className="rounded bg-yellow-500 px-2 py-1 text-xs font-bold text-black">DEV</span>
-					<h3 className="text-sm font-semibold">{title}</h3>
+					<h3 className="text-sm font-semibold font-mono">{displayTitle}</h3>
+					{slug && <span className="rounded bg-blue-600 px-2 py-0.5 text-xs font-mono">{slug}</span>}
 					<span className="text-xs text-gray-400">({typeof data === 'object' && data ? Object.keys(data).length : 0} keys)</span>
 				</div>
 				<div className="flex items-center gap-2">
@@ -81,16 +87,19 @@ export function DevJsonViewer({ data, title = 'Debug Data', collapsed = true }: 
 /**
  * Version inline pour debug contextuel
  */
-export function DevJsonBlock({ data, title }: Omit<DevJsonViewerProps, 'collapsed'>) {
+export function DevJsonBlock({ data, slug, title }: Omit<DevJsonViewerProps, 'collapsed'>) {
 	if (process.env.NODE_ENV === 'production') {
 		return null
 	}
+
+	const displayTitle = title || (slug ? `/${slug}` : 'Debug Data')
 
 	return (
 		<details className="my-4 rounded-lg border-2 border-yellow-500 bg-gray-900 p-4 text-white">
 			<summary className="cursor-pointer font-mono text-sm font-bold">
 				<span className="mr-2 rounded bg-yellow-500 px-2 py-1 text-xs text-black">DEV</span>
-				{title || 'Debug Data'}
+				{displayTitle}
+				{slug && <span className="ml-2 rounded bg-blue-600 px-2 py-0.5 text-xs">{slug}</span>}
 			</summary>
 			<pre className="mt-4 overflow-auto text-xs">
 				<code>{JSON.stringify(data, null, 2)}</code>
