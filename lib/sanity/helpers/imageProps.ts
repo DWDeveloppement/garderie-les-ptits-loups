@@ -41,7 +41,7 @@ type SanityHeroImage = {
 	description?: string
 }
 
-type SanityGalleryImage = {
+export type SanityGalleryImage = {
 	image: SanityBasicImage
 	label: string
 }

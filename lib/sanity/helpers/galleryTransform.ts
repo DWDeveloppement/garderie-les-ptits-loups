@@ -21,14 +21,16 @@ export const GALLERY_BREAKPOINTS = [400, 600, 800, 1200, 1600] as const;
  * ```
  */
 export function transformSanityImageToPhoto(
-  image: SanityGalleryImage,
+  galleryItem: SanityGalleryImage,
   index: number
 ): Photo {
-  if (!image.asset) {
+  const { image, label } = galleryItem;
+  
+  if (!image?.asset) {
     throw new Error('Image asset is required');
   }
 
-  const { metadata, url } = image.asset;
+  const { metadata } = image.asset;
   const width = metadata?.dimensions?.width || 800;
   const height = metadata?.dimensions?.height || 600;
 
@@ -68,13 +70,13 @@ export function transformSanityImageToPhoto(
     src,
     width,
     height,
-    alt: image.alt || image.caption || `Image ${index + 1}`,
-    title: image.caption,
+    alt: image.alt || label || `Image ${index + 1}`,
+    title: label,
     // Données custom pour le lightbox
     srcSet,
     // @ts-expect-error - Custom properties for lightbox
     srcHigh,
-    caption: image.caption,
+    caption: label,
     blurDataURL: metadata?.lqip
   };
 }

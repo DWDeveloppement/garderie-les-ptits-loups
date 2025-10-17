@@ -3,6 +3,7 @@
  */
 
 import { createClient } from 'next-sanity'
+import imageUrlBuilder from '@sanity/image-url'
 import { measureSanityQuery } from '../performance/measure'
 
 export const client = createClient({
@@ -12,6 +13,11 @@ export const client = createClient({
 	useCdn: false, // Pour SSG, pas besoin de CDN (données au build time)
 	token: process.env.SANITY_API_TOKEN,
 })
+
+/**
+ * Image URL Builder pour générer des URLs optimisées
+ */
+export const imageBuilder = imageUrlBuilder(client)
 
 /**
  * Wrapper de fetch avec mesure de performance

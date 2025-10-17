@@ -1,5 +1,5 @@
 import { SectorPage } from '@/components/pages/sector';
-import { fetchSectorPage } from '@/lib/sanity/queries/sectors';
+import { fetchSectorPage } from 'lib/sanity/queries/sectors';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 
@@ -31,9 +31,10 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const sectorId = SLUG_TO_SECTOR_ID[params.slug];
+  const { slug } = await params;
+  const sectorId = SLUG_TO_SECTOR_ID[slug];
   
   if (!sectorId) {
     return {
@@ -70,9 +71,10 @@ export async function generateMetadata({
 export default async function StructurePage({
   params
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const sectorId = SLUG_TO_SECTOR_ID[params.slug];
+  const { slug } = await params;
+  const sectorId = SLUG_TO_SECTOR_ID[slug];
 
   if (!sectorId) {
     notFound();

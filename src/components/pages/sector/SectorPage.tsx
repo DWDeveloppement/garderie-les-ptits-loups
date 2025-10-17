@@ -4,8 +4,9 @@
 import * as React from 'react';
 import { PortableText } from '@portabletext/react';
 import { GalleryWithLightbox } from '@/components/gallery';
-import { transformSanityGalleryToPhotos, getOptimalGalleryLayout } from '@/lib/sanity/helpers/galleryTransform';
-import { getHeroImagePropsOptimized } from '@/lib/sanity';
+import { DevJsonViewer } from '@/components/dev';
+import { transformSanityGalleryToPhotos, getOptimalGalleryLayout } from 'lib/sanity/helpers/galleryTransform';
+import { getHeroImagePropsOptimized } from 'lib/sanity';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -173,6 +174,9 @@ export function SectorPage({ data }: SectorPageProps) {
           </div>
         </section>
       )}
+
+      {/* Dev Debug Viewer (dev only) */}
+      <DevJsonViewer data={data} title={`Sector: ${title}`} collapsed />
     </div>
   );
 }

@@ -111,3 +111,6 @@ export const spaces = [
 		color: 'text-purple-9',
 	},
 ]
+
+// Export des "autres espaces" (sector === 'other')
+export const linkedOtherSpaces = spaces.filter(space => space.sector === 'other')

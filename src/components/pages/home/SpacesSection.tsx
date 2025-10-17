@@ -1,4 +1,4 @@
-import { linkedOtherSpaces } from "@/sanity"
+import { linkedOtherSpaces } from "@/data/spaces"
 import Image from "next/image"
 
 export function SpacesSection() {
