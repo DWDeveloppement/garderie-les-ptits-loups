@@ -32,18 +32,45 @@ Documentation complète de l'architecture technique : structure du code, design 
 │   │           └── route.ts
 │   │
 │   ├── 📁 components/             # Composants React
-│   │   ├── pages/                # Composants spécifiques pages
+│   │   ├── gallery/              # Système de galerie
+│   │   │   ├── Gallery.tsx
+│   │   │   ├── LightboxCustom.tsx
+│   │   │   └── GalleryWithLightbox.tsx
+│   │   ├── layout/               # Header, Footer, Navigation
+│   │   │   ├── Header.tsx
+│   │   │   ├── Footer.tsx
+│   │   │   ├── NavigationMenu.tsx
+│   │   │   └── MobileMenu.tsx
+│   │   ├── forms/                # Formulaires
+│   │   │   ├── ContactForm.tsx
+│   │   │   ├── InputField.tsx
+│   │   │   ├── TextareaField.tsx
+│   │   │   └── recaptcha-v2.tsx
+│   │   ├── pages/                # Sections par page (modulaires)
 │   │   │   ├── home/
 │   │   │   ├── about/
-│   │   │   └── contact/
-│   │   ├── shared/               # Composants partagés
-│   │   │   ├── Hero.tsx
-│   │   │   ├── ParallaxImage.tsx
-│   │   │   └── PricingList.tsx
-│   │   └── ui/                   # Composants UI de base
-│   │       ├── Button.tsx
-│   │       ├── Card.tsx
-│   │       └── Toast.tsx
+│   │   │   ├── contact/
+│   │   │   ├── horaires-tarifs/
+│   │   │   └── sector/
+│   │   ├── shared/               # Composants réutilisables
+│   │   │   ├── maps/             # StaticMap, DynamicMap
+│   │   │   ├── navigation/       # BottomBar, BackToTop
+│   │   │   ├── pricing/          # AccordionPrice, PricingList
+│   │   │   ├── feedback/         # Spinner, SuccessAnimation
+│   │   │   ├── HeroGlobal.tsx
+│   │   │   ├── ParalaxImage.tsx
+│   │   │   └── Partners.tsx
+│   │   ├── ui/                   # Primitives Radix UI
+│   │   │   ├── accordion.tsx
+│   │   │   ├── button.tsx
+│   │   │   ├── card.tsx
+│   │   │   ├── callout.tsx
+│   │   │   └── scroll-area.tsx
+│   │   ├── icons/                # Système d'icônes
+│   │   │   ├── Icon.tsx
+│   │   │   └── registry.ts
+│   │   └── dev/                  # Outils développement
+│   │       └── DevJsonViewer.tsx
 │   │
 │   ├── 📁 lib/                    # Utilitaires et helpers
 │   │   ├── sanity/               # Client et queries Sanity
@@ -188,7 +215,36 @@ Utilisée pour les éléments interactifs et les call-to-action.
 
 #### Composants de Pages
 
-Composants spécifiques organisés par page dans `components/pages/[page-name]/`.
+### **Organisation des Composants (Nouvelle Structure)**
+
+**Principe :** Séparation par responsabilité et réutilisabilité.
+
+```
+src/components/
+├── gallery/          ← Système galerie (react-photo-album + YARL)
+├── layout/           ← Header, Footer, Navigation (layout global)
+├── forms/            ← Formulaires et champs
+├── pages/            ← Sections modulaires par page
+│   ├── about/        ← 6 sections (Hero, Intro, History, etc.)
+│   ├── sector/       ← 5 sections (Hero, LinkedSpaces, etc.)
+│   └── home/         ← 4 sections
+├── shared/           ← Composants réutilisables
+│   ├── maps/         ← StaticMap, DynamicMap
+│   ├── navigation/   ← BottomBar, BackToTop, MobileNavigation
+│   ├── pricing/      ← AccordionPrice, PricingList, SubsidiesTable
+│   ├── feedback/     ← Spinner, SuccessAnimation
+│   └── *.tsx         ← HeroGlobal, ParalaxImage, Partners, RichTextRenderer
+├── ui/               ← Primitives Radix UI (accordion, button, card, etc.)
+├── icons/            ← Système d'icônes (registry + Icon.tsx)
+└── dev/              ← DevJsonViewer (debug only)
+```
+
+**Avantages :**
+- ✅ Sections modulaires (1 section = 1 fichier)
+- ✅ Réutilisabilité maximale
+- ✅ Imports propres (`@/components/layout`, `@/components/shared/maps`)
+- ✅ Testabilité individuelle
+- ✅ Cohérence entre toutes les pages
 
 ### Responsive Breakpoints
 

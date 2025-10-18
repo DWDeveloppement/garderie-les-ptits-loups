@@ -1,7 +1,7 @@
 'use client'
 
+import { SubsidiesTable } from '@/components/shared/pricing'
 import { Card, CardContent } from '@/components/ui/card'
-import { SubsidiesTable } from '../../shared/SubsidiesTable'
 
 type SubsidiesSectionProps = {
 	subsidies: {

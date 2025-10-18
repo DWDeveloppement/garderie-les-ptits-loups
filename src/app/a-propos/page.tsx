@@ -8,7 +8,7 @@ import {
   TeamSection,
   ValuesSection
 } from "@/components/pages/about"
-import { ParalaxImage } from "@/components/ParalaxImage"
+import { ParalaxImage } from "@/components/shared"
 
 export default function AboutPage() {
   return (

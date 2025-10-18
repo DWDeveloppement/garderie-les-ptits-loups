@@ -155,8 +155,8 @@ Les composants utilisent la palette de couleurs du projet :
 1. **Copier les fichiers** :
    - `src/types/map.ts`
    - `src/hooks/useMaps.ts`
-   - `src/components/ui/StaticMap.tsx`
-   - `src/components/ui/DynamicMap.tsx`
+   - `src/components/shared/maps/StaticMap.tsx`
+   - `src/components/shared/maps/DynamicMap.tsx`
 
 2. **Installer les dépendances** :
    ```bash

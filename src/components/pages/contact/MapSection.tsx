@@ -1,7 +1,6 @@
 'use client'
 
-import { DynamicMap } from '@/components/shared/DynamicMap'
-import { StaticMap } from '@/components/shared/StaticMap'
+import { DynamicMap, StaticMap } from '@/components/shared/maps'
 import type { MapLocation } from '@/types/map'
 
 // Configuration par défaut pour la garderie

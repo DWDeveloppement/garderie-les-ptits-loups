@@ -1,4 +1,4 @@
-import { RichTextRenderer } from "@/components/RichTextRenderer"
+import { RichTextRenderer } from "@/components/shared"
 import { RichTextBlock } from "@/types/richText"
 
 // Données temporaires - seront remplacées par Sanity

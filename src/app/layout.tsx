@@ -1,6 +1,5 @@
-import { Footer } from "@/components/Footer"
-import { Header } from "@/components/Header"
-import { MobileNavigation } from "@/components/shared/MobileNavigation"
+import { Footer, Header } from "@/components/layout"
+import { MobileNavigation } from "@/components/shared/navigation"
 import { Theme } from "@radix-ui/themes"
 import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"

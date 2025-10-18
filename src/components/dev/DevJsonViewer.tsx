@@ -3,6 +3,7 @@
 
 'use client'
 
+import { ScrollArea } from '@/components/ui/scroll-area'
 import * as React from 'react'
 
 interface DevJsonViewerProps {
@@ -74,11 +75,13 @@ export function DevJsonViewer({ data, slug, title, collapsed = true }: DevJsonVi
 
 			{/* Content */}
 			{isOpen && (
-				<div className="max-h-[40vh] overflow-auto bg-gray-900 p-4">
-					<pre className="text-xs">
-						<code className="language-json">{jsonString}</code>
-					</pre>
-				</div>
+				<ScrollArea className="max-h-[40vh] bg-gray-900">
+					<div className="p-4">
+						<pre className="text-xs">
+							<code className="language-json">{jsonString}</code>
+						</pre>
+					</div>
+				</ScrollArea>
 			)}
 		</div>
 	)

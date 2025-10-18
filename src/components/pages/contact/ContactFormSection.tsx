@@ -4,9 +4,9 @@
  */
 "use client"
 
-import ContactForm from '@/components/ContactForm'
+import { ContactForm } from '@/components/forms'
 //import { ContactFormDebug } from '@/components/debug/ContactFormDebug'
-import { SuccessAnimation } from '@/components/shared/success-animation'
+import { SuccessAnimation } from '@/components/shared/feedback'
 import { useFormValidation } from '@/hooks/useFormValidation'
 
 export function ContactFormSection() {

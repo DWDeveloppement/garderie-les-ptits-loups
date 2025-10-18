@@ -1,6 +1,6 @@
 'use client'
 
-import { HeroGlobal } from '@/components/HeroGlobal'
+import { HeroGlobal } from '@/components/shared'
 type HeroAboutSectionProps = {
 	title?: string
 	description?: string

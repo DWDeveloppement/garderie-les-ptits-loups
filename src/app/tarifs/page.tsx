@@ -3,8 +3,7 @@
  */
 import { HeroHorairesTarifsSection } from "@/components/pages/horaires-tarifs/HeroHorairesTarifsSection"
 import { SubsidiesSection } from '@/components/pages/horaires-tarifs/SubsidiesSection'
-import { ParalaxImage } from "@/components/ParalaxImage"
-import { PricingList } from '@/components/shared/PricingList'
+import { ParalaxImage, PricingList } from "@/components/shared"
 // plus de mock; lecture Sanity directe
 // Rendu direct des accordéons Sanity sans mapping
 import { fetchDailyNursery, fetchDailyTG, fetchMonthlyNursery, fetchMonthlyTG, fetchSubsidies } from '../../../lib/sanity/queries/prices'

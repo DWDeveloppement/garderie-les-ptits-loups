@@ -1,4 +1,4 @@
-import { AccordionContent, AccordionItem, AccordionRoot, AccordionTrigger } from '../ui/accordion'
+import { AccordionContent, AccordionItem, AccordionRoot, AccordionTrigger } from '@/components/ui/accordion'
 
 type AccordionPriceProps = {
 	accordionTitle: string
