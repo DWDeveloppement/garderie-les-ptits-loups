@@ -1,135 +1,109 @@
 // 📂 src/components/gallery/Gallery.tsx
-// 👉 Composant galerie avec react-photo-album
+// 👉 Gallery basé sur l'exemple officiel react-photo-album Next.js
 
 'use client';
 
-import {
-  galleryContainerVariants,
-  galleryItemVariants,
-  type GalleryContainerVariants,
-  type GalleryItemVariants
-} from '@/components/ui/variants'
+import { Icon } from '@/components/icons'
+import { Card } from '@/components/ui/card'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
 import * as React from 'react'
-import {
-  ColumnsPhotoAlbum,
-  MasonryPhotoAlbum,
-  RowsPhotoAlbum,
-  type Photo,
-  type RenderPhoto
-} from 'react-photo-album'
+import PhotoAlbum, { type Photo, type RenderImageContext, type RenderImageProps } from 'react-photo-album'
+import 'react-photo-album/rows.css'
 
-export interface GalleryProps extends GalleryContainerVariants {
+export interface GalleryProps {
   /** Photos à afficher */
   photos: Photo[];
   /** Layout de la galerie */
   layout?: 'rows' | 'columns' | 'masonry';
-  /** Hauteur cible pour le layout rows */
+  /** Hauteur cible pour rows */
   targetRowHeight?: number;
   /** Callback au clic sur une photo */
   onPhotoClick?: (index: number) => void;
-  /** Variants pour les items */
-  itemVariants?: GalleryItemVariants;
-  /** Classe CSS custom pour le conteneur */
+  /** Classe CSS custom */
   className?: string;
 }
 
 /**
- * Composant Gallery avec react-photo-album
- * 
- * **Features :**
- * - 3 layouts : rows, columns, masonry
- * - Images optimisées Next/Image (WebP, LQIP, responsive)
- * - Variants CVA pour styling
- * - Zero CLS (dimensions connues)
- * - Accessible (keyboard navigation)
- * 
- * @example
- * ```tsx
- * <Gallery
- *   photos={photos}
- *   layout="masonry"
- *   spacing="md"
- *   onPhotoClick={(index) => openLightbox(index)}
- * />
- * ```
+ * Render function pour Next/Image basé sur l'exemple officiel
  */
-export function Gallery({
-  photos,
-  layout = 'rows',
-  spacing = 'md',
-  rounded = 'md',
-  targetRowHeight = 300,
-  onPhotoClick,
-  itemVariants,
-  className
-}: GalleryProps) {
-  // Custom render pour images avec Next/Image + variants
-  const renderImage: RenderPhoto = React.useCallback(
-    ({ onClick }, { photo, index, width, height }) => {
-      const { src, alt, title } = photo;
-      const customPhoto = photo as Photo & { blurDataURL?: string };
-
-      return (
-        <button
-          type="button"
-          onClick={(e) => {
-            onClick?.(e);
-            onPhotoClick?.(index);
-          }}
-          className={cn(
-            galleryItemVariants({
-              hover: itemVariants?.hover || 'scale-opacity',
-              shadow: itemVariants?.shadow || 'md',
-              border: itemVariants?.border || 'none',
-              transition: itemVariants?.transition || 'smooth'
-            }),
-            onPhotoClick && 'cursor-pointer group'
-          )}
-          style={{ position: 'relative', width, height }}
-          aria-label={`Ouvrir ${alt || title || 'image'} en grand`}
-        >
-          <Image
-            src={src}
-            alt={alt || title || ''}
-            fill
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            quality={85}
-            placeholder={customPhoto.blurDataURL ? 'blur' : 'empty'}
-            blurDataURL={customPhoto.blurDataURL}
-            className="object-cover w-full h-full"
-            loading="lazy"
-          />
-        </button>
-      );
-    },
-    [onPhotoClick, itemVariants]
-  );
-
-  if (photos.length === 0) {
-    return null;
-  }
-
-  const spacingValue = spacing === 'none' ? 0 : spacing === 'xs' ? 4 : spacing === 'sm' ? 8 : spacing === 'md' ? 16 : spacing === 'lg' ? 24 : 32;
-
-  // Sélection du composant selon le layout
-  const PhotoAlbumComponent = layout === 'rows' ? RowsPhotoAlbum : layout === 'columns' ? ColumnsPhotoAlbum : MasonryPhotoAlbum;
-
+function renderNextImage(
+  { alt = "", title, sizes }: RenderImageProps,
+  { photo, width, height, index }: RenderImageContext
+) {
+  const customPhoto = photo as Photo & { blurDataURL?: string };
+  
   return (
     <div
-      className={cn(
-        galleryContainerVariants({ layout, spacing, rounded }),
-        'photo-album',
-        className
-      )}
+      style={{
+        width: "100%",
+        position: "relative",
+        aspectRatio: `${width} / ${height}`,
+      }}
+      className="group cursor-pointer"
+      onClick={() => {
+        // Le clic sera géré par le parent
+        const event = new CustomEvent('photoClick', { detail: index });
+        window.dispatchEvent(event);
+      }}
     >
-      <PhotoAlbumComponent
+      <Card className="overflow-hidden h-full w-full hover:scale-[1.02] transition-transform">
+        <Image
+          fill
+          src={photo}
+          alt={alt}
+          title={title}
+          sizes={sizes}
+          placeholder={customPhoto.blurDataURL ? "blur" : undefined}
+          blurDataURL={customPhoto.blurDataURL}
+          className="object-cover"
+        />
+        
+        {/* Overlay hover */}
+        <div className="absolute inset-0 bg-purple-2/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+          <Icon name="zoomIn" size="xl" className="text-purple-10" aria-hidden />
+        </div>
+      </Card>
+    </div>
+  );
+}
+
+/**
+ * Gallery 3-in-1 basé sur PhotoAlbum
+ */
+export function Gallery({ 
+  photos, 
+  layout = 'rows', 
+  targetRowHeight = 280, 
+  onPhotoClick, 
+  className 
+}: GalleryProps) {
+  // Écouter les clics sur les images
+  React.useEffect(() => {
+    const handlePhotoClick = (event: CustomEvent) => {
+      onPhotoClick?.(event.detail);
+    };
+    
+    window.addEventListener('photoClick', handlePhotoClick as EventListener);
+    return () => window.removeEventListener('photoClick', handlePhotoClick as EventListener);
+  }, [onPhotoClick]);
+
+  if (photos.length === 0) return null;
+
+  return (
+    <div className={cn('w-full', className)}>
+      <PhotoAlbum
+        layout={layout}
         photos={photos}
-        spacing={spacingValue}
-        padding={0}
-        render={{ photo: renderImage }}
-        {...(layout === 'rows' ? { targetRowHeight } : {})}
+        targetRowHeight={targetRowHeight}
+        render={{ image: renderNextImage }}
+        defaultContainerWidth={1200}
+        sizes={{
+          size: "1168px",
+          sizes: [
+            { viewport: "(max-width: 1200px)", size: "calc(100vw - 32px)" },
+          ],
+        }}
       />
     </div>
   );
