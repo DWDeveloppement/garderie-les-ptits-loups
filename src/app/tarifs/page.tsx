@@ -1,16 +1,17 @@
-/**Page Horaires & Tarifs - Garderie Les P'tits Loups
- * Page complète avec horaires, tarifs et informations sur les subventions
+/**
+ * Page Horaires & Tarifs - Garderie Les P'tits Loups
+ * Données depuis Sanity CMS
  */
 import { HeroHorairesTarifsSection } from "@/components/pages/horaires-tarifs/HeroHorairesTarifsSection"
 import { SubsidiesSection } from '@/components/pages/horaires-tarifs/SubsidiesSection'
 import { ParalaxImage, PricingList } from "@/components/shared"
-// plus de mock; lecture Sanity directe
-// Rendu direct des accordéons Sanity sans mapping
+import { fetchSchedule } from 'lib/sanity/queries/schedule'
 import { fetchDailyNursery, fetchDailyTG, fetchMonthlyNursery, fetchMonthlyTG, fetchSubsidies } from '../../../lib/sanity/queries/prices'
 
 export default async function HorairesTarifsPage() {
-  // Récupérer les 4 documents Sanity en parallèle
-  const [monthlyNursery, dailyNursery, monthlyTG, dailyTG, subsidiesDoc] = await Promise.all([
+  // Récupérer les données page + prix en parallèle
+  const [scheduleData, monthlyNursery, dailyNursery, monthlyTG, dailyTG, subsidiesDoc] = await Promise.all([
+    fetchSchedule(),
     fetchMonthlyNursery(),
     fetchDailyNursery(),
     fetchMonthlyTG(),
@@ -20,7 +21,11 @@ export default async function HorairesTarifsPage() {
 
   return (
 		<div className='min-h-screen'>
-			<HeroHorairesTarifsSection />
+			<HeroHorairesTarifsSection 
+        title={scheduleData?.title}
+        description={scheduleData?.sectionHero?.description}
+        image={scheduleData?.sectionHero?.image}
+      />
 			{/* Nurserie */}
 			<section className='w-full py-16 px-4 sm:px-6 lg:px-8 bg-purple-1'>
 				<div className='w-full max-w-6xl mx-auto gap-2'>

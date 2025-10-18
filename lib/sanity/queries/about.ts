@@ -1,3 +1,4 @@
+import type { AboutPageData } from '@/types/queries'
 import { groq } from 'next-sanity'
 import { sanityFetch } from '../client'
 import { BASIC_IMAGE_QUERY } from '../helpers/imageProps'
@@ -44,6 +45,6 @@ export const ABOUT_QUERY = groq`
   }
 `
 
-export async function fetchAbout() {
-	return sanityFetch(ABOUT_QUERY, {}, { tag: 'about-page' })
+export async function fetchAbout(): Promise<AboutPageData> {
+	return sanityFetch<AboutPageData>(ABOUT_QUERY, {}, { tag: 'about-page' })
 }

@@ -1,3 +1,4 @@
+import type { ContactPageData } from '@/types/queries'
 import { groq } from 'next-sanity'
 import { sanityFetch } from '../client'
 import { BASIC_IMAGE_QUERY } from '../helpers/imageProps'
@@ -46,6 +47,6 @@ export const CONTACT_QUERY = groq`
   }
 `
 
-export async function fetchContact() {
-	return sanityFetch(CONTACT_QUERY, {}, { tag: 'contact-page' })
+export async function fetchContact(): Promise<ContactPageData> {
+	return sanityFetch<ContactPageData>(CONTACT_QUERY, {}, { tag: 'contact-page' })
 }

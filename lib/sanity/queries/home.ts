@@ -1,3 +1,4 @@
+import type { HomePageData } from '@/types/queries'
 import { groq } from 'next-sanity'
 import { sanityFetch } from '../client'
 import { BASIC_IMAGE_QUERY } from '../helpers/imageProps'
@@ -54,6 +55,6 @@ export const HOME_QUERY = groq`
   }
 `
 
-export async function fetchHome() {
-	return sanityFetch(HOME_QUERY, {}, { tag: 'home-page' })
+export async function fetchHome(): Promise<HomePageData> {
+	return sanityFetch<HomePageData>(HOME_QUERY, {}, { tag: 'home-page' })
 }

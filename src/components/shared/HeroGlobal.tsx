@@ -2,21 +2,35 @@
 
 import { Card, CardContent } from "@/components/ui/card"
 import { useScrollParallax } from "@/hooks/useScollParalax"
+import type { SanityImage } from "@/types/sanity/sectorPage"
+import { imageBuilder } from "lib/sanity/client"
 import Image from "next/image"
+import * as React from "react"
 
 type HeroGlobalProps = {
   title: string
   description?: string
+  /** Image URL (string) ou SanityImage (Sanity) */
   imageUrl?: string
+  image?: SanityImage
   className?: string
 }
 
 export function HeroGlobal({ 
   title,
   description,
-  imageUrl = "/jardin.webp",
+  imageUrl,
+  image,
   className = ""
 }: HeroGlobalProps) {
+  // Convertir SanityImage en URL si fourni
+  const finalImageUrl = React.useMemo(() => {
+    if (imageUrl) return imageUrl
+    if (image?.asset) {
+      return imageBuilder.image(image.asset).width(1920).quality(85).format('webp').url()
+    }
+    return "/jardin.webp" // Fallback
+  }, [imageUrl, image])
   const { elementRef, imageTransform, textTransform, overlayOpacity } = useScrollParallax({
     speed: 20,
     scale: 0.1,
@@ -35,8 +49,8 @@ export function HeroGlobal({
         }}
       >
         <Image 
-          src={imageUrl} 
-          alt={title} 
+          src={finalImageUrl} 
+          alt={image?.alt || title} 
           fill
           className="object-cover object-center"
           priority

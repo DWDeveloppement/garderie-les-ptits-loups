@@ -1,4 +1,3 @@
-"use client"
 // Page About - Garderie Les P'tits Loups
 import {
   AboutIntroSection,
@@ -9,11 +8,18 @@ import {
   ValuesSection
 } from "@/components/pages/about"
 import { ParalaxImage } from "@/components/shared"
+import { fetchAbout } from "lib/sanity/queries/about"
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const data = await fetchAbout()
+
   return (
     <div className="min-h-screen">
-      <HeroAboutSection />
+      <HeroAboutSection 
+        title={data?.title}
+        description={data?.sectionHero?.description}
+        image={data?.sectionHero?.image}
+      />
       <AboutIntroSection />
       <ParalaxImage />
       <HistorySection />

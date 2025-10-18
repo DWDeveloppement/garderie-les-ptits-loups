@@ -1,3 +1,4 @@
+import type { SchedulePageData } from '@/types/queries'
 import { groq } from 'next-sanity'
 import { sanityFetch } from '../client'
 import { BASIC_IMAGE_QUERY } from '../helpers/imageProps'
@@ -81,6 +82,6 @@ export const SCHEDULE_QUERY = groq`
   }
 `
 
-export async function fetchSchedule() {
-	return sanityFetch(SCHEDULE_QUERY, {}, { tag: 'schedule-page' })
+export async function fetchSchedule(): Promise<SchedulePageData> {
+	return sanityFetch<SchedulePageData>(SCHEDULE_QUERY, {}, { tag: 'schedule-page' })
 }
