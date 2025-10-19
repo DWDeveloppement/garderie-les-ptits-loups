@@ -48,7 +48,7 @@ export default async function HorairesTarifsPage() {
 				</div>
 			</section>
 
-			<ParalaxImage />
+			{scheduleData?.parallax?.image && <ParalaxImage image={scheduleData.parallax.image} />}
 			{/* Subventions depuis Sanity (sans fallback) */}
 			<SubsidiesSection subsidies={{
 				labelIncomeRange: 'Revenus annuels familial',

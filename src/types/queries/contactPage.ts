@@ -25,6 +25,10 @@ export type ContactPageData = {
 		longitude: number
 		zoom?: number
 	}
+	// Parallax
+	parallax?: {
+		image: SanityImage
+	}
 	// SEO
 	seo?: {
 		metaTitle?: string

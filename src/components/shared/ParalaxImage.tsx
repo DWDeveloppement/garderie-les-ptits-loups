@@ -1,20 +1,30 @@
 "use client"
 
 import { useScrollParallax } from "@/hooks/useScollParalax"
+import type { SanityImage } from "@/types/sanity/sectorPage"
+import { imageBuilder } from "lib/sanity/client"
 import Image from "next/image"
+import * as React from "react"
 
-// Props futures pour Sanity (seront ajoutées plus tard)
-// interface ParalaxImageProps {
-//   imageUrl?: string
-//   imageAlt?: string
-//   title?: string
-//   subtitle?: string
-//   overlayOpacity?: number
-//   height?: 'sm' | 'md' | 'lg' | 'xl'
-//   textPosition?: 'left' | 'center' | 'right'
-// }
+interface ParalaxImageProps {
+  image?: SanityImage
+  imageUrl?: string
+  imageAlt?: string
+  title?: string
+  subtitle?: string
+  height?: 'sm' | 'md' | 'lg' | 'xl'
+  textPosition?: 'left' | 'center' | 'right'
+}
 
-export function ParalaxImage() {
+export function ParalaxImage({
+  image,
+  imageUrl,
+  imageAlt = "Image de fond de la garderie",
+  title,
+  subtitle,
+  height = 'lg',
+  textPosition = 'center'
+}: ParalaxImageProps) {
   // Utilisation du hook personnalisé
   const { elementRef, imageTransform, textTransform, overlayOpacity } = useScrollParallax({
     speed: 20,
@@ -23,13 +33,14 @@ export function ParalaxImage() {
     overlayIntensity: 0.3
   })
 
-  // Valeurs par défaut (seront remplacées par les props Sanity)
-  const imageUrl = "/paralax.webp"
-  const imageAlt = "Image de fond de la garderie"
-  const title = "Bienvenue chez Les P'tits Loups"
-  const subtitle = "Un environnement chaleureux pour l'épanouissement de votre enfant"
-  const height = 'lg'
-  const textPosition = 'center'
+  // Convertir SanityImage en URL
+  const finalImageUrl = React.useMemo(() => {
+    if (imageUrl) return imageUrl
+    if (image?.asset) {
+      return imageBuilder.image(image.asset).width(1920).quality(85).format('webp').url()
+    }
+    return "/paralax.webp" // Fallback
+  }, [imageUrl, image])
 
   // Classes de hauteur dynamiques
   const heightClasses = {
@@ -57,8 +68,8 @@ export function ParalaxImage() {
         }}
       >
         <Image 
-          src={imageUrl} 
-          alt={imageAlt} 
+          src={finalImageUrl} 
+          alt={image?.alt || imageAlt} 
           fill
           className="object-cover object-center"
           priority
@@ -74,23 +85,29 @@ export function ParalaxImage() {
         }}
       />
 
-      {/* Contenu textuel avec effet de flottement au scroll */}
-      <div className={`relative z-10 h-full flex flex-col justify-center px-4 sm:px-6 lg:px-8`}>
-        <div 
-          className={`max-w-4xl mx-auto ${textPositionClasses[textPosition]}`}
-          style={{ 
-            transform: textTransform,
-            transition: 'transform 0.1s ease-out'
-          }}
-        >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 drop-shadow-lg">
-            {title}
-          </h2>
-          <p className="text-lg sm:text-xl lg:text-2xl text-orange-1 max-w-2xl leading-relaxed drop-shadow-md">
-            {subtitle}
-          </p>
+      {/* Contenu textuel avec effet de flottement au scroll (optionnel) */}
+      {(title || subtitle) && (
+        <div className={`relative z-10 h-full flex flex-col justify-center px-4 sm:px-6 lg:px-8`}>
+          <div 
+            className={`max-w-4xl mx-auto ${textPositionClasses[textPosition]}`}
+            style={{ 
+              transform: textTransform,
+              transition: 'transform 0.1s ease-out'
+            }}
+          >
+            {title && (
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 drop-shadow-lg">
+                {title}
+              </h2>
+            )}
+            {subtitle && (
+              <p className="text-lg sm:text-xl lg:text-2xl text-orange-1 max-w-2xl leading-relaxed drop-shadow-md">
+                {subtitle}
+              </p>
+            )}
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Effet de profondeur avec ombre portée */}
       <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-orange-12/20 to-transparent" />
