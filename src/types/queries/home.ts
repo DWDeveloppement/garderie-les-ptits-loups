@@ -32,8 +32,12 @@ export type LinkedOtherSpace = {
 export type HomePageData = {
 	title: string
 	sectionHero: {
+		title: string
+		garderieName: string
+		logo: SanityImage
 		description: string
-		image: SanityImage
+		buttonText: string
+		buttonLink: string
 	}
 	linkedSectors: LinkedSector[]
 	linkedOtherSpaces: LinkedOtherSpace[]

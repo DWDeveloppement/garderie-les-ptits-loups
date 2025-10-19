@@ -1,5 +1,5 @@
 // Export des composants réutilisables
-export { hero } from './hero'
+export { hero, heroHome } from './hero'
 export { paralaxImage } from './paralaxImage'
 export { seo } from './seo'
 

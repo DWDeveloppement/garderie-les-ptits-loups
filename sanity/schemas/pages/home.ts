@@ -1,6 +1,6 @@
 import { type Rule, type SchemaTypeDefinition } from 'sanity'
 import { ReadOnlySlug } from '../../components/ReadOnlySlug'
-import { hero, seo } from '../components'
+import { heroHome, paralaxImage, seo } from '../components'
 
 // Désactivé: page fixe gérée dans le code Next
 export const home: SchemaTypeDefinition = {
@@ -8,18 +8,11 @@ export const home: SchemaTypeDefinition = {
 	title: "Page d'accueil",
 	type: 'document',
 	fields: [
-		{
-			name: 'title',
-			title: 'Titre',
-			type: 'string',
-			initialValue: "Page d'accueil",
-			validation: (Rule: Rule) => Rule.required().max(100),
-		},
 		// === CONTENU DE LA PAGE ===
 		{
 			name: 'sectionHero',
 			title: 'Section Hero',
-			type: hero.name,
+			type: heroHome.name,
 		},
 		// Relation vers les 3 pages secteurs principales (La Structure)
 		// Format card affiché dans la section "La Structure" du frontend
@@ -68,6 +61,13 @@ export const home: SchemaTypeDefinition = {
 			type: 'array',
 			of: [{ type: 'block' }],
 			description: 'Contenu complémentaire de la page',
+		},
+
+		// Image Parallaxe
+		{
+			name: 'parallax',
+			title: 'Image Parallaxe',
+			type: paralaxImage.name,
 		},
 
 		// === SEO & CONFIGURATION ===

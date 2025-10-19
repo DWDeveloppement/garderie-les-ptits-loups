@@ -11,10 +11,14 @@ export const HOME_QUERY = groq`
   *[_type == "home" && _id == "home"][0] {
     title,
     
-    // Hero
+    // Hero Home (version détaillée)
     sectionHero {
-      image ${BASIC_IMAGE_QUERY},
-      description
+      title,
+      garderieName,
+      logo ${BASIC_IMAGE_QUERY},
+      description,
+      buttonText,
+      buttonLink
     },
     
     // Secteurs liés (populate avec ->)

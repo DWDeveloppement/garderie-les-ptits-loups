@@ -1,7 +1,29 @@
 import { linkedOtherSpaces } from "@/data/spaces"
+import type { LinkedOtherSpace } from "@/types/queries"
+import { imageBuilder } from "lib/sanity/client"
 import Image from "next/image"
+import * as React from "react"
 
-export function SpacesSection() {
+interface SpacesSectionProps {
+  spaces?: LinkedOtherSpace[]
+}
+
+export function SpacesSection({ spaces }: SpacesSectionProps) {
+  // Utiliser les données Sanity si disponibles, sinon fallback sur données statiques
+  const displaySpaces = React.useMemo(() => {
+    if (spaces && spaces.length > 0) {
+      return spaces.map(space => ({
+        id: space._id,
+        title: space.title,
+        description: space.description?.[0]?.children?.[0]?.text || '', // Extract text from PortableText
+        imageUrl: space.image?.asset 
+          ? imageBuilder.image(space.image.asset).width(800).quality(85).format('webp').url()
+          : '/paralax.webp'
+      }))
+    }
+    return linkedOtherSpaces
+  }, [spaces])
+
   return (
     <section id="espaces" className="py-16 px-4 sm:px-6 lg:px-8 bg-orange-bg-light">
       <div className="max-w-7xl mx-auto">
@@ -16,7 +38,7 @@ export function SpacesSection() {
         </div>
 
         <div className="flex flex-col gap-16">
-          {linkedOtherSpaces.map((space, index) => {
+          {displaySpaces.map((space, index) => {
             const isEven = index % 2 === 0
             
             return (

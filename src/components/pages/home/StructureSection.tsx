@@ -1,10 +1,25 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { structures } from "@/data/structures"
+import type { LinkedSector } from "@/types/queries"
 import { ArrowRight } from "lucide-react"
 import Link from "next/link"
 
-export function StructureSection() {
+interface StructureSectionProps {
+  sectors?: LinkedSector[]
+}
+
+export function StructureSection({ sectors }: StructureSectionProps) {
+  // Utiliser les données Sanity si disponibles, sinon fallback sur données statiques
+  const displaySectors = sectors && sectors.length > 0 
+    ? sectors.map(sector => ({
+        id: sector.slug,
+        title: sector.title,
+        ageRange: sector.sectionHero.description.split('.')[0], // Première phrase comme ageRange
+        description: sector.sectionHero.description,
+      }))
+    : structures
+
   return (
     <section id="structure" className="py-16 px-4 sm:px-6 lg:px-8 bg-purple-2">
       <div className="max-w-7xl mx-auto">
@@ -19,7 +34,7 @@ export function StructureSection() {
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
-          {structures.map((structure) => {
+          {displaySectors.map((structure) => {
             return (
 							<article key={structure.id} className='group'>
 								<Link href={`/${structure.id}`} className='flex h-full' aria-label={`Voir les détails de ${structure.title}`}>
