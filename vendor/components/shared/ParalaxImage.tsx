@@ -2,6 +2,7 @@
 
 import { useScrollParallax } from "@/hooks/components/useScollParalax"
 import type { SanityImage } from "@/types/sanity/sectorPage"
+import { imageBuilder } from "lib/sanity/client"
 import Image from "next/image"
 import * as React from "react"
 
@@ -35,11 +36,9 @@ export function ParalaxImage({
   // Convertir SanityImage en URL
   const finalImageUrl = React.useMemo(() => {
     if (imageUrl) return imageUrl
-    if (image?.asset?.url) {
-      console.log('🔍 ParalaxImage - URL directe Sanity:', image.asset.url)
-      return image.asset.url
+    if (image?.asset) {
+      return imageBuilder.image(image.asset).width(1920).quality(85).format('webp').url()
     }
-    console.log('🔍 ParalaxImage - Pas d\'image, utilisation du fallback')
     return "/paralax.webp" // Fallback
   }, [imageUrl, image])
 
@@ -74,10 +73,6 @@ export function ParalaxImage({
           fill
           className="object-cover object-center"
           priority
-          quality={85}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 1920px"
-          placeholder="blur"
-          blurDataURL={image?.asset?.metadata?.lqip || "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="}
         />
       </div>
 

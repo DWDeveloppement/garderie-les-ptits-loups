@@ -1,0 +1,81 @@
+/* 
+  ! ======================================================
+  ! Fluid variables utopia.fyi calculator
+  ! Type: @link https://utopia.fyi/type/calculator?c=320,16,1.2,1200,20,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12
+  ! Space: @link https://utopia.fyi/space/calculator?c=320,16,1.2,1200,20,1.25,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12
+  ! Pour l'utilisation des variables, voir le fichier 
+  ! ======================================================
+*/
+
+:root {
+  /* Taille de base fixe */
+  font-size: 16px;
+  --zoom-factor: 1; /* fallback si JS non chargé */
+
+  /* Facteur de Font Size Display */
+  --display-factor: 2;
+  /* Ratios de hauteur de ligne */
+  --ratio-sm: 1.2; /* Pour le petit texte */
+  --ratio-base: 1.4; /* Pour le texte courant */
+  --ratio-lg: 1.6; /* Pour les grands titres */
+
+  /* Échelle typographique fluide - ne pas modifier */
+  /* Step -2: 11.1111px → 12.8px */
+  --size--2: clamp(0.6944rem, 0.6561rem + 0.1919vw, 0.8rem);
+  /* Step -1: 13.3333px → 16px */
+  --size--1: clamp(0.8333rem, 0.7727rem + 0.303vw, 1rem);
+  /* Step 0: 16px → 20px */
+  --size-0: clamp(1rem, 0.9091rem + 0.4545vw, 1.25rem);
+  /* Step 1: 19.2px → 25px */
+  --size-1: clamp(1.2rem, 1.0682rem + 0.6591vw, 1.5625rem);
+  /* Step 2: 23.04px → 31.25px */
+  --size-2: clamp(1.44rem, 1.2534rem + 0.933vw, 1.9531rem);
+  /* Step 3: 27.648px → 39.0625px */
+  --size-3: clamp(1.728rem, 1.4686rem + 1.2971vw, 2.4414rem);
+  /* Step 4: 33.1776px → 48.8281px */
+  --size-4: clamp(2.0736rem, 1.7179rem + 1.7785vw, 3.0518rem);
+  /* Step 5: 39.8131px → 61.0352px */
+  --size-5: clamp(2.4883rem, 2.006rem + 2.4116vw, 3.8147rem);
+
+  /* Variables d'espacement fluide - Base */
+  /* Space 3xs: 4px → 5px */
+  --space-3xs: clamp(0.25rem, 0.2273rem + 0.1136vw, 0.3125rem);
+  /* Space 2xs: 8px → 10px */
+  --space-2xs: clamp(0.5rem, 0.4545rem + 0.2273vw, 0.625rem);
+  /* Space xs: 12px → 15px */
+  --space-xs: clamp(0.75rem, 0.6818rem + 0.3409vw, 0.9375rem);
+  /* Space s: 16px → 20px */
+  --space-s: clamp(1rem, 0.9091rem + 0.4545vw, 1.25rem);
+  /* Space m: 24px → 30px */
+  --space-m: clamp(1.5rem, 1.3636rem + 0.6818vw, 1.875rem);
+  /* Space l: 32px → 40px */
+  --space-l: clamp(2rem, 1.8182rem + 0.9091vw, 2.5rem);
+  /* Space xl: 48px → 60px */
+  --space-xl: clamp(3rem, 2.7273rem + 1.3636vw, 3.75rem);
+  /* Space 2xl: 64px → 80px */
+  --space-2xl: clamp(4rem, 3.6364rem + 1.8182vw, 5rem);
+  /* Space 3xl: 96px → 120px */
+  --space-3xl: clamp(6rem, 5.4545rem + 2.7273vw, 7.5rem);
+
+  /* One-up pairs */
+  /* Space 3xs-2xs: 4px → 10px */
+  --space-3xs-2xs: clamp(0.25rem, 0.1136rem + 0.6818vw, 0.625rem);
+  /* Space 2xs-xs: 8px → 15px */
+  --space-2xs-xs: clamp(0.5rem, 0.3409rem + 0.7955vw, 0.9375rem);
+  /* Space xs-s: 12px → 20px */
+  --space-xs-s: clamp(0.75rem, 0.5682rem + 0.9091vw, 1.25rem);
+  /* Space s-m: 16px → 30px */
+  --space-s-m: clamp(1rem, 0.6818rem + 1.5909vw, 1.875rem);
+  /* Space m-l: 24px → 40px */
+  --space-m-l: clamp(1.5rem, 1.1364rem + 1.8182vw, 2.5rem);
+  /* Space l-xl: 32px → 60px */
+  --space-l-xl: clamp(2rem, 1.3636rem + 3.1818vw, 3.75rem);
+  /* Space xl-2xl: 48px → 80px */
+  --space-xl-2xl: clamp(3rem, 2.2727rem + 3.6364vw, 5rem);
+  /* Space 2xl-3xl: 64px → 120px */
+  --space-2xl-3xl: clamp(4rem, 2.7273rem + 6.3636vw, 7.5rem);
+
+  /* Custom pairs */
+  /* Space s-l: 16px → 40px */
+  --space-s-l: clamp(1rem, 0.4545rem + 2.7273vw, 2.5rem);
+}

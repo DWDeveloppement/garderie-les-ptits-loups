@@ -3,6 +3,7 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { useScrollParallax } from "@/hooks/components/useScollParalax"
 import type { SanityImage } from "@/types/sanity/sectorPage"
+import { imageBuilder } from "lib/sanity/client"
 import Image from "next/image"
 import * as React from "react"
 
@@ -25,11 +26,9 @@ export function HeroGlobal({
   // Convertir SanityImage en URL si fourni
   const finalImageUrl = React.useMemo(() => {
     if (imageUrl) return imageUrl
-    if (image?.asset?.url) {
-      console.log('🔍 HeroGlobal - URL directe Sanity:', image.asset.url)
-      return image.asset.url
+    if (image?.asset) {
+      return imageBuilder.image(image.asset).width(1920).quality(85).format('webp').url()
     }
-    console.log('🔍 HeroGlobal - Pas d\'image, utilisation du fallback')
     return "/jardin.webp" // Fallback
   }, [imageUrl, image])
   const { elementRef, imageTransform, textTransform, overlayOpacity } = useScrollParallax({
@@ -55,10 +54,6 @@ export function HeroGlobal({
           fill
           className="object-cover object-center"
           priority
-          quality={90}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 1920px"
-          placeholder="blur"
-          blurDataURL={image?.asset?.metadata?.lqip || "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="}
         />
       </div>
 

@@ -1,0 +1,6 @@
+// 📂 src/components/shared/pricing/index.ts
+// 👉 Barrel export pour les composants de tarification
+
+export { AccordionPrice } from './AccordionPrice'
+export { PricingList } from './PricingList'
+export { SubsidiesTable } from './SubsidiesTable'
