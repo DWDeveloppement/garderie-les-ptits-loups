@@ -2,16 +2,19 @@ import { Footer, Header } from "@/components/layout"
 import { MobileNavigation } from "@/components/shared/navigation"
 import { Theme } from "@radix-ui/themes"
 import type { Metadata } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
+import { Chelsea_Market, Open_Sans } from "next/font/google"
 import "./globals.css"
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+
+const chelseaMarket = Chelsea_Market({
+  variable: "--font-chelsea-market",
   subsets: ["latin"],
+  weight: ["400"], // Chelsea Market n'a qu'un seul poids
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const openSans = Open_Sans({
+  variable: "--font-open-sans",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"], // Tous les poids disponibles
 });
 
 export const metadata: Metadata = {
@@ -25,15 +28,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr">
+    <html lang="fr" className={`${openSans.variable} ${chelseaMarket.variable}`}>
       <head>
         {/* Preconnect vers Sanity CDN pour images optimisées */}
         <link rel="preconnect" href="https://cdn.sanity.io" />
         <link rel="dns-prefetch" href="https://cdn.sanity.io" />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className="antialiased">
         <Theme
           appearance="light"
           accentColor="purple"

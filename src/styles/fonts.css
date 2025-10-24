@@ -3,8 +3,8 @@
  * Basé sur Next.js Font Optimization + Google Fonts
  * 
  * Fonts actuelles :
- * - Geist (Sans-serif) - Font principale
- * - Geist Mono (Monospace) - Code/technique
+ * - Open Sans (Sans-serif) - Font principale
+ * - Chelsea Market (Display) - Titres
  * 
  * Variables CSS pour Tailwind v4
  */
@@ -13,7 +13,8 @@
   /* Font families - Utilisation des variables Next.js */
   --font-sans: var(--font-open-sans), Arial, sans-serif;
   --font-display: var(--font-chelsea-market), cursive;
-  --font-mono: var(--font-geist-mono), ui-monospace, 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+  --font-mono: ui-monospace, 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+  
   
   /* Font weights */
   --font-weight-light: 300;
@@ -32,6 +33,24 @@
   --letter-spacing-widest: 0.1em;
 }
 
+/* Layer base pour les fonts par défaut selon les tags */
+@layer base {
+  /* Font par défaut pour le body */
+  body {
+    font-family: var(--font-sans);
+  }
+  
+  /* Fonts pour les titres */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+  
+  /* Font pour le code */
+  code, pre {
+    font-family: var(--font-mono);
+  }
+}
+
 /* Classes utilitaires pour les fonts */
 .font-sans {
   font-family: var(--font-sans);
@@ -44,6 +63,7 @@
 .font-mono {
   font-family: var(--font-mono);
 }
+
 
 /* Font weights */
 .font-light { font-weight: var(--font-weight-light); }
