@@ -38,6 +38,14 @@ export const contactPage: SchemaTypeDefinition = {
 					validation: (Rule: Rule) => Rule.required(),
 				},
 				{
+					name: 'description',
+					title: 'Description',
+					type: 'text',
+					rows: 3,
+					description: 'Description de la garderie qui sera affichée dans le footer',
+					validation: (Rule: Rule) => Rule.required(),
+				},
+				{
 					name: 'address',
 					title: 'Adresse',
 					type: 'string',

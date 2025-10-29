@@ -1,6 +1,10 @@
-import { Clock, Facebook, Instagram, Mail, MapPin, Phone } from "lucide-react"
+import { fetchFooterData } from "lib/sanity/queries"
+import { Clock, Mail, MapPin, Phone } from "lucide-react"
+import Link from "next/link"
 
-export function Footer() {
+export async function Footer() {
+  // Récupération des données de contact depuis Sanity
+  const data = await fetchFooterData()
   return (
     <footer className="bg-purple-12 text-orange-1">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -9,28 +13,17 @@ export function Footer() {
           <div className="md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
               
-              <h4 className="text-orange-6 font-bold">Les P&apos;tits Loups</h4>
+              <h4 className="text-orange-6 font-bold">{data?.contactInfo?.name}</h4>
             </div>
+            {/* Description de la garderie qui viendra de Sanity depuis contact.ts de contactInfo fields description*/}
             <p className="text-orange-4 mb-4 leading-relaxed">
-              Une garderie familiale où chaque enfant est unique et précieux. 
-              Nous accompagnons votre enfant dans ses premiers pas vers l&apos;autonomie 
-              et l&apos;épanouissement personnel.
+              {data?.contactInfo?.description}
             </p>
             <div className="flex space-x-4">
-              <a 
-                href="#" 
-                className="text-orange-4 hover:text-purple-surface transition-colors"
-                aria-label="Facebook"
-              >
-                <Facebook className="h-6 w-6" />
-              </a>
-              <a 
-                href="#" 
-                className="text-orange-4 hover:text-purple-surface transition-colors"
-                aria-label="Instagram"
-              >
-                <Instagram className="h-6 w-6" />
-              </a>
+              {/* Socials seront retournés depuis Sanity et rendus si le tableau des liens sociaux n'est pas vide. 
+                  Pour l'instant rien dans sanity n'est encore installé pour les socials mais à placer plus tard 
+                  une fois le rendu des autres éléments confirmés et la gestion des socials implémentée */}
+              {/* TODO: Ajouter les socials dans le schéma contact.ts et les récupérer ici */}
             </div>
           </div>
 
@@ -41,27 +34,26 @@ export function Footer() {
               <div className="flex items-start space-x-3">
                 <MapPin className="h-5 w-5 text-purple-surface mt-0.5 flex-shrink-0" />
                 <div className="text-orange-4">
-                  <p>Rue de la Garderie 15</p>
-                  <p>1000 Lausanne</p>
-                  <p>Suisse</p>
+                  <p>{data?.contactInfo?.address}</p>
+                  <p>{data?.contactInfo?.postalCode} {data?.contactInfo?.city} {data?.contactInfo?.country}</p>
                 </div>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 text-purple-surface flex-shrink-0" />
                 <a 
-                  href="tel:+41211234567" 
+                  href={`tel:${data?.contactInfo?.phone}`} 
                   className="text-orange-4 hover:text-orange-2 transition-colors"
                 >
-                  +41 21 123 45 67
+                  {data?.contactInfo?.phone}
                 </a>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 text-purple-surface flex-shrink-0" />
                 <a 
-                  href="mailto:info@garderielesptitsloups.ch" 
+                  href={`mailto:${data?.contactInfo?.email}`} 
                   className="text-orange-4 hover:text-orange-2 transition-colors"
                 >
-                  info@garderielesptitsloups.ch
+                  {data?.contactInfo?.email}
                 </a>
               </div>
             </div>
@@ -73,9 +65,9 @@ export function Footer() {
             <div className="space-y-3">
               <div className="flex items-start space-x-3">
                 <Clock className="h-5 w-5 text-purple-surface mt-0.5 flex-shrink-0" />
-                <div className="text-orange-4">
-                  <p className="font-medium text-orange-3">Lundi - Vendredi</p>
-                  <p>07h00 - 18h00</p>
+                <div className="text-orange-4 whitespace-pre-line">
+                  {/* Horaires qui viendra de Sanity depuis contact.ts de contactInfo fields openingHours*/}
+                  {data?.contactInfo?.openingHours}
                 </div>
               </div>
             </div>
@@ -86,21 +78,21 @@ export function Footer() {
         <div className="border-t border-orange-10 mt-8 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-orange-4 text-sm">
-              &copy; 2024 Garderie Les P&apos;tits Loups. Tous droits réservés.
+              &copy; {new Date().getFullYear()} {data?.contactInfo?.name}. Tous droits réservés.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
-              <a 
-                href="#" 
+              <Link 
+                href="/mentions-legales" 
                 className="text-orange-4 hover:text-orange-2 text-sm transition-colors"
               >
                 Mentions légales
-              </a>
-              <a 
-                href="#" 
+              </Link>
+              <Link 
+                href="/politique-confidentialite" 
                 className="text-orange-4 hover:text-orange-2 text-sm transition-colors"
               >
                 Politique de confidentialité
-              </a>
+              </Link>
             </div>
           </div>
         </div>

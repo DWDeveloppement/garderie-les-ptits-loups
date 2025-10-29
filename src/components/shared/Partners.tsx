@@ -17,7 +17,7 @@ export async function Partners() {
   }
 
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-orange-2">
+    <section className="py-16 px-4 sm:px-6 lg:px-8 gradiant-section-b">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="font-bold mb-4">

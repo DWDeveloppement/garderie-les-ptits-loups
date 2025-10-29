@@ -17,7 +17,7 @@ export function BackToTop() {
 		<Button
 			onClick={scrollToTop}
 			ariaLabel='Retour en haut de la page'
-			variant="primary"
+			variant="default"
 			size="icon"
 			className='fixed bottom-20 right-4 z-50 h-12 w-12 rounded-full shadow-xl/50 shadow-(color:--purple-9)'>
 			<ArrowUp className='h-5 w-5' aria-hidden />
