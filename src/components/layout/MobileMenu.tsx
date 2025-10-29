@@ -33,7 +33,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         {/* Content - Slide from right */}
         <DialogContent 
           showCloseButton={false}
-          className="fixed right-0 top-0 h-full w-80 bg-orange-1 border-l border-orange-6 shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right duration-300 p-0 max-w-none translate-x-0 translate-y-0"
+          className="fixed right-0 top-0 h-full w-auto min-w-[18rem] max-w-[90vw] bg-orange-1 border-l border-orange-6 shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right duration-300 p-0 translate-x-0 translate-y-0 overflow-x-hidden"
         >
           <div className="flex flex-col h-full">
             {/* Header */}
