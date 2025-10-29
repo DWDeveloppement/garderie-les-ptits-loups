@@ -1,6 +1,6 @@
 'use client'
 
-import { AccordionContent, AccordionItem, AccordionRoot, AccordionTrigger } from '@/components/ui/accordion'
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 
 type SanityPriceItem = { service: string; price: string }
 type SanityAccordionItem = { accordionTitle: string; priceItems?: SanityPriceItem[] }
@@ -16,7 +16,7 @@ export function PricingList({ title, sections }: SanityPricingListProps) {
   return (
     <article className="mb-12 p-6 bg-white rounded-lg shadow-md border border-orange-6 w-full">
       <h3 className="text-xl font-bold text-purple-12 mb-6 text-center">{title}</h3>
-      <AccordionRoot type="single" collapsible className="space-y-4">
+      <Accordion type="single" collapsible className="space-y-4">
         {safeSections.map((section) => (
           <AccordionItem key={section.accordionTitle} value={section.accordionTitle}>
             <AccordionTrigger>{section.accordionTitle}</AccordionTrigger>
@@ -42,7 +42,7 @@ export function PricingList({ title, sections }: SanityPricingListProps) {
             </AccordionContent>
           </AccordionItem>
         ))}
-      </AccordionRoot>
+      </Accordion>
     </article>
   )
 }

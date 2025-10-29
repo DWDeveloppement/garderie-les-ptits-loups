@@ -1,37 +1,22 @@
 "use client"
 
 import { Card, CardContent } from "@/components/ui/card"
-import { useScrollParallax } from "@/hooks/components/useScollParalax"
-import type { SanityImage } from "@/types/sanity/sectorPage"
+import { useScrollParallax } from "@/hooks/useScollParalax"
 import Image from "next/image"
-import * as React from "react"
 
 type HeroGlobalProps = {
   title: string
   description?: string
-  /** Image URL (string) ou SanityImage (Sanity) */
   imageUrl?: string
-  image?: SanityImage
   className?: string
 }
 
 export function HeroGlobal({ 
   title,
   description,
-  imageUrl,
-  image,
+  imageUrl = "/jardin.webp",
   className = ""
 }: HeroGlobalProps) {
-  // Convertir SanityImage en URL si fourni
-  const finalImageUrl = React.useMemo(() => {
-    if (imageUrl) return imageUrl
-    if (image?.asset?.url) {
-      console.log('🔍 HeroGlobal - URL directe Sanity:', image.asset.url)
-      return image.asset.url
-    }
-    console.log('🔍 HeroGlobal - Pas d\'image, utilisation du fallback')
-    return "/jardin.webp" // Fallback
-  }, [imageUrl, image])
   const { elementRef, imageTransform, textTransform, overlayOpacity } = useScrollParallax({
     speed: 20,
     scale: 0.1,
@@ -50,15 +35,11 @@ export function HeroGlobal({
         }}
       >
         <Image 
-          src={finalImageUrl} 
-          alt={image?.alt || title} 
+          src={imageUrl} 
+          alt={title} 
           fill
           className="object-cover object-center"
           priority
-          quality={90}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 1920px"
-          placeholder="blur"
-          blurDataURL={image?.asset?.metadata?.lqip || "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="}
         />
       </div>
 
@@ -87,7 +68,7 @@ export function HeroGlobal({
           {description && (
             <Card className="max-w-2xl mx-auto bg-white/95 backdrop-blur-sm border-orange-6 shadow-lg">
               <CardContent className="p-6">
-                <p className="text-lg text-orange-11 leading-relaxed">
+                <p className="text-orange-11 leading-relaxed">
                   {description}
                 </p>
               </CardContent>

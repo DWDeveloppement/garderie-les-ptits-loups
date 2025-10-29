@@ -25,6 +25,7 @@ export const HOME_QUERY = groq`
     "linkedSectors": linkedSectors[]-> {
       _id,
       title,
+      ageRange,
       "slug": devConfig.slug.current,
       sectionHero {
         image ${BASIC_IMAGE_QUERY},
@@ -41,8 +42,8 @@ export const HOME_QUERY = groq`
       description
     },
     
-    // Contenu page
-    contentPage,
+    // Contenu complémentaire
+    contentComplement,
     
     // Parallax
     parallax {

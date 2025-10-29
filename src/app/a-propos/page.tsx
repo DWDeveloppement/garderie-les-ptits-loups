@@ -21,9 +21,11 @@ export default async function AboutPage() {
         image={data?.sectionHero?.image}
       />
       <AboutIntroSection />
-      {data?.parallax?.image && <ParalaxImage image={data.parallax.image} />}
+      {/* Parallax 1 - après l'introduction */}
+      {data?.parallaxOne?.image && <ParalaxImage image={data.parallaxOne.image} />}
       <HistorySection />
-      {data?.parallax?.image && <ParalaxImage image={data.parallax.image} />}
+      {/* Parallax 2 - après l'histoire */}
+      {data?.parallaxTwo?.image && <ParalaxImage image={data.parallaxTwo.image} />}
       <TeamSection />
       <ValuesSection />
       <PedagogySection />

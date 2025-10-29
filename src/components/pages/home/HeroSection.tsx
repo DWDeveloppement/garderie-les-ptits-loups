@@ -1,9 +1,6 @@
 import { Button } from "@/components/ui/button"
 import type { SanityImage } from "@/types/sanity/sectorPage"
-import { imageBuilder } from "lib/sanity/client"
 import Image from "next/image"
-import Link from "next/link"
-import * as React from "react"
 
 interface HeroSectionProps {
   title?: string
@@ -22,13 +19,8 @@ export function HeroSection({
   buttonText = "Nous contacter",
   buttonLink = "/contact"
 }: HeroSectionProps) {
-  // Convertir SanityImage en URL pour le logo (si fourni)
-  const logoUrl = React.useMemo(() => {
-    if (logo?.asset) {
-      return imageBuilder.image(logo.asset).width(800).quality(90).format('webp').url()
-    }
-    return "/logo-les-ptits-loups.webp" // Fallback
-  }, [logo])
+  // URL du logo (simple et direct)
+  const logoUrl = logo?.asset?.url || "/logo-les-ptits-loups.webp"
 
   return (
     <section className="w-full relative min-h-[80vh] px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16 bg-gradient-to-br from-orange-2 to-purple-1 flex items-center">
@@ -37,19 +29,23 @@ export function HeroSection({
           
           {/* Contenu Gauche - Texte et Boutons */}
           <div className="flex flex-col flex-wrap items-center space-y-6 w-full md:max-w-[60%]">
-            <h1 className="text-3xl lg:text-5xl font-bold text-orange-12 leading-tight">
+            <h1 className="font-bold leading-tight text-orange-11">
               {title}<br />
               <span className="text-purple-9">{garderieName}</span>
             </h1>
             
-            <p className="text-lg lg:text-xl text-orange-11 leading-relaxed">
+            <p className="leading-relaxed text-orange-11">
               {description}
             </p>
             
-              <Button size="4" asChild className="bg-purple-9 hover:bg-purple-10 text-purple-contrast">
-                <Link href={buttonLink || "/contact"}>
-                  {buttonText}
-                </Link>
+              <Button 
+                size="lg" 
+                variant="default" 
+                asNextLink 
+                href={buttonLink || "/contact"}
+                ariaLabel={`${buttonText} - ${garderieName}`}
+              >
+                {buttonText}
               </Button>
 
           </div>

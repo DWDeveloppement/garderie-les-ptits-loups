@@ -8,10 +8,8 @@ import { Spinner } from '@/components/shared/feedback'
 import { Button } from '@/components/ui/button'
 import { useFormValidation } from '@/hooks/useFormValidation'
 import { useRecaptchaV2 } from '@/hooks/useRecaptchaV2'
-import * as Form from '@radix-ui/react-form'
-import * as Toast from '@radix-ui/react-toast'
 import { Mail, MessageSquare, Phone, User } from 'lucide-react'
-import * as React from 'react'
+import { toast } from 'sonner'
 import { HoneypotField } from './HoneypotField'
 import { InputField } from './InputField'
 import { TextareaField } from './TextareaField'
@@ -31,21 +29,17 @@ const ContactForm = () => {
 		MESSAGES,
 	} = useFormValidation()
 	
-	// Toast state
-	const [toastOpen, setToastOpen] = React.useState(false)
-	const [toastMessage, setToastMessage] = React.useState({ title: '', description: '' })
-	const [toastType, setToastType] = React.useState<'success' | 'error'>('success')
-	
+	// Toast state - Plus besoin avec Sonner
 	const showSuccess = (title: string, description: string) => {
-		setToastType('success')
-		setToastMessage({ title, description })
-		setToastOpen(true)
+		toast.success(title, {
+			description: description
+		})
 	}
 	
 	const showError = (title: string, description: string) => {
-		setToastType('error')
-		setToastMessage({ title, description })
-		setToastOpen(true)
+		toast.error(title, {
+			description: description
+		})
 	}
 	
 	// Hook reCAPTCHA v2
@@ -75,9 +69,8 @@ const ContactForm = () => {
 	}
 	
 	return (
-		<>
-			<Form.Root className='w-full flex flex-col max-w-4xl mt-16'>
-				<div className='grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12 mb-12'>
+		<div className='w-full flex flex-col max-w-4xl mt-16'>
+			<div className='grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12 mb-12'>
 					{/* Nom */}
 					<InputField
 						name="nom"
@@ -194,7 +187,7 @@ const ContactForm = () => {
 				{/* Boutons */}
 				<div className='flex gap-4 justify-around mt-8'>
 					<Button
-						size='3'
+						size='default'
 						type='button'
 						className='bg-purple-9 hover:bg-purple-10 text-white relative'
 						onClick={handleSubmit}
@@ -203,7 +196,7 @@ const ContactForm = () => {
 						{isSubmitting ? 'Envoi en cours...' : 'Envoyer'}
 					</Button>
 					<Button
-						size='3'
+						size='default'
 						type='button'
 						variant='outline'
 						className='border-orange-6 text-orange-12 hover:bg-orange-2'
@@ -219,33 +212,7 @@ const ContactForm = () => {
 						)}
 					</Button>
 				</div>
-			</Form.Root>
-
-			{/* Toast Radix UI */}
-			<Toast.Provider swipeDirection="right">
-			<Toast.Root
-				className={`
-					rounded-lg shadow-xl p-4 grid grid-cols-[auto_max-content] gap-x-4 items-center
-					${toastType === 'success' ? 'bg-green-50 border-2 border-green-500' : 'bg-red-50 border-2 border-red-500'}
-				`}
-				open={toastOpen}
-				onOpenChange={setToastOpen}
-			>
-				<div>
-					<Toast.Title className={`font-bold text-sm ${toastType === 'success' ? 'text-green-900' : 'text-red-900'}`}>
-						{toastMessage.title}
-					</Toast.Title>
-					<Toast.Description className={`text-sm mt-1 ${toastType === 'success' ? 'text-green-700' : 'text-red-700'}`}>
-						{toastMessage.description}
-					</Toast.Description>
-				</div>
-				<Toast.Close className={`text-sm font-bold ${toastType === 'success' ? 'text-green-600 hover:text-green-800' : 'text-red-600 hover:text-red-800'}`}>
-					✕
-				</Toast.Close>
-			</Toast.Root>
-			<Toast.Viewport className="fixed bottom-0 right-0 flex flex-col p-6 gap-2 w-96 max-w-full m-0 list-none z-50" />
-			</Toast.Provider>
-		</>
+		</div>
 	)
 }
 

@@ -14,14 +14,15 @@ import { ICONS, type IconName } from './registry'
  * Tailles prédéfinies pour les icônes
  * Mapping vers les classes Tailwind size-*
  */
-type IconSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+type IconSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'avatar';
 
 const sizeClass: Record<IconSize, string> = {
   xs: 'size-3.5',
   sm: 'size-4',
   md: 'size-5',
   lg: 'size-6',
-  xl: 'size-8'
+  xl: 'size-8',
+  avatar: 'size-22', // 48px - taille idéale pour les avatars
 };
 
 /**

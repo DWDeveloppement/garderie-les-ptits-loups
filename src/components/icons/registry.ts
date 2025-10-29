@@ -16,6 +16,7 @@ import {
 	Download,
 	Eye,
 	EyeOff,
+	Footprints,
 	Heart,
 	Home,
 	Image as ImageIcon,
@@ -29,6 +30,7 @@ import {
 	Search,
 	SendHorizontal,
 	Settings,
+	Smile,
 	Star,
 	Upload,
 	User,
@@ -87,6 +89,8 @@ export const ICONS = {
 	heart: Heart,
 	star: Star,
 	baby: Baby,
+	footprints: Footprints,
+	smile: Smile,
 	bookOpen: BookOpen,
 
 	// Icônes d'actions

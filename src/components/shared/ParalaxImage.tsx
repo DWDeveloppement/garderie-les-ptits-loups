@@ -1,12 +1,15 @@
 "use client"
 
-import { useScrollParallax } from "@/hooks/components/useScollParalax"
-import type { SanityImage } from "@/types/sanity/sectorPage"
+import { useScrollParallax } from "@/hooks/useScollParalax"
 import Image from "next/image"
-import * as React from "react"
 
 interface ParalaxImageProps {
-  image?: SanityImage
+  image?: {
+    asset?: {
+      url?: string
+    }
+    alt?: string
+  }
   imageUrl?: string
   imageAlt?: string
   title?: string
@@ -18,7 +21,7 @@ interface ParalaxImageProps {
 export function ParalaxImage({
   image,
   imageUrl,
-  imageAlt = "Image de fond de la garderie",
+  imageAlt,
   title,
   subtitle,
   height = 'lg',
@@ -32,16 +35,11 @@ export function ParalaxImage({
     overlayIntensity: 0.3
   })
 
-  // Convertir SanityImage en URL
-  const finalImageUrl = React.useMemo(() => {
-    if (imageUrl) return imageUrl
-    if (image?.asset?.url) {
-      console.log('🔍 ParalaxImage - URL directe Sanity:', image.asset.url)
-      return image.asset.url
-    }
-    console.log('🔍 ParalaxImage - Pas d\'image, utilisation du fallback')
-    return "/paralax.webp" // Fallback
-  }, [imageUrl, image])
+  // Valeurs par défaut avec fallbacks title et subtitle ne sont pas présents dans les parallaxes images.
+  const finalImageUrl = image?.asset?.url || imageUrl || "/paralax.webp"
+  const finalImageAlt = image?.alt || imageAlt || "Image de fond de la garderie"
+  const finalTitle = title || null
+  const finalSubtitle = subtitle || null
 
   // Classes de hauteur dynamiques
   const heightClasses = {
@@ -70,14 +68,10 @@ export function ParalaxImage({
       >
         <Image 
           src={finalImageUrl} 
-          alt={image?.alt || imageAlt} 
+          alt={finalImageAlt} 
           fill
           className="object-cover object-center"
           priority
-          quality={85}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 1920px"
-          placeholder="blur"
-          blurDataURL={image?.asset?.metadata?.lqip || "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="}
         />
       </div>
 
@@ -90,29 +84,23 @@ export function ParalaxImage({
         }}
       />
 
-      {/* Contenu textuel avec effet de flottement au scroll (optionnel) */}
-      {(title || subtitle) && (
-        <div className={`relative z-10 h-full flex flex-col justify-center px-4 sm:px-6 lg:px-8`}>
-          <div 
-            className={`max-w-4xl mx-auto ${textPositionClasses[textPosition]}`}
-            style={{ 
-              transform: textTransform,
-              transition: 'transform 0.1s ease-out'
-            }}
-          >
-            {title && (
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 drop-shadow-lg">
-                {title}
-              </h2>
-            )}
-            {subtitle && (
-              <p className="text-lg sm:text-xl lg:text-2xl text-orange-1 max-w-2xl leading-relaxed drop-shadow-md">
-                {subtitle}
-              </p>
-            )}
-          </div>
+      {/* Contenu textuel avec effet de flottement au scroll */}
+      <div className={`relative z-10 h-full flex flex-col justify-center px-4 sm:px-6 lg:px-8`}>
+        <div 
+          className={`max-w-4xl mx-auto ${textPositionClasses[textPosition]}`}
+          style={{ 
+            transform: textTransform,
+            transition: 'transform 0.1s ease-out'
+          }}
+        >
+          <h2 className="font-bold text-white mb-4 drop-shadow-lg">
+            {finalTitle}
+          </h2>
+          <p className="text-orange-1 max-w-2xl leading-relaxed drop-shadow-md">
+            {finalSubtitle}
+          </p>
         </div>
-      )}
+      </div>
 
       {/* Effet de profondeur avec ombre portée */}
       <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-orange-12/20 to-transparent" />

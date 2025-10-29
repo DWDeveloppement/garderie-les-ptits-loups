@@ -29,13 +29,13 @@ export function TestimonialsSection() {
   }, [isHovered, currentIndex]);
 
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-purple-1 to-orange-2">
+    <section className="py-16 px-4 sm:px-6 lg:px-8 gradient-section-a">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-orange-12 mb-4">
+          <h2 className="font-bold mb-4">
             Ce que disent les parents
           </h2>
-          <p className="text-xl text-orange-11 max-w-3xl mx-auto">
+          <p className="max-w-3xl mx-auto">
             La confiance des familles est notre plus belle récompense. 
             Découvrez leurs témoignages.
           </p>
@@ -60,7 +60,7 @@ export function TestimonialsSection() {
                         <Quote className="h-12 w-12 text-purple-9" />
                       </div>
                       
-                      <p className="text-lg text-orange-11 leading-relaxed mb-8 italic">
+                      <p className="leading-relaxed mb-8 italic">
                         &quot;{testimonial.content}&quot;
                       </p>
                       
@@ -74,10 +74,10 @@ export function TestimonialsSection() {
                       </div>
                       
                       <div>
-                        <p className="text-lg font-semibold text-orange-12 mb-1">
+                        <p className="font-semibold mb-1">
                           {testimonial.name}
                         </p>
-                        <p className="text-purple-9 font-medium">
+                        <p className="font-medium">
                           {testimonial.role}
                         </p>
                       </div>

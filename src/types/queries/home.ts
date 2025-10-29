@@ -8,6 +8,7 @@ import type { PortableTextBlock, SanityImage } from '../sanity/sectorPage'
 export type LinkedSector = {
 	_id: string
 	title: string
+	ageRange: string
 	slug: string
 	sectionHero: {
 		description: string
@@ -41,7 +42,7 @@ export type HomePageData = {
 	}
 	linkedSectors: LinkedSector[]
 	linkedOtherSpaces: LinkedOtherSpace[]
-	contentPage?: PortableTextBlock[]
+	contentComplement?: PortableTextBlock[]
 	parallax?: {
 		image: SanityImage
 	}

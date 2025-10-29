@@ -11,12 +11,20 @@ export type AboutPageData = {
 		description: string
 		image: SanityImage
 	}
-	// Contenu de la page (Portable Text)
-	contentPage?: PortableTextBlock[]
-	// Parallax
-	parallax?: {
+	// Introduction (rich-text avec images)
+	introduction?: PortableTextBlock[]
+	// Parallax 1
+	parallaxOne?: {
 		image: SanityImage
 	}
+	// Histoire
+	history?: PortableTextBlock[]
+	// Parallax 2
+	parallaxTwo?: {
+		image: SanityImage
+	}
+	// Pédagogie
+	pedagogy?: PortableTextBlock[]
 	// SEO
 	seo?: {
 		metaTitle?: string

@@ -29,4 +29,5 @@ export type DynamicMapProps = MapProps & {
 	interactive?: boolean
 	zIndex?: number
 	ratio?: string
+	onError?: (error: string) => void
 }

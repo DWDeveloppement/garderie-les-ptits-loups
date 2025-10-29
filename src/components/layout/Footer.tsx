@@ -11,7 +11,7 @@ export function Footer() {
           <div className="md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
               
-              <span className="text-2xl font-bold text-orange-1">Les P&apos;tits Loups</span>
+              <span className="font-bold">Les P&apos;tits Loups</span>
             </div>
             <p className="text-orange-4 mb-4 leading-relaxed">
               Une garderie familiale où chaque enfant est unique et précieux. 
@@ -38,7 +38,7 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 text-orange-2">Contact</h3>
+            <h3 className="font-semibold mb-4">Contact</h3>
             <div className="space-y-3">
               <div className="flex items-start space-x-3">
                 <MapPin className="h-5 w-5 text-purple-surface mt-0.5 flex-shrink-0" />

@@ -21,8 +21,6 @@ export default async function ContactPage() {
       <ContactFormSection />
       {data?.parallax?.image && <ParalaxImage image={data.parallax.image} />}
       <MapSection className='bg-orange-bg-light flex flex-col items-center justify-center' />
-      <hr />
-      <MapSection className='bg-orange-bg-light flex flex-col items-center justify-center' mapType='static' />
     </div>
   )
 }

@@ -102,6 +102,7 @@ export function useDynamicMap({
 	showControls = true,
 	interactive = true,
 	zIndex = 1,
+	onError,
 }: DynamicMapProps) {
 	const mapRef = useRef<HTMLDivElement>(null)
 	const [isLoaded, setIsLoaded] = useState(false)
@@ -175,7 +176,12 @@ export function useDynamicMap({
 				setIsLoaded(true)
 			} catch (err) {
 				console.error('Erreur lors du chargement de la carte:', err)
-				setError('Impossible de charger la carte')
+				const errorMessage = 'Impossible de charger la carte'
+				setError(errorMessage)
+				// Appel du callback d'erreur si fourni
+				if (onError) {
+					onError(errorMessage)
+				}
 			}
 		}
 

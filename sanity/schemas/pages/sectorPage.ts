@@ -24,6 +24,13 @@ export const sectorPage: SchemaTypeDefinition = {
 			},
 			validation: (Rule: Rule) => Rule.required().max(100),
 		},
+		// Age Range
+		{
+			name: 'ageRange',
+			title: 'Age Range',
+			type: 'string',
+			validation: (Rule: Rule) => Rule.required().max(100),
+		},
 		// === CONTENU DE LA PAGE ===
 		// Hero
 		{

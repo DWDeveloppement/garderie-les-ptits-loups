@@ -1,4 +1,4 @@
-import { AccordionContent, AccordionItem, AccordionRoot, AccordionTrigger } from '@/components/ui/accordion'
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 
 type AccordionPriceProps = {
 	accordionTitle: string
@@ -11,7 +11,7 @@ export function AccordionPrice({ accordionTitle, items }: AccordionPriceProps) {
 	return (
 		<article className='mb-16'>
 			<h3 className='text-xl font-bold text-purple-12 mb-4 text-center'>{accordionTitle}</h3>
-			<AccordionRoot type='single' collapsible className='space-y-4'>
+			<Accordion type='single' collapsible className='space-y-4'>
 				{items.map((item) => (
 					<AccordionItem value={item.service} key={item.service}>
 						<AccordionTrigger>{item.service}</AccordionTrigger>
@@ -27,7 +27,7 @@ export function AccordionPrice({ accordionTitle, items }: AccordionPriceProps) {
 						</AccordionContent>
 					</AccordionItem>
 				))}
-			</AccordionRoot>
+			</Accordion>
 		</article>
 	)
 }

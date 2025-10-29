@@ -15,7 +15,7 @@ export function GallerySection({ photos, title = 'Galerie' }: GallerySectionProp
   return (
     <section className="w-full py-16 px-4 sm:px-6 lg:px-8 bg-muted">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-3xl font-bold mb-8 text-center">{title}</h2>
+        <h2 className="font-bold mb-8 text-center">{title}</h2>
         <GalleryWithLightbox
           photos={photos}
           layout="rows"

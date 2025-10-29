@@ -1,6 +1,7 @@
 'use client'
 
-import { useMapLocation } from '@/hooks/components/useMaps'
+import { Button } from '@/components/ui/button'
+import { useMapLocation } from '@/hooks/useMaps'
 import type { MapLocation } from '@/types/map'
 import { Copy, MapPin, Navigation } from 'lucide-react'
 
@@ -14,34 +15,39 @@ export function MapActions({ location, className = '' }: MapActionsProps) {
 
 	return (
 		<div className={`flex flex-wrap gap-2 justify-center ${className}`}>
-			<a
+			<Button
+				asLink
 				href={urls.appleMaps}
-				target='_blank'
-				rel='noopener noreferrer'
-				className='inline-flex items-center gap-2 rounded-xl border px-3 py-2 text-sm font-medium bg-purple-9 hover:bg-purple-10 text-white transition-colors'
-				aria-label="Ouvrir l'itinéraire dans Apple Plans">
+				variant="primary"
+				size="md"
+				ariaLabel="Ouvrir l'itinéraire dans Apple Plans"
+				external
+				className='inline-flex items-center gap-2'>
 				<Navigation className='size-4' aria-hidden />
 				Apple Plans
-			</a>
+			</Button>
 
-			<a
+			<Button
+				asLink
 				href={urls.googleMaps}
-				target='_blank'
-				rel='noopener noreferrer'
-				className='inline-flex items-center gap-2 rounded-xl border px-3 py-2 text-sm font-medium bg-purple-9 hover:bg-purple-10 text-white transition-colors'
-				aria-label="Ouvrir l'itinéraire dans Google Maps">
+				variant="primary"
+				size="md"
+				ariaLabel="Ouvrir l'itinéraire dans Google Maps"
+				external
+				className='inline-flex items-center gap-2'>
 				<MapPin className='size-4' aria-hidden />
 				Google Maps
-			</a>
+			</Button>
 
-			<button
-				type='button'
+			<Button
 				onClick={copyAddress}
-				className='inline-flex items-center gap-2 rounded-xl border px-3 py-2 text-sm font-medium bg-purple-9 hover:bg-purple-10 text-white transition-colors'
-				aria-label="Copier l'adresse">
+				variant="primary"
+				size="md"
+				ariaLabel="Copier l'adresse"
+				className='inline-flex items-center gap-2'>
 				<Copy className='size-4' aria-hidden />
 				Copier
-			</button>
+			</Button>
 		</div>
 	)
 }

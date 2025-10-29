@@ -1,5 +1,6 @@
 'use client'
 
+import { Button } from '@/components/ui/button'
 import { useScrollDirection, useScrollToTop } from '@/hooks/useScroll'
 import { ArrowUp } from 'lucide-react'
 
@@ -13,11 +14,13 @@ export function BackToTop() {
   if (!shouldShow) return null
 
   return (
-		<button
+		<Button
 			onClick={scrollToTop}
-			aria-label='Retour en haut de la page'
-			className='fixed bottom-20 right-4 z-50 inline-flex h-12 w-12 items-center justify-center rounded-full bg-purple-9 text-white transition-all shadow-xl/50 shadow-(color:--purple-9) hover:bg-purple-10 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-9/50'>
+			ariaLabel='Retour en haut de la page'
+			variant="primary"
+			size="icon"
+			className='fixed bottom-20 right-4 z-50 h-12 w-12 rounded-full shadow-xl/50 shadow-(color:--purple-9)'>
 			<ArrowUp className='h-5 w-5' aria-hidden />
-		</button>
+		</Button>
 	)
 }

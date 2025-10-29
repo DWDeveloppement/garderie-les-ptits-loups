@@ -18,8 +18,8 @@ export function ContactFormSection() {
 	return (
 		<section className='flex flex-col gap-4 py-16 px-4 sm:px-6 lg:px-8 bg-orange-bg-light'>
 			<div className='max-w-4xl mx-auto text-center space-y-4'>
-				<h2 className='text-5xl font-bold text-purple-9'>Contactez-nous</h2>
-				<p className='text-lg text-orange-11'>Nous sommes à votre entière disposition pour répondre à toutes vos questions.</p>
+				<h2 className='font-bold'>Contactez-nous</h2>
+				<p>Nous sommes à votre entière disposition pour répondre à toutes vos questions.</p>
 				{/* Formulaire de contact */}
 				<ContactForm />
 

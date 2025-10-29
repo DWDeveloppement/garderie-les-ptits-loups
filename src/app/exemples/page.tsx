@@ -11,7 +11,7 @@ export default function ExamplePage() {
 			<div className='max-w-6xl mx-auto space-y-fl-xl'>
 				{/* Section 1: Typographie */}
 				<section className='space-y-fl-md'>
-					<h1 className='font-bold text-purple-12'>Système Typographique Fluide</h1>
+					<h1 className='font-bold text-purple-12 debug-fonts'>Système Typographique Fluide</h1>
 
 					<h2 className='font-semibold text-orange-11'>Exemple d&apos;usage des classes fluides</h2>
 
@@ -42,7 +42,7 @@ export default function ExamplePage() {
 
 					{/* Cards avec padding fluide */}
 					<div className='grid md:grid-cols-2 lg:grid-cols-3 gap-fl-md'>
-						<Card variant='primary' size='sm'>
+						<Card className="bg-purple-1 border-purple-6">
 							<CardHeader>
 								<CardTitle className='text-fl-lg font-display'>Padding Small</CardTitle>
 							</CardHeader>
@@ -53,7 +53,7 @@ export default function ExamplePage() {
 							</CardContent>
 						</Card>
 
-						<Card variant='secondary' size='md'>
+						<Card className="bg-orange-1 border-orange-6">
 							<CardHeader>
 								<CardTitle className='text-fl-lg font-display'>Padding Medium</CardTitle>
 							</CardHeader>
@@ -62,7 +62,7 @@ export default function ExamplePage() {
 							</CardContent>
 						</Card>
 
-						<Card variant='neutral' size='lg'>
+						<Card className="bg-purple-2 border-purple-7">
 							<CardHeader>
 								<CardTitle className='text-fl-lg font-display'>Padding Large</CardTitle>
 							</CardHeader>
@@ -74,7 +74,7 @@ export default function ExamplePage() {
 
 					{/* Cards avec espacement directionnel */}
 					<div className='grid md:grid-cols-2 gap-fl-lg'>
-						<Card variant='primary' className='px-fl-md py-fl-sm'>
+						<Card className="bg-purple-1 border-purple-6 'px-fl-md py-fl-sm">
 							<CardHeader>
 								<CardTitle className='text-fl-lg font-display'>Espacement Directionnel</CardTitle>
 							</CardHeader>
@@ -83,7 +83,7 @@ export default function ExamplePage() {
 							</CardContent>
 						</Card>
 
-						<Card variant='secondary' className='px-fl-lg py-fl-base'>
+						<Card className="bg-orange-1 border-orange-6 'px-fl-lg py-fl-base">
 							<CardHeader>
 								<CardTitle className='text-fl-lg font-display'>Espacement Mixte</CardTitle>
 							</CardHeader>
@@ -95,7 +95,7 @@ export default function ExamplePage() {
 
 					{/* Cards avec paires fluides */}
 					<div className='grid md:grid-cols-3 gap-fl-base'>
-						<Card variant='primary' className='p-fl-sm-base'>
+						<Card className="bg-purple-1 border-purple-6 'p-fl-sm-base">
 							<CardHeader>
 								<CardTitle className='text-fl-base font-display'>Paire sm-base</CardTitle>
 							</CardHeader>
@@ -104,7 +104,7 @@ export default function ExamplePage() {
 							</CardContent>
 						</Card>
 
-						<Card variant='secondary' className='p-fl-base-md'>
+						<Card className="bg-orange-1 border-orange-6 'p-fl-base-md">
 							<CardHeader>
 								<CardTitle className='text-fl-base font-display'>Paire base-md</CardTitle>
 							</CardHeader>
@@ -113,7 +113,7 @@ export default function ExamplePage() {
 							</CardContent>
 						</Card>
 
-						<Card variant='neutral' className='p-fl-md-lg'>
+						<Card className="bg-purple-2 border-purple-7 'p-fl-md-lg">
 							<CardHeader>
 								<CardTitle className='text-fl-base font-display'>Paire md-lg</CardTitle>
 							</CardHeader>
@@ -145,121 +145,121 @@ export default function ExamplePage() {
 							<p className='text-fl-base text-gray-700 leading-fl-6'>Système de boutons cohérent avec variants, tailles et états.</p>
 
 							<div className='grid md:grid-cols-2 lg:grid-cols-3 gap-fl-md'>
-								<Card variant='primary' size='sm'>
+								<Card className="bg-purple-1 border-purple-6">
 									<CardHeader>
 										<CardTitle className='text-fl-lg font-display'>Primary</CardTitle>
 									</CardHeader>
 									<CardContent className='space-y-2'>
-										<Button variant='primary' size='sm' ariaLabel="Bouton Small">
+										<Button className="bg-purple-1 border-purple-6" ariaLabel="Bouton Small">
 											Small
 										</Button>
-										<Button variant='primary' size='md' ariaLabel="Bouton Medium">
+										<Button className="bg-purple-1 border-purple-6" ariaLabel="Bouton Medium">
 											Medium
 										</Button>
-										<Button variant='primary' size='lg' ariaLabel="Bouton Large">
+										<Button className="bg-purple-1 border-purple-6" ariaLabel="Bouton Large">
 											Large
 										</Button>
-										<Button variant='primary' size='xl' ariaLabel="Bouton Extra Large">
+										<Button className="bg-purple-1 border-purple-6" ariaLabel="Bouton Extra Large">
 											Extra Large
 										</Button>
 									</CardContent>
 								</Card>
 
-								<Card variant='secondary' size='sm'>
+								<Card className="bg-orange-1 border-orange-6">
 									<CardHeader>
 										<CardTitle className='text-fl-lg font-display'>Secondary</CardTitle>
 									</CardHeader>
 									<CardContent className='space-y-2'>
-										<Button variant='secondary' size='sm' ariaLabel="Bouton Secondary Small">
+										<Button className="bg-orange-1 border-orange-6" ariaLabel="Bouton Secondary Small">
 											Small
 										</Button>
-										<Button variant='secondary' size='md' ariaLabel="Bouton Secondary Medium">
+										<Button className="bg-orange-1 border-orange-6" ariaLabel="Bouton Secondary Medium">
 											Medium
 										</Button>
-										<Button variant='secondary' size='lg' ariaLabel="Bouton Secondary Large">
+										<Button className="bg-orange-1 border-orange-6" ariaLabel="Bouton Secondary Large">
 											Large
 										</Button>
-										<Button variant='secondary' size='xl' ariaLabel="Bouton Secondary Extra Large">
+										<Button className="bg-orange-1 border-orange-6" ariaLabel="Bouton Secondary Extra Large">
 											Extra Large
 										</Button>
 									</CardContent>
 								</Card>
 
-								<Card variant='neutral' size='sm'>
+								<Card className="bg-purple-2 border-purple-7">
 									<CardHeader>
 										<CardTitle className='text-fl-lg font-display'>Outline</CardTitle>
 									</CardHeader>
 									<CardContent className='space-y-2'>
-										<Button variant='outline' size='sm' ariaLabel="Bouton Outline Small">
+										<Button variant='outline' ariaLabel="Bouton Outline Small">
 											Small
 										</Button>
-										<Button variant='outline' size='md' ariaLabel="Bouton Outline Medium">
+										<Button variant='outline' ariaLabel="Bouton Outline Medium">
 											Medium
 										</Button>
-										<Button variant='outline' size='lg' ariaLabel="Bouton Outline Large">
+										<Button variant='outline' ariaLabel="Bouton Outline Large">
 											Large
 										</Button>
-										<Button variant='outline' size='xl' ariaLabel="Bouton Outline Extra Large">
+										<Button variant='outline' ariaLabel="Bouton Outline Extra Large">
 											Extra Large
 										</Button>
 									</CardContent>
 								</Card>
 
-								<Card variant='primary' size='sm'>
+								<Card className="bg-purple-1 border-purple-6">
 									<CardHeader>
 										<CardTitle className='text-fl-lg font-display'>Ghost</CardTitle>
 									</CardHeader>
 									<CardContent className='space-y-2'>
-										<Button variant='ghost' size='sm' ariaLabel="Bouton Ghost Small">
+										<Button variant='ghost' ariaLabel="Bouton Ghost Small">
 											Small
 										</Button>
-										<Button variant='ghost' size='md' ariaLabel="Bouton Ghost Medium">
+										<Button variant='ghost' ariaLabel="Bouton Ghost Medium">
 											Medium
 										</Button>
-										<Button variant='ghost' size='lg' ariaLabel="Bouton Ghost Large">
+										<Button variant='ghost' ariaLabel="Bouton Ghost Large">
 											Large
 										</Button>
-										<Button variant='ghost' size='xl' ariaLabel="Bouton Ghost Extra Large">
+										<Button variant='ghost' ariaLabel="Bouton Ghost Extra Large">
 											Extra Large
 										</Button>
 									</CardContent>
 								</Card>
 
-								<Card variant='secondary' size='sm'>
+								<Card className="bg-orange-1 border-orange-6">
 									<CardHeader>
 										<CardTitle className='text-fl-lg font-display'>Destructive</CardTitle>
 									</CardHeader>
 									<CardContent className='space-y-2'>
-										<Button variant='destructive' size='sm' ariaLabel="Bouton Destructive Small">
+										<Button variant='destructive' ariaLabel="Bouton Destructive Small">
 											Small
 										</Button>
-										<Button variant='destructive' size='md' ariaLabel="Bouton Destructive Medium">
+										<Button variant='destructive' ariaLabel="Bouton Destructive Medium">
 											Medium
 										</Button>
-										<Button variant='destructive' size='lg' ariaLabel="Bouton Destructive Large">
+										<Button variant='destructive' ariaLabel="Bouton Destructive Large">
 											Large
 										</Button>
-										<Button variant='destructive' size='xl' ariaLabel="Bouton Destructive Extra Large">
+										<Button variant='destructive' ariaLabel="Bouton Destructive Extra Large">
 											Extra Large
 										</Button>
 									</CardContent>
 								</Card>
 
-								<Card variant='neutral' size='sm'>
+								<Card className="bg-purple-2 border-purple-7">
 									<CardHeader>
 										<CardTitle className='text-fl-lg font-display'>Link</CardTitle>
 									</CardHeader>
 									<CardContent className='space-y-2'>
-										<Button variant='link' size='sm' ariaLabel="Bouton Link Small">
+										<Button variant='link' ariaLabel="Bouton Link Small">
 											Small
 										</Button>
-										<Button variant='link' size='md' ariaLabel="Bouton Link Medium">
+										<Button variant='link' ariaLabel="Bouton Link Medium">
 											Medium
 										</Button>
-										<Button variant='link' size='lg' ariaLabel="Bouton Link Large">
+										<Button variant='link' ariaLabel="Bouton Link Large">
 											Large
 										</Button>
-										<Button variant='link' size='xl' ariaLabel="Bouton Link Extra Large">
+										<Button variant='link' ariaLabel="Bouton Link Extra Large">
 											Extra Large
 										</Button>
 									</CardContent>
@@ -276,69 +276,69 @@ export default function ExamplePage() {
 							</p>
 
 							<div className='grid md:grid-cols-2 lg:grid-cols-3 gap-fl-md'>
-								<Card variant='primary' size='md'>
+								<Card className="bg-purple-1 border-purple-6">
 									<CardHeader>
 										<CardTitle className='text-fl-lg font-display'>Actions Communes</CardTitle>
 									</CardHeader>
 									<CardContent className='space-y-3'>
-										<Button variant='primary' size='md' className='w-full'>
+										<Button className="bg-purple-1 border-purple-6 w-full">
 											<Mail className='mr-2 h-4 w-4' />
 											Envoyer Email
 										</Button>
-										<Button variant='secondary' size='md' className='w-full'>
+										<Button className="bg-orange-1 border-orange-6 w-full">
 											<Phone className='mr-2 h-4 w-4' />
 											Appeler
 										</Button>
-										<Button variant='outline' size='md' className='w-full'>
+										<Button variant='outline' className='w-full'>
 											<Download className='mr-2 h-4 w-4' />
 											Télécharger
 										</Button>
 									</CardContent>
 								</Card>
 
-								<Card variant='secondary' size='md'>
+								<Card className="bg-orange-1 border-orange-6">
 									<CardHeader>
 										<CardTitle className='text-fl-lg font-display'>Boutons Icon</CardTitle>
 									</CardHeader>
 									<CardContent className='space-y-3'>
 										<div className='flex gap-2'>
-											<Button variant='ghost' size='icon' aria-label='Ajouter aux favoris'>
+											<Button variant='ghost' aria-label='Ajouter aux favoris'>
 												<Heart className='h-4 w-4' />
 											</Button>
-											<Button variant='ghost' size='icon' aria-label='Noter'>
+											<Button variant='ghost' aria-label='Noter'>
 												<Star className='h-4 w-4' />
 											</Button>
-											<Button variant='outline' size='icon' aria-label='Envoyer'>
+											<Button variant='outline' aria-label='Envoyer'>
 												<Send className='h-4 w-4' />
 											</Button>
 										</div>
 										<div className='flex gap-2'>
-											<Button variant='primary' size='icon' aria-label='Suivant'>
+											<Button className="bg-purple-1 border-purple-6" aria-label='Suivant'>
 												<ArrowRight className='h-4 w-4' />
 											</Button>
-											<Button variant='secondary' size='icon' aria-label='Envoyer un email'>
+											<Button className="bg-orange-1 border-orange-6" aria-label='Envoyer un email'>
 												<Mail className='h-4 w-4' />
 											</Button>
 										</div>
 									</CardContent>
 								</Card>
 
-								<Card variant='neutral' size='md'>
+								<Card className="bg-purple-2 border-purple-7">
 									<CardHeader>
 										<CardTitle className='text-fl-lg font-display'>États</CardTitle>
 									</CardHeader>
 									<CardContent className='space-y-3'>
-										<Button variant='primary' loading className='w-full'>
+										<Button className="bg-purple-1 border-purple-6 w-full" loading>
 											Chargement...
 										</Button>
-										<Button variant='secondary' disabled className='w-full'>
+										<Button className="bg-orange-1 border-orange-6 w-full" disabled>
 											Désactivé
 										</Button>
-										<Button variant='outline' state='success' className='w-full'>
+										<Button variant='outline' className='w-full'>
 											<Star className='mr-2 h-4 w-4' />
 											Succès
 										</Button>
-										<Button variant='outline' state='error' className='w-full'>
+										<Button variant='outline' className='w-full'>
 											<Heart className='mr-2 h-4 w-4' />
 											Erreur
 										</Button>
@@ -356,25 +356,25 @@ export default function ExamplePage() {
 							</p>
 
 							<div className='grid md:grid-cols-2 gap-fl-lg'>
-								<Card variant='primary' size='lg'>
+								<Card className="bg-purple-1 border-purple-6">
 									<CardHeader>
 										<CardTitle className='text-fl-xl font-display'>Hero Section</CardTitle>
 									</CardHeader>
 									<CardContent className='space-y-4'>
 										<p className='text-fl-base text-purple-11'>Bouton CTA principal pour les actions importantes.</p>
-										<Button variant='primary' size='lg' className='w-full'>
+										<Button className="bg-purple-1 border-purple-6 w-full">
 											Nous contacter
 										</Button>
 									</CardContent>
 								</Card>
 
-								<Card variant='secondary' size='lg'>
+								<Card className="bg-orange-1 border-orange-6">
 									<CardHeader>
 										<CardTitle className='text-fl-xl font-display'>Formulaire</CardTitle>
 									</CardHeader>
 									<CardContent className='space-y-4'>
 										<p className='text-fl-base text-orange-11'>Bouton de soumission avec état de chargement.</p>
-										<Button variant='secondary' size='lg' loading className='w-full'>
+										<Button className="bg-orange-1 border-orange-6 w-full" loading>
 											Envoyer le message
 										</Button>
 									</CardContent>
@@ -382,68 +382,68 @@ export default function ExamplePage() {
 							</div>
 						</section>
 
-				{/* Section 4: Tests d'Accessibilité */}
-				<section className='space-y-fl-md'>
+					{/* Section 4: Tests d'Accessibilité */}
+					<section className='space-y-fl-md'>
 					<h2 className='text-fl-3xl font-bold text-purple-12 font-display'>Tests d&apos;Accessibilité</h2>
 					<p className='text-fl-base text-gray-700 leading-fl-6'>
 						Section dédiée aux tests d&apos;accessibilité des boutons.
 					</p>
 					<div className='grid md:grid-cols-2 gap-fl-md'>
-						<Card variant='primary' size='md' data-testid="button-primary">
+						<Card className="bg-purple-1 border-purple-6" data-testid="button-primary">
 							<CardHeader>
 								<CardTitle className='text-fl-lg font-display'>Test Contraste</CardTitle>
 							</CardHeader>
 							<CardContent className='space-y-3'>
-								<Button variant='primary' size='md' className='w-full'>
+								<Button className="bg-purple-1 border-purple-6 w-full">
 									Bouton Primary
 								</Button>
-								<Button variant='destructive' size='md' className='w-full'>
+								<Button variant='destructive' className='w-full'>
 									Bouton Destructive
 								</Button>
-								<Button variant='outline' size='md' className='w-full'>
+								<Button variant='outline' className='w-full'>
 									Bouton Outline
 								</Button>
 							</CardContent>
 						</Card>
-						<Card variant='secondary' size='md' data-testid="button-group">
+						<Card className="bg-orange-1 border-orange-6" data-testid="button-group">
 							<CardHeader>
 								<CardTitle className='text-fl-lg font-display'>Test Navigation</CardTitle>
 							</CardHeader>
 							<CardContent className='space-y-3'>
 								<div className='flex gap-2'>
-									<Button variant='primary' size='sm'>Tab 1</Button>
-									<Button variant='secondary' size='sm'>Tab 2</Button>
-									<Button variant='outline' size='sm'>Tab 3</Button>
+									<Button className="bg-purple-1 border-purple-6">Tab 1</Button>
+									<Button className="bg-orange-1 border-orange-6">Tab 2</Button>
+									<Button variant='outline'>Tab 3</Button>
 								</div>
 								<div className='flex gap-2'>
-									<Button variant='ghost' size='sm'>Ghost</Button>
-									<Button variant='link' size='sm'>Link</Button>
+									<Button variant='ghost'>Ghost</Button>
+									<Button variant='link'>Link</Button>
 								</div>
 							</CardContent>
 						</Card>
 					</div>
 					<div className='grid md:grid-cols-2 gap-fl-md' data-testid="button-states">
-						<Card variant='neutral' size='md'>
+						<Card className="bg-purple-2 border-purple-7">
 							<CardHeader>
 								<CardTitle className='text-fl-lg font-display'>États des Boutons</CardTitle>
 							</CardHeader>
 							<CardContent className='space-y-3'>
-								<Button variant='primary' size='md' className='w-full'>Normal</Button>
-								<Button variant='primary' size='md' disabled className='w-full'>Disabled</Button>
-								<Button variant='primary' size='md' loading className='w-full'>Loading</Button>
-								<Button variant='primary' size='md' state='success' className='w-full'>Success</Button>
-								<Button variant='primary' size='md' state='error' className='w-full'>Error</Button>
+								<Button className="bg-purple-1 border-purple-6 w-full">Normal</Button>
+								<Button className="bg-purple-1 border-purple-6 w-full" disabled>Disabled</Button>
+								<Button className="bg-purple-1 border-purple-6 w-full" loading>Loading</Button>
+								<Button className="bg-purple-1 border-purple-6 w-full">Success</Button>
+								<Button className="bg-purple-1 border-purple-6 w-full">Error</Button>
 							</CardContent>
 						</Card>
-						<Card variant='neutral' size='md'>
+						<Card className="bg-purple-2 border-purple-7">
 							<CardHeader>
 								<CardTitle className='text-fl-lg font-display'>Tailles</CardTitle>
 							</CardHeader>
 							<CardContent className='space-y-3'>
-								<Button variant='secondary' size='sm' className='w-full'>Small</Button>
-								<Button variant='secondary' size='md' className='w-full'>Medium</Button>
-								<Button variant='secondary' size='lg' className='w-full'>Large</Button>
-								<Button variant='secondary' size='xl' className='w-full'>Extra Large</Button>
+								<Button className="bg-orange-1 border-orange-6 w-full">Small</Button>
+								<Button className="bg-orange-1 border-orange-6 w-full">Medium</Button>
+								<Button className="bg-orange-1 border-orange-6 w-full">Large</Button>
+								<Button className="bg-orange-1 border-orange-6 w-full">Extra Large</Button>
 							</CardContent>
 						</Card>
 					</div>
@@ -456,9 +456,9 @@ export default function ExamplePage() {
 						Le système de boutons est maintenant configuré avec des variants cohérents, des tailles standardisées et des états
 						appropriés. Tests d&apos;accessibilité inclus.
 					</p>
-				</section>
+					</section>
 					</div>
-			  </section>
+				</section>
 			  
 				{/* Section 5: Callouts and Badges */}
 				<section className='space-y-fl-md'>
@@ -469,7 +469,7 @@ export default function ExamplePage() {
 					</p>
 
 					<div className='grid md:grid-cols-2 gap-fl-md'>
-						<Callout variant='success' size='md'>
+						<Callout color='green'>
 							<CalloutIcon>
 								<CheckCircle2 className='h-4 w-4' />
 							</CalloutIcon>
@@ -478,7 +478,7 @@ export default function ExamplePage() {
 							</CalloutText>
 						</Callout>
 
-						<Callout variant='warning' size='md'>
+						<Callout color='yellow'>
 							<CalloutIcon>
 								<AlertTriangle className='h-4 w-4' />
 							</CalloutIcon>
@@ -487,7 +487,7 @@ export default function ExamplePage() {
 							</CalloutText>
 						</Callout>
 
-						<Callout variant='error' size='md'>
+						<Callout color='red'>
 							<CalloutIcon>
 								<AlertCircle className='h-4 w-4' />
 							</CalloutIcon>
@@ -496,7 +496,7 @@ export default function ExamplePage() {
 							</CalloutText>
 						</Callout>
 
-						<Callout variant='info' size='md'>
+						<Callout color='blue'>
 							<CalloutIcon>
 								<Info className='h-4 w-4' />
 							</CalloutIcon>
@@ -511,7 +511,7 @@ export default function ExamplePage() {
 						<h3 className='text-fl-xl font-semibold text-purple-11 font-display'>Tailles de Callouts</h3>
 						
 						<div className='space-y-fl-md'>
-							<Callout variant='success' size='sm'>
+							<Callout color='green'>
 								<CalloutIcon>
 									<CheckCircle2 className='h-3 w-3' />
 								</CalloutIcon>
@@ -520,7 +520,7 @@ export default function ExamplePage() {
 								</CalloutText>
 							</Callout>
 
-							<Callout variant='info' size='md'>
+							<Callout color='blue'>
 								<CalloutIcon>
 									<Info className='h-4 w-4' />
 								</CalloutIcon>
@@ -529,7 +529,7 @@ export default function ExamplePage() {
 								</CalloutText>
 							</Callout>
 
-							<Callout variant='warning' size='lg'>
+							<Callout color='yellow'>
 								<CalloutIcon>
 									<AlertTriangle className='h-5 w-5' />
 								</CalloutIcon>
@@ -551,21 +551,21 @@ export default function ExamplePage() {
 					</p>
 
 					<div className='grid md:grid-cols-2 lg:grid-cols-3 gap-fl-md'>
-						<Card variant='primary' size='sm'>
+						<Card className="bg-purple-1 border-purple-6">
 							<CardHeader>
 								<CardTitle className='text-fl-lg font-display'>Variants</CardTitle>
 							</CardHeader>
 							<CardContent className='space-y-2'>
 								<div className='flex flex-wrap gap-2'>
 									<Badge variant='default'>Default</Badge>
-									<Badge variant='secondary'>Secondary</Badge>
+									<Badge className="bg-orange-1 border-orange-6">Secondary</Badge>
 									<Badge variant='outline'>Outline</Badge>
 									<Badge variant='ghost'>Ghost</Badge>
 								</div>
 							</CardContent>
 						</Card>
 
-						<Card variant='secondary' size='sm'>
+						<Card className="bg-orange-1 border-orange-6">
 							<CardHeader>
 								<CardTitle className='text-fl-lg font-display'>États</CardTitle>
 							</CardHeader>
@@ -579,15 +579,15 @@ export default function ExamplePage() {
 							</CardContent>
 						</Card>
 
-						<Card variant='neutral' size='sm'>
+						<Card className="bg-purple-2 border-purple-7">
 							<CardHeader>
 								<CardTitle className='text-fl-lg font-display'>Tailles</CardTitle>
 							</CardHeader>
 							<CardContent className='space-y-2'>
 								<div className='flex flex-wrap gap-2'>
-									<Badge variant='default' size='sm'>Small</Badge>
-									<Badge variant='default' size='md'>Medium</Badge>
-									<Badge variant='default' size='lg'>Large</Badge>
+									<Badge variant='default'>Small</Badge>
+									<Badge variant='default'>Medium</Badge>
+									<Badge variant='default'>Large</Badge>
 								</div>
 							</CardContent>
 						</Card>

@@ -2,7 +2,7 @@
 
 import { useMapLocation } from '@/hooks/useMaps'
 import type { StaticMapProps } from '@/types/map'
-import { Copy, MapPin, Navigation } from 'lucide-react'
+import { MapPin } from 'lucide-react'
 import Image from 'next/image'
 
 export function StaticMap({ 
@@ -60,38 +60,6 @@ export function StaticMap({
 						</div>
 					</div>
 				</div>
-			</div>
-
-			{/* Actions */}
-			<div className='flex flex-wrap gap-2 justify-center'>
-				<a
-					href={urls.appleMaps}
-					target='_blank'
-					rel='noopener noreferrer'
-					className='inline-flex items-center gap-2 rounded-xl border px-3 py-2 text-sm font-medium bg-purple-9 hover:bg-purple-10 text-white transition-colors'
-					aria-label="Ouvrir l'itinéraire dans Apple Plans">
-					<Navigation className='size-4' aria-hidden />
-					Apple Plans
-				</a>
-
-				<a
-					href={urls.googleMaps}
-					target='_blank'
-					rel='noopener noreferrer'
-					className='inline-flex items-center gap-2 rounded-xl border px-3 py-2 text-sm font-medium bg-purple-9 hover:bg-purple-10 text-white transition-colors'
-					aria-label="Ouvrir l'itinéraire dans Google Maps">
-					<MapPin className='size-4' aria-hidden />
-					Google Maps
-				</a>
-
-				<button
-					type='button'
-					onClick={copyAddress}
-					className='inline-flex items-center gap-2 rounded-xl border px-3 py-2 text-sm font-medium bg-purple-9 hover:bg-purple-10 text-white transition-colors'
-					aria-label="Copier l'adresse">
-					<Copy className='size-4' aria-hidden />
-					Copier
-				</button>
 			</div>
 		</div>
 	)

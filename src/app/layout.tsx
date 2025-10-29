@@ -1,6 +1,6 @@
 import { Footer, Header } from "@/components/layout"
 import { MobileNavigation } from "@/components/shared/navigation"
-import { Theme } from "@radix-ui/themes"
+import { Toaster } from "@/components/ui/sonner"
 import type { Metadata } from "next"
 import { Chelsea_Market, Open_Sans } from "next/font/google"
 import "./globals.css"
@@ -34,20 +34,13 @@ export default function RootLayout({
         <link rel="preconnect" href="https://cdn.sanity.io" />
         <link rel="dns-prefetch" href="https://cdn.sanity.io" />
       </head>
-      <body className="antialiased">
-        <Theme
-          appearance="light"
-          accentColor="purple"
-          grayColor="gray"
-          radius="medium"
-          scaling="100%"
-        >
-          <Header />
-          <main className="pb-20 md:pb-0">{children}</main>
-          <Footer />
-          <MobileNavigation />
-        </Theme>
-      </body>
+            <body className="antialiased">
+              <Header />
+              <main className="pb-20 md:pb-0">{children}</main>
+              <Footer />
+              <MobileNavigation />
+              <Toaster />
+            </body>
     </html>
   );
 }

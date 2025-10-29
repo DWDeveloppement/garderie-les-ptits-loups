@@ -6,7 +6,7 @@ export function AboutIntroSection() {
       <div className="max-w-4xl mx-auto text-center">
         <Card className="bg-white border-orange-6 shadow-lg">
           <CardContent className="p-8">
-            <h2 className="text-2xl md:text-3xl font-bold text-orange-12 mb-6">
+            <h2 className="font-bold text-orange-12 mb-6">
               Une Garderie à Taille Humaine
             </h2>
             <div className="space-y-4 text-orange-11 leading-relaxed">

@@ -1,3 +1,6 @@
+{
+	/* Pour l'instant, ce fichier est utilisé pour les espaces statiques en phase de test pour la section "Nos autres espaces". Une fois les données de provenance de Sanity rendues, ne pa supprimer le fichier, vérifier qu'il ne soit pas importé ayeurs dans les composants de l'application. */
+}
 export const spaces = [
 	{
 		id: 'jardin',
@@ -113,4 +116,4 @@ export const spaces = [
 ]
 
 // Export des "autres espaces" (sector === 'other')
-export const linkedOtherSpaces = spaces.filter(space => space.sector === 'other')
+export const linkedOtherSpaces = spaces.filter((space) => space.sector === 'other')
