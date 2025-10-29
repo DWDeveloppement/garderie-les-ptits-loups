@@ -7,9 +7,9 @@ import {
   DialogOverlay,
   DialogPortal,
 } from "@/components/ui/dialog"
+import { Separator } from "@/components/ui/separator"
 import { navigationMenu } from "@/constants/navigation_menu"
 import { ChevronRight, X } from "lucide-react"
-import Link from "next/link"
 import { useState } from "react"
 
 type MobileMenuProps = {
@@ -24,6 +24,9 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
     setExpandedMenu(expandedMenu === label ? null : label)
   }
 
+  // Ne pas afficher l'item "Contact" dans la liste (gardé uniquement en bouton bas de panneau)
+  const menuItems = navigationMenu.filter((item) => item.label !== 'Contact')
+
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogPortal>
@@ -33,28 +36,28 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         {/* Content - Slide from right */}
         <DialogContent 
           showCloseButton={false}
-          className="fixed right-0 left-auto top-0 h-full w-auto min-w-[18rem] max-w-[90vw] sm:max-w-none bg-orange-1 border-l border-orange-6 shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right duration-300 p-0 translate-x-0 translate-y-0 overflow-x-hidden"
+          className="fixed right-0 left-auto top-0 h-full w-auto min-w-[18rem] max-w-[90vw] sm:max-w-none bg-orange-1 border-l border-orange-6 shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right duration-300 p-0 translate-x-0 translate-y-0 overflow-x-hidden rounded-r-none"
         >
           <div className="flex flex-col h-full">
             {/* Header */}
-            <div className="flex items-center justify-between p-4 border-b border-orange-6">
-              <h2 className="text-lg font-semibold text-orange-12">Menu</h2>
+            <div className="flex items-center justify-between p-4">
+              <h2 className="text-2xl font-bold">Menu</h2>
               <DialogClose asChild>
                 <Button 
-                  variant="ghost" 
+                  variant="default" 
                   size="icon"
                   ariaLabel="Fermer le menu mobile"
-                  className="rounded-sm opacity-70 ring-offset-orange-1 transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-purple-9 focus:ring-offset-2">
-                  <X className="h-6 w-6 text-orange-11" />
+                  className="rounded-sm focus:outline-none">
+                  <X className="h-6 w-6 text-purple-contrast" />
                 </Button>
               </DialogClose>
             </div>
-
+<Separator className="my-4" />
             {/* Navigation Items */}
             <div className="flex-1 overflow-y-auto p-4">
-              <nav className="space-y-2">
-                {navigationMenu.map((item) => (
-                  <div key={item.label}>
+              <nav className="flex w-full flex-col items-start justify-start space-y-2">
+                {menuItems.map((item) => (
+                  <div key={item.label} className="w-full flex flex-col items-start justify-start">
                     {item.subMenu ? (
                       <>
                         {/* Item with submenu */}
@@ -62,7 +65,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                           onClick={() => toggleSubmenu(item.label)}
                           variant="ghost"
                           ariaLabel={`Ouvrir le sous-menu ${item.label}`}
-                          className="flex items-center justify-between w-full px-3 py-3 text-left text-orange-11 hover:text-purple-9 hover:bg-orange-3 rounded-md transition-colors font-medium"
+                          className="flex w-full items-center justify-between px-3 py-3 text-left text-purple-9 hover:text-purple-11 hover:bg-orange-3 rounded-md transition-colors font-medium text-lg"
                         >
                           <span>{item.label}</span>
                           <ChevronRight 
@@ -74,29 +77,33 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                         
                         {/* Submenu */}
                         {expandedMenu === item.label && (
-                          <div className="ml-4 space-y-1 border-l border-orange-6 pl-4 mt-2">
+                          <div className="w-full ml-4 space-y-1 border-l-2 border-purple-6 px-4 mt-2">
                             {item.subMenu.map((subItem) => (
-                              <Link
+                              <Button asNextLink
+                                variant="ghost"
                                 key={subItem.href}
                                 href={subItem.href}
                                 onClick={onClose}
-                                className="block px-3 py-2 text-sm text-orange-11 hover:text-purple-9 hover:bg-orange-3 rounded-md transition-colors"
+                                className="flex w-full items-start justify-start font-medium px-3 py-2 text-lg text-purple-9 hover:text-purple-11 hover:bg-orange-3 rounded-md transition-colors text-left"
+                                ariaLabel={`Aller à la page ${subItem.label}`}
                               >
                                 {subItem.label}
-                              </Link>
+                              </Button>
                             ))}
                           </div>
                         )}
                       </>
                     ) : (
                       /* Simple item */
-                      <Link
+                        <Button asNextLink
+                        variant="ghost"
                         href={item.href || "/"}
                         onClick={onClose}
-                        className="block px-3 py-3 text-orange-11 hover:text-purple-9 hover:bg-orange-3 rounded-md transition-colors font-medium"
+                        className="w-full justify-start px-3 py-3 text-left text-purple-9 hover:text-purple-11 hover:bg-orange-3 rounded-md transition-colors font-medium text-lg"
+                        ariaLabel={`Aller à la page ${item.label}`}
                       >
                         {item.label}
-                      </Link>
+                      </Button>
                     )}
                   </div>
                 ))}
@@ -104,15 +111,18 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
             </div>
 
             {/* Footer */}
-            <div className="p-4 border-t border-orange-6">
-              <Link
-                href="/contact"
+            <Separator className="my-4" />
+            <div className="px-4 pb-4">
+              <Button asNextLink
+              href="/contact"
+              ariaLabel="Aller à la page Contact"
                 onClick={onClose}
-                className="block w-full px-4 py-3 bg-purple-9 hover:bg-purple-10 text-purple-contrast text-center rounded-md font-medium transition-colors"
+              variant="default"
+              size="xl" className="w-full"
               >
                 Nous contacter
-              </Link>
-            </div>
+              </Button>
+              </div>
           </div>
         </DialogContent>
       </DialogPortal>

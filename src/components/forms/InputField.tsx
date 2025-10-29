@@ -39,7 +39,7 @@ export function InputField({
   return (
     <div className={`grid relative ${className}`}>
       <div className='flex items-baseline justify-between'>
-        <Label htmlFor={name} className='text-md font-medium text-purple-10'>{label}</Label>
+        <Label htmlFor={name} className='text-md font-medium text-purple-10 mb-2 ml-1'>{label}</Label>
       </div>
       <div className='relative group'>
         <Input
@@ -61,11 +61,11 @@ export function InputField({
         </span>
       </div>
       {errorMessage && (
-        <Callout role='alert' color="red" className="!items-center mt-0.5 absolute top-full left-0 right-0 z-10 !py-1">
+        <Callout role='alert' color="red" className="!items-center mt-0.5 absolute top-full left-0 right-0 z-10" size="sm">
           <CalloutIcon className='size-4'>
             <AlertCircle />
           </CalloutIcon>
-          <CalloutText className='!text-xs'>
+          <CalloutText className='ml-6 mt-0'>
             {errorMessage}
           </CalloutText>
         </Callout>

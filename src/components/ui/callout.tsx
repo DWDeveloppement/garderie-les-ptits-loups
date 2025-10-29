@@ -7,7 +7,7 @@ import * as React from 'react'
 export type CalloutRootProps = React.ComponentProps<typeof Alert> & {
   color?: 'red' | 'green' | 'blue' | 'yellow'
   variant?: 'surface' | 'soft' | 'outline'
-  size?: '1' | '2' | '3'
+  size?: 'sm' | 'md' | 'lg'
 }
 
 export type CalloutIconProps = React.ComponentProps<'div'> & {
@@ -18,18 +18,18 @@ export type CalloutTextProps = React.ComponentProps<typeof AlertDescription>
 
 // Composant Root
 const CalloutRoot = React.forwardRef<HTMLDivElement, CalloutRootProps>(
-  ({ children, color = 'blue', variant = 'surface', size = '2', className, ...props }, ref) => {
+  ({ children, color = 'blue', size = '2', className, ...props }, ref) => {
     const colorClasses = {
-      red: 'border-red-200 bg-red-50 text-red-800',
-      green: 'border-green-200 bg-green-50 text-green-800',
-      blue: 'border-blue-200 bg-blue-50 text-blue-800',
-      yellow: 'border-yellow-200 bg-yellow-50 text-yellow-800'
+      red: 'border-red-200 bg-red-50 !text-red-800',
+      green: 'border-green-200 bg-green-50 !text-green-800',
+      blue: 'border-blue-200 bg-blue-50 !text-blue-800',
+      yellow: 'border-yellow-200 bg-yellow-50 !text-yellow-800'
     }
 
     const sizeClasses = {
-      '1': 'p-2 text-sm',
-      '2': 'p-3 text-sm',
-      '3': 'p-4 text-base'
+      sm: 'p-1 text-sm',
+      md: 'p-2 text-sm',
+      lg: 'p-3 text-lg'
     }
 
     return (
@@ -37,7 +37,9 @@ const CalloutRoot = React.forwardRef<HTMLDivElement, CalloutRootProps>(
         ref={ref} 
         className={cn(
           colorClasses[color],
-          sizeClasses[size],
+          sizeClasses[size as keyof typeof sizeClasses],
+          // Neutralise le texte muted par défaut de Alert (Shadcn)
+          'text-[inherit]',
           className
         )}
         {...props}
@@ -71,7 +73,12 @@ const CalloutText = React.forwardRef<HTMLParagraphElement, CalloutTextProps>(
     return (
       <AlertDescription 
         ref={ref} 
-        className={cn('mt-1', className)}
+        className={cn(
+          'mt-1',
+          // Hérite couleur et taille du parent (évite le text-sm/muted interne)
+          'text-[inherit]',
+          className
+        )}
         {...props}
       >
         {children}

@@ -4,8 +4,8 @@
  * Des placeholders sont présents dans le composant pour guider l'utilisateur.
 */
 'use client'
-import { Spinner } from '@/components/shared/feedback'
 import { Button } from '@/components/ui/button'
+import { Spinner } from '@/components/ui/spinner'
 import { useFormValidation } from '@/hooks/useFormValidation'
 import { useRecaptchaV2 } from '@/hooks/useRecaptchaV2'
 import { Mail, MessageSquare, Phone, User } from 'lucide-react'
@@ -186,30 +186,25 @@ const ContactForm = () => {
 
 				{/* Boutons */}
 				<div className='flex gap-4 justify-around mt-8'>
-					<Button
-						size='default'
+				<Button
+					variant='default'
+						size='xl'
 						type='button'
-						className='bg-purple-9 hover:bg-purple-10 text-white relative'
+					ariaLabel='Envoyer le message'
 						onClick={handleSubmit}
 						disabled={isSubmitting}>
-						{isSubmitting && <Spinner size='sm' className='mr-2' />}
+                    {isSubmitting && <Spinner className='mr-2 size-4' />}
 						{isSubmitting ? 'Envoi en cours...' : 'Envoyer'}
 					</Button>
 					<Button
-						size='default'
-						type='button'
-						variant='outline'
-						className='border-orange-6 text-orange-12 hover:bg-orange-2'
-						onClick={handleReset}
-						disabled={isSubmitting}>
-						{isSubmitting ? (
-							<>
-								<Spinner size='sm' className='mr-2' />
-								Envoi en cours...
-							</>
-						) : (
-							'Réinitialiser'
-						)}
+					variant='outline'
+					className='bg-transparent hover:text-orange-12'
+					size='xl'
+					type='button'
+					ariaLabel='Réinitialiser le formulaire'
+					onClick={handleReset}
+					disabled={isSubmitting}>
+					Réinitialiser
 					</Button>
 				</div>
 		</div>

@@ -39,7 +39,7 @@ export function HeroSection({
             </p>
             
               <Button 
-                size="lg" 
+                size="xl" 
                 variant="default" 
                 asNextLink 
                 href={buttonLink || "/contact"}

@@ -16,7 +16,7 @@ export function ContactFormSection() {
 	} = useFormValidation()
 
 	return (
-		<section className='flex flex-col gap-4 py-16 px-4 sm:px-6 lg:px-8 bg-orange-bg-light'>
+		<section className='flex flex-col gap-4 py-16 px-4 sm:px-6 lg:px-8 gradiant-section-b'>
 			<div className='max-w-4xl mx-auto text-center space-y-4'>
 				<h2 className='font-bold'>Contactez-nous</h2>
 				<p>Nous sommes à votre entière disposition pour répondre à toutes vos questions.</p>

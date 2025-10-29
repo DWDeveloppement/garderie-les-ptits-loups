@@ -2,7 +2,7 @@
 import { MainNavigationMenu, MobileMenu } from "@/components/layout"
 import { Button } from "@/components/ui/button"
 import { useMobileMenuControl } from "@/hooks/useWindowSize"
-import { Menu, X } from "lucide-react"
+import { Menu } from "lucide-react"
 import Image from "next/image"
 import { useState } from "react"
 
@@ -34,8 +34,8 @@ export function Header() {
 
 					{/* Menu Mobile */}
 					<div className='md:hidden'>
-						<Button variant='ghost' size='icon' onClick={toggleMenu} className='hover:bg-orange-3'>
-							{isMenuOpen ? <X className='h-6 w-6' /> : <Menu className='h-6 w-6' />}
+						<Button size='icon' variant='default' onClick={toggleMenu}>
+							<Menu className='h-6 w-6' />
 						</Button>
 					</div>
 				</div>
