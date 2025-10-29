@@ -13,4 +13,5 @@ export * from './schedule'
 export * from './sectors'
 
 // Documents auxiliaires
+export * from './partners'
 export * from './prices'

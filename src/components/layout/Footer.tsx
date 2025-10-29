@@ -1,17 +1,15 @@
-import { Partners } from "@/components/shared"
 import { Clock, Facebook, Instagram, Mail, MapPin, Phone } from "lucide-react"
 
 export function Footer() {
   return (
     <footer className="bg-purple-12 text-orange-1">
-      <Partners />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid md:grid-cols-4 gap-8">
           {/* Logo et Description */}
           <div className="md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
               
-              <span className="font-bold">Les P&apos;tits Loups</span>
+              <h4 className="text-orange-6 font-bold">Les P&apos;tits Loups</h4>
             </div>
             <p className="text-orange-4 mb-4 leading-relaxed">
               Une garderie familiale où chaque enfant est unique et précieux. 
@@ -38,7 +36,7 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="font-semibold mb-4">Contact</h3>
+            <h4 className="text-orange-6 font-bold mb-4">Contact</h4>
             <div className="space-y-3">
               <div className="flex items-start space-x-3">
                 <MapPin className="h-5 w-5 text-purple-surface mt-0.5 flex-shrink-0" />
@@ -71,27 +69,13 @@ export function Footer() {
 
           {/* Horaires */}
           <div>
-            <h3 className="text-lg font-semibold mb-4 text-orange-2">Horaires</h3>
+            <h4 className="text-orange-6 font-bold mb-4">Horaires</h4>
             <div className="space-y-3">
               <div className="flex items-start space-x-3">
                 <Clock className="h-5 w-5 text-purple-surface mt-0.5 flex-shrink-0" />
                 <div className="text-orange-4">
                   <p className="font-medium text-orange-3">Lundi - Vendredi</p>
                   <p>07h00 - 18h00</p>
-                </div>
-              </div>
-              <div className="flex items-start space-x-3">
-                <div className="h-5 w-5 flex-shrink-0"></div>
-                <div className="text-orange-4">
-                  <p className="font-medium text-orange-3">Samedi</p>
-                  <p>Sur demande</p>
-                </div>
-              </div>
-              <div className="flex items-start space-x-3">
-                <div className="h-5 w-5 flex-shrink-0"></div>
-                <div className="text-orange-4">
-                  <p className="font-medium text-orange-3">Dimanche</p>
-                  <p>Fermé</p>
                 </div>
               </div>
             </div>

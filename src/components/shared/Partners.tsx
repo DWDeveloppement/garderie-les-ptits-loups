@@ -1,59 +1,78 @@
+/**
+ * Section des partenaires
+ * Les données proviennent de Sanity CMS
+ * Composant autonome qui gère sa propre query
+ */
 import { Card } from "@/components/ui/card"
-import { partners } from "@/data/partners"
-import * as Tooltip from '@radix-ui/react-tooltip'
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
+import { fetchPartners } from "lib/sanity/queries"
 import Image from "next/image"
+export async function Partners() {
+  // Récupération des partenaires depuis Sanity
+  const partners = await fetchPartners()
 
-export function Partners() {
+  // Pas de partenaires à afficher
+  if (!partners || partners.length === 0) {
+    return null
+  }
+
   return (
-    <Tooltip.Provider>
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-orange-2">
+    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-orange-2">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-orange-12 mb-4">
+            <h2 className="font-bold mb-4">
               Nos Partenaires
             </h2>
-            <p className="text-xl text-orange-11 max-w-3xl mx-auto">
+            <p className="mx-auto">
               Nous collaborons avec des institutions de confiance pour offrir 
               le meilleur accompagnement à votre enfant.
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-12 md:gap-36 max-w-sm sm:max-w-3xl mx-auto">
-            {partners.map((partner) => (
-              <Tooltip.Root key={partner.id}>
-                <Tooltip.Trigger asChild>
-                  <a 
-                    href={partner.website} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="block group"
-                  >
-                    <Card className="rounded-lg hover:shadow-lg transition-all duration-300 hover:-translate-y-1 bg-white border-orange-6 hover:border-purple-7 overflow-hidden cursor-pointer">
-                        <Image 
-                          src={partner.logo} 
-                          alt={partner.name} 
-                          width={120} 
-                          height={120} 
-                          className="group-hover:scale-105 transition-transform duration-300 w-full h-full object-contain" 
-                        />
-                    </Card>
-                  </a>
-                </Tooltip.Trigger>
-                <Tooltip.Portal>
-                  <Tooltip.Content 
-                    className="bg-purple-9 text-purple-contrast px-3 py-2 rounded-md text-sm shadow-lg"
-                    side="bottom" 
-                    sideOffset={5}
-                  >
-                    {partner.tooltip}
-                    <Tooltip.Arrow className="fill-purple-9" />
-                  </Tooltip.Content>
-                </Tooltip.Portal>
-              </Tooltip.Root>
-            ))}
+            {partners.map((partner) => {
+              const imageUrl = partner.logo?.asset?.url
+              const imageAlt = partner.logo?.alt || partner.name
+
+              return (
+                <a 
+                  key={partner._id}
+                  href={partner.website} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="block group"
+                  aria-label={`Visiter le site web de ${partner.name}`}
+                >
+                  {imageUrl && (
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <Card className="w-full rounded-lg hover:shadow-lg transition-all duration-300 hover:-translate-y-1 bg-white border-orange-6 hover:border-purple-7 overflow-hidden cursor-pointer inline-block p-0">
+                          <Image 
+                            src={imageUrl} 
+                            alt={imageAlt} 
+                            width={partner.logo?.asset?.metadata?.dimensions?.width || 400} 
+                            height={partner.logo?.asset?.metadata?.dimensions?.height || 300} 
+                            className="w-full h-auto group-hover:scale-105 transition-transform duration-300" 
+                          />
+                        </Card>
+                      </TooltipTrigger>
+                      <TooltipContent 
+                        variant="purple"
+                        side="bottom"
+                        showArrow={true}
+                      >
+                        <p className="text-sm">
+                          Voir le site web de {partner.name}
+                        </p>
+                      </TooltipContent>
+                    </Tooltip>
+
+                  )}
+                </a>
+              )
+            })}
           </div>
         </div>
       </section>
-    </Tooltip.Provider>
   );
 }

@@ -1,18 +1,23 @@
-/* Les partners sont les partenaires de la garderie. */
+import type { SanityImage } from '../sanity/sectorPage'
 
-export type PartnersTypesProps = {
-	id: number
+/**
+ * Partenaire depuis Sanity
+ */
+export type Partner = {
+	_id: string
 	name: string
 	website: string
-	tooltip: string
-	logo: string
+	logo: SanityImage
 }
 
-// Type pour les données JSON (identique mais pour la clarté)
-export type PartnersData = {
-	id: number
-	name: string
-	website: string
-	tooltip: string
-	logo: string
-}
+/**
+ * Type pour compatibilité (legacy)
+ * @deprecated Utiliser Partner à la place
+ */
+export type PartnersTypesProps = Partner
+
+/**
+ * Type pour les données JSON (legacy)
+ * @deprecated Utiliser Partner[] à la place
+ */
+export type PartnersData = Partner[]

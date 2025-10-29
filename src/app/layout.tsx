@@ -1,4 +1,5 @@
 import { Footer, Header } from "@/components/layout"
+import { Partners } from "@/components/shared"
 import { MobileNavigation } from "@/components/shared/navigation"
 import { Toaster } from "@/components/ui/sonner"
 import type { Metadata } from "next"
@@ -36,7 +37,8 @@ export default function RootLayout({
       </head>
             <body className="antialiased">
               <Header />
-              <main className="pb-20 md:pb-0">{children}</main>
+        <main className="pb-20 md:pb-0">{children}</main>
+        <Partners />
               <Footer />
               <MobileNavigation />
               <Toaster />

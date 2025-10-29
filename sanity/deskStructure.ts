@@ -125,10 +125,23 @@ export const deskStructure = (S: StructureBuilder) => {
 				.title('Prix et Tarifs')
 				.icon(() => '💰')
 				.child(S.documentList().title('Prix et Tarifs').filter('_type == "prices"').apiVersion('2023-05-03')),
-			// Témoignages - Documents multiples avec add document
+			// Témoignages - Documents multiples avec possibilité d'ajout
 			S.listItem()
 				.title('Témoignages')
 				.icon(() => '🎉')
-				.child(S.documentList().title('Témoignages').filter('_type == "testimonials"').apiVersion('2023-05-03')),
+				.child(
+					S.documentTypeList('testimonials')
+						.title('Témoignages')
+						.defaultOrdering([{ field: '_createdAt', direction: 'desc' }])
+				),
+			// Partenaires - Documents multiples avec possibilité d'ajout
+			S.listItem()
+				.title('Partenaires')
+				.icon(() => '🤝')
+				.child(
+					S.documentTypeList('partners')
+						.title('Partenaires')
+						.defaultOrdering([{ field: '_createdAt', direction: 'desc' }])
+				),
 		])
 }
