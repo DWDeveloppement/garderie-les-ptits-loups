@@ -1,9 +1,10 @@
 'use client'
 
+import { Icon } from '@/components/icons/Icon'
+import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { useMapLocation } from '@/hooks/useMaps'
 import type { MapLocation } from '@/types/map'
-import { Mail, MapPin, Phone } from 'lucide-react'
 
 // Configuration par défaut pour la garderie
 const DEFAULT_LOCATION: MapLocation = {
@@ -32,50 +33,45 @@ export function BottomBar({
   const { openSmartDirections } = useMapLocation(location)
 
   return (
-    <nav
-      aria-label="Actions principales"
-      className={`fixed bottom-0 inset-x-0 z-40 bg-orange-1/95 backdrop-blur supports-[backdrop-filter]:bg-orange-1/70 ${className}`}
-    >
-      <div className="mx-auto max-w-screen-sm px-2">
-        <div className="flex items-center justify-between gap-2 py-2 text-xs">
-          <a
-            href={`tel:${phoneNumber}`}
-            className="group flex flex-col items-center justify-center gap-1 rounded-xl p-2 transition-all active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-9/50"
-            aria-label={`Appeler ${location.name}`}
-          >
-            <Phone className="h-6 w-6 text-orange-11 group-hover:text-purple-9 transition-colors" />
-            <span className="leading-none text-orange-11 group-hover:text-purple-9 transition-colors">
-              Appeler
-            </span>
-          </a>
-          
-          <Separator orientation="vertical" className="h-8 w-px bg-orange-6" />
-          
-          <a
-            href={`mailto:${email}`}
-            className="group flex flex-col items-center justify-center gap-1 rounded-xl p-2 transition-all active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-9/50"
-            aria-label={`Écrire un email à ${location.name}`}
-          >
-            <Mail className="h-6 w-6 text-orange-11 group-hover:text-purple-9 transition-colors" />
-            <span className="leading-none text-orange-11 group-hover:text-purple-9 transition-colors">
-              Écrire
-            </span>
-          </a>
-          
-          <Separator orientation="vertical" className="h-8 w-px bg-orange-6" />
-          
-          <button
-            onClick={openSmartDirections}
-            className="group flex flex-col items-center justify-center gap-1 w-full rounded-xl p-2 transition-all active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-9/50"
-            aria-label={`Ouvrir l'itinéraire vers ${location.name}`}
-          >
-            <MapPin className="h-6 w-6 text-orange-11 group-hover:text-purple-9 transition-colors" />
-            <span className="leading-none text-orange-11 group-hover:text-purple-9 transition-colors">
-              Itinéraire
-            </span>
-          </button>
-        </div>
-      </div>
-    </nav>
-  )
+		<nav
+			aria-label='Actions principales'
+			className={`fixed flex items-center justify-between gap-2 py-2 px-8 bottom-0 inset-x-0 z-40 bg-orange-1/95 backdrop-blur supports-[backdrop-filter]:bg-orange-2 ${className}`}>
+
+					<Button
+						variant='default'
+						size='xl'
+						asLink
+						href={`tel:${phoneNumber}`}
+						ariaLabel={`Appeler ${location.name}`}
+						className='group flex flex-col items-center justify-center gap-1 rounded-xl p-4 transition-all active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-9/50'>
+						<Icon name='phone' size='xl' aria-hidden />
+						<span className='sr-only'>Appeler</span>
+					</Button>
+
+					<Separator orientation='vertical'/>
+
+					<Button
+						variant='default'
+						size='xl'
+						asLink
+						href={`mailto:${email}`}
+						className='group flex flex-col items-center justify-center gap-1 rounded-xl p-4 transition-all active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-9/50'
+						ariaLabel={`Écrire un email à ${location.name}`}>
+						<Icon name='mail' size='xl' aria-hidden />
+						<span className='sr-only'>Écrire un email à {location.name}</span>
+					</Button>
+
+					<Separator orientation='vertical'/>
+
+					<Button
+						variant='default'
+						size='xl'
+						onClick={openSmartDirections}
+						ariaLabel={`Ouvrir l'itinéraire vers ${location.name}`}
+						className='group flex flex-col items-center justify-center gap-1 rounded-xl p-4 transition-all active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-9/50'>
+						<Icon name='mapPin' size='xl' aria-hidden />
+						<span className='sr-only'>Ouvrir l&apos;itinéraire vers {location.name}</span>
+					</Button>
+		</nav>
+	)
 }

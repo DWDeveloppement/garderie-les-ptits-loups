@@ -13,6 +13,7 @@ import {
 	ChevronRight,
 	ChevronUp,
 	Clock,
+	Copy,
 	Download,
 	Eye,
 	EyeOff,
@@ -28,6 +29,7 @@ import {
 	Menu,
 	Phone,
 	Search,
+	Send,
 	SendHorizontal,
 	Settings,
 	Smile,
@@ -73,7 +75,8 @@ export const ICONS = {
 	email: AtSign,
 	phone: Phone,
 	user: User,
-	send: SendHorizontal,
+	send: Send,
+	sendHorizontal: SendHorizontal,
 
 	// Icônes UI
 	close: X,
@@ -84,6 +87,7 @@ export const ICONS = {
 	// Icônes de contenu
 	clock: Clock,
 	mapPin: MapPin,
+	copy: Copy,
 	calendar: Calendar,
 	users: Users,
 	heart: Heart,

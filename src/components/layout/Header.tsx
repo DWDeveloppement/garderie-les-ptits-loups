@@ -2,9 +2,9 @@
 import { MainNavigationMenu, MobileMenu } from "@/components/layout"
 import { Button } from "@/components/ui/button"
 import { useMobileMenuControl } from "@/hooks/useWindowSize"
-import { Menu } from "lucide-react"
 import Image from "next/image"
 import { useState } from "react"
+import { Icon } from "../icons/Icon"
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -34,14 +34,17 @@ export function Header() {
 
 					{/* Menu Mobile */}
 					<div className='md:hidden'>
-						<Button size='icon' variant='default' onClick={toggleMenu}>
-							<Menu className='h-6 w-6' />
+						<Button size='icon' variant='default' onClick={toggleMenu} ariaLabel='Ouvrir le menu mobile' aria-expanded={isMenuOpen}>
+							<Icon name='menu' size='lg' aria-hidden />
+							<span className='sr-only'>Ouvrir le menu mobile</span>
 						</Button>
 					</div>
 				</div>
 
-				{/* Menu Mobile */}
-				<MobileMenu isOpen={isMenuOpen} onClose={closeMenu} />
+			  {/* Menu Mobile */}
+			  {isMenuOpen && (
+				<MobileMenu isOpen={isMenuOpen} onClose={closeMenu} aria-label='Menu mobile' />
+			  )}
 			</div>
 		</header>
 	)

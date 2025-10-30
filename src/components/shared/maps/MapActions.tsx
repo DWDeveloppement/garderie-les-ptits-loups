@@ -1,9 +1,9 @@
 'use client'
 
+import { Icon } from '@/components/icons/Icon'
 import { Button } from '@/components/ui/button'
 import { useMapLocation } from '@/hooks/useMaps'
 import type { MapLocation } from '@/types/map'
-import { Copy, MapPin, Navigation } from 'lucide-react'
 
 type MapActionsProps = {
 	location: MapLocation
@@ -18,34 +18,31 @@ export function MapActions({ location, className = '' }: MapActionsProps) {
 			<Button
 				asLink
 				href={urls.appleMaps}
-				variant="primary"
-				size="md"
+				variant="default"
 				ariaLabel="Ouvrir l'itinéraire dans Apple Plans"
 				external
 				className='inline-flex items-center gap-2'>
-				<Navigation className='size-4' aria-hidden />
+				<Icon name="send"/>
 				Apple Plans
 			</Button>
 
 			<Button
 				asLink
 				href={urls.googleMaps}
-				variant="primary"
-				size="md"
+				variant="default"
 				ariaLabel="Ouvrir l'itinéraire dans Google Maps"
 				external
 				className='inline-flex items-center gap-2'>
-				<MapPin className='size-4' aria-hidden />
+				<Icon name="mapPin"/>
 				Google Maps
 			</Button>
 
 			<Button
 				onClick={copyAddress}
-				variant="primary"
-				size="md"
+				variant="default"
 				ariaLabel="Copier l'adresse"
 				className='inline-flex items-center gap-2'>
-				<Copy className='size-4' aria-hidden />
+				<Icon name="copy"  />
 				Copier
 			</Button>
 		</div>

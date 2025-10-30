@@ -3,47 +3,39 @@
 import { useButtonA11y } from "@/hooks/a11y"
 import { useLinkA11y } from "@/hooks/a11y/useLinkA11y"
 import { Slot } from "@radix-ui/react-slot"
-import { type VariantProps } from "class-variance-authority"
+ 
 import Link from "next/link"
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
+import type { ButtonAsAnchorProps, ButtonAsButtonProps, ButtonAsNextLinkProps, ButtonProps } from "@/types/components/button"
 import { buttonVariants } from "./variants/button"
 
-function Button({
-  className,
-  variant,
-  size,
-  asChild = false,
-  ariaLabel,
-  children,
-  disabled,
-  loading,
-  
-  // Props pour le rendu en lien
-  asLink = false,
-  asNextLink = false,
-  href,
-  target,
-  rel,
-  external = false,
-  
-  ...props
-}: React.ComponentProps<"button"> &
-  VariantProps<typeof buttonVariants> & {
-    asChild?: boolean
-    ariaLabel?: string
-    loading?: boolean
-    
-    // Props pour le rendu en lien
-    asLink?: boolean
-    asNextLink?: boolean
-    href?: string
-    target?: string
-    rel?: string
-    external?: boolean
-  }) {
-  
+function Button(props: ButtonProps) {
+  const {
+    className,
+    variant,
+    size,
+    asChild = false,
+    ariaLabel,
+    children,
+    loading,
+  } = props
+
+  const isNextLinkProps = (p: ButtonProps): p is ButtonAsNextLinkProps =>
+    (p as ButtonAsNextLinkProps).asNextLink === true
+  const isAnchorLinkProps = (p: ButtonProps): p is ButtonAsAnchorProps =>
+    (p as ButtonAsAnchorProps).asLink === true
+
+  const isNextLink = isNextLinkProps(props)
+  const isAnchorLink = isAnchorLinkProps(props)
+
+  const href = (isNextLink || isAnchorLink) ? props.href : undefined
+  const target = (isNextLink || isAnchorLink) ? props.target : undefined
+  const rel = (isNextLink || isAnchorLink) ? props.rel : undefined
+  const external = props.external
+  const disabled = (!isNextLink && !isAnchorLink) ? (props as ButtonAsButtonProps).disabled : undefined
+
   const buttonClasses = cn(buttonVariants({ variant, size, className }))
 
   // Hook d'accessibilité pour les liens (si asLink ou asNextLink)
@@ -64,8 +56,12 @@ function Button({
     loading
   })
 
+  // Adapte le onClick des liens pour appeler éventuellement le onClick de bouton
+  const onClickForAnchor: React.MouseEventHandler<HTMLAnchorElement> | undefined =
+    (isNextLink || isAnchorLink) ? (props.onClick as React.MouseEventHandler<HTMLAnchorElement> | undefined) : undefined
+
   // Rendu en Next.js Link
-  if (asNextLink && href) {
+  if (isNextLink && href) {
     return (
       <Link
         href={href}
@@ -75,36 +71,15 @@ function Button({
         role={linkA11y.role}
         tabIndex={linkA11y.tabIndex}
         className={buttonClasses}
+        onClick={onClickForAnchor}
       >
-        {loading && (
-          <svg
-            className="mr-2 h-4 w-4 animate-spin"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
-            <circle
-              className="opacity-25"
-              cx="12"
-              cy="12"
-              r="10"
-              stroke="currentColor"
-              strokeWidth="4"
-            />
-            <path
-              className="opacity-75"
-              fill="currentColor"
-              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-            />
-          </svg>
-        )}
         {children}
       </Link>
     )
   }
 
   // Rendu en lien <a>
-  if (asLink && href) {
+  if (isAnchorLink && href) {
     return (
       <a
         href={href}
@@ -114,29 +89,8 @@ function Button({
         role={linkA11y.role}
         tabIndex={linkA11y.tabIndex}
         className={buttonClasses}
+        onClick={onClickForAnchor}
       >
-        {loading && (
-          <svg
-            className="mr-2 h-4 w-4 animate-spin"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
-            <circle
-              className="opacity-25"
-              cx="12"
-              cy="12"
-              r="10"
-              stroke="currentColor"
-              strokeWidth="4"
-            />
-            <path
-              className="opacity-75"
-              fill="currentColor"
-              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-            />
-          </svg>
-        )}
         {children}
       </a>
     )
@@ -144,38 +98,23 @@ function Button({
 
   // Rendu en bouton par défaut
   const Comp = asChild ? Slot : "button"
+  let buttonRest: React.ButtonHTMLAttributes<HTMLButtonElement> | undefined
+  if (!isNextLink && !isAnchorLink) {
+    const btn = props as ButtonAsButtonProps
+    buttonRest = { onClick: btn.onClick, type: btn.type }
+  }
   return (
     <Comp
       data-slot="button"
       className={buttonClasses}
       disabled={buttonA11y.disabled}
       aria-label={buttonA11y.ariaLabel}
+      aria-busy={loading || undefined}
+      data-state={loading ? 'loading' : undefined}
       role={buttonA11y.role}
       tabIndex={buttonA11y.tabIndex}
-      {...props}
+      {...buttonRest}
     >
-      {loading && (
-        <svg
-          className="mr-2 h-4 w-4 animate-spin"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-        >
-          <circle
-            className="opacity-25"
-            cx="12"
-            cy="12"
-            r="10"
-            stroke="currentColor"
-            strokeWidth="4"
-          />
-          <path
-            className="opacity-75"
-            fill="currentColor"
-            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-          />
-        </svg>
-      )}
       {children}
     </Comp>
   )
