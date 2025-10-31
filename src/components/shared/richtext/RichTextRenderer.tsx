@@ -120,7 +120,7 @@ export function RichTextRenderer({ content, className = "" }: RichTextRendererPr
           key={getBlockKey(block, index)}
           tag={tag}
           variant={headingVariant}
-          className="mb-2 mt-8 first:mt-0"
+          className="mb-4 mt-4 first:mt-0"
         >
           {renderSpanNodes(normalizedSpans, `heading-${index}`)}
         </RichTextTitle>
@@ -136,11 +136,17 @@ export function RichTextRenderer({ content, className = "" }: RichTextRendererPr
 
       const { variant: paragraphVariant, spans: normalizedSpans } = normalizeParagraphSpans(paragraphSpans)
 
+      const hasContent = normalizedSpans.some((span) => (span?.text ?? '').trim().length > 0)
+
+      if (!hasContent) {
+        return <div key={index} className="mb-3 h-2" aria-hidden="true" />
+      }
+
       return (
         <p
           key={index}
           className={cn(
-            "leading-relaxed mb-4",
+            "leading-relaxed mb-3",
             paragraphVariant === "primary" ? "text-purple-10" : undefined,
           )}
         >
@@ -152,7 +158,7 @@ export function RichTextRenderer({ content, className = "" }: RichTextRendererPr
 
     // Fallback pour les autres types
     return (
-      <div key={index} className="text-orange-11 leading-relaxed mb-4">
+      <div key={index} className="text-orange-11 leading-relaxed mb-3">
         {renderSpanNodes(children as unknown as MinimalSpan[], `fallback-${index}`)}
       </div>
     )
