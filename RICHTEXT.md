@@ -68,6 +68,14 @@
   - [ ] Passer en CVA (variants`default` purple,`secondary` orange)
   - [ ] Autoriser`className` et fusion (`cn`)
   - [ ] Ajouter rendu`strong` /`em`
+- **RichTextFeedbackCard**
+  - [X] Créer composant avec variants (`primary`, `secondary`, `success`, `info`, `warning`, `destructive`)
+  - [ ] Intégrer icône optionnelle (via Sanity ou balise `<x>` futur)
+  - [X] Supporter tailles (`sm`, `md`, `lg`) avec défaut `md`
+- **Blocs Feedback (temporaire via Quote)**
+  - [X] Parsing `{type:feedback}` + `{variant:…}` + `{size:…}` + `{title:…}`
+  - [ ] Migrer vers bloc Sanity dédié (feedbackCard) quand disponible
+
 - **RichTextTitle**
   - [X] Créer le composant (`tag`, `variant`, `className`, `children`)
   - [ ] Gérer variations supplémentaires si besoin (ex: alignements, décorations)
@@ -103,6 +111,18 @@
   1. Liste ordonnée par défaut
   2. {variant:primary}Liste ordonnée violet
   ```
+
+- **Feedback Cards (temp)**
+  ```md
+  {type:feedback}{variant:success}{size:lg}{icon:success}{title:Succès}
+  Ce bloc quote devient une carte feedback verte.
+  Retour à la ligne = nouveau paragraphe dans la carte.
+
+  {type:feedback}{variant:warning}
+  Sans titre ni size → fallback primary/md (orange)
+  ```
+
+> ⚠️ En attendant les blocs « feedbackCard » de Sanity, utiliser le style Quote + ces tags en première ligne (dans l’ordre de préférence). Les retours à la ligne restent supportés. `icon` est optionnel (valeurs dispo : `info`, `success`, `warning`, `destructive`, `primary`, `secondary`, `error`, etc. — voir registry). Après publication, vérifier le rendu via DevJsonViewer. Quand le bloc Sanity sera disponible, on migrera les contenus.
 - **Types utilitaires (`richText.ts`)**
   - [ ] Clarifier/typer les nouvelles structures (quoteEnhenced, infoCard, list regroupée)
   - [ ] S’assurer que les types reflètent les blocs Sanity (include listItem, markDefs)

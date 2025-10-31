@@ -272,13 +272,231 @@
 				"listItem": "number",
 				"markDefs": [],
 				"style": "normal"
+			},
+			{
+				"_key": "e4a44f53b628",
+				"_type": "block",
+				"children": [
+					{
+						"_key": "d26b20d9e2aa",
+						"_type": "span",
+						"marks": [],
+						"text": ""
+					}
+				],
+				"markDefs": [],
+				"style": "normal"
+			},
+			{
+				"_key": "a22954f4b4f3",
+				"_type": "block",
+				"children": [
+					{
+						"_key": "b45b05169e06",
+						"_type": "span",
+						"marks": [],
+						"text": "j'ai fait un retour à la ligne juste avant pour inspection de rendu."
+					}
+				],
+				"markDefs": [],
+				"style": "normal"
+			},
+			{
+				"_key": "8c3ea1229056",
+				"_type": "block",
+				"children": [
+					{
+						"_key": "6e1dd9977321",
+						"_type": "span",
+						"marks": [],
+						"text": ""
+					}
+				],
+				"markDefs": [],
+				"style": "normal"
+			},
+			{
+				"_key": "f1c4f7e5bd0a",
+				"_type": "block",
+				"children": [
+					{
+						"_key": "f48f17924486",
+						"_type": "span",
+						"marks": [],
+						"text": "Ici, nous allons tester les Quotes"
+					}
+				],
+				"markDefs": [],
+				"style": "h3"
+			},
+			{
+				"_key": "f3e2319ff323",
+				"_type": "block",
+				"children": [
+					{
+						"_key": "cefd12d6a3f8",
+						"_type": "span",
+						"marks": [],
+						"text": "Garder un esprit curieux.\nSoyez bon.\n{cite}Murielle"
+					}
+				],
+				"markDefs": [],
+				"style": "blockquote"
+			},
+			{
+				"_key": "ddc44d6ab817",
+				"_type": "block",
+				"children": [
+					{
+						"_key": "6808e8006617",
+						"_type": "span",
+						"marks": [],
+						"text": ""
+					}
+				],
+				"markDefs": [],
+				"style": "normal"
+			},
+			{
+				"_key": "e5af7233fbb2",
+				"_type": "block",
+				"children": [
+					{
+						"_key": "7f0e75effbcc",
+						"_type": "span",
+						"marks": [],
+						"text": "{variant:secondary}Gardez votre calme. \nc'est une quote secondary\n{cite}Marie"
+					}
+				],
+				"markDefs": [],
+				"style": "blockquote"
+			},
+			{
+				"_key": "5941736d0fd6",
+				"_type": "block",
+				"children": [
+					{
+						"_key": "d7615044e2e1",
+						"_type": "span",
+						"marks": [],
+						"text": ""
+					}
+				],
+				"markDefs": [],
+				"style": "normal"
+			},
+			{
+				"_key": "1c9d99a4e2b8",
+				"_type": "block",
+				"children": [
+					{
+						"_key": "4cd7d030b50c",
+						"_type": "span",
+						"marks": [],
+						"text": "{style:special}\nRêver grand, agir petit. \n{cite}L’équipe"
+					}
+				],
+				"markDefs": [],
+				"style": "blockquote"
+			},
+			{
+				"_key": "4003c34e0142",
+				"_type": "block",
+				"children": [
+					{
+						"_key": "c12b7f73b112",
+						"_type": "span",
+						"marks": [],
+						"text": ""
+					}
+				],
+				"markDefs": [],
+				"style": "normal"
+			},
+			{
+				"_key": "735717acc69f",
+				"_type": "block",
+				"children": [
+					{
+						"_key": "543b92a4e8f2",
+						"_type": "span",
+						"marks": [],
+						"text": "{style:special}{variant:secondary}\nTout est possible avec un sourire.\net tout ce qui est bon.\n{cite}Capucine"
+					}
+				],
+				"markDefs": [],
+				"style": "blockquote"
+			},
+			{
+				"_key": "d6fba7390d1e",
+				"_type": "block",
+				"children": [
+					{
+						"_key": "1b4e8667f162",
+						"_type": "span",
+						"marks": [],
+						"text": ""
+					}
+				],
+				"markDefs": [],
+				"style": "normal"
+			},
+			{
+				"_key": "4ac1117baa9f",
+				"_type": "block",
+				"children": [
+					{
+						"_key": "ae91e2fcf7d7",
+						"_type": "span",
+						"marks": [],
+						"text": "Ici ou fait les Callouts:"
+					}
+				],
+				"markDefs": [],
+				"style": "normal"
+			},
+			{
+				"_key": "859fd823416e",
+				"_type": "block",
+				"children": [
+					{
+						"_key": "8a5587ad3a78",
+						"_type": "span",
+						"marks": [],
+						"text": "{type:feedback}{variant:success}{size:lg}{icon:success}{title:Succès} Ce bloc quote devient une carte feedback verte. \nRetour à la ligne = nouveau paragraphe dans la carte."
+					}
+				],
+				"markDefs": [],
+				"style": "blockquote"
+			},
+			{
+				"_key": "bc5ecd912ce7",
+				"_type": "block",
+				"children": [
+					{
+						"_key": "e89c1318fac9",
+						"_type": "span",
+						"marks": [],
+						"text": ""
+					}
+				],
+				"markDefs": [],
+				"style": "normal"
+			},
+			{
+				"_key": "31f948cc0e55",
+				"_type": "block",
+				"children": [
+					{
+						"_key": "bc412102a23a",
+						"_type": "span",
+						"marks": [],
+						"text": "{type:feedback}{variant:warning} Sans titre ni size → fallback primary/md (orange)"
+					}
+				],
+				"markDefs": [],
+				"style": "blockquote"
 			}
-		],
-		"historyImage": {
-			"alt": "P'tits Loup",
-			"height": 1136,
-			"url": "https://cdn.sanity.io/images/rnhuu2jm/production/b267dea8381f60fc72a79a8f15da466eeb02b2e8-640x1136.jpg",
-			"width": 640
-		}
+		]
 	}
 }

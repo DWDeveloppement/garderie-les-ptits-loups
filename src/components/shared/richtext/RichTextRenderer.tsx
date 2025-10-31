@@ -5,6 +5,8 @@
  * Des conditions seronts mises en place pour gérer les différents cas de figure suivant le composant parent et le style de celui-ci, on utilise le composant et le variant adapté. code plus soft car ne fait que retourner le composant créé en y passant les props.
  * Celui-ci gèrera la logique de rendu du contenu riche en texte.
  */
+import { ICONS, type IconName } from "@/components/icons/registry"
+import { RichTextFeedbackCard } from "@/components/shared/richtext/RichTextFeedbackCard"
 import { RichTextList, type RichTextListItem } from "@/components/shared/richtext/RichTextList"
 import { RichTextQuote, RichTextQuoteSpecial } from "@/components/shared/richtext/RichTextQuote"
 import type { HeadingTag, RichTextTitleVariant } from "@/components/shared/richtext/RichTextTitle"
@@ -71,10 +73,45 @@ export function RichTextRenderer({ content, className = "" }: RichTextRendererPr
       const metadata = extractQuoteMetadata(block)
 
       if (spans[0]?.text) {
-        const { text, variant, style: styleOverride } = stripQuoteTags(spans[0].text)
+        const {
+          text,
+          variant,
+          style: styleOverride,
+          type: typeOverride,
+          feedbackVariant,
+          feedbackSize,
+          feedbackTitle,
+          feedbackIcon,
+        } = stripQuoteTags(spans[0].text)
         spans[0].text = text
         if (variant) metadata.variant = variant
         if (styleOverride) metadata.style = styleOverride
+        if (typeOverride) metadata.type = typeOverride
+        if (feedbackVariant) metadata.feedbackVariant = feedbackVariant
+        if (feedbackSize) metadata.feedbackSize = feedbackSize
+        if (feedbackTitle) metadata.feedbackTitle = feedbackTitle
+        if (feedbackIcon) metadata.feedbackIcon = feedbackIcon
+      }
+
+      if (metadata.type === "feedback") {
+        const feedbackProps = buildFeedbackCardProps(metadata)
+        const bodySpans = spans.filter((span, spanIndex) => {
+          if (spanIndex === 0) {
+            return (span?.text ?? '').trim().length > 0
+          }
+          return true
+        })
+        return (
+          <RichTextFeedbackCard
+            key={getBlockKey(block, index)}
+            variant={feedbackProps.variant}
+            size={feedbackProps.size}
+            icon={feedbackProps.icon}
+            title={feedbackProps.title}
+          >
+            {renderSpanNodes(bodySpans, `feedback-${index}`)}
+          </RichTextFeedbackCard>
+        )
       }
 
       const { contentSpans, authorSpans } = splitQuoteSpans(spans)
@@ -247,6 +284,11 @@ function isListBlock(block: unknown): block is PortableTextListBlock {
 type QuoteMetadata = {
   variant: 'default' | 'secondary'
   style: 'standard' | 'special'
+  type: 'standard' | 'feedback'
+  feedbackVariant?: 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'destructive'
+  feedbackSize?: 'sm' | 'md' | 'lg'
+  feedbackIcon?: IconName
+  feedbackTitle?: string
 }
 
 type QuoteVariantMark = {
@@ -262,6 +304,7 @@ function extractQuoteMetadata(block: RichTextBlock | PortableTextBlock): QuoteMe
   return {
     variant: mark?.variant === 'secondary' ? 'secondary' : 'default',
     style: mark?.style === 'special' ? 'special' : 'standard',
+    type: 'standard',
   }
 }
 
@@ -269,24 +312,64 @@ function stripQuoteTags(text: string) {
   let remaining = text
   let variant: QuoteMetadata['variant'] | undefined
   let style: QuoteMetadata['style'] | undefined
+  let type: QuoteMetadata['type'] | undefined
+  let feedbackVariant: QuoteMetadata['feedbackVariant'] | undefined
+  let feedbackSize: QuoteMetadata['feedbackSize'] | undefined
+  let feedbackTitle: string | undefined
+  let feedbackIcon: IconName | undefined
 
-  const tagPattern = /^\{(variant|style):(default|secondary|standard|special)\}\s*/i
+  const tagPattern = /^\{(type|variant|style|size|title|icon):(default|secondary|standard|special|feedback|primary|success|info|warning|destructive|sm|md|lg|[^}]+)\}\s*/i
 
   let match = tagPattern.exec(remaining)
 
   while (match) {
-    const [, key, value] = match
-    if (key.toLowerCase() === 'variant' && (value === 'default' || value === 'secondary')) {
-      variant = value as QuoteMetadata['variant']
+    const [, rawKey, rawValue] = match
+    const key = rawKey.toLowerCase()
+    const value = rawValue.toLowerCase()
+
+    if (key === 'type' && value === 'feedback') {
+      type = 'feedback'
     }
-    if (key.toLowerCase() === 'style' && (value === 'standard' || value === 'special')) {
+
+    if (key === 'variant') {
+      if (value === 'default' || value === 'secondary') {
+        variant = value as QuoteMetadata['variant']
+      }
+      if (
+        value === 'primary' ||
+        value === 'secondary' ||
+        value === 'success' ||
+        value === 'info' ||
+        value === 'warning' ||
+        value === 'destructive'
+      ) {
+        feedbackVariant = value as QuoteMetadata['feedbackVariant']
+      }
+    }
+
+    if (key === 'style' && (value === 'standard' || value === 'special')) {
       style = value as QuoteMetadata['style']
+    }
+
+    if (key === 'size' && (value === 'sm' || value === 'md' || value === 'lg')) {
+      feedbackSize = value as QuoteMetadata['feedbackSize']
+    }
+
+    if (key === 'title') {
+      feedbackTitle = rawValue.slice(0)
+    }
+
+    if (key === 'icon') {
+      const normalizedIcon = normalizeIconName(rawValue)
+      if (normalizedIcon) {
+        feedbackIcon = normalizedIcon
+      }
     }
     remaining = remaining.slice(match[0].length)
     match = tagPattern.exec(remaining)
   }
 
-  return { text: remaining, variant, style }
+  return { text: remaining, variant, style, type, feedbackVariant, feedbackSize, feedbackTitle, feedbackIcon }
 }
 
 // (helpers d'images supprimés pour le moment; les images rich-text sont gérées ailleurs)
@@ -490,4 +573,46 @@ function normalizeListItemSpans(spans: MinimalSpan[]) {
   })
 
   return { spans: cleaned, variant }
+}
+
+const DEFAULT_FEEDBACK_ICONS: Record<'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'destructive', IconName> = {
+  primary: 'info',
+  secondary: 'info',
+  success: 'success',
+  info: 'info',
+  warning: 'warning',
+  destructive: 'error',
+}
+
+function buildFeedbackCardProps(metadata: QuoteMetadata) {
+  const variant = metadata.feedbackVariant ?? 'primary'
+  const size = metadata.feedbackSize ?? 'md'
+  const icon = metadata.feedbackIcon ?? DEFAULT_FEEDBACK_ICONS[variant]
+
+  return {
+    variant,
+    size,
+    icon,
+    title: metadata.feedbackTitle?.trim().length ? metadata.feedbackTitle.trim() : undefined,
+  }
+}
+
+function normalizeIconName(rawValue: string): IconName | undefined {
+  const trimmed = rawValue.trim()
+  if (!trimmed) return undefined
+  if (isIconName(trimmed)) return trimmed
+
+  const camelCased = trimmed
+    .toLowerCase()
+    .replace(/[-_\s]+(.)?/g, (_, chr) => (chr ? chr.toUpperCase() : ''))
+
+  if (isIconName(camelCased)) {
+    return camelCased as IconName
+  }
+
+  return undefined
+}
+
+function isIconName(value: string): value is IconName {
+  return value in ICONS
 }
