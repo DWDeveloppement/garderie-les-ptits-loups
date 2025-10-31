@@ -1,7 +1,7 @@
 // 📂 src/components/pages/sector/ContentSection.tsx
 // 👉 Section de contenu Portable Text pour les pages secteurs
 
-import type { PortableTextBlock } from '@/types/sanity/sectorPage'
+import type { PortableTextBlock } from '@/types/sanity/portableText'
 import { PortableText } from '@portabletext/react'
 
 export interface ContentSectionProps {

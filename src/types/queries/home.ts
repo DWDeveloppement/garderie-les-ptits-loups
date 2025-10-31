@@ -1,6 +1,7 @@
 // Types pour la page d'accueil depuis Sanity
 
-import type { PortableTextBlock, SanityImage } from '../sanity/sectorPage'
+import type { PortableTextBlock } from '../sanity/portableText'
+import type { SanityImage } from '../sanity/sectorPage'
 
 /**
  * Secteur lié sur la page d'accueil

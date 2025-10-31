@@ -1,4 +1,5 @@
 // Page About - Garderie Les P'tits Loups
+import { DevJsonViewer } from "@/components/dev"
 import {
   AboutIntroSection,
   HeroAboutSection,
@@ -23,12 +24,18 @@ export default async function AboutPage() {
       <AboutIntroSection />
       {/* Parallax 1 - après l'introduction */}
       {data?.parallaxOne?.image && <ParalaxImage image={data.parallaxOne.image} />}
-      <HistorySection />
+      {data?.historyCollapse?.historyImage && (
+        <HistorySection 
+          content={data.historyCollapse.content}
+          historyImage={data.historyCollapse.historyImage}
+        />
+      )}
       {/* Parallax 2 - après l'histoire */}
       {data?.parallaxTwo?.image && <ParalaxImage image={data.parallaxTwo.image} />}
-      <TeamSection />
-      <ValuesSection />
-      <PedagogySection />
+      <TeamSection content={data?.team} />
+      <ValuesSection content={data?.values} />
+      <PedagogySection content={data?.pedagogy} />
+      <DevJsonViewer data={data} slug="a-propos" collapsed />
     </div>
   )
 }

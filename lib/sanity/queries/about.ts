@@ -17,15 +17,38 @@ export const ABOUT_QUERY = groq`
     },
     
     // Introduction (rich-text avec images)
-    introduction,
+    introduction[] {
+      ...,
+      _type == "basicImage" => {
+        ...,
+        "asset": asset->{
+          url,
+          metadata { dimensions }
+        }
+      }
+    },
     
     // Parallax 1
     parallaxOne {
       image ${BASIC_IMAGE_QUERY}
     },
     
-    // Histoire
-    history,
+    // Histoire (collapse: contenu + image simple)
+    historyCollapse {
+      content[] {
+        ...,
+        _type == "basicImage" => {
+          ...,
+          "asset": asset->{ url, metadata { dimensions } }
+        }
+      },
+      historyImage {
+        alt,
+        "url": asset->url,
+        "width": asset->metadata.dimensions.width,
+        "height": asset->metadata.dimensions.height
+      }
+    },
     
     // Parallax 2
     parallaxTwo {
@@ -33,7 +56,22 @@ export const ABOUT_QUERY = groq`
     },
     
     // Pédagogie
-    pedagogy,
+    pedagogy[] {
+      ...,
+      _type == "basicImage" => {
+        ...,
+        "asset": asset->{
+          url,
+          metadata { dimensions }
+        }
+      }
+    },
+
+    // Équipe (rich-text simple)
+    team,
+
+    // Valeurs (rich-text simple)
+    values,
     
     // SEO
     seo {

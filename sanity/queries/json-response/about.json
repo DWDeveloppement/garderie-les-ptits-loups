@@ -1,0 +1,284 @@
+{
+	"historyCollapse": {
+		"content": [
+			{
+				"_key": "96880a3f3203",
+				"_type": "block",
+				"children": [
+					{
+						"_key": "9c9dafd46d7b",
+						"_type": "span",
+						"marks": [],
+						"text": "tests render "
+					},
+					{
+						"_key": "67a5ab179d6a",
+						"_type": "span",
+						"marks": ["strong"],
+						"text": "rich-text\n"
+					},
+					{
+						"_key": "c70a653a3ffe",
+						"_type": "span",
+						"marks": [],
+						"text": "et je "
+					},
+					{
+						"_key": "2cdcdf088cbd",
+						"_type": "span",
+						"marks": ["em"],
+						"text": "regarde"
+					},
+					{
+						"_key": "6e603dd25358",
+						"_type": "span",
+						"marks": [],
+						"text": " sur 2 "
+					},
+					{
+						"_key": "7da9a6b9ef9a",
+						"_type": "span",
+						"marks": ["em", "strong"],
+						"text": "lignes"
+					}
+				],
+				"markDefs": [],
+				"style": "h2"
+			},
+			{
+				"_key": "9c7e1c7b4c7e",
+				"_type": "block",
+				"children": [
+					{
+						"_key": "027dc6270f26",
+						"_type": "span",
+						"marks": [],
+						"text": "Paragraphe de base (orange)"
+					}
+				],
+				"markDefs": [],
+				"style": "normal"
+			},
+			{
+				"_key": "cb79a845df74",
+				"_type": "block",
+				"children": [
+					{
+						"_key": "53da96fce35e",
+						"_type": "span",
+						"marks": [],
+						"text": "{variant:primary}Paragraphe "
+					},
+					{
+						"_key": "4392fa95f497",
+						"_type": "span",
+						"marks": ["strong"],
+						"text": "violet"
+					}
+				],
+				"markDefs": [],
+				"style": "normal"
+			},
+			{
+				"_key": "962c8ad9582c",
+				"_type": "block",
+				"children": [
+					{
+						"_key": "83a0c884e13f",
+						"_type": "span",
+						"marks": [],
+						"text": "Paragraphe sur 2 lignes présenté comme attendu\navec majuscule plus retour à la ligne"
+					}
+				],
+				"markDefs": [],
+				"style": "normal"
+			},
+			{
+				"_key": "0411f3e9ac86",
+				"_type": "block",
+				"children": [
+					{
+						"_key": "da37dc4aab5c",
+						"_type": "span",
+						"marks": [],
+						"text": ""
+					}
+				],
+				"markDefs": [],
+				"style": "normal"
+			},
+			{
+				"_key": "1f76e35f3fe4",
+				"_type": "block",
+				"children": [
+					{
+						"_key": "320c2c76a88f",
+						"_type": "span",
+						"marks": [],
+						"text": "Item "
+					},
+					{
+						"_key": "d8271f2a7cf0",
+						"_type": "span",
+						"marks": ["strong", "em"],
+						"text": "orange"
+					},
+					{
+						"_key": "3246e6eb9c4a",
+						"_type": "span",
+						"marks": [],
+						"text": " par défaut ne l'est pas car si un des items contient la précision su variant primary, toute la liste devient primary."
+					}
+				],
+				"level": 1,
+				"listItem": "bullet",
+				"markDefs": [],
+				"style": "normal"
+			},
+			{
+				"_key": "f7a071fe3cab",
+				"_type": "block",
+				"children": [
+					{
+						"_key": "320c2c76a88f",
+						"_type": "span",
+						"marks": [],
+						"text": "{variant:primary}Item "
+					},
+					{
+						"_key": "aad54858e59d",
+						"_type": "span",
+						"marks": ["strong"],
+						"text": "violet"
+					},
+					{
+						"_key": "30d29fc2b6db",
+						"_type": "span",
+						"marks": [],
+						"text": " (toute la liste doit devenir violette et c'est le cas)."
+					}
+				],
+				"level": 1,
+				"listItem": "bullet",
+				"markDefs": [],
+				"style": "normal"
+			},
+			{
+				"_key": "2d007096c28d",
+				"_type": "block",
+				"children": [
+					{
+						"_key": "320c2c76a88f",
+						"_type": "span",
+						"marks": [],
+						"text": "Item "
+					},
+					{
+						"_key": "816c6500cf66",
+						"_type": "span",
+						"marks": ["em"],
+						"text": "suivant"
+					}
+				],
+				"level": 1,
+				"listItem": "bullet",
+				"markDefs": [],
+				"style": "normal"
+			},
+			{
+				"_key": "11f7f6dc9424",
+				"_type": "block",
+				"children": [
+					{
+						"_key": "d3f35768a31a",
+						"_type": "span",
+						"marks": [],
+						"text": "un autre item avec le retour à la ligne \nshift+retour à la ligne, résultat, il est ok."
+					}
+				],
+				"level": 1,
+				"listItem": "bullet",
+				"markDefs": [],
+				"style": "normal"
+			},
+			{
+				"_key": "15af2d1b8a09",
+				"_type": "block",
+				"children": [
+					{
+						"_key": "ffa83fe4ccd0",
+						"_type": "span",
+						"marks": [],
+						"text": "Premier item "
+					},
+					{
+						"_key": "bd8a9e9d9951",
+						"_type": "span",
+						"marks": ["strong"],
+						"text": "orange"
+					}
+				],
+				"level": 1,
+				"listItem": "number",
+				"markDefs": [],
+				"style": "normal"
+			},
+			{
+				"_key": "9e69562c2fcc",
+				"_type": "block",
+				"children": [
+					{
+						"_key": "ffa83fe4ccd0",
+						"_type": "span",
+						"marks": [],
+						"text": "Basculer la "
+					},
+					{
+						"_key": "a2a92a9ba01d",
+						"_type": "span",
+						"marks": ["em"],
+						"text": "liste"
+					},
+					{
+						"_key": "e4361beab72e",
+						"_type": "span",
+						"marks": [],
+						"text": " numérotée en violet"
+					}
+				],
+				"level": 1,
+				"listItem": "number",
+				"markDefs": [],
+				"style": "normal"
+			},
+			{
+				"_key": "0af94df1356d",
+				"_type": "block",
+				"children": [
+					{
+						"_key": "ffa83fe4ccd0",
+						"_type": "span",
+						"marks": [],
+						"text": "Item "
+					},
+					{
+						"_key": "365fa18cc5cc",
+						"_type": "span",
+						"marks": ["strong", "em"],
+						"text": "suivant"
+					}
+				],
+				"level": 1,
+				"listItem": "number",
+				"markDefs": [],
+				"style": "normal"
+			}
+		],
+		"historyImage": {
+			"alt": "P'tits Loup",
+			"height": 1136,
+			"url": "https://cdn.sanity.io/images/rnhuu2jm/production/b267dea8381f60fc72a79a8f15da466eeb02b2e8-640x1136.jpg",
+			"width": 640
+		}
+	}
+}

@@ -29,12 +29,6 @@ export const aboutPage: SchemaTypeDefinition = {
 				{
 					type: 'block',
 				},
-				{
-					type: 'basicImage',
-					options: {
-						hotspot: true,
-					},
-				},
 			],
 			validation: (Rule: Rule) => Rule.required(),
 		},
@@ -46,16 +40,51 @@ export const aboutPage: SchemaTypeDefinition = {
 		},
 		// Histoire
 		{
-			name: 'history',
-			title: 'Histoire',
-			type: 'array',
-			of: [{ type: 'block' }],
+			name: 'historyCollapse',
+			title: 'Historique',
+			type: 'object',
+			description: 'Historique de la garderie',
+			fields: [
+				{
+					name: 'content',
+					title: 'Contenu',
+					type: 'array',
+					of: [
+						{
+							type: 'block',
+						},
+					],
+				},
+				{
+					name: 'historyImage',
+					title: 'Image',
+					type: 'basicImage',
+					options: {
+						hotspot: true,
+					},
+				},
+			],
+			validation: (Rule: Rule) => Rule.required(),
 		},
 		// Image Parallaxe
 		{
 			name: 'parallaxTwo',
 			title: 'Image Parallaxe',
 			type: paralaxImage.name,
+		},
+		// équipe
+		{
+			name: 'team',
+			title: 'Équipe',
+			type: 'array',
+			of: [{ type: 'block' }],
+		},
+		// valeurs
+		{
+			name: 'values',
+			title: 'Valeurs',
+			type: 'array',
+			of: [{ type: 'block' }],
 		},
 		// pédagogie
 		{
@@ -64,6 +93,7 @@ export const aboutPage: SchemaTypeDefinition = {
 			type: 'array',
 			of: [{ type: 'block' }],
 		},
+
 		// === SEO & CONFIGURATION ===
 		{
 			name: 'seo',
