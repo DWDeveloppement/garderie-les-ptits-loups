@@ -12,11 +12,5 @@ export function HeroContactSection({
   description = 'Nous sommes à votre entière disposition pour répondre à toutes vos questions.',
   image
 }: HeroContactSectionProps) {
-  return (
-    <HeroGlobal 
-      title={title} 
-      description={description} 
-      image={image} 
-    />
-  )
+  return <HeroGlobal title={title} description={description} imageUrl={image?.asset?.url} />
 }

@@ -1,7 +1,7 @@
 'use client'
 
 import type { DynamicMapProps, MapLocation, StaticMapProps } from '@/types/map'
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 
 // Hook pour la gestion des directions et adresses
 export function useMapLocation(location: MapLocation) {
@@ -97,6 +97,7 @@ export function useStaticMap({ location, zoom = 15 }: StaticMapProps) {
 // Hook pour les cartes dynamiques
 export function useDynamicMap({
 	location,
+	ref,
 	zoom = 15,
 	showMarker = true,
 	showControls = true,
@@ -104,7 +105,6 @@ export function useDynamicMap({
 	zIndex = 1,
 	onError,
 }: DynamicMapProps) {
-	const mapRef = useRef<HTMLDivElement>(null)
 	const [isLoaded, setIsLoaded] = useState(false)
 	const [error, setError] = useState<string | null>(null)
 
@@ -121,10 +121,10 @@ export function useDynamicMap({
 				// @ts-expect-error - Import CSS dynamique
 				await import('leaflet/dist/leaflet.css')
 
-				if (!mapRef.current) return
+				if (!ref?.current) return
 
 				// Initialisation de la carte
-				map = L.map(mapRef.current, {
+				map = L.map(ref.current, {
 					center: [location.lat, location.lng],
 					zoom: zoom,
 					zoomControl: showControls,
@@ -193,10 +193,9 @@ export function useDynamicMap({
 				map.remove()
 			}
 		}
-	}, [location, zoom, showMarker, showControls, interactive, zIndex])
+	}, [location, zoom, showMarker, showControls, interactive, zIndex, ref, onError])
 
 	return {
-		mapRef,
 		isLoaded,
 		error,
 	}

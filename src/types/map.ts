@@ -23,6 +23,7 @@ export type StaticMapProps = MapProps & {
 }
 
 export type DynamicMapProps = MapProps & {
+	ref?: React.RefObject<HTMLDivElement | null>
 	zoom?: number
 	showMarker?: boolean
 	showControls?: boolean

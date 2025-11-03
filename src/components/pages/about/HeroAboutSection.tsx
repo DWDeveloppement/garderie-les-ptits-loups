@@ -16,7 +16,7 @@ export function HeroAboutSection({
     <HeroGlobal 
       title={title}
       description={description}
-      image={image}
+      imageUrl={image?.asset?.url}
     />
   )
 }

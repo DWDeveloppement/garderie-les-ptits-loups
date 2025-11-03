@@ -1,6 +1,7 @@
 'use client'
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
+import { Card } from '@/components/ui/card'
 
 type SanityPriceItem = { service: string; price: string }
 type SanityAccordionItem = { accordionTitle: string; priceItems?: SanityPriceItem[] }
@@ -14,14 +15,25 @@ export function PricingList({ title, sections }: SanityPricingListProps) {
   const safeSections = sections || []
 
   return (
-    <article className="mb-12 p-6 bg-white rounded-lg shadow-md border border-orange-6 w-full">
-      <h3 className="text-xl font-bold text-purple-12 mb-6 text-center">{title}</h3>
+    <>
+      {/* On garde cet espace pour des tests de présentation de la Card */}
+    <Card>
+      <article>
+        je suis un article
+      </article>
+      </Card>
+      {/* Fin des tests de présentation de la Card */}
+      
+      {/* On garde ce code original ci-dessous. ne pas toucher à ce code */}
+    <article className="p-6 bg-white rounded-lg shadow-md border border-orange-6 w-full">
+      <h3 className="mb-6 text-center">{title}</h3>
       <Accordion type="single" collapsible className="space-y-4">
         {safeSections.map((section) => (
           <AccordionItem key={section.accordionTitle} value={section.accordionTitle}>
-            <AccordionTrigger>{section.accordionTitle}</AccordionTrigger>
-            <AccordionContent>
-              <div className="overflow-x-auto">
+            <AccordionTrigger className="text-xl text-balance font-bold flex items-center justify-between gap-2">
+              {section.accordionTitle}
+            </AccordionTrigger>
+            <AccordionContent asChild className='overflow-x-auto'>
                 <table className="min-w-full divide-y divide-orange-6">
                   <thead className="bg-orange-2">
                     <tr>
@@ -38,12 +50,12 @@ export function PricingList({ title, sections }: SanityPricingListProps) {
                     ))}
                   </tbody>
                 </table>
-              </div>
             </AccordionContent>
           </AccordionItem>
         ))}
       </Accordion>
     </article>
+    </>
   )
 }
 

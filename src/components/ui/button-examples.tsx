@@ -10,7 +10,9 @@
 import { Copy, ExternalLink, Home, Mail } from 'lucide-react'
 import { Button } from './button'
 
-export function ButtonExamples() {
+type ButtonState = 'default' | 'loading' | 'success' | 'error'
+
+export function ButtonExamples({ state }: { state: ButtonState }) {
   return (
     <div className="space-y-8 p-8">
       <h2 className="text-2xl font-bold">Exemples d&apos;utilisation du composant Button</h2>
@@ -19,13 +21,13 @@ export function ButtonExamples() {
       <section>
         <h3 className="text-lg font-semibold mb-4">Boutons par défaut</h3>
         <div className="flex gap-4">
-          <Button variant="primary" size="md">
+          <Button variant="default" size="default">
             Bouton principal
           </Button>
-          <Button variant="secondary" size="md">
+          <Button variant="secondary" size="default">
             Bouton secondaire
           </Button>
-          <Button variant="outline" size="md">
+          <Button variant="outline" size="default">
             Bouton outline
           </Button>
         </div>
@@ -38,8 +40,8 @@ export function ButtonExamples() {
           <Button
             asLink
             href="https://www.google.com"
-            variant="primary"
-            size="md"
+            variant="default"
+            size="default"
             ariaLabel="Ouvrir Google dans un nouvel onglet"
             external
           >
@@ -51,7 +53,7 @@ export function ButtonExamples() {
             asLink
             href="mailto:contact@example.com"
             variant="secondary"
-            size="md"
+            size="default"
             ariaLabel="Envoyer un email à contact@example.com"
           >
             <Mail className="size-4" aria-hidden />
@@ -67,8 +69,8 @@ export function ButtonExamples() {
           <Button
             asNextLink
             href="/about"
-            variant="primary"
-            size="md"
+            variant="default"
+            size="default"
             ariaLabel="Aller à la page À propos"
           >
             <Home className="size-4" aria-hidden />
@@ -79,7 +81,7 @@ export function ButtonExamples() {
             asNextLink
             href="/contact"
             variant="outline"
-            size="md"
+            size="default"
             ariaLabel="Aller à la page Contact"
           >
             Contact
@@ -92,8 +94,8 @@ export function ButtonExamples() {
         <h3 className="text-lg font-semibold mb-4">États spéciaux</h3>
         <div className="flex gap-4">
           <Button
-            variant="primary"
-            size="md"
+            variant="default"
+            size="default"
             loading
             ariaLabel="Chargement en cours"
           >
@@ -101,9 +103,9 @@ export function ButtonExamples() {
           </Button>
           
           <Button
-            variant="primary"
-            size="md"
-            state="success"
+            variant="default"
+            size="default"
+            loading={state === 'success'}
             ariaLabel="Action réussie"
           >
             <Copy className="size-4" aria-hidden />
@@ -111,9 +113,9 @@ export function ButtonExamples() {
           </Button>
           
           <Button
-            variant="primary"
-            size="md"
-            state="error"
+            variant="default"
+            size="default"
+            loading={state === 'error'}
             ariaLabel="Erreur"
           >
             Erreur

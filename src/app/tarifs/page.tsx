@@ -28,9 +28,9 @@ export default async function HorairesTarifsPage() {
       />
 			{/* Nurserie */}
 			<section className='w-full py-16 px-4 sm:px-6 lg:px-8 bg-purple-1'>
-				<div className='w-full max-w-6xl mx-auto gap-2'>
-					<h2 className='text-2xl font-bold text-purple-12'>La Nurserie (0 – 24 mois)</h2>
-					<div className='w-full grid grid-cols-1 items-start justify-center md:grid-cols-2 gap-8'>
+				<div className='w-full max-w-6xl mx-auto gap-4 md:gap-8 flex flex-col items-center justify-center'>
+					<h2 className="font-bold text-center text-balance">La Nurserie (0 – 24 mois)</h2>
+					<div className='w-full grid grid-cols-1 items-start justify-center md:grid-cols-2 gap-16 lg:gap-24'>
 						<PricingList title={'Prix au mois'} sections={monthlyNursery?.accordionItems} />
 						<PricingList title={'Prix au jour'} sections={dailyNursery?.accordionItems} />
 					</div>
@@ -39,9 +39,9 @@ export default async function HorairesTarifsPage() {
 
 			{/* Trotteurs & Grands */}
 			<section className='w-full py-16 px-4 sm:px-6 lg:px-8 bg-purple-1'>
-				<div className='w-full max-w-6xl mx-auto gap-2'>
-					<h2 className='text-2xl font-bold text-purple-12'>Trotteurs et Grands (2 – 6 ans)</h2>
-					<div className='w-full grid grid-cols-1 items-start justify-center md:grid-cols-2 gap-8'>
+				<div className='w-full max-w-6xl mx-auto gap-4 md:gap-8 flex flex-col items-center justify-center'>
+					<h2 className="font-bold text-center text-balance">Trotteurs et Grands (2 – 6 ans)</h2>
+					<div className='w-full grid grid-cols-1 items-start justify-center md:grid-cols-2 gap-12 md:gap-16 lg:gap-24'>
 						<PricingList title={'Prix au mois'} sections={monthlyTG?.accordionItems} />
 						<PricingList title={'Prix au jour'} sections={dailyTG?.accordionItems} />
 					</div>

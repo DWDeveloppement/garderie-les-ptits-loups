@@ -5,7 +5,7 @@ export function CardExamples() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-6">
       {/* Primary Card (Purple-based) */}
-      <Card variant="primary" size="md" interactive>
+      <Card>
         <CardHeader>
           <CardTitle>Primary Card</CardTitle>
         </CardHeader>
@@ -15,7 +15,7 @@ export function CardExamples() {
       </Card>
 
       {/* Secondary Card (Orange-based) */}
-      <Card variant="secondary" size="md" interactive>
+      <Card>
         <CardHeader>
           <CardTitle>Secondary Card</CardTitle>
         </CardHeader>
@@ -25,7 +25,7 @@ export function CardExamples() {
       </Card>
 
       {/* Neutral Card */}
-      <Card variant="neutral" size="md">
+      <Card>
         <CardHeader>
           <CardTitle>Neutral Card</CardTitle>
         </CardHeader>
@@ -35,7 +35,7 @@ export function CardExamples() {
       </Card>
 
       {/* Neutral Card */}
-      <Card variant="neutral" size="md">
+      <Card>
         <CardHeader>
           <CardTitle>Neutral Card</CardTitle>
         </CardHeader>

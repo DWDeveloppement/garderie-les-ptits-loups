@@ -15,12 +15,6 @@ export interface HeroSectorSectionProps {
  * Utilise HeroGlobal pour la cohérence du design
  */
 export function HeroSectorSection({ title, description, image }: HeroSectorSectionProps) {
-  return (
-    <HeroGlobal
-      title={title}
-      description={description}
-      image={image}
-    />
-  )
+  return <HeroGlobal title={title} description={description} imageUrl={image?.asset?.url} />
 }
 

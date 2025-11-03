@@ -18,7 +18,7 @@ export function HeroHorairesTarifsSection({
     <HeroGlobal 
       title={title} 
       description={description} 
-      image={image} 
+      imageUrl={image?.asset?.url} 
     />
   )
 }

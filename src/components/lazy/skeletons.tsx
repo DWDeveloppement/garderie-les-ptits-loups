@@ -1,12 +1,13 @@
 'use client'
 
-import { Skeleton } from '@radix-ui/themes'
+import { Skeleton } from '@/components/ui/skeleton'
+import { Icon } from '../icons'
 
 /**
  * Skeleton par défaut avec Radix UI
  */
 export function DefaultSkeleton() {
-  return <Skeleton height="16rem" width="100%" />
+  return <Skeleton className="h-40 w-full" />
 }
 
 /**
@@ -17,7 +18,7 @@ export function GallerySkeleton() {
     <div className="space-y-4">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {Array.from({ length: 6 }).map((_, i) => (
-          <Skeleton key={i} height="12rem" width="100%" />
+          <Skeleton key={i} className="h-32 w-full" />
         ))}
       </div>
     </div>
@@ -31,20 +32,20 @@ export function FormSkeleton() {
   return (
     <div className="space-y-6">
       <div className="space-y-4">
-        <Skeleton height="1rem" width="25%" />
-        <Skeleton height="2.5rem" width="100%" />
+        <Skeleton className="h-4 w-1/4" />
+        <Skeleton className="h-10 w-full" />
       </div>
       <div className="space-y-4">
-        <Skeleton height="1rem" width="25%" />
-        <Skeleton height="2.5rem" width="100%" />
+        <Skeleton className="h-4 w-1/4" />
+        <Skeleton className="h-10 w-full" />
       </div>
       <div className="space-y-4">
-        <Skeleton height="1rem" width="25%" />
-        <Skeleton height="6rem" width="100%" />
+        <Skeleton className="h-4 w-1/4" />
+        <Skeleton className="h-24 w-full" />
       </div>
       <div className="flex gap-4">
-        <Skeleton height="2.5rem" width="6rem" />
-        <Skeleton height="2.5rem" width="6rem" />
+        <Skeleton className="h-10 w-16" />
+        <Skeleton className="h-10 w-16" />
       </div>
     </div>
   )
@@ -56,10 +57,10 @@ export function FormSkeleton() {
 export function SectionSkeleton() {
   return (
     <div className="space-y-6">
-      <Skeleton height="2rem" width="50%" />
-      <Skeleton height="1rem" width="75%" />
-      <Skeleton height="1rem" width="50%" />
-      <Skeleton height="16rem" width="100%" />
+      <Skeleton className="h-8 w-1/2" />
+      <Skeleton className="h-4 w-3/4" />
+      <Skeleton className="h-4 w-1/2" />
+      <Skeleton className="h-64 w-full" />
     </div>
   )
 }
@@ -72,45 +73,42 @@ export function HeroSkeleton() {
     <div className="min-h-[60vh] flex items-center justify-center bg-gradient-to-br from-purple-50 to-orange-50">
       <div className="text-center space-y-6 max-w-4xl mx-auto px-4">
         {/* Titre skeleton */}
-        <Skeleton height="3rem" width="75%" className="mx-auto" />
+        <Skeleton className="h-12 w-3/4 mx-auto" />
         {/* Sous-titre skeleton */}
-        <Skeleton height="1.5rem" width="50%" className="mx-auto" />
+        <Skeleton className="h-6 w-1/2 mx-auto" />
         {/* Description skeleton */}
         <div className="space-y-2">
-          <Skeleton height="1rem" width="100%" />
-          <Skeleton height="1rem" width="83%" className="mx-auto" />
-          <Skeleton height="1rem" width="67%" className="mx-auto" />
+            <Skeleton className="h-4 w-full" />
+          <Skeleton className="h-4 w-3/4 mx-auto" />
+          <Skeleton className="h-4 w-2/3 mx-auto" />
         </div>
         {/* Bouton skeleton */}
-        <Skeleton height="3rem" width="12rem" className="mx-auto" />
+        <Skeleton className="h-12 w-32 mx-auto" />
       </div>
     </div>
   )
 }
 
-export function MapSkeleton({ height = 400, className = '' }: { height?: number; className?: string } = {}) {
+export function MapSkeleton({ className = '' }: { className?: string } = {}) {
   return (
-    <div className={`space-y-4 w-full max-w-4xl mx-auto ${className}`}>
-      {/* Skeleton de la carte */}
-      <div className='relative rounded-lg overflow-hidden border border-orange-6'>
-        <Skeleton 
-          height={`${height}px`} 
-          width="100%" 
-          className="w-full"
-        />
-        
-        {/* Skeleton de l'overlay d'informations */}
-        <div className='absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-lg p-3 shadow-lg'>
-          <div className='flex items-start gap-2'>
-            <Skeleton height="1rem" width="1rem" className="flex-shrink-0" />
-            <div className='space-y-1'>
-              <Skeleton height="1rem" width="8rem" />
-              <Skeleton height="0.875rem" width="12rem" />
-              <Skeleton height="0.875rem" width="6rem" />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
+		<div className={`relative w-full h-full rounded-lg overflow-hidden ${className}`}>
+      {/* Skeleton de la carte - remplit tout le conteneur */}
+      <Skeleton className='absolute inset-0 w-full h-full bg-purple-2' />
+			<div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-orange-surface backdrop-blur-sm rounded-full p-4 shadow-lg z-10 animate-pulse flex items-center justify-center'>
+        <Icon name='mapPin' className='size-24 text-orange-3' />
+			</div>
+
+			{/* Skeleton de l'overlay d'informations */}
+			<div className='absolute top-4 left-4 bg-orange-surface backdrop-blur-sm rounded-lg p-3 shadow-lg z-10 animate-pulse'>
+				<div className='flex items-start gap-2'>
+					<Skeleton className='h-4 w-4 flex-shrink-0' />
+					<div className='space-y-1'>
+						<Skeleton className='h-4 w-20' />
+						<Skeleton className='h-4 w-32' />
+						<Skeleton className='h-4 w-16' />
+					</div>
+				</div>
+			</div>
+		</div>
+	)
 }

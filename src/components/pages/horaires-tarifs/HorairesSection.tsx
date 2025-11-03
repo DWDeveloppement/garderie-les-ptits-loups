@@ -8,7 +8,7 @@ export function HorairesSection() {
       <div className="max-w-6xl mx-auto">
         {/* En-tête de section */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-purple-12 mb-4">
+          <h2 className="mb-4">
             Nos Horaires d&apos;Ouverture
           </h2>
           <p className="text-lg text-orange-10 max-w-2xl mx-auto">
