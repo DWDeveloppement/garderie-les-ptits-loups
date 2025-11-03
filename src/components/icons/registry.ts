@@ -3,6 +3,8 @@
 
 import {
 	AlertTriangle,
+	ArrowLeft,
+	ArrowRight,
 	AtSign,
 	Baby,
 	BookOpen,
@@ -69,6 +71,8 @@ export const ICONS = {
 	chevronRight: ChevronRight,
 	chevronDown: ChevronDown,
 	chevronUp: ChevronUp,
+	arrowRight: ArrowRight,
+	arrowLeft: ArrowLeft,
 
 	// Icônes de formulaire
 	mail: Mail,

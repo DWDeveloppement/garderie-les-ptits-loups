@@ -1,13 +1,30 @@
 import * as React from "react"
 
+import { cardVariants, type CardVariants } from "@/components/ui/variants/card"
 import { cn } from "@/lib/utils"
 
-function Card({ className, ...props }: React.ComponentProps<"div">) {
+type CardProps = React.ComponentProps<"div"> & CardVariants
+
+function Card({ 
+  className, 
+  variant,
+  size,
+  interactive,
+  ...props 
+}: CardProps) {
+  // Appliquer les variants seulement si au moins une prop variant est fournie
+  const hasVariants = variant !== undefined || size !== undefined || interactive !== undefined
+  
   return (
     <div
       data-slot="card"
       className={cn(
-        "bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm",
+        // Classes Shadcn de base (toujours appliquées pour compatibilité)
+        "flex flex-col gap-6 border shadow-sm",
+        // Si pas de variants → styles Shadcn par défaut
+        !hasVariants && "bg-card text-card-foreground py-6 rounded-xl",
+        // Si variants fournis → appliquer CVA (rounded-lg déjà dans la base CVA)
+        hasVariants && cardVariants({ variant, size, interactive }),
         className
       )}
       {...props}
@@ -82,11 +99,6 @@ function CardFooter({ className, ...props }: React.ComponentProps<"div">) {
 }
 
 export {
-  Card,
-  CardHeader,
-  CardFooter,
-  CardTitle,
-  CardAction,
-  CardDescription,
-  CardContent,
+  Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle
 }
+

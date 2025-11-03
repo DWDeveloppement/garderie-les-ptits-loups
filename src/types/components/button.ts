@@ -8,6 +8,7 @@ export type ButtonCommonProps = {
 	ariaLabel?: string
 	loading?: boolean
 	external?: boolean
+	asDecorative?: boolean
 }
 
 // Rendu bouton natif
@@ -35,6 +36,11 @@ export type ButtonAsNextLinkProps = Omit<React.AnchorHTMLAttributes<HTMLAnchorEl
 		href: string
 		asLink?: false
 	}
-
+// Rendu div décoratif
+export type ButtonAsDecorativeProps = React.HTMLAttributes<HTMLDivElement> &
+	VariantProps<typeof buttonVariants> &
+	ButtonCommonProps & {
+		asDecorative: true
+	}
 // Union discriminée des props publiques
-export type ButtonProps = ButtonAsNextLinkProps | ButtonAsAnchorProps | ButtonAsButtonProps
+export type ButtonProps = ButtonAsNextLinkProps | ButtonAsAnchorProps | ButtonAsButtonProps | ButtonAsDecorativeProps

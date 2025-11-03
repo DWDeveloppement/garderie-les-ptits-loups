@@ -8,10 +8,10 @@ import Link from "next/link"
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
-import type { ButtonAsAnchorProps, ButtonAsButtonProps, ButtonAsNextLinkProps, ButtonProps } from "@/types/components/button"
+import type { ButtonAsAnchorProps, ButtonAsButtonProps, ButtonAsDecorativeProps, ButtonAsNextLinkProps, ButtonProps } from "@/types/components/button"
 import { buttonVariants } from "./variants/button"
 
-function Button(props: ButtonProps) {
+function Button(props: ButtonAsNextLinkProps | ButtonAsAnchorProps | ButtonAsButtonProps | ButtonAsDecorativeProps) {
   const {
     className,
     variant,
@@ -20,6 +20,7 @@ function Button(props: ButtonProps) {
     ariaLabel,
     children,
     loading,
+    asDecorative = false,
   } = props
 
   const isNextLinkProps = (p: ButtonProps): p is ButtonAsNextLinkProps =>
@@ -36,7 +37,24 @@ function Button(props: ButtonProps) {
   const external = props.external
   const disabled = (!isNextLink && !isAnchorLink) ? (props as ButtonAsButtonProps).disabled : undefined
 
-  const buttonClasses = cn(buttonVariants({ variant, size, className }))
+  // Générer les classes de base
+  const baseClasses = buttonVariants({ variant, size, className })
+  
+  // Pour le mode décoratif : retirer uniquement les classes focus (pas d'interaction directe)
+  // Les classes group-* sont gérées via className dans le composant parent si nécessaire
+  const buttonClasses = asDecorative
+    ? baseClasses
+        .split(' ')
+        .map(cls => {
+          // Retire uniquement les classes focus-visible (pas d'interaction directe)
+          if (cls.startsWith('focus-visible:')) return ''
+          // Retire hover: (sera géré par group-hover dans className si nécessaire)
+          if (cls.startsWith('hover:')) return ''
+          return cls
+        })
+        .filter(cls => cls !== '') // Retire les classes vides
+        .join(' ')
+    : baseClasses
 
   // Hook d'accessibilité pour les liens (si asLink ou asNextLink)
   const linkA11y = useLinkA11y({
@@ -93,6 +111,15 @@ function Button(props: ButtonProps) {
       >
         {children}
       </a>
+    )
+  }
+
+  // Rendu en div décoratif
+  if (asDecorative === true) {
+    return (
+      <div className={cn(buttonClasses, 'group-button')} aria-hidden='true'>
+        {children}
+      </div>
     )
   }
 

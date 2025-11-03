@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Callout, CalloutIcon, CalloutText } from "@/components/ui/callout"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { CardExamples } from "@/components/ui/card-examples"
 import { AlertCircle, AlertTriangle, ArrowRight, CheckCircle2, Download, Heart, Info, Mail, Phone, Send, Star } from 'lucide-react'
 
 export default function ExamplePage() {
@@ -131,8 +132,8 @@ export default function ExamplePage() {
 						Le système typographique et d&apos;espacement fluide est maintenant configuré et prêt à être utilisé dans toute
 						l&apos;application.
 					</p>
-				</section>
-
+			  </section>
+			  <CardExamples />
 				{/* Section 4: Buttons */}
 				<section className='p-fl-lg'>
 					<div className='max-w-6xl mx-auto space-y-fl-xl'>
