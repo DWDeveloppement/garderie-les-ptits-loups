@@ -1,12 +1,12 @@
-import { fetchFooterData } from "lib/sanity/queries"
-import Link from "next/link"
-import { Icon } from "../icons/Icon"
-import { Separator } from "../ui/separator"
+import { fetchFooterData } from 'lib/sanity/queries'
+import Link from 'next/link'
+import { Icon } from '../icons/Icon'
+import { Separator } from '../ui/separator'
 
 export async function Footer() {
-  // Récupération des données de contact depuis Sanity
-  const data = await fetchFooterData()
-  return (
+	// Récupération des données de contact depuis Sanity
+	const data = await fetchFooterData()
+	return (
 		<footer className='bg-purple-12 text-orange-1 mb-16 md:mb-0'>
 			<div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12'>
 				<div className='grid md:grid-cols-2 lg:grid-cols-4 gap-8'>
@@ -39,14 +39,18 @@ export async function Footer() {
 								</div>
 							</div>
 							<div className='flex items-center space-x-2'>
-								<Icon name='phone' size='md' aria-hidden />
-								<a href={`tel:${data?.contactInfo?.phone}`} className='text-orange-4 hover:text-orange-2 transition-colors'>
+								<Icon name='phone' size='lg' aria-hidden />
+								<a
+									href={`tel:${data?.contactInfo?.phone}`}
+									className='px-2 py-1 text-orange-4 hover:text-orange-2 transition-colors outline-none focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] focus-visible:rounded-lg focus-visible:ring-offset-2'>
 									{data?.contactInfo?.phone}
 								</a>
 							</div>
 							<div className='flex items-center space-x-3'>
 								<Icon name='mail' size='lg' aria-hidden />
-								<a href={`mailto:${data?.contactInfo?.email}`} className='text-orange-4 hover:text-orange-2 transition-colors'>
+								<a
+									href={`mailto:${data?.contactInfo?.email}`}
+									className='px-2 py-1 text-orange-4 hover:text-orange-2 transition-colors outline-none focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] focus-visible:rounded-lg focus-visible:ring-offset-2'>
 									{data?.contactInfo?.email}
 								</a>
 							</div>
@@ -69,16 +73,20 @@ export async function Footer() {
 				</div>
 
 				{/* Ligne de séparation */}
-				<Separator orientation='horizontal' className='flex my-32 ' />
+				<Separator orientation='horizontal' className='flex my-12 ' />
 				<div className='flex flex-col md:flex-row justify-between items-center '>
 					<p className='text-orange-4 text-sm'>
 						&copy; {new Date().getFullYear()} {data?.contactInfo?.name}. Tous droits réservés.
 					</p>
 					<div className='flex space-x-6 mt-4 md:mt-0'>
-						<Link href='/mentions-legales' className='text-orange-4 hover:text-orange-2 text-sm transition-colors'>
+						<Link
+							href='/mentions-legales'
+							className='px-2 py-1 text-orange-4 hover:text-orange-2 text-sm transition-colors outline-none focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[1px] focus-visible:rounded-lg focus-visible:ring-offset-2'>
 							Mentions légales
 						</Link>
-						<Link href='/politique-confidentialite' className='text-orange-4 hover:text-orange-2 text-sm transition-colors'>
+						<Link
+							href='/politique-confidentialite'
+							className='px-2 py-1 text-orange-4 hover:text-orange-2 text-sm transition-colors outline-none focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] focus-visible:rounded-lg focus-visible:ring-offset-2'>
 							Politique de confidentialité
 						</Link>
 					</div>

@@ -25,7 +25,7 @@ export function HeroGlobal({
   })
 
   return (
-    <section ref={elementRef} className={`relative h-96 overflow-hidden pt-20 ${className}`}>
+    <section ref={elementRef} className={`relative h-150 overflow-hidden pt-20 ${className}`}>
       {/* Image de fond avec effet parallax */}
       <div 
         className="absolute inset-0 transform"
@@ -56,7 +56,7 @@ export function HeroGlobal({
       <div className="relative z-10 h-full flex flex-col justify-center px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
           <h1 
-            className="font-bold text-white mb-6 drop-shadow-lg"
+            className="font-bold mb-6 drop-shadow-lg"
             style={{ 
               transform: textTransform,
               transition: 'transform 0.1s ease-out'
@@ -66,9 +66,9 @@ export function HeroGlobal({
           </h1>
           
           {description && (
-            <Card className="max-w-2xl mx-auto bg-white/95 backdrop-blur-sm border-orange-6 shadow-lg">
+            <Card variant="primary" size="lg">
               <CardContent className="p-6">
-                <p className="text-orange-11 leading-relaxed">
+                <p className="leading-relaxed">
                   {description}
                 </p>
               </CardContent>
@@ -78,7 +78,7 @@ export function HeroGlobal({
       </div>
 
       {/* Effet de profondeur */}
-      <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-orange-12/20 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-full bg-gradient-to-t from-purple-12/20 to-transparent" />
     </section>
   )
 }

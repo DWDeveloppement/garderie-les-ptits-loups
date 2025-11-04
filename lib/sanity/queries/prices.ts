@@ -1,3 +1,4 @@
+import type { PortableTextBlock } from '@/types/sanity/portableText'
 import { groq } from 'next-sanity'
 import { sanityFetch } from '../client'
 
@@ -40,7 +41,10 @@ export const qDailyTG = groq`*[_type == "prices" && documentType == "accordion" 
 
 // Requête pour le document Subventions (table)
 export const qSubsidies = groq`*[_type == "prices" && documentType == "table"][0]{
+	tableSubsidiesInfo,
 	tableContent{
+		incomeRangeTitle,
+		reductionTitle,
 		subsidyItems[]{ incomeRange, subsidy }
 	}
 }`
@@ -74,11 +78,10 @@ export async function fetchDailyTG() {
 }
 
 export async function fetchSubsidies() {
-	return sanityFetch<{ tableContent?: { subsidyItems: { incomeRange: string; subsidy: string }[] } } | null>(
-		qSubsidies,
-		{},
-		{ tag: 'prices-subsidies' }
-	)
+	return sanityFetch<{
+		tableSubsidiesInfo?: PortableTextBlock[]
+		tableContent?: { incomeRangeTitle: string; reductionTitle: string; subsidyItems: { incomeRange: string; subsidy: string }[] }
+	} | null>(qSubsidies, {}, { tag: 'prices-subsidies' })
 }
 
 export function getFrequentationLabel(value?: string): string {

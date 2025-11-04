@@ -4,7 +4,7 @@
 'use client';
 
 import { Icon } from '@/components/icons'
-import { Card } from '@/components/ui/card'
+import { Card, CardContent } from '@/components/ui/card'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
 import * as React from 'react'
@@ -34,38 +34,39 @@ function renderNextImage(
   const customPhoto = photo as Photo & { blurDataURL?: string };
   
   return (
-    <div
-      style={{
-        width: "100%",
-        position: "relative",
-        aspectRatio: `${width} / ${height}`,
-      }}
-      className="group cursor-pointer"
-      onClick={() => {
-        // Le clic sera géré par le parent
-        const event = new CustomEvent('photoClick', { detail: index });
-        window.dispatchEvent(event);
-      }}
-    >
-      <Card className="overflow-hidden h-full w-full hover:scale-[1.02] transition-transform">
-        <Image
-          fill
-          src={photo}
-          alt={alt}
-          title={title}
-          sizes={sizes}
-          placeholder={customPhoto.blurDataURL ? "blur" : undefined}
-          blurDataURL={customPhoto.blurDataURL}
-          className="object-cover"
-        />
-        
-        {/* Overlay hover */}
-        <div className="absolute inset-0 bg-purple-2/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-          <Icon name="zoomIn" size="xl" className="text-purple-10" aria-hidden />
-        </div>
-      </Card>
-    </div>
-  );
+		<div
+			style={{
+				width: '100%',
+				position: 'relative',
+				aspectRatio: `${width} / ${height}`,
+			}}
+			className='group cursor-pointer'
+			onClick={() => {
+				// Le clic sera géré par le parent
+				const event = new CustomEvent('photoClick', { detail: index })
+				window.dispatchEvent(event)
+			}}>
+			<Card variant='primary' interactive className='relative h-full w-full rounded-lg overflow-hidden p-4'>
+				<CardContent>
+					<Image
+						fill
+						src={photo}
+						alt={alt}
+						title={title}
+						sizes={sizes}
+						placeholder={customPhoto.blurDataURL ? 'blur' : undefined}
+						blurDataURL={customPhoto.blurDataURL}
+						className='object-cover h-full w-full'
+					/>
+
+					{/* Overlay hover */}
+					<div className='absolute inset-0 bg-purple-2/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity rounded-lg'>
+						<Icon name='zoomIn' size='xl' className='text-purple-10' aria-hidden />
+					</div>
+				</CardContent>
+			</Card>
+		</div>
+	)
 }
 
 /**

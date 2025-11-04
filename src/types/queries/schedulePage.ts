@@ -1,5 +1,6 @@
 // Types pour la page Horaires & Tarifs depuis Sanity
 
+import type { PortableTextBlock } from '../sanity/portableText'
 import type { SanityImage } from '../sanity/sectorPage'
 
 /**
@@ -60,7 +61,7 @@ export type SubsidiesDocument = {
  */
 export type SubsidiesSection = {
 	title: string
-	body?: string
+	body?: PortableTextBlock[]
 	tableau: SubsidiesDocument
 }
 

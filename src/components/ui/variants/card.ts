@@ -9,13 +9,13 @@ export const cardVariants = cva(
 			variant: {
 				// Purple-based primary variant
 				primary: [
-					'bg-purple-1 border-purple-6 text-purple-12',
+					'bg-purple-1 border-purple-6 text-purple-11',
 					'hover:border-purple-7',
 					'focus-within:border-purple-8 focus-within:ring-2 focus-within:ring-purple-8/20',
 				],
 				// Orange-based secondary variant
 				secondary: [
-					'bg-orange-bg-light border-orange-6 text-orange-12',
+					'bg-orange-bg-light border-orange-6 text-orange-11',
 					'hover:border-orange-7',
 					'focus-within:border-orange-8 focus-within:ring-2 focus-within:ring-orange-8/20',
 				],

@@ -3,7 +3,7 @@
 export type TestimonialsTypesProps = {
 	id: number
 	name: string
-	role: string
+	title: string
 	content: string
 	rating: number
 }

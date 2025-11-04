@@ -77,7 +77,7 @@ export function ParalaxImage({
 
       {/* Overlay semi-transparent avec opacité dynamique */}
       <div 
-        className="absolute inset-0 bg-gradient-to-b from-orange-12/20 via-orange-12/30 to-orange-12/40"
+        className="h-full absolute inset-0 bg-gradient-to-b from-orange-12/20 via-orange-12/30 to-orange-12/40"
         style={{ 
           backgroundColor: `rgba(var(--orange-12-rgb), ${overlayOpacity})`,
           transition: 'background-color 0.1s ease-out'
@@ -85,6 +85,7 @@ export function ParalaxImage({
       />
 
       {/* Contenu textuel avec effet de flottement au scroll */}
+      {(finalTitle || finalSubtitle) && (
       <div className={`relative z-10 h-full flex flex-col justify-center px-4 sm:px-6 lg:px-8`}>
         <div 
           className={`max-w-4xl mx-auto ${textPositionClasses[textPosition]}`}
@@ -93,17 +94,20 @@ export function ParalaxImage({
             transition: 'transform 0.1s ease-out'
           }}
         >
-          <h2 className="font-bold text-white mb-4 drop-shadow-lg">
+          {finalTitle && <h2 className="font-bold text-white mb-4 drop-shadow-lg">
             {finalTitle}
-          </h2>
-          <p className="text-orange-1 max-w-2xl leading-relaxed drop-shadow-md">
-            {finalSubtitle}
-          </p>
+          </h2>}
+          {finalSubtitle && (
+            <p className="text-orange-1 max-w-2xl leading-relaxed drop-shadow-md">
+              {finalSubtitle}
+            </p>
+          )}
         </div>
-      </div>
+        </div>
+      )}
 
       {/* Effet de profondeur avec ombre portée */}
-      <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-orange-12/20 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-full bg-gradient-to-t from-purple-12/20 to-transparent" />
     </section>
   )
 }

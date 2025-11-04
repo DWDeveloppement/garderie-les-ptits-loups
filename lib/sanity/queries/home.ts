@@ -60,6 +60,29 @@ export const HOME_QUERY = groq`
   }
 `
 
+/**
+ * Query pour récupérer tous les témoignages
+ */
+export const TESTIMONIALS_QUERY = groq`
+  *[_type == "testimonials"] | order(_createdAt desc) {
+    _id,
+    title,
+    information,
+    signature
+  }
+`
+
 export async function fetchHome(): Promise<HomePageData> {
 	return sanityFetch<HomePageData>(HOME_QUERY, {}, { tag: 'home-page' })
+}
+
+export async function fetchTestimonials() {
+	return sanityFetch<
+		Array<{
+			_id: string
+			title: string
+			information: string
+			signature: string
+		}>
+	>(TESTIMONIALS_QUERY, {}, { tag: 'testimonials' })
 }

@@ -82,11 +82,32 @@ export const prices: SchemaTypeDefinition = {
 				),
 		},
 		{
+			name: 'tableSubsidiesInfo',
+			title: 'Information importante sur les subventions',
+			type: 'array',
+			of: [{ type: 'block' }],
+			hidden: ({ document }) => document?.documentType !== 'table',
+			validation: (Rule: Rule) => Rule.required().max(200),
+			description: 'Information importante sur les subventions',
+		},
+		{
 			name: 'tableContent',
 			title: 'Contenu du tableau',
 			type: 'object',
 			hidden: ({ document }) => document?.documentType !== 'table',
 			fields: [
+				{
+					name: 'incomeRangeTitle',
+					title: 'Titre des revenus',
+					type: 'string',
+					validation: (Rule: Rule) => Rule.required(),
+				},
+				{
+					name: 'reductionTitle',
+					title: 'Titre du montant',
+					type: 'string',
+					validation: (Rule: Rule) => Rule.required(),
+				},
 				{
 					name: 'subsidyItems',
 					title: 'Items de subvention',

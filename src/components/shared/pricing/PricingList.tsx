@@ -2,6 +2,7 @@
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
+import { Separator } from '@/components/ui/separator'
 
 type SanityPriceItem = { service: string; price: string }
 type SanityAccordionItem = { accordionTitle: string; priceItems?: SanityPriceItem[] }
@@ -19,11 +20,12 @@ export function PricingList({ title, sections }: SanityPricingListProps) {
 				<CardHeader>
 					<h3 className='mb-6 text-center'>{title}</h3>
 				</CardHeader>
-				<CardContent>
-					<Accordion role='list' type='single' collapsible className='space-y-4'>
+				<CardContent className='p-0'>
+					<Accordion role='list' type='single' collapsible className='space-y-4 rounded-lg overflow-hidden'>
 						{safeSections.map((section) => (
-							<AccordionItem key={section.accordionTitle} value={section.accordionTitle}>
-								<AccordionTrigger className='text-xl text-balance font-bold flex items-center justify-between gap-2'>
+							<>
+							<AccordionItem key={section.accordionTitle} value={section.accordionTitle} className='border-none m-0 first:rounded-t-lg last:rounded-b-lg'>
+								<AccordionTrigger className='text-xl text-balance font-bold flex items-center justify-between gap-2 hover:text-purple-10 transition-colors hover:bg-purple-3 p-4 hover:cursor-pointer hover:no-underline rounded-none'>
 									{section.accordionTitle}
 								</AccordionTrigger>
 								<AccordionContent asChild className='overflow-x-auto'>
@@ -34,7 +36,7 @@ export function PricingList({ title, sections }: SanityPricingListProps) {
 												<th className='px-6 py-3 text-left text-xs font-medium text-orange-11 uppercase tracking-wider'>Prix (CHF)</th>
 											</tr>
 										</thead>
-										<tbody className='bg-white divide-y divide-orange-6'>
+										<tbody className='divide-y divide-purple-6'>
 											{(section.priceItems || []).map((item, index) => (
 												<tr key={`${section.accordionTitle}-${index}`}>
 													<td className='px-6 py-4 whitespace-nowrap text-sm font-medium text-purple-11'>{item.service}</td>
@@ -45,6 +47,8 @@ export function PricingList({ title, sections }: SanityPricingListProps) {
 									</table>
 								</AccordionContent>
 							</AccordionItem>
+							<Separator orientation='horizontal' className='!h-0.5 w-full mx-auto bg-orange-6 last:hidden !my-0' />
+							</>
 						))}
 					</Accordion>
 				</CardContent>

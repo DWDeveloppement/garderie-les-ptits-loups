@@ -34,6 +34,15 @@ export const home: SchemaTypeDefinition = {
 			description: 'Liens vers les pages de secteurs (La Nurserie, Les Trotteurs, Les Grands)',
 		},
 
+		// ===== SECTIONS AUTRES ESPACES =====
+		// Introduction à la section "Nos Autres Espaces"
+		{
+			name: 'introductionOtherSpaces',
+			title: 'Introduction à la section "Nos Autres Espaces"',
+			type: 'text',
+			rows: 4,
+			description: 'Introduction à la section "Nos Autres Espaces"',
+		},
 		// Relation vers les "autres espaces" uniquement (jardin, cuisine, bricolage)
 		// Format liste d'articles dans la section "Nos Autres Espaces" du frontend
 		// Filtre: inclut uniquement les espaces avec sector = "other"
