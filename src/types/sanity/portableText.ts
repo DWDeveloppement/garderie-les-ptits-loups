@@ -12,12 +12,18 @@ export interface PortableTextLink {
 	href: string
 }
 
-export type PortableTextMarkDef = PortableTextLink | { _key: string; _type: string; [key: string]: unknown }
+export interface PortableTextAlign {
+	_key: string
+	_type: 'textAlign'
+	align: 'left' | 'center' | 'right' | 'justify'
+}
+
+export type PortableTextMarkDef = PortableTextLink | PortableTextAlign | { _key: string; _type: string; [key: string]: unknown }
 
 export interface PortableTextBlock {
 	_key: string
 	_type: 'block'
 	children: PortableTextSpan[]
 	markDefs: PortableTextMarkDef[]
-	style: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+	style: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote' | 'text-left' | 'text-center' | 'text-right' | 'text-justify'
 }

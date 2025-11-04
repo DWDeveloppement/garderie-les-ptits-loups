@@ -3,12 +3,12 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import type { ReactNode } from 'react'
 
 const baseHeadingClasses: Record<HeadingTag, string> = {
-	h1: 'text-5xl font-chelsea whitespace-pre-line',
-	h2: 'text-4xl font-chelsea whitespace-pre-line',
-	h3: 'text-3xl font-chelsea whitespace-pre-line',
-	h4: 'text-2xl font-semibold whitespace-pre-line',
-	h5: 'text-xl font-semibold whitespace-pre-line',
-	h6: 'text-lg font-semibold whitespace-pre-line',
+	h1: 'font-chelsea whitespace-pre-line',
+	h2: 'font-chelsea whitespace-pre-line',
+	h3: 'font-chelsea whitespace-pre-line',
+	h4: 'font-semibold whitespace-pre-line',
+	h5: 'font-semibold whitespace-pre-line',
+	h6: 'font-semibold whitespace-pre-line',
 }
 
 const titleVariants = cva('', {

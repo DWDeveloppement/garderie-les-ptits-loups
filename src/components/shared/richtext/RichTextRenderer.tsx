@@ -13,7 +13,7 @@ import type { HeadingTag, RichTextTitleVariant } from '@/components/shared/richt
 import { RichTextTitle } from '@/components/shared/richtext/RichTextTitle'
 import { cn } from '@/lib/utils'
 import { RichTextBlock } from '@/types/richText'
-import type { PortableTextBlock } from '@/types/sanity/portableText'
+import type { PortableTextAlign, PortableTextBlock } from '@/types/sanity/portableText'
 import Link from 'next/link'
 import { Fragment, type ReactNode } from 'react'
 
@@ -42,6 +42,7 @@ export function RichTextRenderer({ content, className = '' }: RichTextRendererPr
 					// Gestion des liens (doit être fait avant strong/em pour que les styles soient appliqués sur le lien)
 					// Dans Sanity, les marks de liens sont la _key du markDef directement (pas préfixé par "link-")
 					// Les marks standards comme "strong", "em", "underline" ne sont pas des markDefs
+					// Les marks textAlign sont ignorés ici (gérés au niveau du bloc)
 					const standardMarks = ['strong', 'em', 'underline', 'code']
 					const linkMark = span.marks?.find(
 						(mark) => !standardMarks.includes(mark) && markDefs.some((def) => def._key === mark && def._type === 'link')
@@ -102,9 +103,32 @@ export function RichTextRenderer({ content, className = '' }: RichTextRendererPr
 			.filter(Boolean)
 	}
 
+	// Fonction helper pour détecter l'alignement depuis les annotations textAlign
+	const getTextAlignFromBlock = (block: RichTextBlock | PortableTextBlock): string | undefined => {
+		const markDefs = (block as PortableTextBlock).markDefs ?? []
+		const spans = (block as PortableTextBlock).children ?? []
+
+		// Chercher dans tous les spans si l'un d'eux a une annotation textAlign
+		for (const span of spans) {
+			if (span.marks && span.marks.length > 0) {
+				for (const mark of span.marks) {
+					const alignDef = markDefs.find((def) => def._key === mark && def._type === 'textAlign') as PortableTextAlign | undefined
+					if (alignDef?.align) {
+						return `text-${alignDef.align}`
+					}
+				}
+			}
+		}
+
+		return undefined
+	}
+
 	const renderBlock = (block: RichTextBlock | PortableTextBlock, index: number) => {
 		const { _type, children, style } = block
 		const markDefs = (block as PortableTextBlock).markDefs ?? []
+
+		// Détecter l'alignement depuis les annotations
+		const alignmentClass = getTextAlignFromBlock(block)
 
 		if (_type === 'block' && style === 'blockquote') {
 			const spans = ((children as MinimalSpan[]) ?? []).map((span, spanIndex) => ({
@@ -169,8 +193,8 @@ export function RichTextRenderer({ content, className = '' }: RichTextRendererPr
 			return <RichTextQuote key={getBlockKey(block, index)} content={contentNodes} author={authorNodes} variant={metadata.variant} />
 		}
 
-		// Gestion des titres
-		if (_type === 'block' && style?.startsWith('h')) {
+		// Gestion des titres (h1-h6 uniquement, pas les styles d'alignement)
+		if (_type === 'block' && style?.startsWith('h') && style.length === 2) {
 			const tag = style as HeadingTag
 			const headingSpans = ((children as MinimalSpan[]) ?? []).map((span, spanIndex) => ({
 				...span,
@@ -179,15 +203,26 @@ export function RichTextRenderer({ content, className = '' }: RichTextRendererPr
 
 			const { variant: headingVariant, spans: normalizedSpans } = normalizeHeadingSpans(headingSpans)
 
-			return (
+			const titleElement = (
 				<RichTextTitle key={getBlockKey(block, index)} tag={tag} variant={headingVariant} className='mb-4 mt-4 first:mt-0'>
 					{renderSpanNodes(normalizedSpans, `heading-${index}`, markDefs)}
 				</RichTextTitle>
 			)
+
+			// Wrapper avec classe d'alignement si nécessaire
+			if (alignmentClass) {
+				return (
+					<div key={getBlockKey(block, index)} className={cn('rich-text-align-wrapper', alignmentClass)}>
+						{titleElement}
+					</div>
+				)
+			}
+
+			return titleElement
 		}
 
-		// Gestion des paragraphes
-		if (_type === 'block' && (!style || style === 'normal')) {
+		// Gestion des paragraphes (normal ou styles d'alignement)
+		if (_type === 'block' && (!style || style === 'normal' || style?.startsWith('text-'))) {
 			const paragraphSpans = ((children as MinimalSpan[]) ?? []).map((span, spanIndex) => ({
 				...span,
 				_key: span._key ?? `paragraph-span-${index}-${spanIndex}`,
@@ -201,11 +236,34 @@ export function RichTextRenderer({ content, className = '' }: RichTextRendererPr
 				return <div key={index} className='mb-3 h-2' aria-hidden='true' />
 			}
 
-			return (
+			// Priorité: annotation textAlign > style text-*
+			const finalAlignmentClass = alignmentClass || (style?.startsWith('text-') ? style : undefined)
+
+			const paragraphElement = (
 				<p key={index} className={cn('mb-2.5', paragraphVariant === 'primary' ? 'text-purple-10' : undefined)}>
 					{renderSpanNodes(normalizedSpans, `paragraph-${index}`, markDefs)}
 				</p>
 			)
+
+			// Wrapper avec classe d'alignement si nécessaire (annotation uniquement, pas pour les styles text-* qui sont déjà dans le className)
+			if (alignmentClass && !style?.startsWith('text-')) {
+				return (
+					<div key={index} className={cn('rich-text-align-wrapper', alignmentClass)}>
+						{paragraphElement}
+					</div>
+				)
+			}
+
+			// Si c'est un style text-*, appliquer directement sur le <p>
+			if (finalAlignmentClass && style?.startsWith('text-')) {
+				return (
+					<p key={index} className={cn('mb-2.5', paragraphVariant === 'primary' ? 'text-purple-10' : undefined, finalAlignmentClass)}>
+						{renderSpanNodes(normalizedSpans, `paragraph-${index}`, markDefs)}
+					</p>
+				)
+			}
+
+			return paragraphElement
 		}
 
 		// Fallback pour les autres types

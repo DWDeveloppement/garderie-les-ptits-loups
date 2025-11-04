@@ -1,7 +1,7 @@
 import { type Rule, type SchemaTypeDefinition } from 'sanity'
 import { GalleryInput } from '../../components/GalleryInput'
 import { ReadOnlySlug } from '../../components/ReadOnlySlug'
-import { hero, paralaxImage, seo } from '../components'
+import { hero, paralaxImage, portableTextBlockConfig, seo } from '../components'
 
 export const sectorPage: SchemaTypeDefinition = {
 	name: 'sectorPage',
@@ -98,7 +98,7 @@ export const sectorPage: SchemaTypeDefinition = {
 			name: 'content',
 			title: 'Contenu',
 			type: 'array',
-			of: [{ type: 'block' }],
+			of: [portableTextBlockConfig],
 			description: 'Texte descriptif du secteur (histoire, approche pédagogique, etc.)',
 		},
 

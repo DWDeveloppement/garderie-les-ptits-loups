@@ -8,3 +8,6 @@ export { basicImage } from './basicImage'
 export { galleryImage } from './galleryImage'
 export { heroImage } from './heroImage'
 export { seoImage } from './seoImage'
+
+// Configuration Portable Text
+export { portableTextBlockConfig } from './portableTextConfig'
