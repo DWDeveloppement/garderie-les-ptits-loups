@@ -4,14 +4,13 @@
 import { ParalaxImage } from '@/components/shared'
 import type { SanityImage } from '@/types/sanity/sectorPage'
 
-export interface ParallaxSectionProps {
-  image: SanityImage
-  alt?: string
+export type ParallaxSectionProps = {
+	image: SanityImage
+	alt?: string
 }
 
 export function ParallaxSection({ image, alt }: ParallaxSectionProps) {
-  if (!image) return null
+	if (!image) return null
 
-  return <ParalaxImage image={image} imageAlt={alt} height="md" />
+	return <ParalaxImage image={image} imageAlt={alt} height='md' />
 }
-

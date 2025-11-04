@@ -4,7 +4,7 @@
 
 import { useEffect } from 'react'
 
-export interface FormA11yOptions {
+export type FormA11yOptions = {
 	name: string
 	label?: string
 	required?: boolean
@@ -14,7 +14,7 @@ export interface FormA11yOptions {
 	type?: string
 }
 
-export interface FormA11yReturn {
+export type FormA11yReturn = {
 	id: string
 	'aria-label'?: string
 	'aria-labelledby'?: string

@@ -1,44 +1,42 @@
 import { IconName } from '@/components/icons'
-import { Icon } from "@/components/icons/Icon"
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
+import { Icon } from '@/components/icons/Icon'
+import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { structures } from "@/data/structures"
-import type { LinkedSector } from "@/types/queries"
-import { getSectorIconByTitle } from "@/utils/sectorIcons"
-import Link from "next/link"
-interface StructureSectionProps {
-  sectors?: LinkedSector[]
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import { structures } from '@/data/structures'
+import type { LinkedSector } from '@/types/queries'
+import { getSectorIconByTitle } from '@/utils/sectorIcons'
+import Link from 'next/link'
+type StructureSectionProps = {
+	sectors?: LinkedSector[]
 }
 
 export function StructureSection({ sectors }: StructureSectionProps) {
-  // Utiliser les données Sanity si disponibles, sinon fallback sur données statiques
-  const displaySectors = sectors && sectors.length > 0 
-    ? sectors.map(sector => ({
-        id: sector.slug || sector._id, // Utiliser _id comme fallback si slug est null
-        title: sector.title,
-        ageRange: sector.ageRange,
-        description: sector.sectionHero.description,
-        icon: getSectorIconByTitle(sector.title),
-      }))
-    : structures
+	// Utiliser les données Sanity si disponibles, sinon fallback sur données statiques
+	const displaySectors =
+		sectors && sectors.length > 0
+			? sectors.map((sector) => ({
+					id: sector.slug || sector._id, // Utiliser _id comme fallback si slug est null
+					title: sector.title,
+					ageRange: sector.ageRange,
+					description: sector.sectionHero.description,
+					icon: getSectorIconByTitle(sector.title),
+				}))
+			: structures
 
-  return (
-    <section id="structure" className="py-16 px-4 sm:px-6 lg:px-8 gradient-section-a">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="font-bold mb-4">
-            Notre Structure
-          </h2>
-          <p className="max-w-3xl mx-auto">
-            Des espaces adaptés à chaque étape du développement de votre enfant, 
-            avec un encadrement professionnel et bienveillant.
-          </p>
-        </div>
+	return (
+		<section id='structure' className='py-16 px-4 sm:px-6 lg:px-8 gradient-section-a'>
+			<div className='max-w-7xl mx-auto'>
+				<div className='text-center mb-12'>
+					<h2 className='font-bold mb-4'>Notre Structure</h2>
+					<p className='max-w-3xl mx-auto'>
+						Des espaces adaptés à chaque étape du développement de votre enfant, avec un encadrement professionnel et bienveillant.
+					</p>
+				</div>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {displaySectors.map((structure) => {
-            return (
+				<div className='grid md:grid-cols-3 gap-8'>
+					{displaySectors.map((structure) => {
+						return (
 							<Link
 								key={structure.id}
 								href={`/la-structure/${structure.id}`}
@@ -69,21 +67,17 @@ export function StructureSection({ sectors }: StructureSectionProps) {
 
 									{/* Indicateur visuel que c'est cliquable (décoratif uniquement, pas focusable) */}
 									<CardFooter className='w-full h-16 flex justify-center items-end'>
-                    <Button 
-                      variant='default' 
-                      asDecorative 
-                      size='lg'
-                      className='group-hover:bg-primary/90 transition-colors'>
-                      <span>Voir le secteur</span>
-                      <Icon name='arrowRight' size='md' className='h-4 w-4 ml-2 transition-transform group-hover:translate-x-1' />
-                    </Button>
+										<Button variant='default' asDecorative size='lg' className='group-hover:bg-primary/90 transition-colors'>
+											<span>Voir le secteur</span>
+											<Icon name='arrowRight' size='md' className='h-4 w-4 ml-2 transition-transform group-hover:translate-x-1' />
+										</Button>
 									</CardFooter>
 								</Card>
 							</Link>
 						)
-          })}
-        </div>
-      </div>
-    </section>
-  );
+					})}
+				</div>
+			</div>
+		</section>
+	)
 }

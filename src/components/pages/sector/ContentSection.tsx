@@ -4,7 +4,7 @@
 import { RichTextRenderer } from '@/components/shared/richtext/RichTextRenderer'
 import type { PortableTextBlock } from '@/types/sanity/portableText'
 
-export interface ContentSectionProps {
+export type ContentSectionProps = {
 	content: PortableTextBlock[]
 }
 

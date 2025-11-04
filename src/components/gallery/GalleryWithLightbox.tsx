@@ -8,7 +8,7 @@ import type { Photo } from 'react-photo-album'
 import { Gallery } from './Gallery'
 import { LightboxCustom } from './LightboxCustom'
 
-export interface GalleryWithLightboxProps {
+export type GalleryWithLightboxProps = {
   /** Photos à afficher */
   photos: Photo[];
   /** Layout de la galerie */

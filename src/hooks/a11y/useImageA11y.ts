@@ -4,7 +4,7 @@
 
 import { useEffect } from 'react'
 
-export interface ImageA11yOptions {
+export type ImageA11yOptions = {
 	src: string
 	alt?: string
 	title?: string
@@ -13,7 +13,7 @@ export interface ImageA11yOptions {
 	ariaLabel?: string
 }
 
-export interface ImageA11yReturn {
+export type ImageA11yReturn = {
 	alt: string
 	title?: string
 	role?: string

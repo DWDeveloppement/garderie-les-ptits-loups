@@ -1,10 +1,12 @@
 // 📂 src/types/sanity/sectorPage.ts
 // 👉 Types TypeScript générés depuis sanity/queries/json-response/sectorPage.json
 
+import type { PortableTextBlock } from './portableText'
+
 /**
  * Metadata des dimensions d'image Sanity
  */
-export interface SanityImageDimensions {
+export type SanityImageDimensions = {
 	_type: 'sanity.imageDimensions'
 	aspectRatio: number
 	height: number
@@ -14,7 +16,7 @@ export interface SanityImageDimensions {
 /**
  * Metadata complète d'une image Sanity
  */
-export interface SanityImageMetadata {
+export type SanityImageMetadata = {
 	dimensions: SanityImageDimensions
 	lqip: string
 	blurhash?: string | null
@@ -23,7 +25,7 @@ export interface SanityImageMetadata {
 /**
  * Asset d'une image Sanity (référence)
  */
-export interface SanityImageAssetRef {
+export type SanityImageAssetRef = {
 	_id: string
 	url: string
 	metadata: SanityImageMetadata
@@ -32,7 +34,7 @@ export interface SanityImageAssetRef {
 /**
  * Image Sanity complète (avec asset, alt, crop, hotspot)
  */
-export interface SanityImage {
+export type SanityImage = {
 	alt: string
 	asset: SanityImageAssetRef
 	crop: null | {
@@ -51,24 +53,14 @@ export interface SanityImage {
 
 /**
  * Block de Portable Text (Sanity rich text)
+ * @deprecated Utilisez PortableTextBlock depuis './portableText' à la place
  */
-export interface PortableTextBlock {
-	_key: string
-	_type: 'block'
-	children: Array<{
-		_key: string
-		_type: 'span'
-		marks: string[]
-		text: string
-	}>
-	markDefs: unknown[]
-	style: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
-}
+export type { PortableTextBlock }
 
 /**
  * Item de galerie
  */
-export interface GalleryItem {
+export type GalleryItem = {
 	image: SanityImage
 	label: string
 }
@@ -76,7 +68,7 @@ export interface GalleryItem {
 /**
  * Espace lié (linked space)
  */
-export interface LinkedSpace {
+export type LinkedSpace = {
 	_id: string
 	title: string
 	description: PortableTextBlock[]
@@ -86,7 +78,7 @@ export interface LinkedSpace {
 /**
  * Section Hero
  */
-export interface SectionHero {
+export type SectionHero = {
 	description: string
 	image: SanityImage
 }
@@ -94,14 +86,14 @@ export interface SectionHero {
 /**
  * Image parallaxe
  */
-export interface Parallax {
+export type Parallax = {
 	image: SanityImage
 }
 
 /**
  * SEO Metadata
  */
-export interface SeoMetadata {
+export type SeoMetadata = {
 	metaTitle: string
 	metaDescription: string
 	keywords: string[]
@@ -112,7 +104,7 @@ export interface SeoMetadata {
  * Données complètes d'une page secteur
  * Structure EXACTE depuis Vision (sanity/queries/json-response/sectorPage.json)
  */
-export interface SectorPageData {
+export type SectorPageData = {
 	_id: string
 	title: string
 	slug: string | null

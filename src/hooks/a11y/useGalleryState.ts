@@ -4,7 +4,7 @@
 
 import { useCallback, useEffect, useState } from 'react'
 
-export interface GalleryState {
+export type GalleryState = {
 	/** Index de la photo actuellement sélectionnée */
 	currentIndex: number
 	/** Galerie ouverte/fermée */
@@ -13,7 +13,7 @@ export interface GalleryState {
 	isLoading: boolean
 }
 
-export interface GalleryStateActions {
+export type GalleryStateActions = {
 	/** Ouvrir la galerie à un index spécifique */
 	openGallery: (index: number) => void
 	/** Fermer la galerie */

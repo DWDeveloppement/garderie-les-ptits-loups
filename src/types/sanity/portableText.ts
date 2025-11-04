@@ -1,18 +1,18 @@
 // Type centralisé pour Portable Text (Sanity)
-export interface PortableTextSpan {
+export type PortableTextSpan = {
 	_key: string
 	_type: 'span'
 	text: string
 	marks: string[]
 }
 
-export interface PortableTextLink {
+export type PortableTextLink = {
 	_key: string
 	_type: 'link'
 	href: string
 }
 
-export interface PortableTextAlign {
+export type PortableTextAlign = {
 	_key: string
 	_type: 'textAlign'
 	align: 'left' | 'center' | 'right' | 'justify'
@@ -20,7 +20,7 @@ export interface PortableTextAlign {
 
 export type PortableTextMarkDef = PortableTextLink | PortableTextAlign | { _key: string; _type: string; [key: string]: unknown }
 
-export interface PortableTextBlock {
+export type PortableTextBlock = {
 	_key: string
 	_type: 'block'
 	children: PortableTextSpan[]

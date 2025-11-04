@@ -10,7 +10,7 @@ import type { LinkedOtherSpace } from '@/types/queries'
 import type { PortableTextBlock } from '@/types/sanity/portableText'
 import Image from 'next/image'
 
-interface SpacesSectionProps {
+type SpacesSectionProps = {
 	spaces?: LinkedOtherSpace[]
 	contentComplement?: PortableTextBlock[]
 }

@@ -2,6 +2,7 @@
  * Page d'accueil - Garderie Les P'tits Loups
  * Données depuis Sanity CMS
  */
+import { DevJsonViewer } from '@/components/dev'
 import { HeroSection } from '@/components/pages/home/HeroSection'
 import { SpacesSection } from '@/components/pages/home/SpacesSection'
 import { StructureSection } from '@/components/pages/home/StructureSection'
@@ -24,14 +25,7 @@ export default async function Home() {
 
 	return (
 		<div className='min-h-screen'>
-			<HeroSection
-				title={data?.sectionHero?.title}
-				garderieName={data?.sectionHero?.garderieName}
-				description={data?.sectionHero?.description}
-				logo={data?.sectionHero?.logo}
-				buttonText={data?.sectionHero?.buttonText}
-				buttonLink={data?.sectionHero?.buttonLink}
-			/>
+			<HeroSection sectionHero={data?.sectionHero} />
 			<StructureSection sectors={data?.linkedSectors} />
 			<SpacesSection spaces={data?.linkedOtherSpaces} contentComplement={data?.contentComplement} />
 			{/* Image parallaxe venant de la query du champ parallax (ligne 67-71 du schema home.ts de Sanity).
@@ -39,6 +33,7 @@ export default async function Home() {
           Le composant ParalaxImage attend image?.asset?.url et image?.alt, ce qui correspond à la structure SanityImage. */}
 			{data?.parallax?.image && <ParalaxImage image={data.parallax.image} />}
 			{testimonials.length > 0 && <TestimonialsSection testimonials={testimonials} />}
+			<DevJsonViewer data={data} slug='home' collapsed />
 		</div>
 	)
 }

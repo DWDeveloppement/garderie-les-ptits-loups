@@ -4,14 +4,14 @@
 
 import { useCallback, useEffect, useRef } from 'react'
 
-export interface FocusA11yOptions {
+export type FocusA11yOptions = {
 	trapFocus?: boolean
 	restoreFocus?: boolean
 	initialFocus?: boolean
 	onEscape?: () => void
 }
 
-export interface FocusA11yReturn {
+export type FocusA11yReturn = {
 	containerRef: React.RefObject<HTMLElement | null>
 	focusFirst: () => void
 	focusLast: () => void

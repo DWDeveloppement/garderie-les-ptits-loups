@@ -4,7 +4,7 @@
 
 import { useEffect } from 'react'
 
-export interface LinkA11yOptions {
+export type LinkA11yOptions = {
 	href: string
 	children: React.ReactNode
 	ariaLabel?: string
@@ -13,7 +13,7 @@ export interface LinkA11yOptions {
 	external?: boolean
 }
 
-export interface LinkA11yReturn {
+export type LinkA11yReturn = {
 	ariaLabel: string
 	role: string
 	tabIndex: number

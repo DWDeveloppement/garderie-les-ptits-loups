@@ -4,14 +4,14 @@
 
 import { useEffect } from 'react'
 
-export interface ButtonA11yOptions {
+export type ButtonA11yOptions = {
 	ariaLabel?: string
 	children: React.ReactNode
 	disabled?: boolean
 	loading?: boolean
 }
 
-export interface ButtonA11yReturn {
+export type ButtonA11yReturn = {
 	ariaLabel: string
 	role?: string
 	tabIndex?: number

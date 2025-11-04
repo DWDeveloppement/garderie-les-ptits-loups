@@ -4,7 +4,7 @@
 
 import { useCallback } from 'react'
 
-export interface GalleryA11yOptions {
+export type GalleryA11yOptions = {
 	/** Nombre total de photos */
 	totalPhotos: number
 	/** Callback au clic sur une photo */
@@ -15,7 +15,7 @@ export interface GalleryA11yOptions {
 	onClose?: () => void
 }
 
-export interface GalleryA11yActions {
+export type GalleryA11yActions = {
 	/** Gérer le clic sur une photo */
 	handlePhotoClick: (index: number) => void
 	/** Gérer la navigation clavier */
