@@ -1,15 +1,16 @@
 import type { SectorPageData } from '@/types/sanity/sectorPage'
 import { groq } from 'next-sanity'
 import { sanityFetch } from '../client'
-import { BASIC_IMAGE_QUERY, GALLERY_IMAGE_QUERY } from '../helpers/imageProps'
+import { BASIC_IMAGE_QUERY, BASIC_IMAGE_QUERY_LIGHT, GALLERY_IMAGE_QUERY } from '../helpers/imageProps'
 
 // Query pour récupérer un secteur avec toutes ses données
 export const SECTOR_PAGE_QUERY = groq`*[_type == "sectorPage" && _id == $sectorId][0]{
 	_id,
 	title,
 	"slug": devConfig.slug.current,
+	// Hero (version allégée : priority sur HeroGlobal, pas besoin de lqip/blurhash)
 	sectionHero{
-		image${BASIC_IMAGE_QUERY},
+		image${BASIC_IMAGE_QUERY_LIGHT},
 		description
 	},
 	linkedSpaces[]->{
@@ -18,8 +19,9 @@ export const SECTOR_PAGE_QUERY = groq`*[_type == "sectorPage" && _id == $sectorI
 		image${BASIC_IMAGE_QUERY},
 		description
 	},
+	// Parallax (version allégée, below-the-fold)
 	parallax{
-		image${BASIC_IMAGE_QUERY}
+		image${BASIC_IMAGE_QUERY_LIGHT}
 	},
 	content,
 	gallery[]${GALLERY_IMAGE_QUERY},

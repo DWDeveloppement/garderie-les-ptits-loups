@@ -220,6 +220,26 @@ export const BASIC_IMAGE_QUERY = `{
 }`
 
 /**
+ * Query fragment pour basicImage allégé (sans lqip/blurhash)
+ * Pour images below-the-fold qui n'ont pas besoin de placeholder
+ * Gain estimé : -10-20ms par requête
+ */
+export const BASIC_IMAGE_QUERY_LIGHT = `{
+	asset->{
+		_id,
+		url,
+		metadata{
+			dimensions{
+				width,
+				height,
+				aspectRatio
+			}
+		}
+	},
+	alt
+}`
+
+/**
  * Query fragment pour heroImage complet
  */
 export const HERO_IMAGE_QUERY = `{

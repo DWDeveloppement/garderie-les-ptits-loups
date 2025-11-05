@@ -1,7 +1,7 @@
 import type { AboutPageData } from '@/types/queries'
 import { groq } from 'next-sanity'
 import { sanityFetch } from '../client'
-import { BASIC_IMAGE_QUERY } from '../helpers/imageProps'
+import { BASIC_IMAGE_QUERY, BASIC_IMAGE_QUERY_LIGHT } from '../helpers/imageProps'
 
 /**
  * Query pour la page À propos
@@ -10,9 +10,9 @@ export const ABOUT_QUERY = groq`
   *[_type == "aboutPage" && _id == "aboutPage"][0] {
     title,
     
-    // Hero
+    // Hero (version allégée : priority sur HeroGlobal, pas besoin de lqip/blurhash)
     sectionHero {
-      image ${BASIC_IMAGE_QUERY},
+      image ${BASIC_IMAGE_QUERY_LIGHT},
       description
     },
     
@@ -28,9 +28,9 @@ export const ABOUT_QUERY = groq`
       }
     },
     
-    // Parallax 1
+    // Parallax 1 (version allégée, below-the-fold)
     parallaxOne {
-      image ${BASIC_IMAGE_QUERY}
+      image ${BASIC_IMAGE_QUERY_LIGHT}
     },
     
     // Histoire (collapse: contenu + image simple)
@@ -50,9 +50,9 @@ export const ABOUT_QUERY = groq`
       }
     },
     
-    // Parallax 2
+    // Parallax 2 (version allégée, below-the-fold)
     parallaxTwo {
-      image ${BASIC_IMAGE_QUERY}
+      image ${BASIC_IMAGE_QUERY_LIGHT}
     },
     
     // Pédagogie

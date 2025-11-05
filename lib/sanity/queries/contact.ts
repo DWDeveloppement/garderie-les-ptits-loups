@@ -1,7 +1,7 @@
 import type { ContactPageData } from '@/types/queries'
 import { groq } from 'next-sanity'
 import { sanityFetch } from '../client'
-import { BASIC_IMAGE_QUERY } from '../helpers/imageProps'
+import { BASIC_IMAGE_QUERY, BASIC_IMAGE_QUERY_LIGHT } from '../helpers/imageProps'
 
 /**
  * Query pour la page Contact
@@ -11,9 +11,9 @@ export const CONTACT_QUERY = groq`
   *[_type == "contactPage" && _id == "contactPage"][0] {
     title,
     
-    // Hero
+    // Hero (version allégée : priority sur HeroGlobal, pas besoin de lqip/blurhash)
     sectionHero {
-      image ${BASIC_IMAGE_QUERY},
+      image ${BASIC_IMAGE_QUERY_LIGHT},
       description
     },
     
@@ -32,9 +32,9 @@ export const CONTACT_QUERY = groq`
       zoom
     },
     
-    // Parallax
+    // Parallax (version allégée, below-the-fold)
     parallax {
-      image ${BASIC_IMAGE_QUERY}
+      image ${BASIC_IMAGE_QUERY_LIGHT}
     },
     
     // SEO

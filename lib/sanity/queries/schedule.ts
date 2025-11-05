@@ -1,7 +1,7 @@
 import type { SchedulePageData } from '@/types/queries'
 import { groq } from 'next-sanity'
 import { sanityFetch } from '../client'
-import { BASIC_IMAGE_QUERY } from '../helpers/imageProps'
+import { BASIC_IMAGE_QUERY, BASIC_IMAGE_QUERY_LIGHT } from '../helpers/imageProps'
 
 /**
  * Query pour la page Tarifs
@@ -11,65 +11,21 @@ export const SCHEDULE_QUERY = groq`
   *[_type == "schedulePage" && _id == "schedulePage"][0] {
     title,
     
-    // Hero
+    // Hero (version allégée : priority sur HeroGlobal, pas besoin de lqip/blurhash)
     sectionHero {
-      image ${BASIC_IMAGE_QUERY},
+      image ${BASIC_IMAGE_QUERY_LIGHT},
       description
     },
     
-    // Section Tarifs Nurserie (avec populate des références)
-    "tarifsSectionNurserie": {
-      "title": tarifsSectionNurserie.title,
-      "tarifs": tarifsSectionNurserie.priceRefs[]-> {
-        _id,
-        title,
-        frequentationType,
-        accordionItems[] {
-          accordionTitle,
-          priceItems[] {
-            service,
-            price
-          }
-        }
-      }
-    },
-    
-    // Section Tarifs Trotteurs & Grands
-    "tarifsSectionTG": {
-      "title": tarifsSectionTG.title,
-      "tarifs": tarifsSectionTG.priceRefs[]-> {
-        _id,
-        title,
-        frequentationType,
-        accordionItems[] {
-          accordionTitle,
-          priceItems[] {
-            service,
-            price
-          }
-        }
-      }
-    },
-    
-    // Parallax
+    // Parallax (version allégée, below-the-fold)
     parallax {
-      image ${BASIC_IMAGE_QUERY}
+      image ${BASIC_IMAGE_QUERY_LIGHT}
     },
     
-    // Section Subventions
+    // Section Subventions (optimisée : seulement body, pas de jointure)
+    // Note: Les données du tableau viennent de fetchSubsidies() (query séparée)
     "subsidiesTable": {
-      "title": subsidiesTable.title,
-      "body": subsidiesTable.body,
-      "tableau": subsidiesTable.tableauSubsidies-> {
-        _id,
-        title,
-        tableContent {
-          subsidyItems[] {
-            incomeRange,
-            subsidy
-          }
-        }
-      }
+      "body": subsidiesTable.body
     },
     
     // SEO

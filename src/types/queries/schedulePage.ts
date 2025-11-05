@@ -57,12 +57,11 @@ export type SubsidiesDocument = {
 }
 
 /**
- * Section de subventions
+ * Section de subventions (optimisée : seulement body)
+ * Note: Les données du tableau viennent de fetchSubsidies() (query séparée)
  */
 export type SubsidiesSection = {
-	title: string
 	body?: PortableTextBlock[]
-	tableau: SubsidiesDocument
 }
 
 /**
@@ -74,8 +73,7 @@ export type SchedulePageData = {
 		description: string
 		image: SanityImage
 	}
-	tarifsSectionNurserie: TariffsSection
-	tarifsSectionTG: TariffsSection
+	// tarifsSectionNurserie et tarifsSectionTG supprimées (données via queries séparées)
 	parallax?: {
 		image: SanityImage
 	}
