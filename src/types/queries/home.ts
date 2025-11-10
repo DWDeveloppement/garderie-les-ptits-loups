@@ -32,7 +32,7 @@ export type LinkedOtherSpace = {
  * Structure complète de la page d'accueil
  */
 export type HomePageData = {
-	title: string
+	title?: string
 	sectionHero: {
 		title: string
 		garderieName: string
@@ -41,8 +41,16 @@ export type HomePageData = {
 		buttonText: string
 		buttonLink: string
 	}
-	linkedSectors: LinkedSector[]
-	linkedOtherSpaces: LinkedOtherSpace[]
+	sectionStructure?: {
+		title?: string
+		description?: string
+		linkedSectors: LinkedSector[]
+	}
+	sectionOtherSpaces?: {
+		title?: string
+		introductionOtherSpaces?: string
+		linkedOtherSpaces: LinkedOtherSpace[]
+	}
 	contentComplement?: PortableTextBlock[]
 	parallax?: {
 		image: SanityImage

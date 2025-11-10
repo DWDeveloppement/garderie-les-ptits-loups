@@ -61,7 +61,8 @@ export type SubsidiesDocument = {
  * Note: Les données du tableau viennent de fetchSubsidies() (query séparée)
  */
 export type SubsidiesSection = {
-	body?: PortableTextBlock[]
+	title: string
+	informationImportantSubsidies?: PortableTextBlock[]
 }
 
 /**

@@ -2,7 +2,7 @@
 // 📂 src/hooks/a11y/useFormA11y.ts
 // 👉 Hook pour la gestion de l'accessibilité des formulaires
 
-import { useEffect } from 'react'
+import { useEffect, useId } from 'react'
 
 export type FormA11yOptions = {
 	name: string
@@ -42,8 +42,10 @@ export type FormA11yReturn = {
  * - Fournit des props pour les labels et messages d'erreur
  */
 export function useFormA11y({ name, label, required = false, error, helpText, placeholder }: FormA11yOptions): FormA11yReturn {
-	// Génération d'IDs uniques
-	const fieldId = `${name}-${Math.random().toString(36).substr(2, 9)}`
+	// Génération d'IDs uniques et stables (évite les problèmes d'hydratation)
+	// Utilisation de useId() de React pour garantir la cohérence serveur/client
+	const reactId = useId()
+	const fieldId = `${name}-${reactId.replace(/:/g, '-')}`
 	const labelId = `${fieldId}-label`
 	const helpTextId = `${fieldId}-help`
 	const errorId = `${fieldId}-error`
