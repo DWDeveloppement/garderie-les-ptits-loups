@@ -26,8 +26,8 @@ export default async function Home() {
 	return (
 		<div className='min-h-screen'>
 			<HeroSection sectionHero={data?.sectionHero} />
-			<StructureSection sectors={data?.linkedSectors} />
-			<SpacesSection spaces={data?.linkedOtherSpaces} contentComplement={data?.contentComplement} />
+			{data?.sectionStructure && <StructureSection sectionStructure={data?.sectionStructure} />}
+			<SpacesSection spaces={data?.sectionOtherSpaces?.linkedOtherSpaces} contentComplement={data?.contentComplement} />
 			{/* Image parallaxe venant de la query du champ parallax (ligne 67-71 du schema home.ts de Sanity).
           La query GROQ récupère parallax.image avec BASIC_IMAGE_QUERY qui retourne la structure SanityImage.
           Le composant ParalaxImage attend image?.asset?.url et image?.alt, ce qui correspond à la structure SanityImage. */}

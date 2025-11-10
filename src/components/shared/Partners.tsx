@@ -5,11 +5,11 @@
  */
 import { Card } from '@/components/ui/card'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
-import { fetchPartners } from 'lib/sanity/queries'
+import { getLayoutData } from 'lib/sanity/queries/shared'
 import Image from 'next/image'
 export async function Partners() {
-	// Récupération des partenaires depuis Sanity
-	const partners = await fetchPartners()
+	// Récupération des données de layout (Footer + Partners) depuis Sanity (avec cache React)
+	const { partners } = await getLayoutData()
 
 	// Pas de partenaires à afficher
 	if (!partners || partners.length === 0) {
@@ -17,10 +17,10 @@ export async function Partners() {
 	}
 
 	return (
-		<section className='py-16 px-4 sm:px-6 lg:px-8 gradiant-section-b'>
+		<section className='py-16 px-4 sm:px-6 lg:px-8 gradient-section-b'>
 			<div className='max-w-7xl mx-auto'>
-				<div className='text-center mb-12'>
-					<h2 className='font-bold mb-4'>Nos Partenaires</h2>
+				<div className='text-center mb-16'>
+					<h2 className='font-bold mb-8'>Nos Partenaires</h2>
 					<p className='mx-auto'>
 						Nous collaborons avec des institutions de confiance pour offrir le meilleur accompagnement à votre enfant.
 					</p>

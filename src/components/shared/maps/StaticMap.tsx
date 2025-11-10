@@ -5,15 +5,12 @@ import type { StaticMapProps } from '@/types/map'
 import { MapPin } from 'lucide-react'
 import Image from 'next/image'
 
-export function StaticMap({ 
-  location, 
-  className = '', 
-  height = 'auto',  
-  ratio = '1920/1080'
-}: StaticMapProps) {
-  const { urls, copyAddress } = useMapLocation(location)
+export function StaticMap({ location, className = '', height = 'auto', ratio = '1920/1080' }: StaticMapProps) {
+	// useMapLocation non utilisé actuellement, mais conservé pour usage futur
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	const _unused = useMapLocation(location)
 
-  return (
+	return (
 		<div className={`space-y-4 w-full max-w-4xl mx-auto ${className}`}>
 			{/* Carte statique */}
 			<div className='relative rounded-lg overflow-hidden border border-orange-6'>
@@ -51,7 +48,7 @@ export function StaticMap({
 				<div className='absolute top-2 left-2 sm:top-4 sm:left-4 bg-orange-1/95 backdrop-blur-sm rounded-lg p-2 sm:p-3 shadow-lg'>
 					<div className='flex items-start gap-2'>
 						<MapPin className='size-4 text-purple-9 mt-0.5 flex-shrink-0' />
-						<div className='text-xs sm:text-sm'>
+						<div className='text-fl-xs'>
 							<div className='font-medium text-purple-9'>{location.name}</div>
 							<div className='text-purple-7'>{location.address}</div>
 							<div className='text-purple-7'>

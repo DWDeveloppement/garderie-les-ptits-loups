@@ -25,13 +25,13 @@ export function SpacesSection({ spaces, contentComplement }: SpacesSectionProps)
 		<section id='espaces' className='py-16 px-4 sm:px-6 lg:px-8 gradient-section-b'>
 			<div className='max-w-7xl mx-auto'>
 				<div className='text-center mb-16'>
-					<h2 className='font-bold mb-4'>Nos autres espaces</h2>
+					<h2 className='font-bold mb-8'>Nos autres espaces</h2>
 					<p className='max-w-3xl mx-auto'>
 						Des environnements spécialement conçus pour stimuler l&apos;éveil, la créativité et le bien-être de votre enfant.
 					</p>
 				</div>
 
-				<div className='flex flex-col gap-16'>
+				<div className='flex flex-col gap-24'>
 					{/* Affichage des espaces venant de la query du champ linkedOtherSpaces ligne 40 du schema home.ts de Sanity */}
 					{spaces.map((space, index) => {
 						const isEven = index % 2 === 0
@@ -57,7 +57,7 @@ export function SpacesSection({ spaces, contentComplement }: SpacesSectionProps)
 								{/* Contenu - occupe 2/3, position change selon pair/impair */}
 								<div className={`order-2 lg:col-span-2 ${isEven ? 'lg:order-1' : 'lg:order-2'}`}>
 									<div className='space-y-4'>
-										<h3 className='font-bold mb-4'>{space.title}</h3>
+										<h3 className='text-center md:text-left font-bold mb-4 text-balance'>{space.title}</h3>
 										{space.description && <RichTextRenderer content={space.description} />}
 									</div>
 								</div>
@@ -67,7 +67,7 @@ export function SpacesSection({ spaces, contentComplement }: SpacesSectionProps)
 				</div>
 				{/* Informations complémentaires venant de la query du champ contentComplement ligne 58 du schema home.ts de Sanity pour rendre le rich-text */}
 				{contentComplement && (
-					<div className='mt-16'>
+					<div className='mt-24'>
 						<RichTextRenderer content={contentComplement} />
 					</div>
 				)}

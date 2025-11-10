@@ -8,7 +8,7 @@ type AboutIntroSectionProps = {
 
 export function AboutIntroSection({ content }: AboutIntroSectionProps) {
 	return (
-		<section className='py-16 px-4 sm:px-6 lg:px-8 bg-orange-bg-light'>
+		<section className='py-16 px-4 sm:px-6 lg:px-8 gradient-section-a'>
 			<Card variant='primary' className='max-w-4xl mx-auto'>
 				<CardContent className='p-8'>
 					<RichTextRenderer content={content} />

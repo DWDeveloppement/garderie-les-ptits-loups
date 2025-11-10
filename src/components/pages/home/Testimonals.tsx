@@ -2,7 +2,7 @@
 import { Card, CardContent } from '@/components/ui/card'
 import { TestimonialsTypesProps } from '@/types/queries/testimonials'
 import { Quote, Star } from 'lucide-react'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 type TestimonialsSectionProps = {
 	testimonials: TestimonialsTypesProps[]
@@ -12,9 +12,9 @@ export function TestimonialsSection({ testimonials }: TestimonialsSectionProps) 
 	const [currentIndex, setCurrentIndex] = useState(0)
 	const [isHovered, setIsHovered] = useState(false)
 
-	const nextTestimonial = () => {
+	const nextTestimonial = useCallback(() => {
 		setCurrentIndex((prev) => (prev + 1) % testimonials.length)
-	}
+	}, [testimonials.length])
 
 	const goToTestimonial = (index: number) => {
 		setCurrentIndex(index)
@@ -29,13 +29,13 @@ export function TestimonialsSection({ testimonials }: TestimonialsSectionProps) 
 
 			return () => clearInterval(interval)
 		}
-	}, [isHovered, currentIndex])
+	}, [isHovered, nextTestimonial])
 
 	return (
 		<section className='py-16 px-4 sm:px-6 lg:px-8 gradient-section-a'>
 			<div className='max-w-5xl mx-auto'>
 				<div className='text-center mb-12'>
-					<h2 className='font-bold mb-4'>Ce que disent les parents</h2>
+					<h2 className='font-bold mb-8'>Ce que disent les parents</h2>
 					<p className='max-w-3xl mx-auto'>La confiance des familles est notre plus belle récompense. Découvrez leurs témoignages.</p>
 				</div>
 
@@ -53,7 +53,7 @@ export function TestimonialsSection({ testimonials }: TestimonialsSectionProps) 
 							{testimonials.map((testimonial) => (
 								<div key={testimonial.id} className='w-full flex-shrink-0 px-4'>
 									<Card role='article' variant='secondary' className='backdrop-blur-sm max-w-3xl mx-auto'>
-										<CardContent className='p-8 text-center'>
+										<CardContent className='flex flex-col items-center justify-center gap-4 p-4 text-center'>
 											<div className='flex justify-center mb-6'>
 												<Quote className='h-16 w-16 text-purple-9' />
 											</div>
@@ -64,11 +64,13 @@ export function TestimonialsSection({ testimonials }: TestimonialsSectionProps) 
 												&quot;{testimonial.content}&quot;
 											</p>
 
-											<div className='flex items-center justify-center mb-6'>
-												{[...Array(testimonial.rating)].map((_, i) => (
-													<Star key={i} className='h-6 w-6 text-yellow-500 fill-current mx-0.5' />
-												))}
-											</div>
+											{testimonial.rating && (
+												<div className='flex items-center justify-center mb-6'>
+													{[...Array(testimonial.rating)].map((_, i) => (
+														<Star key={i} className='h-6 w-6 text-yellow-500 fill-current mx-0.5' />
+													))}
+												</div>
+											)}
 
 											<div>
 												<p className='font-semibold mb-1 text-purple-9' role='text' aria-level={5}>

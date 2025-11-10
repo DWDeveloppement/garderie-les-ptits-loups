@@ -204,7 +204,7 @@ export function RichTextRenderer({ content, className = '' }: RichTextRendererPr
 			const { variant: headingVariant, spans: normalizedSpans } = normalizeHeadingSpans(headingSpans)
 
 			const titleElement = (
-				<RichTextTitle key={getBlockKey(block, index)} tag={tag} variant={headingVariant} className='mb-4 mt-4 first:mt-0'>
+				<RichTextTitle key={getBlockKey(block, index)} tag={tag} variant={headingVariant} className='mb-4 mt-8 first:mt-0'>
 					{renderSpanNodes(normalizedSpans, `heading-${index}`, markDefs)}
 				</RichTextTitle>
 			)
@@ -233,14 +233,14 @@ export function RichTextRenderer({ content, className = '' }: RichTextRendererPr
 			const hasContent = normalizedSpans.some((span) => (span?.text ?? '').trim().length > 0)
 
 			if (!hasContent) {
-				return <div key={index} className='mb-3 h-2' aria-hidden='true' />
+				return <div key={index} className='mb-4 last:mb-0 h-2' aria-hidden='true' />
 			}
 
 			// Priorité: annotation textAlign > style text-*
 			const finalAlignmentClass = alignmentClass || (style?.startsWith('text-') ? style : undefined)
 
 			const paragraphElement = (
-				<p key={index} className={cn('mb-2.5', paragraphVariant === 'primary' ? 'text-purple-10' : undefined)}>
+				<p key={index} className={cn('mb-6 last:mb-0', paragraphVariant === 'primary' ? 'text-purple-10' : undefined)}>
 					{renderSpanNodes(normalizedSpans, `paragraph-${index}`, markDefs)}
 				</p>
 			)
@@ -257,7 +257,9 @@ export function RichTextRenderer({ content, className = '' }: RichTextRendererPr
 			// Si c'est un style text-*, appliquer directement sur le <p>
 			if (finalAlignmentClass && style?.startsWith('text-')) {
 				return (
-					<p key={index} className={cn('mb-2.5', paragraphVariant === 'primary' ? 'text-purple-10' : undefined, finalAlignmentClass)}>
+					<p
+						key={index}
+						className={cn('mb-4 last:mb-0', paragraphVariant === 'primary' ? 'text-purple-10' : undefined, finalAlignmentClass)}>
 						{renderSpanNodes(normalizedSpans, `paragraph-${index}`, markDefs)}
 					</p>
 				)

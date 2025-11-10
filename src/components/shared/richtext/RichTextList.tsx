@@ -24,7 +24,7 @@ type RichTextListProps = VariantProps<typeof listVariants> & {
 	className?: string
 }
 
-const listVariants = cva('mb-4 ml-6 space-y-2', {
+const listVariants = cva('mb-6 ml-6 space-y-1.5', {
 	variants: {
 		type: {
 			bullet: 'list-disc',

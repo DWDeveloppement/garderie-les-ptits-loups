@@ -16,9 +16,9 @@ export function LinkedSpacesSection({ linkedSpaces }: LinkedSpacesSectionProps) 
 	if (!linkedSpaces || linkedSpaces.length === 0) return null
 
 	return (
-		<section className='w-full py-16 px-4 sm:px-6 lg:px-8 bg-background'>
+		<section className='w-full py-16 px-4 sm:px-6 lg:px-8 gradient-section-a'>
 			<div className='max-w-7xl mx-auto'>
-				<h2 className='font-bold mb-8 text-center'>Nos Espaces</h2>
+				<h2 className='font-bold mb-16 text-center'>Nos Espaces</h2>
 
 				<div className='flex flex-col gap-16'>
 					{linkedSpaces.map((space, index) => {

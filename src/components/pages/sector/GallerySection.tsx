@@ -1,8 +1,15 @@
 // 📂 src/components/pages/sector/GallerySection.tsx
 // 👉 Section galerie pour les pages secteurs
 
-import { GalleryWithLightbox } from '@/components/gallery'
+import { GallerySkeleton } from '@/components/lazy'
+import dynamic from 'next/dynamic'
 import type { Photo } from 'react-photo-album'
+
+// Chargement dynamique de GalleryWithLightbox (composant lourd avec lightbox)
+const GalleryWithLightbox = dynamic(() => import('@/components/gallery').then((mod) => ({ default: mod.GalleryWithLightbox })), {
+	loading: () => <GallerySkeleton />,
+	ssr: true, // SSR activé pour le SEO
+})
 
 export type GallerySectionProps = {
 	photos: Photo[]
@@ -13,9 +20,9 @@ export function GallerySection({ photos, title = 'Galerie' }: GallerySectionProp
 	if (!photos || photos.length === 0) return null
 
 	return (
-		<section className='w-full py-16 px-4 sm:px-6 lg:px-8 bg-muted'>
+		<section className='w-full py-16 px-4 sm:px-6 lg:px-8 gradient-section-a'>
 			<div className='max-w-7xl mx-auto'>
-				<h2 className='font-bold mb-8 text-center'>{title}</h2>
+				<h2 className='font-bold mb-16 text-center'>{title}</h2>
 				<GalleryWithLightbox photos={photos} layout='rows' targetRowHeight={280} />
 			</div>
 		</section>

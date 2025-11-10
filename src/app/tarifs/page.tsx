@@ -38,7 +38,8 @@ export default async function HorairesTarifsPage() {
 						incomeRange: it.incomeRange,
 						subsidy: `${it.subsidy}`,
 					})),
-					tableSubsidiesInfo: scheduleData?.subsidiesTable?.body,
+					title: scheduleData?.subsidiesTable?.title || 'Subventions communales',
+					tableSubsidiesInfo: scheduleData?.subsidiesTable?.informationImportantSubsidies,
 				}}
 			/>
 			<DevJsonViewer data={[scheduleData, monthlyNursery, dailyNursery, monthlyTG, dailyTG, subsidiesDoc]} />

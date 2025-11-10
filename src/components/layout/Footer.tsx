@@ -1,20 +1,19 @@
-import { fetchFooterData } from 'lib/sanity/queries'
+import { getLayoutData } from 'lib/sanity/queries/shared'
 import Link from 'next/link'
 import { Icon } from '../icons/Icon'
 import { Separator } from '../ui/separator'
 
 export async function Footer() {
-	// Récupération des données de contact depuis Sanity
-	const data = await fetchFooterData()
+	// Récupération des données de layout (Footer + Partners) depuis Sanity (avec cache React)
+	const { footer } = await getLayoutData()
+	const data = footer
 	return (
 		<footer className='bg-purple-12 text-orange-1 mb-16 md:mb-0'>
 			<div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12'>
 				<div className='grid md:grid-cols-2 lg:grid-cols-4 gap-8'>
 					{/* Logo et Description */}
 					<div className='lg:col-span-2'>
-						<div className='flex items-center space-x-2 mb-4'>
-							<h4 className='text-orange-6 font-bold'>{data?.contactInfo?.name}</h4>
-						</div>
+						<h4 className='mb-4 text-orange-6 font-bold'>{data?.contactInfo?.name}</h4>
 						{/* Description de la garderie qui viendra de Sanity depuis contact.ts de contactInfo fields description*/}
 						<p className='text-orange-4 mb-4 leading-relaxed'>{data?.contactInfo?.description}</p>
 						<div className='flex space-x-4'>
@@ -75,18 +74,18 @@ export async function Footer() {
 				{/* Ligne de séparation */}
 				<Separator orientation='horizontal' className='flex my-12 ' />
 				<div className='flex flex-col md:flex-row justify-between items-center '>
-					<p className='text-orange-4 text-sm'>
+					<p className='text-orange-4 text-fl-sm'>
 						&copy; {new Date().getFullYear()} {data?.contactInfo?.name}. Tous droits réservés.
 					</p>
 					<div className='flex space-x-6 mt-4 md:mt-0'>
 						<Link
 							href='/mentions-legales'
-							className='px-2 py-1 text-orange-4 hover:text-orange-2 text-sm transition-colors outline-none focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[1px] focus-visible:rounded-lg focus-visible:ring-offset-2'>
+							className='px-2 py-1 text-orange-4 hover:text-orange-2 text-sm transition-colors outline-none focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[1px] focus-visible:rounded-lg focus-visible:ring-offset-2 text-fl-sm'>
 							Mentions légales
 						</Link>
 						<Link
 							href='/politique-confidentialite'
-							className='px-2 py-1 text-orange-4 hover:text-orange-2 text-sm transition-colors outline-none focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] focus-visible:rounded-lg focus-visible:ring-offset-2'>
+							className='px-2 py-1 text-orange-4 hover:text-orange-2 text-sm transition-colors outline-none focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] focus-visible:rounded-lg focus-visible:ring-offset-2 text-fl-sm'>
 							Politique de confidentialité
 						</Link>
 					</div>
