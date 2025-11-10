@@ -1,20 +1,18 @@
 @import 'tailwindcss';
 @import '../styles/palette.css';
 @import '../styles/fonts.css';
+/* Variables fluides pour font-size uniquement */
 @import '../styles/fluid/fluid-variables.css';
-@import '../styles/fluid/spacing.css';
-@import '../styles/fluid/typography.css';
-@import 'tw-animate-css';
-
-@custom-variant dark (&:is(.dark *));
+/* tw-animate-css chargé dynamiquement - Voir src/components/shared/AnimateCSS.tsx */
 
 @layer base {
 	* {
-		box-sizing: border-box;
-		margin: 0;
-		padding: 0;
+		@apply border-border;
 	}
-
+	body {
+		@apply font-sans bg-background text-foreground;
+		font-size: var(--fl-text-base);
+	}
 	h1,
 	h2,
 	h3,
@@ -22,11 +20,58 @@
 	h5,
 	h6 {
 		color: var(--purple-10);
+		font-family: var(--font-display);
+	}
+	h1 {
+		font-size: var(--fl-text-4xl);
+	}
+	h2 {
+		font-size: var(--fl-text-3xl);
+	}
+	h3 {
+		font-size: var(--fl-text-2xl);
+	}
+	h4 {
+		font-size: var(--fl-text-xl);
+	}
+	h5 {
+		font-size: var(--fl-text-lg);
+	}
+	h6 {
+		font-size: var(--fl-text-base);
+	}
+	p {
+		font-size: var(--fl-text-base);
+		@apply mb-6 leading-normal last:mb-0;
+	}
+	code,
+	pre {
+		font-size: var(--fl-text-sm);
+	}
+	small {
+		font-size: var(--fl-text-xs);
 	}
 }
 
-/* Purple comme grayColor pour Radix Theme */
+@custom-variant dark (&:is(.dark *));
+
+/* Purple comme grayColor pour Radix Theme + Variables font-size fluides */
 :root {
+	/* Variables font-size fluides - Utilisation directe des clamp() de fluid-variables.css */
+	--fl-text-xs: var(--size--2); /* 11.11px → 12.8px */
+	--fl-text-sm: var(--size--1); /* 13.33px → 16px */
+	--fl-text-base: var(--size-0); /* 16px → 20px */
+	--fl-text-lg: var(--size-1); /* 19.2px → 25px */
+	--fl-text-xl: var(--size-2); /* 23.04px → 31.25px */
+	--fl-text-2xl: var(--size-3); /* 27.65px → 39.06px */
+	--fl-text-3xl: var(--size-4); /* 33.18px → 48.83px */
+	--fl-text-4xl: var(--size-5); /* 39.81px → 61.04px */
+
+	/* Texte Display */
+	--fl-text-display-2: calc(var(--size-4) * var(--display-factor)); /* 48.83px → 75px */
+	--fl-text-display-1: calc(var(--size-5) * var(--display-factor)); /* 61.04px → 95px */
+
+	/* Variables Radix Theme */
 	--radius: 0.625rem;
 	--background: var(--purple-2);
 	--foreground: var(--orange-11);
@@ -37,11 +82,11 @@
 	--primary: var(--purple-9);
 	--primary-foreground: var(--purple-1);
 	--secondary: var(--orange-3);
-	--secondary-foreground: var(--orange-contrast);
+	--secondary-foreground: var(--orange-11);
 	--muted: var(--purple-3);
 	--muted-foreground: var(--purple-11);
 	--accent: var(--orange-3);
-	--accent-foreground: var(--purple-contrast);
+	--accent-foreground: var(--purple-11);
 	--destructive: var(--red-9);
 	--border: var(--purple-6);
 	--input: var(--orange-6);
@@ -122,12 +167,38 @@
 	--radius-xl: calc(var(--radius) + 4px);
 }
 
-@layer base {
-	* {
-		@apply border-border outline-ring/50;
+/* Classes Tailwind pour font-size fluides (override possible dans les composants) */
+/* Utilisation de !important pour forcer la priorité sur les classes Tailwind standard (text-sm, text-lg, etc.) */
+@layer utilities {
+	.text-fl-xs {
+		font-size: var(--fl-text-xs) !important;
 	}
-	body {
-		@apply bg-background text-foreground;
+	.text-fl-sm {
+		font-size: var(--fl-text-sm) !important;
+	}
+	.text-fl-base {
+		font-size: var(--fl-text-base) !important;
+	}
+	.text-fl-lg {
+		font-size: var(--fl-text-lg) !important;
+	}
+	.text-fl-xl {
+		font-size: var(--fl-text-xl) !important;
+	}
+	.text-fl-2xl {
+		font-size: var(--fl-text-2xl) !important;
+	}
+	.text-fl-3xl {
+		font-size: var(--fl-text-3xl) !important;
+	}
+	.text-fl-4xl {
+		font-size: var(--fl-text-4xl) !important;
+	}
+	.text-fl-display-1 {
+		font-size: var(--fl-text-display-1) !important;
+	}
+	.text-fl-display-2 {
+		font-size: var(--fl-text-display-2) !important;
 	}
 }
 

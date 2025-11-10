@@ -10,79 +10,107 @@
  */
 
 :root {
-  /* Font families - Utilisation des variables Next.js */
-  --font-sans: var(--font-open-sans), Arial, sans-serif;
-  --font-display: var(--font-chelsea-market), cursive;
-  --font-mono: ui-monospace, 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
-  
-  
-  /* Font weights */
-  --font-weight-light: 300;
-  --font-weight-normal: 400;
-  --font-weight-medium: 500;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
-  --font-weight-extrabold: 800;
-  
-  /* Letter spacing */
-  --letter-spacing-tighter: -0.05em;
-  --letter-spacing-tight: -0.025em;
-  --letter-spacing-normal: 0em;
-  --letter-spacing-wide: 0.025em;
-  --letter-spacing-wider: 0.05em;
-  --letter-spacing-widest: 0.1em;
+	/* Font families - Utilisation des variables Next.js */
+	--font-sans: var(--font-open-sans), Arial, sans-serif;
+	--font-display: var(--font-chelsea-market), cursive;
+	--font-mono: ui-monospace, 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+
+	/* Font weights */
+	--font-weight-light: 300;
+	--font-weight-normal: 400;
+	--font-weight-medium: 500;
+	--font-weight-semibold: 600;
+	--font-weight-bold: 700;
+	--font-weight-extrabold: 800;
+
+	/* Letter spacing */
+	--letter-spacing-tighter: -0.05em;
+	--letter-spacing-tight: -0.025em;
+	--letter-spacing-normal: 0em;
+	--letter-spacing-wide: 0.025em;
+	--letter-spacing-wider: 0.05em;
+	--letter-spacing-widest: 0.1em;
 }
 
 /* Layer base pour les fonts par défaut selon les tags */
 @layer base {
-  /* Font par défaut pour le body */
-  body {
-    font-family: var(--font-sans);
-  }
-  
-  /* Fonts pour les titres */
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-display);
-  }
-  
-  /* Font pour le code */
-  code, pre {
-    font-family: var(--font-mono);
-  }
+	/* Font par défaut pour le body */
+	body {
+		font-family: var(--font-sans);
+	}
+
+	/* Fonts pour les titres */
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-family: var(--font-display);
+	}
+
+	/* Font pour le code */
+	code,
+	pre {
+		font-family: var(--font-mono);
+	}
 }
 
 /* Classes utilitaires pour les fonts */
 .font-sans {
-  font-family: var(--font-sans);
+	font-family: var(--font-sans);
 }
 
 .font-display {
-  font-family: var(--font-display);
+	font-family: var(--font-display);
 }
 
 .font-mono {
-  font-family: var(--font-mono);
+	font-family: var(--font-mono);
 }
 
-
 /* Font weights */
-.font-light { font-weight: var(--font-weight-light); }
-.font-normal { font-weight: var(--font-weight-normal); }
-.font-medium { font-weight: var(--font-weight-medium); }
-.font-semibold { font-weight: var(--font-weight-semibold); }
-.font-bold { font-weight: var(--font-weight-bold); }
-.font-extrabold { font-weight: var(--font-weight-extrabold); }
+.font-light {
+	font-weight: var(--font-weight-light);
+}
+.font-normal {
+	font-weight: var(--font-weight-normal);
+}
+.font-medium {
+	font-weight: var(--font-weight-medium);
+}
+.font-semibold {
+	font-weight: var(--font-weight-semibold);
+}
+.font-bold {
+	font-weight: var(--font-weight-bold);
+}
+.font-extrabold {
+	font-weight: var(--font-weight-extrabold);
+}
 
 /* Letter spacing */
-.tracking-tighter { letter-spacing: var(--letter-spacing-tighter); }
-.tracking-tight { letter-spacing: var(--letter-spacing-tight); }
-.tracking-normal { letter-spacing: var(--letter-spacing-normal); }
-.tracking-wide { letter-spacing: var(--letter-spacing-wide); }
-.tracking-wider { letter-spacing: var(--letter-spacing-wider); }
-.tracking-widest { letter-spacing: var(--letter-spacing-widest); }
+.tracking-tighter {
+	letter-spacing: var(--letter-spacing-tighter);
+}
+.tracking-tight {
+	letter-spacing: var(--letter-spacing-tight);
+}
+.tracking-normal {
+	letter-spacing: var(--letter-spacing-normal);
+}
+.tracking-wide {
+	letter-spacing: var(--letter-spacing-wide);
+}
+.tracking-wider {
+	letter-spacing: var(--letter-spacing-wider);
+}
+.tracking-widest {
+	letter-spacing: var(--letter-spacing-widest);
+}
 
 /* Font styles - Italique généré par CSS */
 .font-italic {
-  font-style: italic;
-  font-synthesis: style; /* Force la génération d'italique si pas de police italic */
+	font-style: italic;
+	font-synthesis: style; /* Force la génération d'italique si pas de police italic */
 }
