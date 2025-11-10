@@ -1,7 +1,7 @@
 import type { SectorPageData } from '@/types/sanity/sectorPage'
 import { groq } from 'next-sanity'
 import { sanityFetch } from '../client'
-import { BASIC_IMAGE_QUERY, BASIC_IMAGE_QUERY_LIGHT, GALLERY_IMAGE_QUERY } from '../helpers/imageProps'
+import { BASIC_IMAGE_QUERY, BASIC_IMAGE_QUERY_LIGHT, GALLERY_IMAGE_QUERY_LIGHT } from '../helpers/imageProps'
 
 // Query pour récupérer un secteur avec toutes ses données
 export const SECTOR_PAGE_QUERY = groq`*[_type == "sectorPage" && _id == $sectorId][0]{
@@ -16,7 +16,7 @@ export const SECTOR_PAGE_QUERY = groq`*[_type == "sectorPage" && _id == $sectorI
 	linkedSpaces[]->{
 		_id,
 		title,
-		image${BASIC_IMAGE_QUERY},
+		image${BASIC_IMAGE_QUERY_LIGHT},
 		description
 	},
 	// Parallax (version allégée, below-the-fold)
@@ -24,7 +24,7 @@ export const SECTOR_PAGE_QUERY = groq`*[_type == "sectorPage" && _id == $sectorI
 		image${BASIC_IMAGE_QUERY_LIGHT}
 	},
 	content,
-	gallery[]${GALLERY_IMAGE_QUERY},
+	gallery[]${GALLERY_IMAGE_QUERY_LIGHT},
 	seo{
 		metaTitle,
 		metaDescription,

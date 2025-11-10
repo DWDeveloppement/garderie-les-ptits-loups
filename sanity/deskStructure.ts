@@ -143,5 +143,14 @@ export const deskStructure = (S: StructureBuilder) => {
 						.title('Partenaires')
 						.defaultOrdering([{ field: '_createdAt', direction: 'desc' }])
 				),
+			// Contenu Sanity pour la page de test
+			S.listItem()
+				.title('Contenu Sanity pour la page de test')
+				.icon(() => '🧪')
+				.child(
+					S.documentTypeList('exemplePage')
+						.title('Contenu Sanity pour la page de test')
+						.defaultOrdering([{ field: '_createdAt', direction: 'desc' }])
+				),
 		])
 }

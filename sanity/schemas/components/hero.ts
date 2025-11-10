@@ -5,6 +5,10 @@ export const heroHome: SchemaTypeDefinition = {
 	name: 'heroHome',
 	title: 'Hero Home',
 	type: 'object',
+	options: {
+		collapsible: true,
+		collapsed: true,
+	},
 	fields: [
 		{
 			name: 'title',
@@ -52,6 +56,10 @@ export const hero: SchemaTypeDefinition = {
 	name: 'hero',
 	title: 'Hero',
 	type: 'object',
+	options: {
+		collapsible: true,
+		collapsed: true,
+	},
 	fields: [
 		{
 			name: 'image',

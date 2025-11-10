@@ -1,7 +1,7 @@
 import type { HomePageData } from '@/types/queries'
 import { groq } from 'next-sanity'
 import { sanityFetch } from '../client'
-import { BASIC_IMAGE_QUERY, BASIC_IMAGE_QUERY_LIGHT } from '../helpers/imageProps'
+import { BASIC_IMAGE_QUERY_LIGHT } from '../helpers/imageProps'
 
 /**
  * Query pour la page d'accueil
@@ -9,37 +9,48 @@ import { BASIC_IMAGE_QUERY, BASIC_IMAGE_QUERY_LIGHT } from '../helpers/imageProp
  */
 export const HOME_QUERY = groq`
   *[_type == "home" && _id == "home"][0] {
-    // Hero Home (version détaillée)
+    // Hero Home (version allégée : logo avec priority, pas besoin de lqip/blurhash)
     sectionHero {
       title,
       garderieName,
-      logo ${BASIC_IMAGE_QUERY},
+      logo ${BASIC_IMAGE_QUERY_LIGHT},
       description,
       buttonText,
       buttonLink
     },
     
-    // Secteurs liés (optimisé : image supprimée)
-    // Note: Filtre schéma exclut "autres-espaces" (_id != "autres-espaces"), permet l'ajout de nouveaux secteurs
-    // La limitation [0...10] permet jusqu'à 10 secteurs (flexible pour l'avenir)
-    "linkedSectors": linkedSectors[0...5]-> {
-      _id,
+    // Section Structure (nouvelle structure imbriquée)
+    sectionStructure {
       title,
-      ageRange,
-      "slug": devConfig.slug.current,
-      sectionHero {
-        description
+      description,
+      // Secteurs liés (optimisé : image supprimée)
+      // Note: Filtre schéma exclut "autres-espaces" (_id != "autres-espaces"), permet l'ajout de nouveaux secteurs
+      // La limitation [0...5] permet jusqu'à 5 secteurs (lundi-vendredi)
+      // sectionHero.description nécessaire pour les cards et les pages secteurs
+      "linkedSectors": linkedSectors[0...5]-> {
+        _id,
+        title,
+        ageRange,
+        "slug": devConfig.slug.current,
+        sectionHero {
+          description
+        }
       }
     },
     
-    // Autres espaces liés (optimisé : sector supprimé)
-    // Note: Filtre schéma limite déjà à 3 espaces (sector == "other": jardin, cuisine, bricolage)
-    // La limitation [0...3] est une sécurité supplémentaire
-    "linkedOtherSpaces": linkedOtherSpaces[0...3]-> {
-      _id,
+    // Section Autres Espaces (nouvelle structure imbriquée)
+    sectionOtherSpaces {
       title,
-      image ${BASIC_IMAGE_QUERY_LIGHT},
-      description
+      introductionOtherSpaces,
+      // Autres espaces liés (optimisé : sector supprimé)
+      // Note: Filtre schéma limite déjà à 3 espaces (sector == "other": jardin, cuisine, bricolage)
+      // La limitation [0...3] est une sécurité supplémentaire
+      "linkedOtherSpaces": linkedOtherSpaces[0...3]-> {
+        _id,
+        title,
+        image ${BASIC_IMAGE_QUERY_LIGHT},
+        description
+      }
     },
     
     // Contenu complémentaire
@@ -50,12 +61,12 @@ export const HOME_QUERY = groq`
       image ${BASIC_IMAGE_QUERY_LIGHT}
     },
     
-    // SEO
+    // SEO (version allégée : shareImage pour réseaux sociaux, pas besoin de lqip/blurhash)
     seo {
       metaTitle,
       metaDescription,
       keywords,
-      shareImage ${BASIC_IMAGE_QUERY}
+      shareImage ${BASIC_IMAGE_QUERY_LIGHT}
     }
   }
 `

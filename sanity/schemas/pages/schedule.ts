@@ -27,6 +27,10 @@ export const schedulePage: SchemaTypeDefinition = {
 			title: 'Tarifs Nurserie',
 			type: 'object',
 			description: 'Section des tarifs mensuels et journaliers pour la Nurserie',
+			options: {
+				collapsible: true,
+				collapsed: false,
+			},
 			fields: [
 				{ name: 'title', title: 'Titre de la section', type: 'string', validation: (Rule: Rule) => Rule.required() },
 				{
@@ -53,6 +57,10 @@ export const schedulePage: SchemaTypeDefinition = {
 			title: 'Tarifs Trotteurs & Grands',
 			type: 'object',
 			description: 'Section des tarifs mensuels et journaliers pour les Trotteurs et les Grands',
+			options: {
+				collapsible: true,
+				collapsed: false,
+			},
 			fields: [
 				{ name: 'title', title: 'Titre de la section', type: 'string', validation: (Rule: Rule) => Rule.required() },
 				{
@@ -88,10 +96,14 @@ export const schedulePage: SchemaTypeDefinition = {
 			title: 'Tableau des Subventions',
 			type: 'object',
 			description: 'Section explicative sur les subventions avec tableau détaillé',
+			options: {
+				collapsible: true,
+				collapsed: false,
+			},
 			fields: [
 				{ name: 'title', title: 'Titre de la section', type: 'string', validation: (Rule: Rule) => Rule.required() },
 				{
-					name: 'body',
+					name: 'informationImportantSubsidies',
 					type: 'array',
 					title: 'Conditions pour bénéficier des subventions',
 					of: [portableTextBlockConfig],

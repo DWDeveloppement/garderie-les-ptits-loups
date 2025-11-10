@@ -16,6 +16,7 @@ export const aboutPage: SchemaTypeDefinition = {
 			validation: (Rule: Rule) => Rule.required(),
 		},
 		// === CONTENU DE LA PAGE ===
+		// === SECTION HERO ===
 		{
 			name: 'sectionHero',
 			title: 'Section Hero',

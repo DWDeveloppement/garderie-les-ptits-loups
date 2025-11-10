@@ -14,6 +14,15 @@ export const client = createClient({
 	// Désactiver en développement pour avoir les dernières données
 	useCdn: process.env.NODE_ENV === 'production',
 	token: process.env.SANITY_API_TOKEN,
+	// Désactiver Stega (VisualEditing) en production pour réduire le bundle
+	// Stega est uniquement nécessaire pour l'édition visuelle en mode preview
+	stega:
+		process.env.NODE_ENV === 'development' && process.env.NEXT_PUBLIC_SANITY_STUDIO_URL
+			? {
+					studioUrl: process.env.NEXT_PUBLIC_SANITY_STUDIO_URL,
+				}
+			: false,
+	perspective: 'published', // Utiliser uniquement les données publiées (pas les drafts)
 })
 
 /**

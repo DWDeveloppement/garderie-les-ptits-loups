@@ -5,6 +5,10 @@ export const heroImage: SchemaTypeDefinition = {
 	name: 'heroImage',
 	title: 'Hero Image',
 	type: 'object',
+	options: {
+		collapsible: true,
+		collapsed: false,
+	},
 	fields: [
 		{
 			name: 'image',

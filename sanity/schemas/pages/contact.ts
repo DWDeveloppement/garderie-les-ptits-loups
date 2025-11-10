@@ -1,6 +1,6 @@
 import { type Rule, type SchemaTypeDefinition } from 'sanity'
 import { ReadOnlySlug } from '../../components/ReadOnlySlug'
-import { hero, paralaxImage, seo } from '../components'
+import { hero, seo } from '../components'
 
 export const contactPage: SchemaTypeDefinition = {
 	name: 'contactPage',
@@ -21,6 +21,59 @@ export const contactPage: SchemaTypeDefinition = {
 			type: hero.name,
 		},
 		// Informations de contact centralisées (réutilisables dans footer, map, etc.)
+		// === SECTION Formulaires de contact ===
+		{
+			name: 'sectionFormulaires',
+			title: 'Section Formulaires',
+			type: 'object',
+			options: {
+				collapsible: true,
+				collapsed: true,
+			},
+			fields: [
+				{
+					name: 'title',
+					title: 'Titre',
+					type: 'string',
+					initialValue: 'Contactez-nous',
+					validation: (Rule: Rule) => Rule.required(),
+				},
+				{
+					name: 'description',
+					title: 'Description',
+					type: 'text',
+					rows: 3,
+				},
+			],
+		},
+
+		// === SECTION MAP ===
+		{
+			name: 'sectionMap2',
+			title: 'Section Map',
+			type: 'object',
+			options: {
+				collapsible: true,
+				collapsed: true,
+			},
+			fields: [
+				{
+					name: 'title',
+					title: 'Titre',
+					type: 'string',
+					initialValue: 'Localisation',
+					validation: (Rule: Rule) => Rule.required(),
+				},
+				{
+					name: 'description',
+					title: 'Description',
+					type: 'text',
+					rows: 3,
+					description: 'Description au dessus de la carte.',
+				},
+			],
+		},
+		// === SECTION CONTACT INFO ===
 		{
 			name: 'contactInfo',
 			title: 'Informations de Contact',
@@ -96,6 +149,19 @@ export const contactPage: SchemaTypeDefinition = {
 					description: "Horaires d'ouverture/d'accueil (différent des horaires de garde)",
 					validation: (Rule: Rule) => Rule.required(),
 				},
+			],
+		},
+		// === SECTION INFORMATIONS MAP ===
+		{
+			name: 'sectionMapInfo',
+			title: '⚙️ Configuration de la carte',
+			description: 'Configuration de la carte pour la page Contact (coordonnées GPS, niveau de zoom, etc.)',
+			type: 'object',
+			options: {
+				collapsible: true,
+				collapsed: true,
+			},
+			fields: [
 				// Coordonnées GPS pour la carte
 				{
 					name: 'latitude',
@@ -122,12 +188,6 @@ export const contactPage: SchemaTypeDefinition = {
 					description: 'Niveau de zoom pour la carte (1-20, recommandé: 15)',
 				},
 			],
-		},
-		// Image Parallaxe
-		{
-			name: 'parallax',
-			title: 'Image Parallaxe',
-			type: paralaxImage.name,
 		},
 		// === SEO & CONFIGURATION ===
 		{

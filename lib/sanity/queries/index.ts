@@ -16,3 +16,6 @@ export * from './sectors'
 export * from './footer'
 export * from './partners'
 export * from './prices'
+
+// Queries partagées avec React Cache (pour layout)
+export * from './shared'

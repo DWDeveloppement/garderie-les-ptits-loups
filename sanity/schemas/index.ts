@@ -4,6 +4,7 @@
 
 export { aboutPage } from '../schemas/pages/about'
 export { contactPage } from '../schemas/pages/contact'
+export { exemplePage } from '../schemas/pages/exemple'
 export { home } from '../schemas/pages/home'
 export { schedulePage } from '../schemas/pages/schedule'
 export { sectorPage } from '../schemas/pages/sectorPage'

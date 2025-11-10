@@ -256,6 +256,16 @@ export const GALLERY_IMAGE_QUERY = `{
 }`
 
 /**
+ * Query fragment pour galleryImage allégé (sans lqip/blurhash)
+ * Pour galeries below-the-fold - le lqip n'est utilisé que pour le placeholder blur (non critique)
+ * Le lightbox utilise srcHigh généré côté client, donc pas besoin de lqip
+ */
+export const GALLERY_IMAGE_QUERY_LIGHT = `{
+	image${BASIC_IMAGE_QUERY_LIGHT},
+	label
+}`
+
+/**
  * Query fragment pour seoImage complet (legacy)
  */
 export const SEO_IMAGE_QUERY = `{

@@ -22,10 +22,11 @@ export const SCHEDULE_QUERY = groq`
       image ${BASIC_IMAGE_QUERY_LIGHT}
     },
     
-    // Section Subventions (optimisée : seulement body, pas de jointure)
+    // Section Subventions (optimisée : seulement title et body, pas de jointure)
     // Note: Les données du tableau viennent de fetchSubsidies() (query séparée)
     "subsidiesTable": {
-      "body": subsidiesTable.body
+      "title": subsidiesTable.title,
+      "informationImportantSubsidies": subsidiesTable.informationImportantSubsidies
     },
     
     // SEO

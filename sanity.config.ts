@@ -7,6 +7,9 @@ import { structureTool } from 'sanity/structure'
 import { deskStructure } from './sanity/deskStructure'
 import { schema } from './sanity/schema'
 
+// Styles personnalisés pour Sanity Studio
+import './sanity/styles/studio.css'
+
 export default defineConfig({
 	name: 'garderie-les-ptits-loups',
 	title: "Garderie Les P'tits Loups",

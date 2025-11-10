@@ -1,6 +1,6 @@
 import { type Rule, type SchemaTypeDefinition } from 'sanity'
 import { ReadOnlySlug } from '../../components/ReadOnlySlug'
-import { heroHome, paralaxImage, seo } from '../components'
+import { heroHome, paralaxImage, portableTextBlockConfig, seo } from '../components'
 
 // Désactivé: page fixe gérée dans le code Next
 export const home: SchemaTypeDefinition = {
@@ -9,58 +9,106 @@ export const home: SchemaTypeDefinition = {
 	type: 'document',
 	fields: [
 		// === CONTENU DE LA PAGE ===
+		// === SECTION HERO ===
 		{
 			name: 'sectionHero',
 			title: 'Section Hero',
 			type: heroHome.name,
 		},
-		// Relation vers les 3 pages secteurs principales (La Structure)
-		// Format card affiché dans la section "La Structure" du frontend
-		// Pointe vers: La Nurserie, Les Trotteurs, Les Grands (pas "Les Autres Espaces")
+		// === SECTION STRUCTURE ===
 		{
-			name: 'linkedSectors',
-			title: 'Secteurs liés (Nurserie, Trotteurs, Grands)',
-			type: 'array',
-			of: [
+			name: 'sectionStructure',
+			title: 'Section Structure',
+			type: 'object',
+			options: {
+				collapsible: true,
+				collapsed: true,
+			},
+			fields: [
 				{
-					type: 'reference',
-					to: [{ type: 'sectorPage' }],
-					options: {
-						filter: '_id in ["nurserie", "trotteurs", "grands"]',
-						disableNew: true,
-					},
+					name: 'title',
+					title: 'Titre',
+					type: 'string',
+					initialValue: 'La Structure',
+					validation: (Rule: Rule) => Rule.required(),
+				},
+				{
+					name: 'description',
+					title: 'Description',
+					type: 'text',
+					rows: 4,
+					validation: (Rule: Rule) => Rule.required(),
+				},
+				// Linked Sectors
+				// Relation vers les pages secteurs principales (La Structure)
+				// Format card affiché dans la section "La Structure" du frontend
+				// Exclut "autres-espaces" pour permettre l'ajout de nouveaux secteurs tout en bloquant les autres espaces
+				{
+					name: 'linkedSectors',
+					title: 'Secteurs liés (Nurserie, Trotteurs, Grands, etc.)',
+					type: 'array',
+					of: [
+						{
+							type: 'reference',
+							to: [{ type: 'sectorPage' }],
+							options: {
+								// Exclut explicitement "autres-espaces" pour permettre l'ajout de nouveaux secteurs
+								filter: '_id != "autres-espaces"',
+								disableNew: true,
+							},
+						},
+					],
+					description:
+						'Liens vers les pages de secteurs principaux (exclut "Les Autres Espaces"). Permet l\'ajout de nouveaux secteurs si nécessaire.',
 				},
 			],
-			description: 'Liens vers les pages de secteurs (La Nurserie, Les Trotteurs, Les Grands)',
 		},
 
 		// ===== SECTIONS AUTRES ESPACES =====
-		// Introduction à la section "Nos Autres Espaces"
 		{
-			name: 'introductionOtherSpaces',
-			title: 'Introduction à la section "Nos Autres Espaces"',
-			type: 'text',
-			rows: 4,
-			description: 'Introduction à la section "Nos Autres Espaces"',
-		},
-		// Relation vers les "autres espaces" uniquement (jardin, cuisine, bricolage)
-		// Format liste d'articles dans la section "Nos Autres Espaces" du frontend
-		// Filtre: inclut uniquement les espaces avec sector = "other"
-		{
-			name: 'linkedOtherSpaces',
-			title: 'Autres Espaces (Jardin, Cuisine, Bricolage)',
-			type: 'array',
-			of: [
+			name: 'sectionOtherSpaces',
+			title: 'Section Autres Espaces',
+			type: 'object',
+			options: {
+				collapsible: true,
+				collapsed: true,
+			},
+			fields: [
 				{
-					type: 'reference',
-					to: [{ type: 'spacePage' }],
-					options: {
-						filter: 'sector == "other"',
-						disableNew: true,
-					},
+					name: 'title',
+					title: 'Titre',
+					type: 'string',
+					initialValue: 'Nos Autres Espaces',
+					validation: (Rule: Rule) => Rule.required(),
+				},
+				// Introduction à la section "Nos Autres Espaces"
+				{
+					name: 'introductionOtherSpaces',
+					title: 'Introduction à la section "Nos Autres Espaces"',
+					type: 'text',
+					rows: 4,
+					description: 'Introduction à la section "Nos Autres Espaces"',
+				},
+				// Relation vers les "autres espaces" uniquement (jardin, cuisine, bricolage)
+				// Format liste d'articles dans la section "Nos Autres Espaces" du frontend
+				// Filtre: inclut uniquement les espaces avec sector = "other"
+				{
+					name: 'linkedOtherSpaces',
+					title: 'Autres Espaces (Jardin, Cuisine, Bricolage)',
+					type: 'array',
+					of: [
+						{
+							type: 'reference',
+							to: [{ type: 'spacePage' }],
+							options: {
+								filter: 'sector == "other"',
+								disableNew: true,
+							},
+						},
+					],
+					description: 'Liens vers les espaces "autres" (Le Jardin, La Cuisine, L\'armoire à bricolages)',
 				},
 			],
-			description: 'Liens vers les espaces "autres" (Le Jardin, La Cuisine, L\'armoire à bricolages)',
 		},
 
 		// Champ de contenu de page en rich-text
@@ -68,7 +116,7 @@ export const home: SchemaTypeDefinition = {
 			name: 'contentComplement',
 			title: 'Contenu complémentaire',
 			type: 'array',
-			of: [{ type: 'block' }],
+			of: [portableTextBlockConfig],
 			description: 'Contenu complémentaire de la page',
 		},
 

@@ -10,10 +10,10 @@ export function ReadOnlySlug(props: StringInputProps) {
 
 	return (
 		<Stack space={3}>
-			<Card padding={3} radius={2} shadow={1} tone="caution">
+			<Card padding={3} radius={2} shadow={1} tone='caution'>
 				<Stack space={2}>
 					<Box>
-						<Text size={1} weight="semibold">
+						<Text size={1} weight='semibold'>
 							<WarningOutlineIcon style={{ marginRight: '8px', verticalAlign: 'middle' }} />
 							Slug non modifiable
 						</Text>
@@ -26,14 +26,14 @@ export function ReadOnlySlug(props: StringInputProps) {
 				</Stack>
 			</Card>
 
-			<Card padding={3} radius={2} border tone="transparent">
+			<Card padding={3} radius={2} border tone='transparent'>
 				<Stack space={2}>
-					<Text size={1} weight="medium">
+					<Text size={1} weight='medium'>
 						URL actuelle :
 					</Text>
 					<Text
 						size={2}
-						weight="bold"
+						weight='bold'
 						style={{
 							fontFamily: 'monospace',
 							color: '#2563eb',
@@ -42,11 +42,10 @@ export function ReadOnlySlug(props: StringInputProps) {
 							borderRadius: '4px',
 							userSelect: 'all',
 						}}>
-						{typeof value === 'string' ? value : (value as any)?.current || '(non défini)'}
+						{typeof value === 'string' ? value : (value as { current?: string } | undefined)?.current || '(non défini)'}
 					</Text>
 				</Stack>
 			</Card>
 		</Stack>
 	)
 }
-
