@@ -3,5 +3,4 @@
 
 export { BackToTop } from './BackToTop'
 export { BottomBar } from './BottomBar'
-export { BottomBarWithAutoHide } from './BottomBarWithAutoHide'
 export { MobileNavigation } from './MobileNavigation'

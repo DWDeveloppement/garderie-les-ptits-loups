@@ -15,7 +15,7 @@ const Header = dynamic(() => import('@/components/layout/Header').then((mod) => 
 })
 
 // Composants chargés uniquement côté client (imports dynamiques avec ssr: false)
-import { AnimateCSSClient, MobileNavigationClient, ToasterClient } from '@/components/lazy/ClientOnlyComponents'
+import { AnimateCSSClient, ToasterClient } from '@/components/lazy/ClientOnlyComponents'
 
 const chelseaMarket = Chelsea_Market({
 	variable: '--font-chelsea-market',
@@ -62,8 +62,6 @@ export default function RootLayout({
 				<main>{children}</main>
 				<Partners />
 				<Footer />
-				{/* MobileNavigation - Chargement uniquement côté client (menu mobile) */}
-				<MobileNavigationClient />
 				{/* Toaster - Chargement uniquement côté client (toasts après interactions) */}
 				<ToasterClient />
 			</body>

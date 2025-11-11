@@ -18,14 +18,14 @@ import Link from 'next/link'
 import { Fragment, type ReactNode } from 'react'
 
 type RichTextRendererProps = {
-	content: Array<RichTextBlock | PortableTextBlock>
-	className?: string
+  content: Array<RichTextBlock | PortableTextBlock>
+  className?: string
 }
 
 export function RichTextRenderer({ content, className = '' }: RichTextRendererProps) {
-	if (!content || content.length === 0) {
-		return null
-	}
+  if (!content || content.length === 0) {
+    return null
+  }
 
 	const renderSpanNodes = (spans: MinimalSpan[] = [], keyPrefix: string, markDefs: PortableTextBlock['markDefs'] = []) => {
 		return spans
@@ -123,14 +123,14 @@ export function RichTextRenderer({ content, className = '' }: RichTextRendererPr
 		return undefined
 	}
 
-	const renderBlock = (block: RichTextBlock | PortableTextBlock, index: number) => {
-		const { _type, children, style } = block
+  const renderBlock = (block: RichTextBlock | PortableTextBlock, index: number) => {
+    const { _type, children, style } = block
 		const markDefs = (block as PortableTextBlock).markDefs ?? []
 
 		// Détecter l'alignement depuis les annotations
 		const alignmentClass = getTextAlignFromBlock(block)
 
-		if (_type === 'block' && style === 'blockquote') {
+    if (_type === 'block' && style === 'blockquote') {
 			const spans = ((children as MinimalSpan[]) ?? []).map((span, spanIndex) => ({
 				...span,
 				_key: span._key ?? `quote-span-${index}-${spanIndex}`,
@@ -167,7 +167,7 @@ export function RichTextRenderer({ content, className = '' }: RichTextRendererPr
 					}
 					return true
 				})
-				return (
+      return (
 					<RichTextFeedbackCard
 						key={getBlockKey(block, index)}
 						variant={feedbackProps.variant}
@@ -185,7 +185,7 @@ export function RichTextRenderer({ content, className = '' }: RichTextRendererPr
 			const authorNodes = authorSpans.length > 0 ? <>{renderSpanNodes(authorSpans, `quote-author-${index}`, markDefs)}</> : undefined
 
 			if (metadata.style === 'special') {
-				return (
+      return (
 					<RichTextQuoteSpecial key={getBlockKey(block, index)} content={contentNodes} author={authorNodes} variant={metadata.variant} />
 				)
 			}
@@ -211,7 +211,7 @@ export function RichTextRenderer({ content, className = '' }: RichTextRendererPr
 
 			// Wrapper avec classe d'alignement si nécessaire
 			if (alignmentClass) {
-				return (
+      return (
 					<div key={getBlockKey(block, index)} className={cn('rich-text-align-wrapper', alignmentClass)}>
 						{titleElement}
 					</div>
@@ -261,20 +261,20 @@ export function RichTextRenderer({ content, className = '' }: RichTextRendererPr
 						key={index}
 						className={cn('mb-4 last:mb-0', paragraphVariant === 'primary' ? 'text-purple-10' : undefined, finalAlignmentClass)}>
 						{renderSpanNodes(normalizedSpans, `paragraph-${index}`, markDefs)}
-					</p>
-				)
-			}
+        </p>
+      )
+    }
 
 			return paragraphElement
 		}
 
-		// Fallback pour les autres types
-		return (
+    // Fallback pour les autres types
+    return (
 			<div key={index} className='text-orange-11 leading-relaxed mb-3'>
 				{renderSpanNodes(children as unknown as MinimalSpan[], `fallback-${index}`, markDefs)}
-			</div>
-		)
-	}
+      </div>
+    )
+  }
 
 	const renderedBlocks: ReactNode[] = []
 
@@ -329,13 +329,13 @@ export function RichTextRenderer({ content, className = '' }: RichTextRendererPr
 		}
 	}
 
-	return (
-		<div className={`rich-text-content ${className}`}>
+  return (
+    <div className={`rich-text-content ${className}`}>
 			{renderedBlocks.map((node, idx) => (
 				<Fragment key={idx}>{node}</Fragment>
 			))}
-		</div>
-	)
+    </div>
+  )
 }
 
 function getBlockKey(block: RichTextBlock | PortableTextBlock, fallback: number) {
@@ -379,7 +379,7 @@ function extractQuoteMetadata(block: RichTextBlock | PortableTextBlock): QuoteMe
 	const markDefs = (block as PortableTextBlock).markDefs as QuoteVariantMark[] | undefined
 	const mark = markDefs?.find((def) => def?._type === 'quoteVariant')
 
-	return {
+    return {
 		variant: mark?.variant === 'secondary' ? 'secondary' : 'default',
 		style: mark?.style === 'special' ? 'special' : 'standard',
 		type: 'standard',
@@ -604,7 +604,7 @@ function normalizeListItems(items: RichTextListItem[]) {
 		}
 	})
 
-	return {
+    return {
 		items: normalizedItems,
 		variant: detectedVariant,
 	}
@@ -668,7 +668,7 @@ function buildFeedbackCardProps(metadata: QuoteMetadata) {
 	const size = metadata.feedbackSize ?? 'md'
 	const icon = metadata.feedbackIcon ?? DEFAULT_FEEDBACK_ICONS[variant]
 
-	return {
+  return {
 		variant,
 		size,
 		icon,

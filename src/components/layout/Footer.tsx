@@ -1,3 +1,5 @@
+import { MobileNavigationClient } from '@/components/lazy/ClientOnlyComponents'
+import { MAP_INFO_DEFAULT } from '@/constants/map_info_default'
 import { getLayoutData } from 'lib/sanity/queries/shared'
 import Link from 'next/link'
 import { Icon } from '../icons/Icon'
@@ -91,6 +93,18 @@ export async function Footer() {
 					</div>
 				</div>
 			</div>
+			<MobileNavigationClient
+				location={{
+					...MAP_INFO_DEFAULT,
+					name: data?.contactInfo?.name ?? MAP_INFO_DEFAULT.name,
+					address: data?.contactInfo?.address ?? MAP_INFO_DEFAULT.address,
+					postalCode: data?.contactInfo?.postalCode ?? MAP_INFO_DEFAULT.postalCode,
+					city: data?.contactInfo?.city ?? MAP_INFO_DEFAULT.city,
+					country: data?.contactInfo?.country ?? MAP_INFO_DEFAULT.country,
+				}}
+				phoneNumber={data?.contactInfo?.phone}
+				email={data?.contactInfo?.email}
+			/>
 		</footer>
 	)
 }

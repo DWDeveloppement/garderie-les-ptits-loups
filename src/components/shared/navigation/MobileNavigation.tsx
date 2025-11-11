@@ -3,7 +3,7 @@
 import { useWindowSize } from '@/hooks/useWindowSize'
 import type { MapLocation } from '@/types/map'
 import { BackToTop } from './BackToTop'
-import { BottomBarWithAutoHide } from './BottomBarWithAutoHide'
+import { BottomBar } from './BottomBar'
 
 type MobileNavigationProps = {
   location?: MapLocation
@@ -29,7 +29,7 @@ export function MobileNavigation({
   return (
     <>
       {/* Barre inférieure mobile */}
-      <BottomBarWithAutoHide 
+      <BottomBar 
         location={location}
         phoneNumber={phoneNumber}
         email={email}

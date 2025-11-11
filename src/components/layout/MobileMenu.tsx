@@ -33,7 +33,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 					className='fixed right-0 left-auto top-0 h-full w-auto min-w-[18rem] max-w-[90vw] bg-orange-1 border-l border-orange-6 shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right duration-300 p-0 translate-x-0 translate-y-0 overflow-x-hidden rounded-r-none'>
 					<div className='flex flex-col h-full'>
 						{/* Header */}
-						<div className='flex items-center justify-between py-4 px-6'>
+						<div className='flex items-center justify-between py-4 px-8'>
 							<h2 className='font-bold'>Menu</h2>
 							<DialogClose asChild>
 								<Button variant='default' size='icon' ariaLabel='Fermer le menu mobile' className='rounded-sm focus:outline-none'>
@@ -43,10 +43,10 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 						</div>
 						<Separator className='my-4' />
 						{/* Navigation Items */}
-						<div className='flex-1'>
-							<nav className='flex w-full flex-col items-start justify-start space-y-2'>
+						<div className='flex-1 px-4'>
+							<nav className='flex w-full flex-col items-start justify-start space-y-4'>
 								{menuItems.map((item) => (
-									<div key={item.label} className='w-full flex flex-col items-start justify-start'>
+									<div key={item.label} className='flex flex-col items-start justify-start space-y-4 w-full'>
 										{item.subMenu ? (
 											<>
 												{/* Item with submenu */}
@@ -55,14 +55,14 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 													onClick={() => toggleSubmenu(item.label)}
 													variant='ghost'
 													ariaLabel={`Ouvrir le sous-menu ${item.label}`}
-													className='flex w-full items-center justify-between px-3 py-3 text-left text-purple-9 hover:text-purple-11 hover:bg-orange-3 rounded-md transition-colors font-medium text-fl-lg'>
+													className='flex items-center w-full justify-between text-left text-purple-9 hover:text-purple-11 hover:bg-orange-3 rounded-md transition-colors font-medium text-fl-lg mb-0'>
 													<span className='flex-1'>{item.label}</span>
 													<ChevronRight className={`h-5 w-5 transition-transform ${expandedMenu === item.label ? 'rotate-90' : ''}`} />
 												</Button>
 
 												{/* Submenu */}
 												{expandedMenu === item.label && (
-													<div className='w-full ml-6 space-y-1 border-l-4 border-purple-6 mt-2.5'>
+													<div className='w-auto ml-6 space-y-1 border-l-4 border-purple-6 mt-1 pl-1 mb-2'>
 														{item.subMenu.map((subItem) => (
 															<Button
 																asNextLink
@@ -71,7 +71,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 																key={subItem.href}
 																href={subItem.href}
 																onClick={onClose}
-																className='flex w-full items-start justify-start font-medium px-3 py-2 text-fl-lg text-purple-9 hover:text-purple-11 hover:bg-orange-3 rounded-md transition-colors text-left'
+																className='flex items-center w-full justify-start font-medium text-fl-lg text-purple-9 hover:text-purple-11 hover:bg-orange-3 rounded-md transition-colors text-left'
 																ariaLabel={`Aller à la page ${subItem.label}`}>
 																{subItem.label}
 															</Button>
@@ -87,7 +87,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 												variant='ghost'
 												href={item.href || '/'}
 												onClick={onClose}
-												className='w-full justify-start px-3 py-3 text-left text-purple-9 hover:text-purple-11 hover:bg-orange-3 rounded-md transition-colors font-medium text-fl-lg'
+												className='flex items-center w-full justify-start text-left text-purple-9 hover:text-purple-11 hover:bg-orange-3 rounded-md transition-colors font-medium text-fl-lg'
 												ariaLabel={`Aller à la page ${item.label}`}>
 												{item.label}
 											</Button>
@@ -99,7 +99,7 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 
 						{/* Footer */}
 						<Separator className='my-4' />
-						<div className='px-6 pb-4'>
+						<div className='px-8 pb-4'>
 							<Button
 								asNextLink
 								href='/contact'

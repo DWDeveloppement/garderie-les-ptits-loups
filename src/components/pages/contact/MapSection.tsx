@@ -72,12 +72,14 @@ export function MapSection({ location = MAP_INFO_DEFAULT, className = '' }: MapS
 				<p>Venez nous rencontrer à notre adresse :</p>
 			</div>
 
-			{/* Carte dynamique par défaut avec fallback automatique */}
-			{!showStatic ? (
-				<DynamicMap location={location} height={400} ref={mapRef} isLoaded={isLoaded} error={error} />
-			) : (
-				<StaticMap location={location} height={400} zoom={15} mapType='roadmap' style='default' />
-			)}
+			<div className='w-full max-w-5xl mx-auto self-center'>
+				{/* Carte dynamique par défaut avec fallback automatique */}
+				{!showStatic ? (
+					<DynamicMap location={location} height={400} ref={mapRef} isLoaded={isLoaded} error={error} className='w-full' />
+				) : (
+					<StaticMap location={location} height={400} zoom={15} mapType='roadmap' style='default' className='w-full' />
+				)}
+			</div>
 
 			{/* Actions de la carte */}
 			<MapActions location={location} />

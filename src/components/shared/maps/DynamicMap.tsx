@@ -26,6 +26,7 @@ export const DynamicMap = forwardRef<HTMLDivElement, DynamicMapProps>(function D
 			<CardContent
 				className='relative rounded-lg overflow-hidden border border-orange-6 p-0'
 				style={{
+					width: '100%',
 					aspectRatio: ratio,
 					minHeight: typeof height === 'number' ? `${height}px` : height,
 				}}>
