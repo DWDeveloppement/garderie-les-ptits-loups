@@ -53,9 +53,9 @@ export function HeroGlobal({ title, description, imageUrl = '/jardin.webp', clas
 					</h1>
 
 					{description && (
-						<Card variant='primary' size='lg' className='max-w-2xl mx-auto'>
+						<Card variant='primary' size='lg' className='bg-background/60 max-w-2xl mx-auto'>
 							<CardContent className='p-6'>
-								<p className='leading-relaxed'>{description}</p>
+								<p className='leading-relaxed font-semibold text-purple-11'>{description}</p>
 							</CardContent>
 						</Card>
 					)}

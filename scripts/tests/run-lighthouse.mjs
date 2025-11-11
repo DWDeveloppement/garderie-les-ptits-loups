@@ -16,10 +16,28 @@ import { fileURLToPath } from 'url'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
-
 const DEFAULT_URL = 'http://localhost:3100/'
 const REPORTS_DIR = join(__dirname, '../../reports')
 const OUTPUT_FILE = join(REPORTS_DIR, 'lightouse.json')
+
+const KNOWN_CHROME_PATHS = [
+	process.env.LIGHTHOUSE_CHROMIUM_PATH,
+	'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+	'/Applications/Google Chrome Canary.app/Contents/MacOS/Google Chrome Canary',
+	'/Applications/Chromium.app/Contents/MacOS/Chromium',
+	'/usr/bin/google-chrome',
+	'/usr/bin/chromium-browser',
+	'/snap/bin/chromium',
+]
+
+function resolveChromePath() {
+	for (const path of KNOWN_CHROME_PATHS) {
+		if (path && existsSync(path)) {
+			return path
+		}
+	}
+	return null
+}
 
 /**
  * Vérifie si Lighthouse CLI est installé
@@ -93,8 +111,22 @@ async function generateLighthouseReport(url = DEFAULT_URL) {
 	console.log('   Cela peut prendre 30-60 secondes...\n')
 
 	try {
+		const chromePath = resolveChromePath()
+		if (!chromePath) {
+			throw new Error(
+				'Chrome/Chromium introuvable. Définissez LIGHTHOUSE_CHROMIUM_PATH ou installez Google Chrome.\n' +
+					'Chemins testés :\n' +
+					KNOWN_CHROME_PATHS.filter(Boolean)
+						.map((p) => `   - ${p}`)
+						.join('\n')
+			)
+		}
+
 		// Commande Lighthouse avec options
-		const lighthouseCmd = `lighthouse ${url} --output=json --output-path=${OUTPUT_FILE} --chrome-flags="--headless --no-sandbox" --quiet`
+
+		const chromeFlags = '--headless --no-sandbox --incognito --disable-extensions --disable-default-apps'
+		const lighthouseCmd = `lighthouse ${url} --output=json --output-path="${OUTPUT_FILE}" --chrome-flags="${chromeFlags}" --chrome-path="${chromePath}" --quiet`
+		console.log('🔧 Commande:', lighthouseCmd)
 
 		execSync(lighthouseCmd, {
 			stdio: 'inherit',

@@ -183,7 +183,6 @@ const ContactForm = () => {
 				</Button>
 				<Button
 					variant='outline'
-					className='bg-transparent hover:text-orange-12'
 					size='xl'
 					type='button'
 					ariaLabel='Réinitialiser le formulaire'

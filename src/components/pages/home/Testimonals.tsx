@@ -57,12 +57,8 @@ export function TestimonialsSection({ testimonials }: TestimonialsSectionProps) 
 											<div className='flex justify-center mb-6'>
 												<Quote className='h-16 w-16 text-purple-9' />
 											</div>
-											<h4 className='font-medium' role='heading' aria-level={4}>
-												{testimonial.title}
-											</h4>
-											<p className='leading-relaxed mb-8 italic' role='text'>
-												&quot;{testimonial.content}&quot;
-											</p>
+											<h3 className='font-medium text-fl-xl'>{testimonial.title}</h3>
+											<p className='leading-relaxed mb-8 italic'>&quot;{testimonial.content}&quot;</p>
 
 											{testimonial.rating && (
 												<div className='flex items-center justify-center mb-6'>
@@ -73,9 +69,7 @@ export function TestimonialsSection({ testimonials }: TestimonialsSectionProps) 
 											)}
 
 											<div>
-												<p className='font-semibold mb-1 text-purple-9' role='text' aria-level={5}>
-													{testimonial.name}
-												</p>
+												<p className='font-semibold mb-1 text-purple-9'>{testimonial.name}</p>
 											</div>
 										</CardContent>
 									</Card>
@@ -90,10 +84,13 @@ export function TestimonialsSection({ testimonials }: TestimonialsSectionProps) 
 					{testimonials.map((_, index) => (
 						<button
 							key={index}
+							type='button'
 							onClick={() => goToTestimonial(index)}
-							className={`w-3 h-3 rounded-full transition-colors ${
+							className={`w-6 h-6 rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background ${
 								index === currentIndex ? 'bg-purple-9' : 'bg-orange-6 hover:bg-orange-8'
 							}`}
+							aria-label={`Afficher le témoignage ${index + 1}`}
+							aria-pressed={index === currentIndex}
 						/>
 					))}
 				</div>

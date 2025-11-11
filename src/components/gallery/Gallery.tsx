@@ -29,6 +29,12 @@ export type GalleryProps = {
  */
 function renderNextImage({ alt = '', title, sizes }: RenderImageProps, { photo, width, height, index }: RenderImageContext) {
 	const customPhoto = photo as Photo & { blurDataURL?: string }
+	const accessibleLabel = alt || title || `Ouvrir la photo ${index + 1}`
+
+	const dispatchPhotoClick = () => {
+		const event = new CustomEvent('photoClick', { detail: index })
+		window.dispatchEvent(event)
+	}
 
 	return (
 		<div
@@ -37,31 +43,32 @@ function renderNextImage({ alt = '', title, sizes }: RenderImageProps, { photo, 
 				position: 'relative',
 				aspectRatio: `${width} / ${height}`,
 			}}
-			className='group cursor-pointer'
-			onClick={() => {
-				// Le clic sera géré par le parent
-				const event = new CustomEvent('photoClick', { detail: index })
-				window.dispatchEvent(event)
-			}}>
-			<Card variant='primary' interactive className='relative h-full w-full rounded-lg overflow-hidden p-4'>
-				<CardContent>
-					<Image
-						fill
-						src={photo}
-						alt={alt}
-						title={title}
-						sizes={sizes}
-						placeholder={customPhoto.blurDataURL ? 'blur' : undefined}
-						blurDataURL={customPhoto.blurDataURL}
-						className='object-cover h-full w-full'
-					/>
+			className='group'>
+			<button
+				type='button'
+				onClick={dispatchPhotoClick}
+				className='relative block h-full w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-lg'
+				aria-label={accessibleLabel}>
+				<Card variant='primary' interactive className='relative h-full w-full rounded-lg overflow-hidden p-4'>
+					<CardContent>
+						<Image
+							fill
+							src={photo}
+							alt={alt}
+							title={title}
+							sizes={sizes}
+							placeholder={customPhoto.blurDataURL ? 'blur' : undefined}
+							blurDataURL={customPhoto.blurDataURL}
+							className='object-cover h-full w-full'
+						/>
 
-					{/* Overlay hover */}
-					<div className='absolute inset-0 bg-purple-2/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity rounded-lg'>
-						<Icon name='zoomIn' size='xl' className='text-purple-10' aria-hidden />
-					</div>
-				</CardContent>
-			</Card>
+						{/* Overlay hover */}
+						<div className='absolute inset-0 bg-purple-2/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity rounded-lg'>
+							<Icon name='zoomIn' size='xl' className='text-purple-10' aria-hidden />
+						</div>
+					</CardContent>
+				</Card>
+			</button>
 		</div>
 	)
 }

@@ -13,7 +13,7 @@ export async function Footer() {
 				<div className='grid md:grid-cols-2 lg:grid-cols-4 gap-8'>
 					{/* Logo et Description */}
 					<div className='lg:col-span-2'>
-						<h4 className='mb-4 text-orange-6 font-bold'>{data?.contactInfo?.name}</h4>
+						<h2 className='mb-4 text-orange-6 font-bold text-fl-xl'>{data?.contactInfo?.name}</h2>
 						{/* Description de la garderie qui viendra de Sanity depuis contact.ts de contactInfo fields description*/}
 						<p className='text-orange-4 mb-4 leading-relaxed'>{data?.contactInfo?.description}</p>
 						<div className='flex space-x-4'>
@@ -26,7 +26,7 @@ export async function Footer() {
 
 					{/* Contact */}
 					<div>
-						<h4 className='text-orange-6 font-bold mb-4'>Contact</h4>
+						<h2 className='text-orange-6 font-bold mb-4§'>Contact</h2>
 						<div className='space-y-3'>
 							<div className='flex items-start space-x-3'>
 								<Icon name='mapPin' size='lg' aria-hidden className='mt-1.5' />
@@ -58,7 +58,7 @@ export async function Footer() {
 
 					{/* Horaires */}
 					<div>
-						<h4 className='text-orange-6 font-bold mb-4'>Horaires</h4>
+						<h2 className='text-orange-6 font-bold mb-4 text-fl-xl'>Horaires</h2>
 						<div className='space-y-3'>
 							<div className='flex items-start space-x-3'>
 								<Icon name='clock' size='lg' aria-hidden className='mt-1.5' />

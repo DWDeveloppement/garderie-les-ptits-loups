@@ -21,13 +21,10 @@ export function PricingList({ title, sections }: SanityPricingListProps) {
 				<h3 className='mb-6 text-center'>{title}</h3>
 			</CardHeader>
 			<CardContent className='p-0'>
-				<Accordion role='list' type='single' collapsible className='space-y-4 rounded-lg overflow-hidden'>
+				<Accordion type='single' collapsible className='space-y-4 rounded-lg overflow-hidden'>
 					{safeSections.map((section) => (
-						<>
-							<AccordionItem
-								key={section.accordionTitle}
-								value={section.accordionTitle}
-								className='border-none m-0 first:rounded-t-lg last:rounded-b-lg'>
+						<div key={section.accordionTitle}>
+							<AccordionItem value={section.accordionTitle} className='border-none m-0 first:rounded-t-lg last:rounded-b-lg'>
 								<AccordionTrigger className='text-fl-base text-balance font-bold flex items-center justify-between gap-2 hover:text-purple-10 transition-colors hover:bg-purple-3 p-4 hover:cursor-pointer hover:no-underline rounded-none'>
 									{section.accordionTitle}
 								</AccordionTrigger>
@@ -45,7 +42,7 @@ export function PricingList({ title, sections }: SanityPricingListProps) {
 											{(section.priceItems || []).map((item, index) => (
 												<tr key={`${section.accordionTitle}-${index}`} className='flex w-full'>
 													<td className='flex-1 px-6 py-4 text-fl-sm font-bold text-balance text-purple-11'>{item.service}</td>
-													<td className='px-6 py-4 whitespace-nowrap text-fl-sm text-orange-10'>{`CHF ${item.price}`}</td>
+													<td className='px-6 py-4 whitespace-nowrap text-fl-sm text-purple-11'>{`CHF ${item.price}`}</td>
 												</tr>
 											))}
 										</tbody>
@@ -53,7 +50,7 @@ export function PricingList({ title, sections }: SanityPricingListProps) {
 								</AccordionContent>
 							</AccordionItem>
 							<Separator orientation='horizontal' className='!h-0.5 w-full mx-auto bg-orange-6 last:hidden !my-0' />
-						</>
+						</div>
 					))}
 				</Accordion>
 			</CardContent>

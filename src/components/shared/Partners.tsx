@@ -57,7 +57,7 @@ export async function Partners() {
 											</Card>
 										</TooltipTrigger>
 										<TooltipContent variant='purple' side='bottom' showArrow={true}>
-											<p className='text-sm'>Voir le site web de {partner.name}</p>
+											<p className='m-0 text-fl-sm'>Voir le site web de {partner.name}</p>
 										</TooltipContent>
 									</Tooltip>
 								)}

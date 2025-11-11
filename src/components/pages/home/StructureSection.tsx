@@ -43,8 +43,7 @@ export function StructureSection({ sectionStructure }: StructureSectionProps) {
 							<Link
 								key={structure.id}
 								href={`/la-structure/${structure.id}`}
-								className='group flex h-full focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] focus-visible:rounded-lg'
-								aria-label={`Voir les détails de ${structure.title}`}>
+								className='group flex h-full focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] focus-visible:rounded-lg'>
 								<Card
 									role='article'
 									variant='secondary'
