@@ -28,14 +28,15 @@ export async function Footer() {
 
 					{/* Contact */}
 					<div>
-						<h2 className='text-orange-6 font-bold mb-4§'>Contact</h2>
+						<h2 className='text-orange-6 font-bold mb-4 text-fl-xl'>Contact</h2>
 						<div className='space-y-3'>
 							<div className='flex items-start space-x-3'>
 								<Icon name='mapPin' size='lg' aria-hidden className='mt-1.5' />
-								<div className='text-orange-4'>
-									<p>{data?.contactInfo?.address}</p>
+								<div className='text-orange-4 text-fl-sm'>
 									<p>
-										{data?.contactInfo?.postalCode} {data?.contactInfo?.city} {data?.contactInfo?.country}
+										{data?.contactInfo?.address}
+										<br />
+										{data?.contactInfo?.postalCode} {data?.contactInfo?.city}
 									</p>
 								</div>
 							</div>

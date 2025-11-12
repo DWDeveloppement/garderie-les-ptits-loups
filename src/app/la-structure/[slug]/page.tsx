@@ -1,5 +1,6 @@
 import { DevJsonViewer } from '@/components/dev'
-import { ContentSection, GallerySection, HeroSectorSection, LinkedSpacesSection, ParallaxSection } from '@/components/pages/sector'
+import { ContentSection, GallerySection, HeroSectorSection, LinkedSpacesSection } from '@/components/pages/sector'
+import { ParalaxImage } from '@/components/shared'
 import { transformSanityGalleryToPhotos } from 'lib/sanity/helpers/galleryTransform'
 import { fetchSectorPage } from 'lib/sanity/queries/sectors'
 import type { Metadata } from 'next'
@@ -94,7 +95,7 @@ export default async function StructurePage({ params }: { params: Promise<{ slug
 			{linkedSpaces && linkedSpaces.length > 0 && <LinkedSpacesSection linkedSpaces={linkedSpaces} />}
 
 			{/* Parallax Image */}
-			{parallax?.image && <ParallaxSection image={parallax.image} />}
+			{parallax?.image && <ParalaxImage image={parallax.image} />}
 
 			{/* Content Section (Rich Text) */}
 			{content && content.length > 0 && <ContentSection content={content} />}

@@ -22,7 +22,7 @@ export function SpacesSection({ spaces, contentComplement }: SpacesSectionProps)
 	}
 
 	return (
-		<section id='espaces' className='py-16 px-4 sm:px-6 lg:px-8 gradient-section-b'>
+		<section id='espaces' className='py-16 px-8 md:px-16 gradient-section-b'>
 			<div className='max-w-7xl mx-auto'>
 				<div className='text-center mb-16'>
 					<h2 className='font-bold mb-8'>Nos autres espaces</h2>

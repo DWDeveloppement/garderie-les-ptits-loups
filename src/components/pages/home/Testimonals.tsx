@@ -1,7 +1,7 @@
 'use client'
 import { Card, CardContent } from '@/components/ui/card'
 import { TestimonialsTypesProps } from '@/types/queries/testimonials'
-import { Quote, Star } from 'lucide-react'
+import { Quote } from 'lucide-react'
 import { useCallback, useEffect, useState } from 'react'
 
 type TestimonialsSectionProps = {
@@ -32,7 +32,7 @@ export function TestimonialsSection({ testimonials }: TestimonialsSectionProps) 
 	}, [isHovered, nextTestimonial])
 
 	return (
-		<section className='py-16 px-4 sm:px-6 lg:px-8 gradient-section-a'>
+		<section className='py-16 px-8 md:px-16 gradient-section-a'>
 			<div className='max-w-5xl mx-auto'>
 				<div className='text-center mb-12'>
 					<h2 className='font-bold mb-8'>Ce que disent les parents</h2>
@@ -59,14 +59,14 @@ export function TestimonialsSection({ testimonials }: TestimonialsSectionProps) 
 											</div>
 											<h3 className='font-medium text-fl-xl'>{testimonial.title}</h3>
 											<p className='leading-relaxed mb-8 italic'>&quot;{testimonial.content}&quot;</p>
-
-											{testimonial.rating && (
+											{/* Le rating sera temporairement commenté */}
+											{/* {testimonial.rating && (
 												<div className='flex items-center justify-center mb-6'>
 													{[...Array(testimonial.rating)].map((_, i) => (
 														<Star key={i} className='h-6 w-6 text-yellow-500 fill-current mx-0.5' />
-													))}
-												</div>
-											)}
+														))}
+													</div>
+												)} */}
 
 											<div>
 												<p className='font-semibold mb-1 text-purple-9'>{testimonial.name}</p>

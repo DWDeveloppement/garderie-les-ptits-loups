@@ -10,9 +10,6 @@ import { useMapLocation } from '@/hooks/useMaps'
 import { useScrollDirection } from '@/hooks/useScroll'
 import type { MapLocation } from '@/types/map'
 
-const DEFAULT_PHONE = '+41 21 123 45 67'
-const DEFAULT_EMAIL = 'contact@garderie-ptits-loups.ch'
-
 type BottomBarProps = {
 	location?: MapLocation
 	phoneNumber?: string
@@ -20,15 +17,11 @@ type BottomBarProps = {
 	className?: string
 }
 
-export function BottomBar({
-	location = MAP_INFO_DEFAULT,
-	phoneNumber = DEFAULT_PHONE,
-	email = DEFAULT_EMAIL,
-	className = '',
-}: BottomBarProps) {
+export function BottomBar({ location = MAP_INFO_DEFAULT, phoneNumber, email, className }: BottomBarProps) {
 	const { openSmartDirections } = useMapLocation(location)
 	const scrollDirection = useScrollDirection(8)
 	const [isAtBottom, setIsAtBottom] = useState(false)
+	const [hasScrolled, setHasScrolled] = useState(false)
 
 	useEffect(() => {
 		const threshold = 24
@@ -37,6 +30,11 @@ export function BottomBar({
 			const scrolled = window.innerHeight + window.scrollY
 			const limit = doc.scrollHeight - threshold
 			setIsAtBottom(scrolled >= limit)
+
+			// Marquer qu'un scroll a eu lieu après le chargement initial
+			if (!hasScrolled && window.scrollY > 0) {
+				setHasScrolled(true)
+			}
 		}
 
 		checkPosition()
@@ -47,7 +45,7 @@ export function BottomBar({
 			window.removeEventListener('scroll', checkPosition)
 			window.removeEventListener('resize', checkPosition)
 		}
-	}, [])
+	}, [hasScrolled])
 
 	const actions: Array<{
 		id: string
@@ -83,11 +81,11 @@ export function BottomBar({
 	return (
 		<div
 			className={`border-t border-orange-6 shadow-sm pointer-events-none md:hidden fixed inset-x-0 bottom-0 z-40 transition-transform duration-300 will-change-transform ${
-				scrollDirection === 'down' && !isAtBottom ? 'translate-y-full' : 'translate-y-0'
+				!hasScrolled || (scrollDirection === 'down' && !isAtBottom) ? 'translate-y-full' : 'translate-y-0'
 			}`}>
 			<nav
 				aria-label='Actions principales'
-				className={`pointer-events-auto flex items-stretch justify-between gap-2 py-2 px-8 bg-orange-1/95 backdrop-blur supports-[backdrop-filter]:bg-orange-2 ${className}`}>
+				className={`pointer-events-auto flex items-stretch justify-around gap-2 py-4 px-8 bg-orange-1/95 backdrop-blur supports-[backdrop-filter]:bg-orange-2 ${className}`}>
 				{actions.map((action, index) => {
 					const linkProps = action.href
 						? ({ asLink: true as const, href: action.href } as const)
@@ -99,11 +97,11 @@ export function BottomBar({
 						<Fragment key={action.id}>
 							<Button
 								variant='default'
-								size='xl'
+								size='icon'
 								{...linkProps}
 								ariaLabel={action.ariaLabel}
-								className='group flex h-full flex-col items-center justify-center gap-1 rounded-xl p-4 transition-all active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-9/50'>
-								<Icon name={action.icon} size='xl' aria-hidden />
+								className='group flex flex-col items-center justify-center gap-1 transition-all active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-9/50 h-12 w-12'>
+								<Icon name={action.icon} size='lg' aria-hidden />
 								<span className='sr-only'>{action.srText}</span>
 							</Button>
 

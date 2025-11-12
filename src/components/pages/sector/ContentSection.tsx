@@ -12,7 +12,7 @@ export function ContentSection({ content }: ContentSectionProps) {
 	if (!content || content.length === 0) return null
 
 	return (
-		<section className='w-full py-16 px-4 sm:px-6 lg:px-8 gradient-section-b'>
+		<section className='w-full py-16 px-8 md:px-16 gradient-section-b'>
 			<div className='max-w-5xl mx-auto'>
 				<RichTextRenderer content={content} />
 			</div>

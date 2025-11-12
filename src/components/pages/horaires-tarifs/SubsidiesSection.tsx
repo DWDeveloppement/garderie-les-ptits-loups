@@ -18,7 +18,7 @@ type SubsidiesSectionProps = {
 
 export function SubsidiesSection({ subsidies }: SubsidiesSectionProps) {
 	return (
-		<section className='py-16 px-4 sm:px-6 lg:px-8 gradient-section-a'>
+		<section className='py-16 px-8 md:px-16 gradient-section-a'>
 			<div className='max-w-7xl mx-auto'>
 				{/* En-tête de section */}
 				<h2 className='font-bold text-center text-balance mb-8'>{subsidies.title}</h2>

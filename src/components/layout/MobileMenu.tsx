@@ -3,9 +3,8 @@ import { Button } from '@/components/ui/button'
 import { Dialog, DialogClose, DialogContent, DialogOverlay, DialogPortal } from '@/components/ui/dialog'
 import { Separator } from '@/components/ui/separator'
 import { navigationMenu } from '@/constants/navigation_menu'
-import { ChevronRight, X } from 'lucide-react'
 import { useState } from 'react'
-
+import { Icon } from '../icons/Icon'
 type MobileMenuProps = {
 	isOpen: boolean
 	onClose: () => void
@@ -33,11 +32,16 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 					className='fixed right-0 left-auto top-0 h-full w-auto min-w-[18rem] max-w-[90vw] bg-orange-1 border-l border-orange-6 shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right duration-300 p-0 translate-x-0 translate-y-0 overflow-x-hidden rounded-r-none'>
 					<div className='flex flex-col h-full'>
 						{/* Header */}
-						<div className='flex items-center justify-between py-4 px-8'>
-							<h2 className='font-bold'>Menu</h2>
+						<div className='flex items-center justify-between pt-4 px-8'>
+							<h2 className='font-bold text-fl-xl'>Menu</h2>
 							<DialogClose asChild>
-								<Button variant='default' size='icon' ariaLabel='Fermer le menu mobile' className='rounded-sm focus:outline-none'>
-									<X className='h-6 w-6 text-purple-contrast' />
+								<Button
+									variant='default'
+									size='icon'
+									ariaLabel='Fermer le menu mobile'
+									className='h-12 w-12 focus:outline-none'
+									aria-expanded={isOpen}>
+									<Icon name='close' size='xl' aria-hidden />
 								</Button>
 							</DialogClose>
 						</div>
@@ -57,7 +61,12 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 													ariaLabel={`Ouvrir le sous-menu ${item.label}`}
 													className='flex items-center w-full justify-between text-left text-purple-9 hover:text-purple-11 hover:bg-orange-3 rounded-md transition-colors font-medium text-fl-lg mb-0'>
 													<span className='flex-1'>{item.label}</span>
-													<ChevronRight className={`h-5 w-5 transition-transform ${expandedMenu === item.label ? 'rotate-90' : ''}`} />
+													<Icon
+														name='chevronRight'
+														size='xl'
+														aria-hidden
+														className={`transition-transform ${expandedMenu === item.label ? 'rotate-90' : ''}`}
+													/>
 												</Button>
 
 												{/* Submenu */}

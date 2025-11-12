@@ -109,6 +109,7 @@ export function BlockQuoteCard({
 			<div className='absolute -top-12 left-1/2 -translate-x-1/2 flex justify-center items-center'>{resolvedIcon}</div>
 
 			<CardContent className='p-6 text-center'>
+				{children}
 				<blockquote className={cn('text-2xl italic leading-relaxed mb-4', palette.quote, quoteClassName)}>{content}</blockquote>
 
 				{author && <cite className={cn('block text-md font-semibold not-italic', palette.author, authorClassName)}>{author}</cite>}

@@ -20,7 +20,7 @@ export function GallerySection({ photos, title = 'Galerie' }: GallerySectionProp
 	if (!photos || photos.length === 0) return null
 
 	return (
-		<section className='w-full py-16 px-4 sm:px-6 lg:px-8 gradient-section-a'>
+		<section className='w-full py-16 px-8 md:px-16 gradient-section-a'>
 			<div className='max-w-7xl mx-auto'>
 				<h2 className='font-bold mb-16 text-center'>{title}</h2>
 				<GalleryWithLightbox photos={photos} layout='rows' targetRowHeight={280} />

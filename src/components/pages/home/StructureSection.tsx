@@ -30,7 +30,7 @@ export function StructureSection({ sectionStructure }: StructureSectionProps) {
 			: structures
 
 	return (
-		<section id='structure' className='py-16 px-4 sm:px-6 lg:px-8 gradient-section-a'>
+		<section id='structure' className='py-16 px-8 md:px-16 gradient-section-a'>
 			<div className='max-w-7xl mx-auto'>
 				<div className='text-center mb-16'>
 					<h2 className='font-bold mb-8'>{sectionStructure?.title}</h2>
@@ -65,7 +65,7 @@ export function StructureSection({ sectionStructure }: StructureSectionProps) {
 									</CardHeader>
 
 									<CardContent className='!p-0 px-6 space-y-4 flex-1'>
-										<p className='leading-relaxed'>{structure.description}</p>
+										<p className='leading-relaxed text-center'>{structure.description}</p>
 									</CardContent>
 
 									{/* Indicateur visuel que c'est cliquable (décoratif uniquement, pas focusable) */}

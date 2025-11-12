@@ -64,7 +64,7 @@ function renderNextImage({ alt = '', title, sizes }: RenderImageProps, { photo, 
 
 						{/* Overlay hover */}
 						<div className='absolute inset-0 bg-purple-2/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity rounded-lg'>
-							<Icon name='zoomIn' size='xl' className='text-purple-10' aria-hidden />
+							<Icon name='zoomIn' className='text-purple-10 size-12' aria-hidden />
 						</div>
 					</CardContent>
 				</Card>
