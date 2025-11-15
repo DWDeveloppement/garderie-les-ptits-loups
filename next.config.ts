@@ -34,6 +34,16 @@ const nextConfig: NextConfig = {
 	},
 
 	/**
+	 * Configuration des navigateurs cibles
+	 * Réduit le JavaScript legacy en ciblant des navigateurs modernes
+	 * Basé sur https://web.dev/articles/baseline et les statistiques d'utilisation
+	 */
+	compiler: {
+		// Réduit la transpilation pour les navigateurs modernes
+		// Next.js 15 utilise SWC qui cible automatiquement les navigateurs modernes
+	},
+
+	/**
 	 * Domaines autorisés
 	 * Dev: *.vercel.app
 	 * Production: www.garderielesptitsloups.ch

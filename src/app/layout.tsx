@@ -1,18 +1,12 @@
 import type { Metadata } from 'next'
-import dynamic from 'next/dynamic'
 import { Chelsea_Market, Open_Sans } from 'next/font/google'
 import './globals.css'
 
 // Imports statiques - Server Components (doivent être rendus côté serveur)
 import { Footer } from '@/components/layout/Footer'
+import { Header } from '@/components/layout/Header'
 import { Partners } from '@/components/shared'
 import { CriticalCSS } from '@/components/shared/CriticalCSS'
-
-// Imports dynamiques - Client Components (chargement différé pour réduire le bundle initial)
-// Header : chargé dynamiquement mais avec SSR pour le SEO (navigation importante)
-const Header = dynamic(() => import('@/components/layout/Header').then((mod) => ({ default: mod.Header })), {
-	ssr: true, // SSR activé pour le SEO (navigation visible immédiatement)
-})
 
 // Composants chargés uniquement côté client (imports dynamiques avec ssr: false)
 import { AnimateCSSClient, ToasterClient } from '@/components/lazy/ClientOnlyComponents'
@@ -22,13 +16,17 @@ const chelseaMarket = Chelsea_Market({
 	subsets: ['latin'],
 	weight: ['400'], // Chelsea Market n'a qu'un seul poids
 	display: 'swap',
+	preload: true, // Preload activé pour accélérer le chargement (critique pour les titres)
+	fallback: ['cursive'], // Fallback explicite
 })
 
 const openSans = Open_Sans({
 	variable: '--font-open-sans',
 	subsets: ['latin'],
-	weight: ['300', '400', '500', '600', '700', '800'], // Tous les poids disponibles
+	weight: ['400', '500', '600', '700'], // Poids réellement utilisés (normal, medium, semibold, bold)
 	display: 'swap',
+	preload: true, // Preload activé pour accélérer le chargement
+	fallback: ['Arial', 'sans-serif'], // Fallback explicite
 })
 
 export const metadata: Metadata = {
@@ -48,6 +46,7 @@ export default function RootLayout({
 				<CriticalCSS />
 
 				{/* Preconnect vers Google Fonts pour accélérer le chargement */}
+				{/* Note: next/font gère automatiquement le preload quand preload: true est défini */}
 				<link rel='preconnect' href='https://fonts.googleapis.com' />
 				<link rel='preconnect' href='https://fonts.gstatic.com' crossOrigin='anonymous' />
 

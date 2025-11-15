@@ -35,7 +35,15 @@ export function HeroSection({ sectionHero }: HeroSectionProps) {
 
 					{/* Logo Droite */}
 					<div className='flex justify-center lg:justify-end'>
-						<Image src={logoUrl} alt={logo.alt} width={851} height={376} className='w-120 h-70 object-contain' priority />
+						<Image
+							src={logoUrl}
+							alt={logo.alt}
+							width={851}
+							height={376}
+							className='w-120 h-70 object-contain'
+							priority
+							sizes='(max-width: 1024px) 100vw, 50vw'
+						/>
 					</div>
 				</div>
 			</div>

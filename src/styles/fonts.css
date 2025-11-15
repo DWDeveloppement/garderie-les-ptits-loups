@@ -15,13 +15,11 @@
 	--font-display: var(--font-chelsea-market), cursive;
 	--font-mono: ui-monospace, 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
 
-	/* Font weights */
-	--font-weight-light: 300;
+	/* Font weights - Poids réellement utilisés dans le projet */
 	--font-weight-normal: 400;
 	--font-weight-medium: 500;
 	--font-weight-semibold: 600;
 	--font-weight-bold: 700;
-	--font-weight-extrabold: 800;
 
 	/* Letter spacing */
 	--letter-spacing-tighter: -0.05em;
@@ -69,10 +67,7 @@
 	font-family: var(--font-mono);
 }
 
-/* Font weights */
-.font-light {
-	font-weight: var(--font-weight-light);
-}
+/* Font weights - Poids réellement utilisés */
 .font-normal {
 	font-weight: var(--font-weight-normal);
 }
@@ -84,9 +79,6 @@
 }
 .font-bold {
 	font-weight: var(--font-weight-bold);
-}
-.font-extrabold {
-	font-weight: var(--font-weight-extrabold);
 }
 
 /* Letter spacing */

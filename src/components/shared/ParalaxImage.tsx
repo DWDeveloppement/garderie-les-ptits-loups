@@ -57,7 +57,14 @@ export function ParalaxImage({ image, imageUrl, imageAlt, title, subtitle, heigh
 					transform: imageTransform,
 					transition: 'transform 0.1s ease-out',
 				}}>
-				<Image src={finalImageUrl} alt={finalImageAlt} fill className='object-cover object-center' priority />
+				<Image
+					src={finalImageUrl}
+					alt={finalImageAlt}
+					fill
+					className='object-cover object-center'
+					priority
+					sizes='100vw'
+				/>
 			</div>
 
 			{/* Overlay semi-transparent avec opacité dynamique */}

@@ -3,10 +3,7 @@
  * Ce CSS est nécessaire pour le First Contentful Paint (FCP)
  * et évite le blocage du rendu initial
  *
- * Inclut uniquement les variables et styles critiques pour le rendu initial :
- * - Variables de couleurs de base (purple-2, purple-10, orange-11)
- * - Variables de fonts
- * - Styles de base pour body et headings
+ * Inclut uniquement les variables de fonts et typography fluide
  */
 
 export function CriticalCSS() {
@@ -14,50 +11,18 @@ export function CriticalCSS() {
 		<style
 			dangerouslySetInnerHTML={{
 				__html: `
-/* Variables CSS critiques - Couleurs de base nécessaires pour le rendu initial */
+/* Variables de fonts (définies par next/font) */
 :root {
-	/* Couleurs Purple critiques */
-	--purple-1: oklch(0.993 0.0039 324.9);
-	--purple-2: oklch(0.983 0.0075 324.9);
-	--purple-6: oklch(0.86 0.0589 324.9);
-	--purple-9: oklch(0.511 0.1407 324.9);
-	--purple-10: oklch(0.462 0.1407 324.9);
-	
-	/* Couleurs Orange critiques */
-	--orange-11: oklch(0.498 0.1408 66.57);
-	
-	/* Variables de base */
-	--radius: 0.625rem;
-	--background: var(--purple-2);
-	--foreground: var(--orange-11);
-	
-	/* Variables de fonts (définies par next/font) */
 	--font-sans: var(--font-open-sans), Arial, sans-serif;
 	--font-display: var(--font-chelsea-market), cursive;
 	
-	/* Variables critiques pour le rendu initial */
-	--primary: var(--purple-9);
-	--primary-foreground: var(--purple-1);
-	--border: var(--purple-6);
-}
-
-/* Styles de base critiques - Nécessaires pour le FCP */
-body {
-	font-family: var(--font-sans);
-	background-color: var(--background);
-	color: var(--foreground);
-		margin: 0;
-	/* Ne pas forcer padding: 0 ici - laisser Tailwind gérer les paddings via les classes */
-}
-
-h1, h2, h3, h4, h5, h6 {
-	font-family: var(--font-display);
-	/* Ne pas forcer margin: 0 ici - laisser Tailwind gérer les marges via les classes */
-}
-
-/* Prévention du FOUC (Flash of Unstyled Content) */
-html {
-	background-color: var(--background);
+	/* Variables fluid typography critiques */
+	--fl-text-base: clamp(1.125rem, 1.0341rem + 0.4545vw, 1.375rem);
+	--fl-text-lg: clamp(1.35rem, 1.1744rem + 0.878vw, 1.8329rem);
+	--fl-text-xl: clamp(1.62rem, 1.3206rem + 1.4968vw, 2.4432rem);
+	--fl-text-2xl: clamp(1.944rem, 1.4666rem + 2.3869vw, 3.2568rem);
+	--fl-text-3xl: clamp(2.3328rem, 1.6024rem + 3.6519vw, 4.3413rem);
+	--fl-text-4xl: clamp(2.7994rem, 1.7129rem + 5.4321vw, 5.787rem);
 }
 `,
 			}}
