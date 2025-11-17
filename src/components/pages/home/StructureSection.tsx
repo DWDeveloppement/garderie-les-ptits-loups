@@ -4,7 +4,7 @@ import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { structures } from '@/data/structures'
-import type { LinkedSector } from '@/types/queries'
+import type { LinkedSector } from '@/sanity/types/pages/home'
 import { getSectorIconByTitle } from '@/utils/sectorIcons'
 import Link from 'next/link'
 

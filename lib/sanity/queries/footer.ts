@@ -1,4 +1,4 @@
-import type { SanityContactInfo } from '@/types/queries'
+import type { SanityContactInfo } from '@/sanity/types/pages/contact'
 import { groq } from 'next-sanity'
 import { sanityFetch } from '../client'
 

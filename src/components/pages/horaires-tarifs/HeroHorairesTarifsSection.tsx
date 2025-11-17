@@ -1,7 +1,7 @@
 'use client'
 
 import { HeroGlobal } from '@/components/shared'
-import type { SanityImage } from "@/types/sanity/sectorPage"
+import type { SanityImage } from "@/sanity/types/core/image"
 
 type HeroHorairesTarifsSectionProps = {
   title?: string

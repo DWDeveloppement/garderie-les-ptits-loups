@@ -1,6 +1,6 @@
 'use client'
 import { Card, CardContent } from '@/components/ui/card'
-import { TestimonialsTypesProps } from '@/types/queries/testimonials'
+import { TestimonialsTypesProps } from '@/sanity/types/pages/testimonials'
 import { Quote } from 'lucide-react'
 import { useCallback, useEffect, useState } from 'react'
 

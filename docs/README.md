@@ -100,12 +100,21 @@ src/
 ├── components/   # Composants React
 ├── lib/          # Utilitaires (sanity, performance)
 ├── hooks/        # Hooks personnalisés
-└── types/        # Types TypeScript
+└── types/        # Types TypeScript applicatifs
 
 sanity/
 ├── schemas/      # Schémas CMS
 ├── components/   # Composants Studio
+├── types/        # ✅ Types TypeScript Sanity (centralisés)
+├── queries/      # Requêtes GROQ
+├── lib/          # Utilitaires Sanity
 └── deskStructure.ts
+
+scripts/
+├── clean/        # ✅ Scripts de nettoyage
+├── fix/          # ✅ Scripts de correction
+├── tests/        # ✅ Scripts de test
+└── tools/        # ✅ Outils utilitaires
 ```
 
 ---

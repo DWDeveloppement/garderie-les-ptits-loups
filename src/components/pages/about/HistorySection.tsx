@@ -1,6 +1,6 @@
 import { RichTextRenderer } from '@/components/shared/richtext/RichTextRenderer'
 import { Card, CardContent } from '@/components/ui/card'
-import type { PortableTextBlock } from '@/types/sanity/portableText'
+import type { PortableTextBlock } from '@/sanity/types/core/portableText'
 import Image from 'next/image'
 type HistorySectionProps = {
 	content?: PortableTextBlock[]

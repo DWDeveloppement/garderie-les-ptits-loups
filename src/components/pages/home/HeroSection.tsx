@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button'
-import type { HomePageData } from '@/types/queries/home'
+import type { HomePageData } from '@/sanity/types/pages/home'
 import Image from 'next/image'
 
 type HeroSectionProps = {

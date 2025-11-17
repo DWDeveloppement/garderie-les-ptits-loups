@@ -4,7 +4,7 @@ import { RichTextRenderer } from '@/components/shared'
 import { SubsidiesTable } from '@/components/shared/pricing'
 import { Card } from '@/components/ui/card'
 
-import type { PortableTextBlock } from '@/types/sanity/portableText'
+import type { PortableTextBlock } from '@/sanity/types/core/portableText'
 
 type SubsidiesSectionProps = {
 	subsidies: {

@@ -1,6 +1,7 @@
-# 🎯 Réorganisation des Types Sanity - Proposition
+# 🎯 Réorganisation des Types Sanity - ✅ COMPLÉTÉ
 
 **Date** : 2024  
+**Statut** : ✅ Migration terminée  
 **Objectif** : Centraliser tous les types Sanity dans `sanity/types/` pour une meilleure organisation et cohérence
 
 ---
@@ -171,33 +172,34 @@ export type SanityValidationRule = {
 
 ## 🔄 Migration Proposée
 
-### Étape 1 : Créer la structure
+### ✅ Étape 1 : Créer la structure - COMPLÉTÉ
 
 ```bash
-mkdir -p sanity/types/{core,pages,content,queries}
+mkdir -p sanity/types/{core,pages,content}
 ```
 
-### Étape 2 : Déplacer les fichiers
+### ✅ Étape 2 : Déplacer les fichiers - COMPLÉTÉ
 
 1. **Types de base** :
-   - `src/types/sanity/portableText.ts` → `sanity/types/core/portableText.ts`
-   - `src/types/sanity/sectorPage.ts` (partie images) → `sanity/types/core/image.ts`
-   - `src/types/sanity/sectorPage.ts` (partie page) → `sanity/types/pages/sectorPage.ts`
+   - ✅ `src/types/sanity/portableText.ts` → `sanity/types/core/portableText.ts`
+   - ✅ `src/types/sanity/sectorPage.ts` (partie images) → `sanity/types/core/image.ts`
+   - ✅ `src/types/sanity/sectorPage.ts` (partie page) → `sanity/types/pages/sectorPage.ts`
 
 2. **Types de pages** :
-   - `src/types/queries/home.ts` → `sanity/types/pages/home.ts`
-   - `src/types/queries/about.ts` → `sanity/types/pages/about.ts`
-   - `src/types/queries/contact.ts` → `sanity/types/pages/contact.ts`
-   - `src/types/queries/schedulePage.ts` → `sanity/types/pages/schedule.ts`
+   - ✅ `src/types/queries/home.ts` → `sanity/types/pages/home.ts`
+   - ✅ `src/types/queries/about.ts` → `sanity/types/pages/about.ts`
+   - ✅ `src/types/queries/contact.ts` → `sanity/types/pages/contact.ts`
+   - ✅ `src/types/queries/schedulePage.ts` → `sanity/types/pages/schedule.ts`
+   - ✅ Tous les autres types de pages migrés
 
 3. **Types de contenu** :
-   - `src/types/sanity.ts` (PriceDocument, etc.) → `sanity/types/content/prices.ts`
-   - `lib/sanity/queries/prices.ts` (types inline) → `sanity/types/content/prices.ts`
+   - ✅ `src/types/sanity.ts` (PriceDocument, etc.) → `sanity/types/content/prices.ts`
+   - ✅ Types de contenu général → `sanity/types/content/general.ts`
 
 4. **Types de validation** :
-   - `src/types/sanity.ts` (SanityValidationRule) → `sanity/types/validation.ts`
+   - ✅ `src/types/sanity.ts` (SanityValidationRule) → `sanity/types/validation.ts`
 
-### Étape 3 : Créer les barrel exports
+### ✅ Étape 3 : Créer les barrel exports - COMPLÉTÉ
 
 ```typescript
 // sanity/types/index.ts
@@ -208,20 +210,23 @@ export * from './queries'
 export * from './validation'
 ```
 
-### Étape 4 : Mettre à jour les imports
+### ✅ Étape 4 : Mettre à jour les imports - COMPLÉTÉ
 
-Remplacer tous les imports :
+Remplacé tous les imports dans :
+- ✅ `src/components/`
+- ✅ `lib/sanity/queries/`
+- ✅ `src/hooks/queries/`
+- ✅ Tous les fichiers utilisant les types Sanity
 
-- `@/types/sanity/*` → `@/sanity/types/*`
-- `@/types/queries/*` → `@/sanity/types/pages/*` ou `@/sanity/types/queries/*`
-- `lib/sanity/queries/prices.ts` (types) → `@/sanity/types/content/prices`
+Imports mis à jour :
+- ✅ `@/types/sanity/*` → `@/sanity/types/*`
+- ✅ `@/types/queries/*` → `@/sanity/types/pages/*`
+- ✅ Ajouté alias `@/sanity/*` dans `tsconfig.json`
 
-### Étape 5 : Nettoyer
+### ✅ Étape 5 : Nettoyer - COMPLÉTÉ
 
-Supprimer les anciens dossiers vides :
-
-- `src/types/sanity/` (si vide)
-- `src/types/queries/` (si tous déplacés)
+- ✅ `src/types/sanity/` vidé (reste comme placeholder)
+- ✅ `src/types/queries/index.ts` créé avec re-exports de compatibilité (déprécié)
 
 ---
 
@@ -237,29 +242,31 @@ Supprimer les anciens dossiers vides :
 
 ## 📝 Checklist de Migration
 
-### Phase 1 : Préparation
+### ✅ Phase 1 : Préparation - COMPLÉTÉ
 
-- [ ] Créer la structure de dossiers `sanity/types/`
-- [ ] Documenter la nouvelle structure
+- [x] Créer la structure de dossiers `sanity/types/`
+- [x] Documenter la nouvelle structure
 
-### Phase 2 : Migration
+### ✅ Phase 2 : Migration - COMPLÉTÉ
 
-- [ ] Déplacer les types de base (`core/`)
-- [ ] Déplacer les types de pages (`pages/`)
-- [ ] Déplacer les types de contenu (`content/`)
-- [ ] Déplacer les types de validation (`validation.ts`)
-- [ ] Créer les barrel exports
+- [x] Déplacer les types de base (`core/`)
+- [x] Déplacer les types de pages (`pages/`)
+- [x] Déplacer les types de contenu (`content/`)
+- [x] Déplacer les types de validation (`validation.ts`)
+- [x] Créer les barrel exports
 
-### Phase 3 : Mise à jour
+### ✅ Phase 3 : Mise à jour - COMPLÉTÉ
 
-- [ ] Rechercher et remplacer tous les imports dans `src/`
-- [ ] Mettre à jour les imports dans `sanity/`
-- [ ] Vérifier que tout compile
+- [x] Rechercher et remplacer tous les imports dans `src/`
+- [x] Mettre à jour les imports dans `lib/sanity/queries/`
+- [x] Ajouter alias `@/sanity/*` dans `tsconfig.json`
+- [x] Vérifier que tout compile (build réussi)
 
-### Phase 4 : Nettoyage
+### ✅ Phase 4 : Nettoyage - COMPLÉTÉ
 
-- [ ] Supprimer les anciens dossiers vides
-- [ ] Mettre à jour la documentation
+- [x] Nettoyer les anciens dossiers (vidés)
+- [x] Créer re-exports de compatibilité dans `src/types/queries/index.ts`
+- [x] Mettre à jour la documentation
 
 ---
 
@@ -315,4 +322,4 @@ sanity/
 
 ---
 
-**Prochaine étape** : Valider cette proposition et commencer la migration.
+**✅ Migration terminée** : Tous les types Sanity ont été centralisés dans `sanity/types/`. La structure est maintenant cohérente avec `sanity/components/` et `sanity/lib/`.

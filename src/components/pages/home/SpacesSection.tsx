@@ -6,8 +6,8 @@
  */
 import { RichTextRenderer } from '@/components/shared'
 import { Card } from '@/components/ui/card'
-import type { LinkedOtherSpace } from '@/types/queries'
-import type { PortableTextBlock } from '@/types/sanity/portableText'
+import type { LinkedOtherSpace } from '@/sanity/types/pages/home'
+import type { PortableTextBlock } from '@/sanity/types/core/portableText'
 import Image from 'next/image'
 
 type SpacesSectionProps = {

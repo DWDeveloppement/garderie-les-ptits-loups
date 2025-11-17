@@ -4,7 +4,8 @@
  * Utile pour Footer et Partners qui sont dans le layout (appelés sur toutes les pages)
  */
 
-import type { Partner, SanityContactInfo } from '@/types/queries'
+import type { Partner } from '@/sanity/types/pages/partners'
+import type { SanityContactInfo } from '@/sanity/types/pages/contact'
 import { groq } from 'next-sanity'
 import { cache } from 'react'
 import { sanityFetch } from '../client'

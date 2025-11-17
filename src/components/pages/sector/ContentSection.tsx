@@ -2,7 +2,7 @@
 // 👉 Section de contenu Rich Text pour les pages secteurs
 
 import { RichTextRenderer } from '@/components/shared/richtext/RichTextRenderer'
-import type { PortableTextBlock } from '@/types/sanity/portableText'
+import type { PortableTextBlock } from '@/sanity/types/core/portableText'
 
 export type ContentSectionProps = {
 	content: PortableTextBlock[]

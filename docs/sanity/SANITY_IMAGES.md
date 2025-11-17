@@ -375,7 +375,7 @@ npm run cleanup:media -- --alt
 ### Script de Cleanup
 
 ```javascript
-// scripts/cleanup-unused-media.mjs
+// scripts/clean/cleanup-unused-media.mjs
 import { createClient } from '@sanity/client'
 import dotenv from 'dotenv'
 

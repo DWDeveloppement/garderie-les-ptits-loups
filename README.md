@@ -57,20 +57,33 @@ RECAPTCHA_SECRET_KEY=your_secret_key
 ├── 📚 docs/                 # Documentation complète
 ├── 🌐 public/               # Fichiers statiques
 ├── 🗄️ src/
-│   ├── 📱 app/              # Pages Next.js (routing)
-│   ├── 🧩 components/       # UI, shared, pages
+│   ├── 📱 app/              # Pages Next.js (App Router)
+│   ├── 🧩 components/       # Composants React
 │   │   ├── ui/              # Composants Shadcn originaux
 │   │   ├── pages/           # Sections de pages
-│   │   ├── debug/           # Composants de debug
-│   │   └── examples/        # Exemples de composants
+│   │   ├── shared/          # Composants partagés
+│   │   ├── layout/          # Composants de layout
+│   │   └── forms/           # Composants de formulaires
 │   ├── 🎣 hooks/            # Hooks personnalisés
-│   ├── 🔧 lib/              # Utilitaires et config
+│   ├── 🔧 lib/              # Utilitaires (sanity, performance)
 │   ├── 🎨 styles/           # CSS et variables
-│   └── 🟦 types/            # Types TypeScript
+│   └── 🟦 types/            # Types TypeScript applicatifs
+├── 🎨 sanity/               # Configuration Sanity CMS
+│   ├── schemas/             # Schémas de contenu
+│   ├── components/          # Composants Studio
+│   ├── queries/             # Requêtes GROQ
+│   ├── lib/                 # Utilitaires Sanity
+│   └── types/               # ✅ Types TypeScript Sanity (centralisés)
+├── 📝 scripts/              # Scripts de maintenance
+│   ├── clean/               # ✅ Scripts de nettoyage
+│   ├── fix/                 # ✅ Scripts de correction
+│   ├── tests/               # ✅ Scripts de test
+│   └── tools/               # ✅ Outils utilitaires
 ├── ⚙️ .env.local            # Variables d'environnement
-├── ⚙️ .cursorrules.md       # Règles Cursor AI
 └── ✍️ README.md
 ```
+
+> 💡 **Documentation complète** : Voir [docs/README.md](./docs/README.md) pour la documentation détaillée du projet.
 
 ## 🎨 Design System
 
@@ -111,6 +124,37 @@ border-orange-6      /* Bordures */
 - **Mobile First** : Approche progressive
 - **Breakpoints** : Mobile < 640px, Tablet 640-1024px, Desktop > 1024px
 - **Navigation** : Bottom bar mobile avec auto-hide
+
+## 🔧 Scripts Utiles
+
+```bash
+# Développement
+npm run dev              # Serveur dev Next.js (port 3000)
+npm run sanity           # Sanity Studio (port 3333)
+
+# Production
+npm run build            # Build production
+npm run start            # Serveur production (port 3100)
+
+# Utilitaires
+npm run cleanup:media    # Nettoyer médias non utilisés
+npm run fix:page -- [page]  # Réparer document Sanity
+npm run kill:dev         # Libérer ports 3000 et 3333
+npm run kill:prod        # Libérer port 3100
+```
+
+> 💡 **Tous les scripts** : Voir [docs/README.md](./docs/README.md#-scripts-principaux) pour la liste complète.
+
+## 📚 Documentation
+
+La documentation complète est disponible dans le dossier [`docs/`](./docs/) :
+
+- **[README.md](./docs/README.md)** - Index principal de la documentation
+- **[Setup](./docs/setup/)** - Configuration et installation
+- **[Sanity CMS](./docs/sanity/)** - Documentation Sanity
+- **[Features](./docs/features/)** - Features et composants
+- **[Performance](./docs/performance/)** - Optimisation et SEO
+- **[Tests](./docs/tests/)** - Tests et validation
 
 ## 🚦 Déploiement
 

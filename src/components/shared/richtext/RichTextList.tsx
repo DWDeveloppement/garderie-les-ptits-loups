@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils'
-import type { PortableTextMarkDef } from '@/types/sanity/portableText'
+import type { PortableTextMarkDef } from '@/sanity/types/core/portableText'
 import { cva, type VariantProps } from 'class-variance-authority'
 import type { ReactNode } from 'react'
 

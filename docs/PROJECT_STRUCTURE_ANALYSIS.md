@@ -54,13 +54,13 @@ garderie-les-ptits-loups/
 │   ├── queries/               # Requêtes GROQ
 │   ├── schemas/               # Schémas de contenu
 │   ├── styles/                # Styles Sanity Studio
-│   └── types/                 # ✨ PROPOSÉ - Types TypeScript Sanity
+│   └── types/                 # ✅ Types TypeScript Sanity (IMPLÉMENTÉ)
 │
-├── 📝 scripts/                 # Scripts de maintenance (⚠️ DUPLICATIONS)
-│   ├── clesn/                 # ❌ Doublon mal nommé
-│   ├── fix/                   # Scripts de correction (⚠️ DUPLICATIONS)
-│   ├── tests/                 # Scripts de test
-│   └── tools/                 # Outils (⚠️ DUPLICATIONS)
+├── 📝 scripts/                 # Scripts de maintenance (✅ ORGANISÉ)
+│   ├── clean/                 # ✅ Scripts de nettoyage
+│   ├── fix/                   # ✅ Scripts de correction
+│   ├── tests/                 # ✅ Scripts de test
+│   └── tools/                 # ✅ Outils utilitaires
 │
 ├── 📦 lib/                     # ❌ CONFUSION : Doublon avec src/lib/
 │   ├── performance/
@@ -227,7 +227,17 @@ src/types/
 - Confusion sur où trouver les types Sanity
 - Dépendances croisées entre `types/queries/` et `types/sanity/`
 
-**✅ Proposition** : Créer `sanity/types/` pour centraliser tous les types Sanity, comme `sanity/components/` et `sanity/lib/`.
+**✅ FAIT** : `sanity/types/` a été créé et tous les types Sanity y ont été migrés.
+
+**Structure actuelle** :
+```
+sanity/types/
+├── core/                      # Types de base (portableText, image)
+├── pages/                     # Types de pages (home, about, contact, etc.)
+├── content/                   # Types de contenu (prices, partners, etc.)
+├── validation.ts              # Types de validation
+└── index.ts                   # Barrel export principal
+```
 
 ---
 
@@ -323,25 +333,36 @@ Les fichiers dans les sous-dossiers (`tests/useConsoleLogs.ts`, `forms/useFormVa
 
 ```
 scripts/
-├── cleanup/                   # Scripts de nettoyage
-│   └── cleanup-unused-media.mjs
-├── fix/                       # Scripts de correction
+├── clean/                     # ✅ Scripts de nettoyage
+│   ├── cleanup-unused-media.mjs
+│   ├── cleanup-sanity-cache.mjs
+│   ├── delete-draft-and-assets.mjs
+│   ├── fix-orphaned-references.mjs
+│   ├── verify-deleted-assets.mjs
+│   └── check-specific-assets.mjs
+├── fix/                       # ✅ Scripts de correction
 │   ├── fix-page.mjs
 │   ├── fix-prices-types.mjs
 │   └── check-button-accessibility.mjs
-├── tests/                     # Scripts de test
-├── tools/                     # Outils utilitaires
+├── tests/                     # ✅ Scripts de test
+│   ├── analyze-lighthouse.mjs
+│   ├── audit-all-components.mjs
+│   ├── run-lighthouse.mjs
+│   ├── test-accessibility.mjs
+│   └── test-performance.mjs
+├── tools/                     # ✅ Outils utilitaires
 │   └── kill-ports.sh
 └── README.md
 ```
 
-**Fichiers à supprimer** :
+**✅ FAIT** : Les scripts ont été réorganisés :
 
-- `scripts/clesn/` → Intégrer dans `scripts/cleanup/` (corriger le nom)
-- `scripts/tools/kill-ports.sh` → Utiliser `scripts/kill-ports.sh`
-- `scripts/fix-page.mjs` → Utiliser `scripts/fix/fix-page.mjs`
-- `scripts/fix-prices-types.mjs` → Utiliser `scripts/fix/fix-prices-types.mjs`
-- `scripts/check-button-accessibility.mjs` → Déterminer la bonne version
+- ✅ `scripts/clean/` créé avec tous les scripts de nettoyage
+- ✅ `scripts/clesn/` supprimé (typo corrigée)
+- ✅ `scripts/fix/` contient les scripts de correction
+- ✅ `scripts/tests/` contient les scripts de test
+- ✅ `scripts/tools/` contient les outils utilitaires
+- ✅ `package.json` mis à jour avec les nouveaux chemins
 
 #### 1.3 Lib - Consolidation
 

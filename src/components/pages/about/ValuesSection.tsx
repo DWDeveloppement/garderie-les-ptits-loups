@@ -1,5 +1,5 @@
 import { RichTextRenderer } from '@/components/shared/richtext/RichTextRenderer'
-import type { PortableTextBlock } from '@/types/sanity/portableText'
+import type { PortableTextBlock } from '@/sanity/types/core/portableText'
 
 type ValuesSectionProps = {
 	content?: PortableTextBlock[]

@@ -117,22 +117,24 @@ scripts/
 └── tools/
 ```
 
-**Structure cible** :
+**✅ Structure finale implémentée** :
 
 ```
 scripts/
-├── maintenance/               # Scripts de maintenance
-│   ├── cleanup/
-│   │   ├── cleanup-unused-media.mjs
-│   │   ├── cleanup-sanity-cache.mjs
-│   │   └── verify-deleted-assets.mjs
-│   └── fix/
-│       ├── fix-page.mjs
-│       ├── fix-prices-types.mjs
-│       ├── fix-orphaned-references.mjs
-│       └── check-button-accessibility.mjs
+├── clean/                     # ✅ Scripts de nettoyage
+│   ├── cleanup-unused-media.mjs
+│   ├── cleanup-sanity-cache.mjs
+│   ├── delete-draft-and-assets.mjs
+│   ├── fix-orphaned-references.mjs
+│   ├── verify-deleted-assets.mjs
+│   └── check-specific-assets.mjs
 │
-├── testing/                   # Scripts de test
+├── fix/                       # ✅ Scripts de correction
+│   ├── fix-page.mjs
+│   ├── fix-prices-types.mjs
+│   └── check-button-accessibility.mjs
+│
+├── tests/                     # ✅ Scripts de test
 │   ├── analyze-lighthouse.mjs
 │   ├── audit-all-components.mjs
 │   ├── run-lighthouse.mjs
@@ -140,7 +142,7 @@ scripts/
 │   ├── test-accessibility.mjs
 │   └── test-performance.mjs
 │
-├── tools/                     # Outils utilitaires
+├── tools/                     # ✅ Outils utilitaires
 │   └── kill-ports.sh
 │
 └── README.md                  # Documentation complète
@@ -154,16 +156,24 @@ scripts/
 4. Mettre à jour `package.json` avec les nouveaux chemins
 5. Tester tous les scripts
 
-**Mises à jour package.json** :
+**✅ Mises à jour package.json effectuées** :
 
 ```json
 {
   "scripts": {
-    "cleanup:media": "node scripts/maintenance/cleanup/cleanup-unused-media.mjs",
-    "fix:page": "node scripts/maintenance/fix/fix-page.mjs",
-    "fix:prices": "node scripts/maintenance/fix/fix-prices-types.mjs",
+    "cleanup:media": "node scripts/clean/cleanup-unused-media.mjs",
+    "verify:assets": "node scripts/clean/verify-deleted-assets.mjs",
+    "fix:orphans": "node scripts/clean/fix-orphaned-references.mjs",
+    "cleanup:sanity-cache": "node scripts/clean/cleanup-sanity-cache.mjs",
+    "delete:draft-assets": "node scripts/clean/delete-draft-and-assets.mjs",
+    "fix:page": "node scripts/fix/fix-page.mjs",
+    "fix:prices": "node scripts/fix/fix-prices-types.mjs",
     "kill:dev": "sh scripts/tools/kill-ports.sh 3000 3333",
-    "lighthouse": "node scripts/testing/run-lighthouse.mjs"
+    "kill:prod": "sh scripts/tools/kill-ports.sh 3100",
+    "kill:all": "sh scripts/tools/kill-ports.sh 3000 3100 3333",
+    "perf": "tsx scripts/tests/test-performance.mjs",
+    "lighthouse": "node scripts/tests/run-lighthouse.mjs",
+    "lighthouse:analyze": "node scripts/tests/analyze-lighthouse.mjs"
   }
 }
 ```
@@ -373,32 +383,37 @@ src/types/
     └── sectorPage.ts
 ```
 
-**Structure cible** :
+**✅ Structure finale implémentée** :
 
 ```
-sanity/types/                   # ✨ NOUVEAU - Centralise TOUS les types Sanity
+sanity/types/                   # ✅ IMPLÉMENTÉ - Centralise TOUS les types Sanity
 ├── index.ts                    # Barrel export principal
 │
-├── core/                       # Types de base Sanity
+├── core/                       # ✅ Types de base Sanity
 │   ├── portableText.ts         # Types Portable Text
 │   ├── image.ts                # Types d'images Sanity
 │   └── index.ts
 │
-├── pages/                      # Types de pages
+├── pages/                      # ✅ Types de pages
 │   ├── home.ts
 │   ├── about.ts
 │   ├── contact.ts
+│   ├── contactPage.ts
 │   ├── schedule.ts
 │   ├── sectorPage.ts
-│   └── index.ts
-│
-├── content/                    # Types de contenu
-│   ├── prices.ts               # PriceDocument, SubsidiesDocument
 │   ├── partners.ts
 │   ├── testimonials.ts
+│   ├── structure.ts
+│   ├── espaces.ts
+│   ├── prices.ts
 │   └── index.ts
 │
-└── validation.ts               # Types de validation Sanity
+├── content/                    # ✅ Types de contenu
+│   ├── prices.ts               # PriceDocument, SubsidiesDocument
+│   ├── general.ts              # News, Activity, Staff
+│   └── index.ts
+│
+└── validation.ts               # ✅ Types de validation Sanity
 
 src/types/                      # Types applicatifs Next.js uniquement
 ├── breakpoints.ts              # ✅ Types applicatifs
@@ -406,18 +421,21 @@ src/types/                      # Types applicatifs Next.js uniquement
 ├── richText.ts                 # ✅ Types applicatifs
 ├── components/                 # ✅ Types de composants React
 │   └── button.ts
-└── app/                        # ✅ Types spécifiques à l'app
+└── queries/                    # ⚠️ Re-exports de compatibilité (déprécié)
+    └── index.ts                # Redirige vers @/sanity/types/pages/*
 ```
 
-**Actions** :
+**✅ Actions complétées** :
 
-1. Créer la structure `sanity/types/` avec sous-dossiers (`core/`, `pages/`, `content/`)
-2. Déplacer `src/types/sanity/*` → `sanity/types/core/` et `sanity/types/pages/`
-3. Déplacer `src/types/queries/*` → `sanity/types/pages/`
-4. Déplacer `src/types/sanity.ts` → `sanity/types/content/`
-5. Créer les barrel exports dans `sanity/types/`
-6. Mettre à jour tous les imports : `@/types/sanity/*` → `@/sanity/types/*`
-7. Nettoyer les anciens dossiers vides
+1. ✅ Créé la structure `sanity/types/` avec sous-dossiers (`core/`, `pages/`, `content/`)
+2. ✅ Déplacé `src/types/sanity/*` → `sanity/types/core/` et `sanity/types/pages/`
+3. ✅ Déplacé `src/types/queries/*` → `sanity/types/pages/`
+4. ✅ Déplacé `src/types/sanity.ts` → `sanity/types/content/`
+5. ✅ Créé les barrel exports dans `sanity/types/` (index.ts par dossier)
+6. ✅ Mis à jour tous les imports : `@/types/sanity/*` → `@/sanity/types/*`
+7. ✅ Ajouté alias `@/sanity/*` dans `tsconfig.json`
+8. ✅ Créé re-exports de compatibilité dans `src/types/queries/index.ts`
+9. ✅ Vérifié que le build compile correctement
 
 **✅ Avantages** :
 
@@ -589,18 +607,17 @@ docs/
 
 - [ ] (Optionnel - nettoyage futur) Vérifier si les fichiers dans les sous-dossiers (components/, forms/, etc.) sont obsolètes et peuvent être supprimés
 
-#### Scripts
+#### Scripts - ✅ COMPLÉTÉ
 
-- [ ] Créer `scripts/maintenance/cleanup/`
-- [ ] Créer `scripts/maintenance/fix/`
-- [ ] Créer `scripts/testing/`
-- [ ] Déplacer scripts de cleanup
-- [ ] Déplacer scripts de fix
-- [ ] Déplacer scripts de test
-- [ ] Supprimer `scripts/clesn/`
-- [ ] Supprimer `scripts/tools/kill-ports.sh` (garder celui à la racine)
-- [ ] Mettre à jour `package.json`
-- [ ] Tester tous les scripts
+- [x] Créer `scripts/clean/` (structure simplifiée)
+- [x] Créer `scripts/fix/`
+- [x] Créer `scripts/tests/` (déjà existant)
+- [x] Déplacer scripts de cleanup dans `scripts/clean/`
+- [x] Déplacer scripts de fix dans `scripts/fix/`
+- [x] Scripts de test déjà dans `scripts/tests/`
+- [x] Supprimer `scripts/clesn/`
+- [x] Mettre à jour `package.json` avec les nouveaux chemins
+- [x] Structure finale : `scripts/clean/`, `scripts/fix/`, `scripts/tests/`, `scripts/tools/`
 
 #### Lib
 
@@ -624,14 +641,16 @@ docs/
 - [ ] Mettre à jour tous les imports
 - [ ] Mettre à jour les barrel exports
 
-#### Types
+#### Types - ✅ COMPLÉTÉ
 
-- [ ] Créer `src/types/global/`
-- [ ] Créer `src/types/app/`
-- [ ] Créer `src/types/sanity/queries/`
-- [ ] Déplacer types globaux
-- [ ] Fusionner types queries et sanity
-- [ ] Mettre à jour tous les imports
+- [x] Créer `sanity/types/` avec sous-dossiers (`core/`, `pages/`, `content/`)
+- [x] Déplacer `src/types/sanity/*` → `sanity/types/core/` et `sanity/types/pages/`
+- [x] Déplacer `src/types/queries/*` → `sanity/types/pages/`
+- [x] Déplacer `src/types/sanity.ts` → `sanity/types/content/`
+- [x] Créer les barrel exports dans `sanity/types/`
+- [x] Mettre à jour tous les imports : `@/types/sanity/*` → `@/sanity/types/*`
+- [x] Ajouter alias `@/sanity/*` dans `tsconfig.json`
+- [x] Créer re-exports de compatibilité dans `src/types/queries/index.ts`
 
 ### Phase 3 : Optimisation (RECOMMANDÉ)
 
