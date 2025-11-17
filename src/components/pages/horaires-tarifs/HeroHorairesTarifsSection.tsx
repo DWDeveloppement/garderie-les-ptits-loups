@@ -1,16 +1,24 @@
 'use client'
 
-import { HeroGlobal } from '@/components/HeroGlobal'
-type HeroAboutSectionProps = {
-	title?: string
-	description?: string
-	imageUrl?: string
+import { HeroGlobal } from '@/components/shared'
+import type { SanityImage } from "@/sanity/types/core/image"
+
+type HeroHorairesTarifsSectionProps = {
+  title?: string
+  description?: string
+  image?: SanityImage
 }
 
 export function HeroHorairesTarifsSection({
-	title = 'Horaires & Tarifs',
-	description = '',
-	imageUrl = '/jardin.webp',
-}: HeroAboutSectionProps) {
-	return <HeroGlobal title={title} description={description} imageUrl={imageUrl} />
+  title = 'Horaires & Tarifs',
+  description = 'Découvrez nos horaires et tarifs de nos différents services de garde.',
+  image
+}: HeroHorairesTarifsSectionProps) {
+  return (
+    <HeroGlobal 
+      title={title} 
+      description={description} 
+      imageUrl={image?.asset?.url} 
+    />
+  )
 }

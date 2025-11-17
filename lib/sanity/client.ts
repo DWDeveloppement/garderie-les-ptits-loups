@@ -1,74 +1,53 @@
-import { createClient } from '@sanity/client'
+/**
+ * Client Sanity avec mesure de performance
+ */
 
-// ============================================================================
-// CLIENT SANITY - Configuration optimisée
-// ============================================================================
+import imageUrlBuilder from '@sanity/image-url'
+import { createClient } from 'next-sanity'
+import { measureSanityQuery } from '../performance/measure'
 
 export const client = createClient({
-	projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
-	dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
+	projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '',
+	dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
+	apiVersion: process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2024-01-01',
+	// Activer CDN en production pour meilleures performances (cache côté Sanity)
+	// Désactiver en développement pour avoir les dernières données
 	useCdn: process.env.NODE_ENV === 'production',
-	apiVersion: '2024-01-01',
-	token: process.env.SANITY_API_TOKEN, // Pour les mutations si nécessaire
-	perspective: 'published', // Utiliser seulement le contenu publié
+	token: process.env.SANITY_API_TOKEN,
+	// Désactiver Stega (VisualEditing) en production pour réduire le bundle
+	// Stega est uniquement nécessaire pour l'édition visuelle en mode preview
+	stega:
+		process.env.NODE_ENV === 'development' && process.env.NEXT_PUBLIC_SANITY_STUDIO_URL
+			? {
+					studioUrl: process.env.NEXT_PUBLIC_SANITY_STUDIO_URL,
+				}
+			: false,
+	perspective: 'published', // Utiliser uniquement les données publiées (pas les drafts)
 })
 
-// ============================================================================
-// CONFIGURATION DE CACHE
-// ============================================================================
+/**
+ * Image URL Builder pour générer des URLs optimisées
+ */
+export const imageBuilder = imageUrlBuilder(client)
 
-// Cache côté client pour éviter les requêtes répétées
-const cache = new Map<string, { data: unknown; timestamp: number }>()
-const CACHE_TTL = 5 * 60 * 1000 // 5 minutes
+/**
+ * Wrapper de fetch avec mesure de performance
+ */
+export async function sanityFetch<T = unknown>(
+	query: string,
+	params: Record<string, unknown> = {},
+	options: { tag?: string; cache?: RequestCache } = {}
+): Promise<T> {
+	const queryLabel = options.tag || 'Unknown Query'
 
-export async function cachedFetch(query: string, params?: Record<string, unknown>, ttl = CACHE_TTL) {
-	const cacheKey = `${query}:${JSON.stringify(params || {})}`
-	const cached = cache.get(cacheKey)
-
-	// Vérifier si le cache est valide
-	if (cached && Date.now() - cached.timestamp < ttl) {
-		return cached.data
-	}
-
-	// Récupérer les données depuis Sanity
-	const data = await client.fetch(query, params)
-
-	// Mettre en cache
-	cache.set(cacheKey, {
-		data,
-		timestamp: Date.now(),
-	})
-
-	return data
+	return measureSanityQuery(queryLabel, () =>
+		client.fetch<T>(query, params, {
+			cache: options.cache || 'force-cache', // Cache pour SSG
+			next: {
+				tags: options.tag ? [options.tag] : undefined,
+			},
+		})
+	)
 }
 
-// ============================================================================
-// FONCTIONS UTILITAIRES
-// ============================================================================
-
-export function clearCache() {
-	cache.clear()
-}
-
-export function getCacheSize() {
-	return cache.size
-}
-
-// ============================================================================
-// CONFIGURATION D'ENVIRONNEMENT
-// ============================================================================
-
-if (!process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) {
-	throw new Error('NEXT_PUBLIC_SANITY_PROJECT_ID is required')
-}
-
-if (!process.env.NEXT_PUBLIC_SANITY_DATASET) {
-	throw new Error('NEXT_PUBLIC_SANITY_DATASET is required')
-}
-
-// ============================================================================
-// EXPORTS
-// ============================================================================
-
-export { client as sanityClient }
-export default client
+export { groq } from 'next-sanity'

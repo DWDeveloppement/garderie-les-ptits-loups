@@ -1,29 +1,156 @@
 import { StructureBuilder } from 'sanity/structure'
+// Affichage simple pour utilisateurs (pas d'ajout)
 
-export const deskStructure = (S: StructureBuilder) =>
-	S.list()
+export const deskStructure = (S: StructureBuilder) => {
+	return S.list()
 		.title('Contenu')
 		.items([
-			// Page d'accueil - Document unique
-			S.listItem().title("Page d'accueil").child(S.document().title("Page d'accueil").documentId('home-page').schemaType('home')),
-
-			// À propos - Document unique
-			S.listItem().title('À propos').child(S.document().title('À propos').documentId('about-page').schemaType('about')),
-
-			// Contact - Document unique
-			S.listItem().title('Contact').child(S.document().title('Contact').documentId('contact-page').schemaType('contact')),
-
-			// Horaires & Tarifs - Document unique
+			// Pages fixes générales
 			S.listItem()
-				.title('Horaires & Tarifs')
-				.child(S.document().title('Horaires & Tarifs').documentId('schedule-page').schemaType('schedule')),
+				.title('Pages Générales')
+				.icon(() => '📄')
+				.child(
+					S.list()
+						.title('Pages Générales')
+						.items([
+							S.listItem()
+								.icon(() => '🏠')
+								.title("Page d'accueil")
+								.child(S.document().schemaType('home').documentId('home')),
+							S.listItem()
+								.icon(() => '👤')
+								.title('Page À propos')
+								.child(S.document().schemaType('aboutPage').documentId('aboutPage')),
+							S.listItem()
+								.icon(() => '📞')
+								.title('Page Contact')
+								.child(S.document().schemaType('contactPage').documentId('contactPage')),
+							S.listItem()
+								.icon(() => '💰')
+								.title('Page Tarifs')
+								.child(S.document().schemaType('schedulePage').documentId('schedulePage')),
+						])
+				),
 
-			// La Structure - Documents multiples
-			S.listItem().title('La Structure').child(S.documentList().title('La Structure').filter('_type == "sectors"')),
+			// La Structure - 4 secteurs fixes
+			S.listItem()
+				.title('La Structure')
+				.icon(() => '🏛️')
+				.child(
+					S.list()
+						.title('La Structure')
+						.items([
+							S.listItem()
+								.icon(() => '👶')
+								.title('La Nurserie')
+								.child(S.document().schemaType('sectorPage').documentId('nurserie')),
+							S.listItem()
+								.icon(() => '🚼')
+								.title('Les Trotteurs')
+								.child(S.document().schemaType('sectorPage').documentId('trotteurs')),
+							S.listItem()
+								.icon(() => '🧒')
+								.title('Les Grands')
+								.child(S.document().schemaType('sectorPage').documentId('grands')),
+							S.listItem()
+								.icon(() => '🏢')
+								.title('Les Autres Espaces')
+								.child(S.document().schemaType('sectorPage').documentId('autres-espaces')),
+						])
+				),
 
-			// Espaces - Documents multiples
-			S.listItem().title('Espaces').child(S.documentList().title('Espaces').filter('_type == "spaces"')),
+			// Espaces - 12 espaces fixes groupés par secteur
+			S.listItem()
+				.title('Les Espaces')
+				.icon(() => '🚪')
+				.child(
+					S.list()
+						.title('Espaces')
+						.items([
+							// Nurserie
+							S.listItem()
+								.title('Nurserie')
+								.child(
+									S.list()
+										.title('Espaces Nurserie')
+										.items([
+											S.listItem().title('Salle de jeux').child(S.document().schemaType('spacePage').documentId('nurseryPlaygroundSpace')),
+											S.listItem().title('Espace Repos').child(S.document().schemaType('spacePage').documentId('nurseryRestSpace')),
+											S.listItem().title('Espace Soins').child(S.document().schemaType('spacePage').documentId('nurseryCareSpace')),
+										])
+								),
+							// Trotteurs
+							S.listItem()
+								.title('Trotteurs')
+								.child(
+									S.list()
+										.title('Espaces Trotteurs')
+										.items([
+											S.listItem()
+												.title('Salle de jeux')
+												.child(S.document().schemaType('spacePage').documentId('trotteursPlaygroundSpace')),
+											S.listItem().title('Espace Repos').child(S.document().schemaType('spacePage').documentId('trotteursRestSpace')),
+											S.listItem().title('Espace soins').child(S.document().schemaType('spacePage').documentId('trotteursCareSpace')),
+										])
+								),
+							// Grands
+							S.listItem()
+								.title('Grands')
+								.child(
+									S.list()
+										.title('Espaces Grands')
+										.items([
+											S.listItem().title('Espace jeux').child(S.document().schemaType('spacePage').documentId('grandsPlaygroundSpace')),
+											S.listItem().title('Espace repos').child(S.document().schemaType('spacePage').documentId('grandsRestSpace')),
+											S.listItem().title('Espace soins').child(S.document().schemaType('spacePage').documentId('grandsCareSpace')),
+										])
+								),
+							// Autres Espaces
+							S.listItem()
+								.title('Autres Espaces')
+								.child(
+									S.list()
+										.title('Autres Espaces')
+										.items([
+											S.listItem().title('Le Jardin').child(S.document().schemaType('spacePage').documentId('gardenSpace')),
+											S.listItem().title('La Cuisine').child(S.document().schemaType('spacePage').documentId('kitchenSpace')),
+											S.listItem().title("L'armoire à bricolages").child(S.document().schemaType('spacePage').documentId('bricolageSpace')),
+										])
+								),
+						])
+				),
 
-			// Médiathèque personnalisée avec nos champs SEO
-			S.listItem().title('Médiathèque SEO').child(S.documentList().title('Médiathèque SEO').filter('_type == "assets"')),
+			// Prix et Tarifs - Documents multiples (conservé)
+			S.listItem()
+				.title('Prix et Tarifs')
+				.icon(() => '💰')
+				.child(S.documentList().title('Prix et Tarifs').filter('_type == "prices"').apiVersion('2023-05-03')),
+			// Témoignages - Documents multiples avec possibilité d'ajout
+			S.listItem()
+				.title('Témoignages')
+				.icon(() => '🎉')
+				.child(
+					S.documentTypeList('testimonials')
+						.title('Témoignages')
+						.defaultOrdering([{ field: '_createdAt', direction: 'desc' }])
+				),
+			// Partenaires - Documents multiples avec possibilité d'ajout
+			S.listItem()
+				.title('Partenaires')
+				.icon(() => '🤝')
+				.child(
+					S.documentTypeList('partners')
+						.title('Partenaires')
+						.defaultOrdering([{ field: '_createdAt', direction: 'desc' }])
+				),
+			// Contenu Sanity pour la page de test
+			S.listItem()
+				.title('Contenu Sanity pour la page de test')
+				.icon(() => '🧪')
+				.child(
+					S.documentTypeList('exemplePage')
+						.title('Contenu Sanity pour la page de test')
+						.defaultOrdering([{ field: '_createdAt', direction: 'desc' }])
+				),
 		])
+}

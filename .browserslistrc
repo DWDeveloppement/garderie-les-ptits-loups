@@ -1,0 +1,16 @@
+# Configuration des navigateurs cibles
+# Cible les navigateurs modernes pour réduire le JavaScript legacy
+# Basé sur https://web.dev/articles/baseline
+
+# Navigateurs modernes avec support ES6+
+# Chrome, Firefox, Safari, Edge (versions récentes)
+> 0.5%
+last 2 versions
+Firefox ESR
+not dead
+not IE 11
+
+# Support minimal pour les navigateurs mobiles
+iOS >= 12
+Android >= 8
+

@@ -1,9 +1,14 @@
+import { table } from '@sanity/table'
 import { visionTool } from '@sanity/vision'
 import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
 
+// Imports nettoyés (rôles et sidebars développeur retirés)
 import { deskStructure } from './sanity/deskStructure'
 import { schema } from './sanity/schema'
+
+// Styles personnalisés pour Sanity Studio
+import './sanity/styles/studio.css'
 
 export default defineConfig({
 	name: 'garderie-les-ptits-loups',
@@ -13,6 +18,7 @@ export default defineConfig({
 	dataset: process.env.SANITY_STUDIO_DATASET || process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
 
 	plugins: [
+		table(),
 		structureTool({
 			structure: deskStructure,
 		}),

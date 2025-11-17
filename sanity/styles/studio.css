@@ -1,0 +1,59 @@
+/**
+ * Styles personnalisés pour Sanity Studio
+ * Permet de personnaliser l'apparence de l'interface d'administration
+ */
+
+/* Augmenter la taille de police des labels de champs */
+[data-testid='field-label'],
+[data-testid='fieldset-header'] label,
+[data-testid='fieldset-header'] span {
+	font-size: 1rem !important; /* 16px par défaut, ajustez selon vos besoins */
+	font-weight: 600;
+}
+
+/* Augmenter la taille de police des labels dans les collapses (fieldsets) */
+[data-testid='fieldset-header'] {
+	font-size: 1.125rem !important; /* 18px */
+	font-weight: 600;
+}
+
+/* Augmenter la taille de police des titres de sections */
+[data-testid='fieldset-header'] h3,
+[data-testid='fieldset-header'] h4 {
+	font-size: 1.25rem !important; /* 20px */
+	font-weight: 700;
+}
+
+/* Augmenter la taille de police des labels de champs individuels */
+[data-testid='field-label'] span,
+[data-testid='field-label'] label {
+	font-size: 1rem !important;
+}
+
+button[data-as='button'][data-ui='Flex'] [data-ui='Text'] {
+	font-size: 2rem !important;
+	font-weight: 600;
+	cursor: pointer !important;
+}
+
+legend > div[data-ui='Text'],
+legend > span[data-ui='Text'] {
+	font-size: 1.25rem !important;
+	font-weight: 600;
+}
+
+label[data-ui='Text'] {
+	font-size: 1.25rem !important;
+	font-weight: 600;
+}
+
+/* Augmenter la taille de police des descriptions de champs */
+[data-testid='field-description'],
+[data-testid='field-help-text'] {
+	font-size: 0.9375rem !important; /* 15px */
+}
+
+/* Augmenter la taille de police des erreurs de validation */
+[data-testid='field-error'] {
+	font-size: 0.9375rem !important;
+}

@@ -1,15 +1,16 @@
-import { HeroGlobal } from "@/components/HeroGlobal"
+import { HeroGlobal } from "@/components/shared"
+import type { SanityImage } from "@/sanity/types/core/image"
 
-type HeroAboutSectionProps = {
+type HeroContactSectionProps = {
   title?: string
   description?: string
-  imageUrl?: string
+  image?: SanityImage
 }
 
 export function HeroContactSection({
-	title = 'Contactez-nous',
-	description = 'Nous sommes à votre entière disposition pour répondre à toutes vos questions.',
-	imageUrl = '/jardin.webp',
-}: HeroAboutSectionProps) {
-	return <HeroGlobal title={title} description={description} imageUrl={imageUrl} />
+  title = 'Contactez-nous',
+  description = 'Nous sommes à votre entière disposition pour répondre à toutes vos questions.',
+  image
+}: HeroContactSectionProps) {
+  return <HeroGlobal title={title} description={description} imageUrl={image?.asset?.url} />
 }
