@@ -11,12 +11,14 @@ Site web pour la garderie "Les P'tits Loups" développé avec **Next.js 15**, **
 ## 📁 Navigation de la Documentation
 
 ### 🗄️ [Sanity CMS](./sanity/)
+
 Configuration, schémas, queries et optimisation des images.
 
 - **[SANITY.md](./sanity/SANITY.md)** - Setup, schémas, queries GROQ, usage Studio
 - **[SANITY_IMAGES.md](./sanity/SANITY_IMAGES.md)** - Système d'images, optimisation, SEO, protection
 
 ### ⚙️ [Configuration & Setup](./setup/)
+
 Installation, variables d'environnement et Git.
 
 - **[SETUP.md](./setup/SETUP.md)** - Variables d'env, Sanity, Resend, reCAPTCHA, Vercel
@@ -24,6 +26,7 @@ Installation, variables d'environnement et Git.
 - **[GITHUB.md](./setup/GITHUB.md)** - Git workflow, branches, commits conventionnels, CI/CD
 
 ### 🎨 [Features & Composants](./features/)
+
 Fonctionnalités et architecture de l'application.
 
 - **[ARCHITECTURE.md](./features/ARCHITECTURE.md)** - Structure code, design system, hooks, patterns
@@ -33,6 +36,7 @@ Fonctionnalités et architecture de l'application.
 - **[MOBILE_NAV.md](./features/MOBILE_NAV.md)** - Navigation mobile, BottomBar, BackToTop
 
 ### ⚡ [Performance & SEO](./performance/)
+
 Optimisation des performances et référencement.
 
 - **[LIGHTHOUSE.md](./performance/LIGHTHOUSE.md)** - SSG, cache, images, Core Web Vitals, monitoring
@@ -80,21 +84,21 @@ npm run sanity    # Studio → http://localhost:3333
 
 ### Pages
 
-| Route | Description |
-|-------|-------------|
-| `/` | Page d'accueil |
-| `/a-propos` | Histoire & pédagogie |
-| `/contact` | Formulaire & carte |
-| `/tarifs` | Tarifs & subventions |
-| `/la-structure/nurserie` | Secteur 0-24 mois |
-| `/la-structure/trotteurs` | Secteur 24-36 mois |
-| `/la-structure/grands` | Secteur 3-4 ans |
+| Route                     | Description          |
+| ------------------------- | -------------------- |
+| `/`                       | Page d'accueil       |
+| `/a-propos`               | Histoire & pédagogie |
+| `/contact`                | Formulaire & carte   |
+| `/tarifs`                 | Tarifs & subventions |
+| `/la-structure/nurserie`  | Secteur 0-24 mois    |
+| `/la-structure/trotteurs` | Secteur 24-36 mois   |
+| `/la-structure/grands`    | Secteur 3-4 ans      |
 
 ### Architecture Code
 
 Voir [features/ARCHITECTURE.md](./features/ARCHITECTURE.md) pour la structure détaillée.
 
-```
+```md
 src/
 ├── app/          # Pages Next.js
 ├── components/   # Composants React
@@ -154,18 +158,21 @@ Voir [setup/SETUP.md](./setup/SETUP.md) pour tous les scripts disponibles.
 ### ✅ Production Ready
 
 **Backend :**
+
 - ✅ Sanity Studio configuré avec desk structure personnalisée
 - ✅ Queries GROQ optimisées (1 requête/page, populate relations)
 - ✅ Système d'images SEO (alt obligatoire, LQIP, Zero CLS)
 - ✅ Performance tracking automatique
 
 **Frontend :**
+
 - ✅ 7 pages statiques (SSG)
 - ✅ Formulaire contact avec protection anti-spam
 - ✅ Navigation responsive (desktop + mobile)
 - ✅ Optimisation images (priority hero, lazy gallery)
 
 **Performance :**
+
 - ✅ Bundle <125kB par page
 - ✅ Core Web Vitals optimisés
 - ✅ Zero CLS (LQIP + dimensions)
@@ -185,16 +192,19 @@ Voir [setup/SETUP.md](./setup/SETUP.md) pour tous les scripts disponibles.
 ### Problèmes Courants
 
 **Port occupé :**
+
 ```bash
 npm run kill:dev   # ou npm run kill:studio
 ```
 
 **Document Sanity bloqué :**
+
 ```bash
 npm run fix:page -- contact
 ```
 
 **Build échoue :**
+
 ```bash
 rm -rf .next node_modules && npm install && npm run build
 ```
@@ -235,6 +245,7 @@ rm -rf .next node_modules && npm install && npm run build
 ## 🏆 Résultat
 
 Site professionnel avec :
+
 - ✅ Design moderne et responsive
 - ✅ Performance optimisée (SSG, Zero CLS, Bundle <125kB)
 - ✅ SEO-ready (meta tags, alt text, Open Graph)
