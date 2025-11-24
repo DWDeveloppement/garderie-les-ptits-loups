@@ -24,8 +24,8 @@
 			"@/ui/*": ["src/ui/*"],
 			"@/hooks/*": ["src/hooks/*"],
 			"@/types/*": ["src/types/*"],
-			"@lib/*": ["lib/*"],
-			"@sanity/*": ["sanity/*"]
+			"@/sanity/*": ["src/sanity/*"],
+			"@lib/*": ["lib/*"]
 		}
 	},
 	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "sanity/queries/groq/sectorpage.groq"],

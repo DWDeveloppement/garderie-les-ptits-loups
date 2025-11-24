@@ -1,7 +1,7 @@
 import { table } from '@sanity/table'
 import { visionTool } from '@sanity/vision'
 import { defineConfig } from 'sanity'
-import { structureTool } from 'sanity/structure'
+import { structureTool } from '@/sanity/structure'
 
 // Imports nettoyés (rôles et sidebars développeur retirés)
 import { deskStructure } from './deskStructure'

@@ -1,8 +1,12 @@
+/**
+ * Sanity CLI Configuration
+ * This file re-exports the configuration from src/sanity/sanity.config.ts
+ * Keep this file at root for Sanity CLI compatibility
+ */
+
 import { defineCliConfig } from 'sanity/cli'
 
-export default defineCliConfig({
-	api: {
-		projectId: process.env.SANITY_STUDIO_PROJECT_ID || process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'your-project-id',
-		dataset: process.env.SANITY_STUDIO_DATASET || process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
-	},
-})
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!
+const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET!
+
+export default defineCliConfig({ api: { projectId, dataset } })
