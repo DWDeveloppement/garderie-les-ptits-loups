@@ -1,1067 +1,1067 @@
 {
-	"historyCollapse": {
-		"content": [
-			{
-				"_key": "96880a3f3203",
-				"_type": "block",
-				"children": [
-					{
-						"_key": "9c9dafd46d7b",
-						"_type": "span",
-						"marks": [],
-						"text": "tests render "
-					},
-					{
-						"_key": "67a5ab179d6a",
-						"_type": "span",
-						"marks": ["strong"],
-						"text": "rich-text\n"
-					},
-					{
-						"_key": "c70a653a3ffe",
-						"_type": "span",
-						"marks": [],
-						"text": "et je "
-					},
-					{
-						"_key": "2cdcdf088cbd",
-						"_type": "span",
-						"marks": ["em"],
-						"text": "regarde"
-					},
-					{
-						"_key": "6e603dd25358",
-						"_type": "span",
-						"marks": [],
-						"text": " sur 2 "
-					},
-					{
-						"_key": "7da9a6b9ef9a",
-						"_type": "span",
-						"marks": ["em", "strong"],
-						"text": "lignes"
-					}
-				],
-				"markDefs": [],
-				"style": "h2"
-			},
-			{
-				"_key": "9c7e1c7b4c7e",
-				"_type": "block",
-				"children": [
-					{
-						"_key": "027dc6270f26",
-						"_type": "span",
-						"marks": [],
-						"text": "Paragraphe de base (orange)"
-					}
-				],
-				"markDefs": [],
-				"style": "normal"
-			},
-			{
-				"_key": "cb79a845df74",
-				"_type": "block",
-				"children": [
-					{
-						"_key": "53da96fce35e",
-						"_type": "span",
-						"marks": [],
-						"text": "{variant:primary}Paragraphe "
-					},
-					{
-						"_key": "4392fa95f497",
-						"_type": "span",
-						"marks": ["strong"],
-						"text": "violet"
-					}
-				],
-				"markDefs": [],
-				"style": "normal"
-			},
-			{
-				"_key": "962c8ad9582c",
-				"_type": "block",
-				"children": [
-					{
-						"_key": "83a0c884e13f",
-						"_type": "span",
-						"marks": [],
-						"text": "Paragraphe sur 2 lignes présenté comme attendu\navec majuscule plus retour à la ligne"
-					}
-				],
-				"markDefs": [],
-				"style": "normal"
-			},
-			{
-				"_key": "0411f3e9ac86",
-				"_type": "block",
-				"children": [
-					{
-						"_key": "da37dc4aab5c",
-						"_type": "span",
-						"marks": [],
-						"text": ""
-					}
-				],
-				"markDefs": [],
-				"style": "normal"
-			},
-			{
-				"_key": "1f76e35f3fe4",
-				"_type": "block",
-				"children": [
-					{
-						"_key": "320c2c76a88f",
-						"_type": "span",
-						"marks": [],
-						"text": "Item "
-					},
-					{
-						"_key": "d8271f2a7cf0",
-						"_type": "span",
-						"marks": ["strong", "em"],
-						"text": "orange"
-					},
-					{
-						"_key": "3246e6eb9c4a",
-						"_type": "span",
-						"marks": [],
-						"text": " par défaut ne l'est pas car si un des items contient la précision su variant primary, toute la liste devient primary."
-					}
-				],
-				"level": 1,
-				"listItem": "bullet",
-				"markDefs": [],
-				"style": "normal"
-			},
-			{
-				"_key": "f7a071fe3cab",
-				"_type": "block",
-				"children": [
-					{
-						"_key": "320c2c76a88f",
-						"_type": "span",
-						"marks": [],
-						"text": "{variant:primary}Item "
-					},
-					{
-						"_key": "aad54858e59d",
-						"_type": "span",
-						"marks": ["strong"],
-						"text": "violet"
-					},
-					{
-						"_key": "30d29fc2b6db",
-						"_type": "span",
-						"marks": [],
-						"text": " (toute la liste doit devenir violette et c'est le cas)."
-					}
-				],
-				"level": 1,
-				"listItem": "bullet",
-				"markDefs": [],
-				"style": "normal"
-			},
-			{
-				"_key": "2d007096c28d",
-				"_type": "block",
-				"children": [
-					{
-						"_key": "320c2c76a88f",
-						"_type": "span",
-						"marks": [],
-						"text": "Item "
-					},
-					{
-						"_key": "816c6500cf66",
-						"_type": "span",
-						"marks": ["em"],
-						"text": "suivant"
-					}
-				],
-				"level": 1,
-				"listItem": "bullet",
-				"markDefs": [],
-				"style": "normal"
-			},
-			{
-				"_key": "11f7f6dc9424",
-				"_type": "block",
-				"children": [
-					{
-						"_key": "d3f35768a31a",
-						"_type": "span",
-						"marks": [],
-						"text": "un autre item avec le retour à la ligne \nshift+retour à la ligne, résultat, il est ok."
-					}
-				],
-				"level": 1,
-				"listItem": "bullet",
-				"markDefs": [],
-				"style": "normal"
-			},
-			{
-				"_key": "15af2d1b8a09",
-				"_type": "block",
-				"children": [
-					{
-						"_key": "ffa83fe4ccd0",
-						"_type": "span",
-						"marks": [],
-						"text": "Premier item "
-					},
-					{
-						"_key": "bd8a9e9d9951",
-						"_type": "span",
-						"marks": ["strong"],
-						"text": "orange"
-					}
-				],
-				"level": 1,
-				"listItem": "number",
-				"markDefs": [],
-				"style": "normal"
-			},
-			{
-				"_key": "9e69562c2fcc",
-				"_type": "block",
-				"children": [
-					{
-						"_key": "ffa83fe4ccd0",
-						"_type": "span",
-						"marks": [],
-						"text": "Basculer la "
-					},
-					{
-						"_key": "a2a92a9ba01d",
-						"_type": "span",
-						"marks": ["em"],
-						"text": "liste"
-					},
-					{
-						"_key": "e4361beab72e",
-						"_type": "span",
-						"marks": [],
-						"text": " numérotée en violet"
-					}
-				],
-				"level": 1,
-				"listItem": "number",
-				"markDefs": [],
-				"style": "normal"
-			},
-			{
-				"_key": "0af94df1356d",
-				"_type": "block",
-				"children": [
-					{
-						"_key": "ffa83fe4ccd0",
-						"_type": "span",
-						"marks": [],
-						"text": "Item "
-					},
-					{
-						"_key": "365fa18cc5cc",
-						"_type": "span",
-						"marks": ["strong", "em"],
-						"text": "suivant"
-					}
-				],
-				"level": 1,
-				"listItem": "number",
-				"markDefs": [],
-				"style": "normal"
-			},
-			{
-				"_key": "e4a44f53b628",
-				"_type": "block",
-				"children": [
-					{
-						"_key": "d26b20d9e2aa",
-						"_type": "span",
-						"marks": [],
-						"text": ""
-					}
-				],
-				"markDefs": [],
-				"style": "normal"
-			},
-			{
-				"_key": "a22954f4b4f3",
-				"_type": "block",
-				"children": [
-					{
-						"_key": "b45b05169e06",
-						"_type": "span",
-						"marks": [],
-						"text": "j'ai fait un retour à la ligne juste avant pour inspection de rendu."
-					}
-				],
-				"markDefs": [],
-				"style": "normal"
-			},
-			{
-				"_key": "8c3ea1229056",
-				"_type": "block",
-				"children": [
-					{
-						"_key": "6e1dd9977321",
-						"_type": "span",
-						"marks": [],
-						"text": ""
-					}
-				],
-				"markDefs": [],
-				"style": "normal"
-			},
-			{
-				"_key": "f1c4f7e5bd0a",
-				"_type": "block",
-				"children": [
-					{
-						"_key": "f48f17924486",
-						"_type": "span",
-						"marks": [],
-						"text": "Ici, nous allons tester les Quotes"
-					}
-				],
-				"markDefs": [],
-				"style": "h3"
-			},
-			{
-				"_key": "f3e2319ff323",
-				"_type": "block",
-				"children": [
-					{
-						"_key": "cefd12d6a3f8",
-						"_type": "span",
-						"marks": [],
-						"text": "Garder un esprit curieux.\nSoyez bon.\n{cite}Murielle"
-					}
-				],
-				"markDefs": [],
-				"style": "blockquote"
-			},
-			{
-				"_key": "ddc44d6ab817",
-				"_type": "block",
-				"children": [
-					{
-						"_key": "6808e8006617",
-						"_type": "span",
-						"marks": [],
-						"text": ""
-					}
-				],
-				"markDefs": [],
-				"style": "normal"
-			},
-			{
-				"_key": "e5af7233fbb2",
-				"_type": "block",
-				"children": [
-					{
-						"_key": "7f0e75effbcc",
-						"_type": "span",
-						"marks": [],
-						"text": "{variant:secondary}Gardez votre calme. \nc'est une quote secondary\n{cite}Marie"
-					}
-				],
-				"markDefs": [],
-				"style": "blockquote"
-			},
-			{
-				"_key": "5941736d0fd6",
-				"_type": "block",
-				"children": [
-					{
-						"_key": "d7615044e2e1",
-						"_type": "span",
-						"marks": [],
-						"text": ""
-					}
-				],
-				"markDefs": [],
-				"style": "normal"
-			},
-			{
-				"_key": "1c9d99a4e2b8",
-				"_type": "block",
-				"children": [
-					{
-						"_key": "4cd7d030b50c",
-						"_type": "span",
-						"marks": [],
-						"text": "{style:special}\nRêver grand, agir petit. \n{cite}L’équipe"
-					}
-				],
-				"markDefs": [],
-				"style": "blockquote"
-			},
-			{
-				"_key": "4003c34e0142",
-				"_type": "block",
-				"children": [
-					{
-						"_key": "c12b7f73b112",
-						"_type": "span",
-						"marks": [],
-						"text": ""
-					}
-				],
-				"markDefs": [],
-				"style": "normal"
-			},
-			{
-				"_key": "735717acc69f",
-				"_type": "block",
-				"children": [
-					{
-						"_key": "543b92a4e8f2",
-						"_type": "span",
-						"marks": [],
-						"text": "{style:special}{variant:secondary}\nTout est possible avec un sourire.\net tout ce qui est bon.\n{cite}Capucine"
-					}
-				],
-				"markDefs": [],
-				"style": "blockquote"
-			},
-			{
-				"_key": "d6fba7390d1e",
-				"_type": "block",
-				"children": [
-					{
-						"_key": "1b4e8667f162",
-						"_type": "span",
-						"marks": [],
-						"text": ""
-					}
-				],
-				"markDefs": [],
-				"style": "normal"
-			},
-			{
-				"_key": "4ac1117baa9f",
-				"_type": "block",
-				"children": [
-					{
-						"_key": "ae91e2fcf7d7",
-						"_type": "span",
-						"marks": [],
-						"text": "Ici ou fait les Callouts:"
-					}
-				],
-				"markDefs": [],
-				"style": "normal"
-			},
-			{
-				"_key": "859fd823416e",
-				"_type": "block",
-				"children": [
-					{
-						"_key": "8a5587ad3a78",
-						"_type": "span",
-						"marks": [],
-						"text": "{type:feedback}{variant:success}{size:lg}{icon:success}{title:Succès} Ce bloc quote devient une carte feedback verte. \nRetour à la ligne = nouveau paragraphe dans la carte."
-					}
-				],
-				"markDefs": [],
-				"style": "blockquote"
-			},
-			{
-				"_key": "bc5ecd912ce7",
-				"_type": "block",
-				"children": [
-					{
-						"_key": "e89c1318fac9",
-						"_type": "span",
-						"marks": [],
-						"text": ""
-					}
-				],
-				"markDefs": [],
-				"style": "normal"
-			},
-			{
-				"_key": "31f948cc0e55",
-				"_type": "block",
-				"children": [
-					{
-						"_key": "bc412102a23a",
-						"_type": "span",
-						"marks": [],
-						"text": "{type:feedback}{variant:warning} Sans titre ni size → fallback primary/md (orange)"
-					}
-				],
-				"markDefs": [],
-				"style": "blockquote"
-			}
-		],
-		"historyImage": {
-			"alt": "P'tits Loup",
-			"height": 1136,
-			"url": "https://cdn.sanity.io/images/rnhuu2jm/production/b267dea8381f60fc72a79a8f15da466eeb02b2e8-640x1136.jpg",
-			"width": 640
-		}
-	},
-	"introduction": [
-		{
-			"_key": "e2066c7957ce",
-			"_type": "block",
-			"children": [
-				{
-					"_key": "17f94edd443a",
-					"_type": "span",
-					"marks": [],
-					"text": "Bienvenue"
-				}
-			],
-			"markDefs": [],
-			"style": "h2"
-		},
-		{
-			"_key": "5a1d078cf1f8",
-			"_type": "block",
-			"children": [
-				{
-					"_key": "eabba391a0ab",
-					"_type": "span",
-					"marks": [],
-					"text": "« Les P’tits Loups » est une structure privée qui accueille les enfants dès 2 mois jusqu’à l’entrée à l’école.\nL’équipe pédagogique encadre, anime, et propose des activités variées, adaptées à l’âge de chaque enfant."
-				}
-			],
-			"markDefs": [],
-			"style": "normal"
-		},
-		{
-			"_key": "b5718523cdba",
-			"_type": "block",
-			"children": [
-				{
-					"_key": "6a0b5495d9b9",
-					"_type": "span",
-					"marks": [],
-					"text": "En tant que garderie privée, nous avons le privilège d’être à taille humaine et ainsi pouvoir fournir toute l’attention individuelle à chaque enfant au quotidien."
-				}
-			],
-			"markDefs": [],
-			"style": "normal"
-		},
-		{
-			"_key": "33320b9b5a27",
-			"_type": "block",
-			"children": [
-				{
-					"_key": "41f5a32673eb",
-					"_type": "span",
-					"marks": [],
-					"text": "A 5 minutes du parc de Sauvabelin, en face de l’arrêt de bus TL « Piécettes », la garderie Les P’tits Loups se situe au rez-de-chaussée d’un immeuble locatif et accessible. Elle dispose d’un joli jardin privatif de 150 m2."
-				}
-			],
-			"markDefs": [],
-			"style": "normal"
-		}
-	],
-	"parallaxOne": {
-		"image": {
-			"alt": "Le jardin",
-			"asset": {
-				"_id": "image-070cbf7472d33dc5d8cd16eda701775e9e9e097f-2448x1624-jpg",
-				"metadata": {
-					"blurhash": null,
-					"dimensions": {
-						"aspectRatio": 1.5073891625615763,
-						"height": 1624,
-						"width": 2448
-					},
-					"lqip": "data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAANABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAQHBf/EACQQAAIBBAECBwAAAAAAAAAAAAECAwAEBREGEiETFSIxQVFx/8QAFgEBAQEAAAAAAAAAAAAAAAAAAwIF/8QAHBEAAgICAwAAAAAAAAAAAAAAAAECEQMEEiFB/9oADAMBAAIRAxEAPwBnkZksuWXlqcOt40ZJ8dG11H4GvupjzPMZu/yur2C4gjhTSxyDsgqh4nPXUmKF3JpppACzH33+0hk7nzCQJOgIdPUSd1mZd65tUTxi0iWLj5MiouHLdR7HdFat4jxzskchVV7AAUU3QiUfT//Z"
-				},
-				"url": "https://cdn.sanity.io/images/rnhuu2jm/production/070cbf7472d33dc5d8cd16eda701775e9e9e097f-2448x1624.jpg"
-			},
-			"credit": "Garderie Les P'tits Loups",
-			"enableCustomTooltip": false,
-			"enableOptions": false,
-			"tooltipText": null
-		}
-	},
-	"parallaxTwo": {
-		"image": {
-			"alt": "image paralax",
-			"asset": {
-				"_id": "image-aca556a850681155f4cf056fb4c60b13dde972be-474x461-jpg",
-				"metadata": {
-					"blurhash": null,
-					"dimensions": {
-						"aspectRatio": 1.0281995661605206,
-						"height": 461,
-						"width": 474
-					},
-					"lqip": "data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAATABQDASIAAhEBAxEB/8QAGQABAAMBAQAAAAAAAAAAAAAAAAMFBgcE/8QAJRAAAgICAQMDBQAAAAAAAAAAAQIAAwQRIQUSMQYTYRQiQUJR/8QAFwEAAwEAAAAAAAAAAAAAAAAAAAEEBf/EABoRAAMBAQEBAAAAAAAAAAAAAAABAiEDEjH/2gAMAwEAAhEDEQA/AOP9Aq+sp9j2aF7dd1rccTV5eDhW45x0RalsHDAfsJT+mBRZgmhWVbmOz3Dn41NFjKmWjU3ua7ANr8H+w62+d+ZxE0Qrn09ZzTJraq962H3KdGJNnVumXatmy4Y7J/MTRRMR12PW4etirDwRLPAzsl8tC1zkk+SYiFJNaJ4eXqztZn2s52xPmIiIa+H/2Q=="
-				},
-				"url": "https://cdn.sanity.io/images/rnhuu2jm/production/aca556a850681155f4cf056fb4c60b13dde972be-474x461.jpg"
-			},
-			"credit": "Garderie Les P'tits Loups",
-			"enableCustomTooltip": false,
-			"enableOptions": false,
-			"tooltipText": null
-		}
-	},
-	"pedagogy": [
-		{
-			"_key": "1a7ee20113ba",
-			"_type": "block",
-			"children": [
-				{
-					"_key": "0034890b11d4",
-					"_type": "span",
-					"marks": [],
-					"text": "Les fondements pédagogiques"
-				}
-			],
-			"markDefs": [],
-			"style": "h3"
-		},
-		{
-			"_key": "f0c7141404e5",
-			"_type": "block",
-			"children": [
-				{
-					"_key": "40872b986e5e",
-					"_type": "span",
-					"marks": [],
-					"text": "La garderie procure à l’enfant un univers d’expérience très riche. Il se retrouve au milieu d’un groupe et entouré d’une équipe qui doit mettre tout en œuvre pour lui fournir un milieu de vie enrichissant et harmonieux."
-				}
-			],
-			"markDefs": [],
-			"style": "normal"
-		},
-		{
-			"_key": "cee10b3ec2d8",
-			"_type": "block",
-			"children": [
-				{
-					"_key": "62dbdedd8f15",
-					"_type": "span",
-					"marks": [],
-					"text": "Dans notre garderie, nous mettons donc l’accent sur une pédagogie active qui permet à l’enfant d’apprendre à son rythme et dans le respect de l’individu. Pour aider l’enfant dans son développement global, nous mettons en place un horaire structuré avec des périodes qui permettent à l’enfant de faire des choix et de favoriser son autonomie. Nous désirons lui amener un cadre, amener par des rituels, ainsi que par des ateliers créatifs ou autres (atelier cuisine, atelier lecture, atelier mobilité….) dirigés et en petit groupe l’aidant, ainsi à se préparer pour l’école. Tout en proposant également des moments de jeux et d’activité créatifs libres, permettant à chaque enfant de découvrir et de s’épanouir à son rythme. Ainsi l’enfant est libre de s’entourer de petits camarades ou de s’occuper seul."
-				}
-			],
-			"markDefs": [],
-			"style": "normal"
-		},
-		{
-			"_key": "f5a52956cfc3",
-			"_type": "block",
-			"children": [
-				{
-					"_key": "8b70fdd4d63a",
-					"_type": "span",
-					"marks": ["strong"],
-					"text": "Les éducatrices doivent instaurer des rituels permettant à l’enfant de mettre en place des routines garantes de sécurité. Il doit pouvoir anticiper les différents moments qui gère son temps ; repas, sieste… Les adultes doivent s’organiser de façon rigoureuse, afin que ces moments ne soient en aucun cas une source de stress pour l’enfant."
-				}
-			],
-			"markDefs": [],
-			"style": "blockquote"
-		},
-		{
-			"_key": "0feb32c09cef",
-			"_type": "block",
-			"children": [
-				{
-					"_key": "dd0a954c4d20",
-					"_type": "span",
-					"marks": [],
-					"text": "Nous assurons un encadrement stable et motivé par le renforcement positif afin de répondre aux différents besoins de l’enfant et de stimuler sa curiosité naturelle en mettant en place toutes sortes d’activités.\nDurant ces périodes, les enfants apprennent également les règles et limites qui les aideront à se construire. L’équipe a donc mis en place des rituels tels que ; Le petit accueil, la collation du matin, le repas de midis, le goûter, la sieste qui permettent d’acquérir des règles de société. Celles-ci permettent d’acquérir une multitude de petites autres règles qui leur seront nécessaires dans la vie quotidienne."
-				}
-			],
-			"markDefs": [],
-			"style": "normal"
-		}
-	],
-	"sectionHero": {
-		"description": "Nous sommes une petite garderie à taille humaine proche de vous et vos enfants",
-		"image": {
-			"alt": "Image About",
-			"asset": {
-				"_id": "image-0fd46fc0eaa9eb383657297833718c3af9397720-1087x964-png",
-				"metadata": {
-					"blurhash": null,
-					"dimensions": {
-						"aspectRatio": 1.1275933609958506,
-						"height": 964,
-						"width": 1087
-					},
-					"lqip": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAASCAYAAABb0P4QAAAACXBIWXMAAB7CAAAewgFu0HU+AAAEd0lEQVR4nB3R21IiBwKA4X6BvdlKzTiJjigoAt1NH2gQGhq6bWiOzUFEDmJU1HF1dDhojGPMJrvZTA6brdqbVCqp5GI3ldf8U8kTfBef8POPP7C4vWVyds7k/ILLy0s++XjOf9695fvvnvjvtw9888WCLz6b8/b+humbC25enzF9fcri5pS72SsWt9fcPX3Kd9//hHA/n2IX8oQjMcJRESOh0PBMRrsu470Sg06BbiNNq6Lj5mUyySjbiTBJdRND2SClh0klJQpll8l0jnA+OUZXZZ4vLbH04n0UMUjD1ak6GRzToJiV8KwInhUkn1pGl5aQws+Ihp4RCjxjdfU5y6sviGgyu0fHCGcnxxiawvLyCsH1AHZGYtSyaZc9ihmLSjZJo2jQqWns1kQqdghTX0eXNomKW6yEw7y3FmJd0WkeHCPMri4wkwkCq6vIsQ1aJYNR08F3d/DMLG5KxTElqkWFrq/RrWtUCgZpPUlUSRCQFZajItHtNP3jCcI/7meUC1lCawEUaZNOOcV+JUPdNqjkdZx0lHxqg1IhQq0k41eSND2Hil3AyibJ5eNYlojnbXN9fYLw2Uczao5FaH2NyNY6xXycVlHHLyr4JQUvH8MxtygWRBrlBE0vTdMx6ZVM+rUEA19m6Ec56hq8nY8R5ld/o2hl2AqtI8eCFPMxfE/G9+I0SnHqRfVPxDJF6tVtBn6OblZlLy0ydGUOWgonA4XpaYZ/PR4ivDqdsJNNk5DDuLkYw7bCsCPRrknUPIVaUaPq6Di2QumPmIbGnhWjpW3hp6P0fYXzwwSLVznePX2IcHJyjGul8HIyo3aC8wOF0wORw36SbitHs5yiW0nS72To9tLstnV6JZlWVqSaFRn6Chd9jYthhofZEcLx+QmOs43nqPR8jVE3wtFA5vjIoz/u0my7dOopPmylGXfSdOoGrbJKpxKn31C5HBpcDXQO2xlmlycI52/OyVVtNGubgqPSrovs7ZvUR22Kwz52t0GhmsW3VXqOSr2gYOdiVMoi457G67HBYUuiW0kxv5ogjF9N0Is24byF4RYoN3K4HRettEMsnyNeskl4Nu6OwX4tQ8t3yNsJ3J0Y+y2FQUPGM4PUHZ27mwlCsz9mQ9UJJnQMr4TVrKC7WVZiEu8FNnkpSai2idfI0xtUKQ97pOsVShWD3apI2dogo76kUlC5uz5CqHdHrGxKPF/bIJzQETMpNlWRlY0gLwJrrGyEiKVUcnWbQreJ1hkR9/cx6w75fIxtdQ1dXMbNScwuDxAae2M+CMn85XmAv64EWVoLEpXXyGReYmVfYiQDRNRNImaSrZ0y8cY+5t4QvewS1USkWJD41jJWKsLVWR/h7PqWtF0lqmWIamkkPYXtpOi0DHq7Cfx6kmw+iWFl2S6VqQ767E9GeLsNzB0H27FwCynadYePb68Qfv71Nz798mum949cL+65mt1xs7hlertgejtnuphzPZ3x+s2c+Ud3fP7lE+/+/Xc++fyRxcMD948PPD3e89W7f/L///3C7zpCk2ZVh8R9AAAAAElFTkSuQmCC"
-				},
-				"url": "https://cdn.sanity.io/images/rnhuu2jm/production/0fd46fc0eaa9eb383657297833718c3af9397720-1087x964.png"
-			},
-			"credit": "Garderie Les P'tits Loups",
-			"enableCustomTooltip": false,
-			"enableOptions": false,
-			"tooltipText": null
-		}
-	},
-	"seo": {
-		"keywords": ["A Propos", "Historique", "Pédagogie"],
-		"metaDescription": "Ceci est la page a propos de la garderie",
-		"metaTitle": "A Propos",
-		"shareImage": {
-			"alt": "La page a propos",
-			"asset": {
-				"_id": "image-aca556a850681155f4cf056fb4c60b13dde972be-474x461-jpg",
-				"metadata": {
-					"blurhash": null,
-					"dimensions": {
-						"aspectRatio": 1.0281995661605206,
-						"height": 461,
-						"width": 474
-					},
-					"lqip": "data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAATABQDASIAAhEBAxEB/8QAGQABAAMBAQAAAAAAAAAAAAAAAAMFBgcE/8QAJRAAAgICAQMDBQAAAAAAAAAAAQIAAwQRIQUSMQYTYRQiQUJR/8QAFwEAAwEAAAAAAAAAAAAAAAAAAAEEBf/EABoRAAMBAQEBAAAAAAAAAAAAAAABAiEDEjH/2gAMAwEAAhEDEQA/AOP9Aq+sp9j2aF7dd1rccTV5eDhW45x0RalsHDAfsJT+mBRZgmhWVbmOz3Dn41NFjKmWjU3ua7ANr8H+w62+d+ZxE0Qrn09ZzTJraq962H3KdGJNnVumXatmy4Y7J/MTRRMR12PW4etirDwRLPAzsl8tC1zkk+SYiFJNaJ4eXqztZn2s52xPmIiIa+H/2Q=="
-				},
-				"url": "https://cdn.sanity.io/images/rnhuu2jm/production/aca556a850681155f4cf056fb4c60b13dde972be-474x461.jpg"
-			},
-			"credit": "Garderie Les P'tits Loups",
-			"enableCustomTooltip": false,
-			"enableOptions": false,
-			"tooltipText": null
-		}
-	},
-	"team": [
-		{
-			"_key": "45253c3dfd57",
-			"_type": "block",
-			"children": [
-				{
-					"_key": "b786828c295b",
-					"_type": "span",
-					"marks": [],
-					"text": "L’équipe"
-				}
-			],
-			"markDefs": [],
-			"style": "h3"
-		},
-		{
-			"_key": "43b3492bdfe1",
-			"_type": "block",
-			"children": [
-				{
-					"_key": "51d0c771378e",
-					"_type": "span",
-					"marks": [],
-					"text": "La Garderie accueille une équipe éducative de 6 personnes, ainsi qu’une intendante, un directeur administratif (Exploitant) et une directrice pédagogique. Nous accueillons également, afin de transmettre nos connaissances et donner l’envie de découvrir ce métier, des places de stage tout au long de l’année."
-				}
-			],
-			"markDefs": [],
-			"style": "normal"
-		},
-		{
-			"_key": "f98e3ea4b4d1",
-			"_type": "block",
-			"children": [
-				{
-					"_key": "3666d99931b4",
-					"_type": "span",
-					"marks": [],
-					"text": "L’équipe éducative est composée actuellement de femmes. Chacune apporte ses connaissances, son approche singulière et ses expériences issues de son parcours, ce qui permet une ouverture sur des projets de chaque jour. Afin de permettre à chacune de mettre en place des projets, ainsi que d’avoir une approche réfléchie, la garderie met à leur disposition un pourcentage de leur temps de travail qui est une présence ‘hors enfants’."
-				}
-			],
-			"markDefs": [],
-			"style": "normal"
-		},
-		{
-			"_key": "25c267634edf",
-			"_type": "block",
-			"children": [
-				{
-					"_key": "0e30ff4e5c9d",
-					"_type": "span",
-					"marks": ["em"],
-					"text": "Chaque membre de l’équipe travaille à instaurer une façon d’interagir efficacement au sein de l’équipe via :\n\n- Le respect de chaque collaboratrice.\n- La communication, l’échange et la transparence.\n- La capacité à se remettre en question, à s’enrichir des autres.\n- Le développement de ses savoirs-faire et savoirs-être par la formation continue."
-				}
-			],
-			"markDefs": [],
-			"style": "blockquote"
-		}
-	],
-	"title": "À Propos",
-	"values": [
-		{
-			"_key": "78f22174bfad",
-			"_type": "block",
-			"children": [
-				{
-					"_key": "30815f70ff27",
-					"_type": "span",
-					"marks": [],
-					"text": "Les valeurs institutionnelles"
-				}
-			],
-			"markDefs": [],
-			"style": "h3"
-		},
-		{
-			"_key": "d5dce45b9d84",
-			"_type": "block",
-			"children": [
-				{
-					"_key": "9e8c4582b7be",
-					"_type": "span",
-					"marks": [],
-					"text": "La garderie accueille des enfants en fonction des besoins des parents et dans la mesure de ses capacités. Afin d’accompagner les enfants dans de bonnes conditions, l’équipe éducative a mis en place un système de valeurs institutionnelles."
-				}
-			],
-			"markDefs": [],
-			"style": "normal"
-		},
-		{
-			"_key": "0a4225a1a83d",
-			"_type": "block",
-			"children": [
-				{
-					"_key": "e81bc00912a8",
-					"_type": "span",
-					"marks": ["strong"],
-					"text": "Ces valeurs principales sont :"
-				}
-			],
-			"markDefs": [],
-			"style": "h4"
-		},
-		{
-			"_key": "99ff21c447cf",
-			"_type": "block",
-			"children": [
-				{
-					"_key": "482b197d30af",
-					"_type": "span",
-					"marks": [],
-					"text": "Le respect"
-				}
-			],
-			"level": 1,
-			"listItem": "bullet",
-			"markDefs": [],
-			"style": "normal"
-		},
-		{
-			"_key": "77550545b442",
-			"_type": "block",
-			"children": [
-				{
-					"_key": "c8ec493dcb2a",
-					"_type": "span",
-					"marks": [],
-					"text": "La sécurité"
-				}
-			],
-			"level": 1,
-			"listItem": "bullet",
-			"markDefs": [],
-			"style": "normal"
-		},
-		{
-			"_key": "4174a4f1faac",
-			"_type": "block",
-			"children": [
-				{
-					"_key": "2de07e7edac4",
-					"_type": "span",
-					"marks": [],
-					"text": "Le partenariat avec les familles"
-				}
-			],
-			"level": 1,
-			"listItem": "bullet",
-			"markDefs": [],
-			"style": "normal"
-		},
-		{
-			"_key": "498141975e0d",
-			"_type": "block",
-			"children": [
-				{
-					"_key": "7586b9d04531",
-					"_type": "span",
-					"marks": [],
-					"text": "La relation individualisée"
-				}
-			],
-			"level": 1,
-			"listItem": "bullet",
-			"markDefs": [],
-			"style": "normal"
-		},
-		{
-			"_key": "ccb6a4ab4f91",
-			"_type": "block",
-			"children": [
-				{
-					"_key": "b35346930ebf",
-					"_type": "span",
-					"marks": [],
-					"text": "La cohérence et la communication"
-				}
-			],
-			"level": 1,
-			"listItem": "bullet",
-			"markDefs": [],
-			"style": "normal"
-		},
-		{
-			"_key": "3e6fe8592038",
-			"_type": "block",
-			"children": [
-				{
-					"_key": "ef3ea7385d3c",
-					"_type": "span",
-					"marks": [],
-					"text": ""
-				}
-			],
-			"markDefs": [],
-			"style": "normal"
-		},
-		{
-			"_key": "60d141b418d2",
-			"_type": "block",
-			"children": [
-				{
-					"_key": "8cbd30803d7c",
-					"_type": "span",
-					"marks": [],
-					"text": "Le Respect"
-				}
-			],
-			"markDefs": [],
-			"style": "h4"
-		},
-		{
-			"_key": "064c1e49c314",
-			"_type": "block",
-			"children": [
-				{
-					"_key": "b1b570627cb9",
-					"_type": "span",
-					"marks": [],
-					"text": "Le respect est une valeur essentielle qui selon nous, garantit le bien vivre ensemble et qui se situe à tous les niveaux de la garderie : le respect des autres (enfants, éducatrices, etc.), le respect du matériel ainsi que le respect de soi. Les éducatrices de la garderie veillent à ce que l’enfant soit respecté dans son rythme en évitant les comparaisons, en proposant des activités adaptées au niveau de son développement et en respectant les désirs de l’enfant."
-				}
-			],
-			"markDefs": [],
-			"style": "normal"
-		},
-		{
-			"_key": "9c765d2939a3",
-			"_type": "block",
-			"children": [
-				{
-					"_key": "0e789a4c13c7",
-					"_type": "span",
-					"marks": [],
-					"text": "La sécurité"
-				}
-			],
-			"markDefs": [],
-			"style": "h4"
-		},
-		{
-			"_key": "5a5d4c208b7e",
-			"_type": "block",
-			"children": [
-				{
-					"_key": "055faebd033b",
-					"_type": "span",
-					"marks": [],
-					"text": "La sécurité, tant physique que psychique et affective est très importante dans le développement de l’enfant. C’est pour cette raison que les éducatrices de la garderie apportent une attention particulière à ce domaine afin que l’enfant puisse se sentir en sécurité au sein de l’institution et puisse ainsi se développer au mieux. Elles sont donc attentives aux différents besoins de l’enfant (demande ou refus de câlins, besoin de temps calme, etc.) et veillent à ce qu’ils soient respectés par tous."
-				}
-			],
-			"markDefs": [],
-			"style": "normal"
-		},
-		{
-			"_key": "737ea7a7f189",
-			"_type": "block",
-			"children": [
-				{
-					"_key": "866876de3660",
-					"_type": "span",
-					"marks": [],
-					"text": "Le partenariat avec les familles"
-				}
-			],
-			"markDefs": [],
-			"style": "h4"
-		},
-		{
-			"_key": "1f58d86d01a9",
-			"_type": "block",
-			"children": [
-				{
-					"_key": "4815a1bb85c0",
-					"_type": "span",
-					"marks": [],
-					"text": "L’enfant grandit dans un milieu différent de la garderie, sa famille. C’est pour cela que l’équipe favorise le partenariat avec son entourage en créant une relation de confiance avec les parents et en organisant différentes fêtes afin de permettre aux familles de s’associer à la vie de la structure. La collaboration entre parents et éducatrices est très importante afin de créer une continuité entre ses différents lieux de développement et ainsi les accompagner à se construire le plus sereinement. L’équipe veille donc à entretenir une relation d’échange respectueuse et utile lors des accueils et départs des enfants, des entretiens et différentes rencontres avec les familles."
-				}
-			],
-			"markDefs": [],
-			"style": "normal"
-		},
-		{
-			"_key": "b7fc0f8d50dc",
-			"_type": "block",
-			"children": [
-				{
-					"_key": "eebd97b49e48",
-					"_type": "span",
-					"marks": [],
-					"text": "La relation individualisée"
-				}
-			],
-			"markDefs": [],
-			"style": "h4"
-		},
-		{
-			"_key": "ef5c4d81b85f",
-			"_type": "block",
-			"children": [
-				{
-					"_key": "001040d22574",
-					"_type": "span",
-					"marks": [],
-					"text": "Chaque personne est différente et a donc des besoins différents. Les éducatrices offrent une relation adaptée aux besoins de l’enfant ainsi qu’aux demandes de sa famille. Lors de l’arrivée de l’enfant, l’éducatrice prend le temps pour l’accueillir et se renseigner sur son état psychologique et physique. Lors de son départ, l’éducatrice transmet aux parents différentes informations importantes de la journée concernant l’enfant. Pendant la journée, les éducatrices sont attentives à tous les enfants et consacrent du temps à chacun d’entre eux. Elles s’adaptent à l’âge et aux capacités de l’enfant ainsi qu’à ses besoins."
-				}
-			],
-			"markDefs": [],
-			"style": "normal"
-		},
-		{
-			"_key": "fb58ed8f4d27",
-			"_type": "block",
-			"children": [
-				{
-					"_key": "cfcbfbfb55b9",
-					"_type": "span",
-					"marks": [],
-					"text": "La cohérence et la communication"
-				}
-			],
-			"markDefs": [],
-			"style": "h4"
-		},
-		{
-			"_key": "7da90129f3ef",
-			"_type": "block",
-			"children": [
-				{
-					"_key": "0777c856ac0f",
-					"_type": "span",
-					"marks": [],
-					"text": "Afin que l’enfant puisse se développer au mieux, il est primordial qu’il y ait de la cohérence dans l’équipe éducative. Cette cohérence nécessaire est garantie par le biais d’une bonne communication. Cette communication passe par de nombreux outils mis en place par l’équipe et qui seront détaillés plus loin (chap.7). Les éducatrices s’engagent à avoir un langage commun et clair auprès des enfants, ce qui leur apporte une sécurité nécessaire à leur bon développement."
-				}
-			],
-			"markDefs": [],
-			"style": "normal"
-		}
-	]
+  "historyCollapse": {
+    "content": [
+      {
+        "_key": "96880a3f3203",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "9c9dafd46d7b",
+            "_type": "span",
+            "marks": [],
+            "text": "tests render "
+          },
+          {
+            "_key": "67a5ab179d6a",
+            "_type": "span",
+            "marks": ["strong"],
+            "text": "rich-text\n"
+          },
+          {
+            "_key": "c70a653a3ffe",
+            "_type": "span",
+            "marks": [],
+            "text": "et je "
+          },
+          {
+            "_key": "2cdcdf088cbd",
+            "_type": "span",
+            "marks": ["em"],
+            "text": "regarde"
+          },
+          {
+            "_key": "6e603dd25358",
+            "_type": "span",
+            "marks": [],
+            "text": " sur 2 "
+          },
+          {
+            "_key": "7da9a6b9ef9a",
+            "_type": "span",
+            "marks": ["em", "strong"],
+            "text": "lignes"
+          }
+        ],
+        "markDefs": [],
+        "style": "h2"
+      },
+      {
+        "_key": "9c7e1c7b4c7e",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "027dc6270f26",
+            "_type": "span",
+            "marks": [],
+            "text": "Paragraphe de base (orange)"
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "cb79a845df74",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "53da96fce35e",
+            "_type": "span",
+            "marks": [],
+            "text": "{variant:primary}Paragraphe "
+          },
+          {
+            "_key": "4392fa95f497",
+            "_type": "span",
+            "marks": ["strong"],
+            "text": "violet"
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "962c8ad9582c",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "83a0c884e13f",
+            "_type": "span",
+            "marks": [],
+            "text": "Paragraphe sur 2 lignes présenté comme attendu\navec majuscule plus retour à la ligne"
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "0411f3e9ac86",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "da37dc4aab5c",
+            "_type": "span",
+            "marks": [],
+            "text": ""
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "1f76e35f3fe4",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "320c2c76a88f",
+            "_type": "span",
+            "marks": [],
+            "text": "Item "
+          },
+          {
+            "_key": "d8271f2a7cf0",
+            "_type": "span",
+            "marks": ["strong", "em"],
+            "text": "orange"
+          },
+          {
+            "_key": "3246e6eb9c4a",
+            "_type": "span",
+            "marks": [],
+            "text": " par défaut ne l'est pas car si un des items contient la précision su variant primary, toute la liste devient primary."
+          }
+        ],
+        "level": 1,
+        "listItem": "bullet",
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "f7a071fe3cab",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "320c2c76a88f",
+            "_type": "span",
+            "marks": [],
+            "text": "{variant:primary}Item "
+          },
+          {
+            "_key": "aad54858e59d",
+            "_type": "span",
+            "marks": ["strong"],
+            "text": "violet"
+          },
+          {
+            "_key": "30d29fc2b6db",
+            "_type": "span",
+            "marks": [],
+            "text": " (toute la liste doit devenir violette et c'est le cas)."
+          }
+        ],
+        "level": 1,
+        "listItem": "bullet",
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "2d007096c28d",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "320c2c76a88f",
+            "_type": "span",
+            "marks": [],
+            "text": "Item "
+          },
+          {
+            "_key": "816c6500cf66",
+            "_type": "span",
+            "marks": ["em"],
+            "text": "suivant"
+          }
+        ],
+        "level": 1,
+        "listItem": "bullet",
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "11f7f6dc9424",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "d3f35768a31a",
+            "_type": "span",
+            "marks": [],
+            "text": "un autre item avec le retour à la ligne \nshift+retour à la ligne, résultat, il est ok."
+          }
+        ],
+        "level": 1,
+        "listItem": "bullet",
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "15af2d1b8a09",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "ffa83fe4ccd0",
+            "_type": "span",
+            "marks": [],
+            "text": "Premier item "
+          },
+          {
+            "_key": "bd8a9e9d9951",
+            "_type": "span",
+            "marks": ["strong"],
+            "text": "orange"
+          }
+        ],
+        "level": 1,
+        "listItem": "number",
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "9e69562c2fcc",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "ffa83fe4ccd0",
+            "_type": "span",
+            "marks": [],
+            "text": "Basculer la "
+          },
+          {
+            "_key": "a2a92a9ba01d",
+            "_type": "span",
+            "marks": ["em"],
+            "text": "liste"
+          },
+          {
+            "_key": "e4361beab72e",
+            "_type": "span",
+            "marks": [],
+            "text": " numérotée en violet"
+          }
+        ],
+        "level": 1,
+        "listItem": "number",
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "0af94df1356d",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "ffa83fe4ccd0",
+            "_type": "span",
+            "marks": [],
+            "text": "Item "
+          },
+          {
+            "_key": "365fa18cc5cc",
+            "_type": "span",
+            "marks": ["strong", "em"],
+            "text": "suivant"
+          }
+        ],
+        "level": 1,
+        "listItem": "number",
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "e4a44f53b628",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "d26b20d9e2aa",
+            "_type": "span",
+            "marks": [],
+            "text": ""
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "a22954f4b4f3",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "b45b05169e06",
+            "_type": "span",
+            "marks": [],
+            "text": "j'ai fait un retour à la ligne juste avant pour inspection de rendu."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "8c3ea1229056",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "6e1dd9977321",
+            "_type": "span",
+            "marks": [],
+            "text": ""
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "f1c4f7e5bd0a",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "f48f17924486",
+            "_type": "span",
+            "marks": [],
+            "text": "Ici, nous allons tester les Quotes"
+          }
+        ],
+        "markDefs": [],
+        "style": "h3"
+      },
+      {
+        "_key": "f3e2319ff323",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "cefd12d6a3f8",
+            "_type": "span",
+            "marks": [],
+            "text": "Garder un esprit curieux.\nSoyez bon.\n{cite}Murielle"
+          }
+        ],
+        "markDefs": [],
+        "style": "blockquote"
+      },
+      {
+        "_key": "ddc44d6ab817",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "6808e8006617",
+            "_type": "span",
+            "marks": [],
+            "text": ""
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "e5af7233fbb2",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "7f0e75effbcc",
+            "_type": "span",
+            "marks": [],
+            "text": "{variant:secondary}Gardez votre calme. \nc'est une quote secondary\n{cite}Marie"
+          }
+        ],
+        "markDefs": [],
+        "style": "blockquote"
+      },
+      {
+        "_key": "5941736d0fd6",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "d7615044e2e1",
+            "_type": "span",
+            "marks": [],
+            "text": ""
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "1c9d99a4e2b8",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "4cd7d030b50c",
+            "_type": "span",
+            "marks": [],
+            "text": "{style:special}\nRêver grand, agir petit. \n{cite}L’équipe"
+          }
+        ],
+        "markDefs": [],
+        "style": "blockquote"
+      },
+      {
+        "_key": "4003c34e0142",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "c12b7f73b112",
+            "_type": "span",
+            "marks": [],
+            "text": ""
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "735717acc69f",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "543b92a4e8f2",
+            "_type": "span",
+            "marks": [],
+            "text": "{style:special}{variant:secondary}\nTout est possible avec un sourire.\net tout ce qui est bon.\n{cite}Capucine"
+          }
+        ],
+        "markDefs": [],
+        "style": "blockquote"
+      },
+      {
+        "_key": "d6fba7390d1e",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "1b4e8667f162",
+            "_type": "span",
+            "marks": [],
+            "text": ""
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "4ac1117baa9f",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "ae91e2fcf7d7",
+            "_type": "span",
+            "marks": [],
+            "text": "Ici ou fait les Callouts:"
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "859fd823416e",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "8a5587ad3a78",
+            "_type": "span",
+            "marks": [],
+            "text": "{type:feedback}{variant:success}{size:lg}{icon:success}{title:Succès} Ce bloc quote devient une carte feedback verte. \nRetour à la ligne = nouveau paragraphe dans la carte."
+          }
+        ],
+        "markDefs": [],
+        "style": "blockquote"
+      },
+      {
+        "_key": "bc5ecd912ce7",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "e89c1318fac9",
+            "_type": "span",
+            "marks": [],
+            "text": ""
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "31f948cc0e55",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "bc412102a23a",
+            "_type": "span",
+            "marks": [],
+            "text": "{type:feedback}{variant:warning} Sans titre ni size → fallback primary/md (orange)"
+          }
+        ],
+        "markDefs": [],
+        "style": "blockquote"
+      }
+    ],
+    "historyImage": {
+      "alt": "P'tits Loup",
+      "height": 1136,
+      "url": "https://cdn.sanity.io/images/rnhuu2jm/production/b267dea8381f60fc72a79a8f15da466eeb02b2e8-640x1136.jpg",
+      "width": 640
+    }
+  },
+  "introduction": [
+    {
+      "_key": "e2066c7957ce",
+      "_type": "block",
+      "children": [
+        {
+          "_key": "17f94edd443a",
+          "_type": "span",
+          "marks": [],
+          "text": "Bienvenue"
+        }
+      ],
+      "markDefs": [],
+      "style": "h2"
+    },
+    {
+      "_key": "5a1d078cf1f8",
+      "_type": "block",
+      "children": [
+        {
+          "_key": "eabba391a0ab",
+          "_type": "span",
+          "marks": [],
+          "text": "« Les P’tits Loups » est une structure privée qui accueille les enfants dès 2 mois jusqu’à l’entrée à l’école.\nL’équipe pédagogique encadre, anime, et propose des activités variées, adaptées à l’âge de chaque enfant."
+        }
+      ],
+      "markDefs": [],
+      "style": "normal"
+    },
+    {
+      "_key": "b5718523cdba",
+      "_type": "block",
+      "children": [
+        {
+          "_key": "6a0b5495d9b9",
+          "_type": "span",
+          "marks": [],
+          "text": "En tant que garderie privée, nous avons le privilège d’être à taille humaine et ainsi pouvoir fournir toute l’attention individuelle à chaque enfant au quotidien."
+        }
+      ],
+      "markDefs": [],
+      "style": "normal"
+    },
+    {
+      "_key": "33320b9b5a27",
+      "_type": "block",
+      "children": [
+        {
+          "_key": "41f5a32673eb",
+          "_type": "span",
+          "marks": [],
+          "text": "A 5 minutes du parc de Sauvabelin, en face de l’arrêt de bus TL « Piécettes », la garderie Les P’tits Loups se situe au rez-de-chaussée d’un immeuble locatif et accessible. Elle dispose d’un joli jardin privatif de 150 m2."
+        }
+      ],
+      "markDefs": [],
+      "style": "normal"
+    }
+  ],
+  "parallaxOne": {
+    "image": {
+      "alt": "Le jardin",
+      "asset": {
+        "_id": "image-070cbf7472d33dc5d8cd16eda701775e9e9e097f-2448x1624-jpg",
+        "metadata": {
+          "blurhash": null,
+          "dimensions": {
+            "aspectRatio": 1.5073891625615763,
+            "height": 1624,
+            "width": 2448
+          },
+          "lqip": "data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAANABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAQHBf/EACQQAAIBBAECBwAAAAAAAAAAAAECAwAEBREGEiETFSIxQVFx/8QAFgEBAQEAAAAAAAAAAAAAAAAAAwIF/8QAHBEAAgICAwAAAAAAAAAAAAAAAAECEQMEEiFB/9oADAMBAAIRAxEAPwBnkZksuWXlqcOt40ZJ8dG11H4GvupjzPMZu/yur2C4gjhTSxyDsgqh4nPXUmKF3JpppACzH33+0hk7nzCQJOgIdPUSd1mZd65tUTxi0iWLj5MiouHLdR7HdFat4jxzskchVV7AAUU3QiUfT//Z"
+        },
+        "url": "https://cdn.sanity.io/images/rnhuu2jm/production/070cbf7472d33dc5d8cd16eda701775e9e9e097f-2448x1624.jpg"
+      },
+      "credit": "Garderie Les P'tits Loups",
+      "enableCustomTooltip": false,
+      "enableOptions": false,
+      "tooltipText": null
+    }
+  },
+  "parallaxTwo": {
+    "image": {
+      "alt": "image paralax",
+      "asset": {
+        "_id": "image-aca556a850681155f4cf056fb4c60b13dde972be-474x461-jpg",
+        "metadata": {
+          "blurhash": null,
+          "dimensions": {
+            "aspectRatio": 1.0281995661605206,
+            "height": 461,
+            "width": 474
+          },
+          "lqip": "data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAATABQDASIAAhEBAxEB/8QAGQABAAMBAQAAAAAAAAAAAAAAAAMFBgcE/8QAJRAAAgICAQMDBQAAAAAAAAAAAQIAAwQRIQUSMQYTYRQiQUJR/8QAFwEAAwEAAAAAAAAAAAAAAAAAAAEEBf/EABoRAAMBAQEBAAAAAAAAAAAAAAABAiEDEjH/2gAMAwEAAhEDEQA/AOP9Aq+sp9j2aF7dd1rccTV5eDhW45x0RalsHDAfsJT+mBRZgmhWVbmOz3Dn41NFjKmWjU3ua7ANr8H+w62+d+ZxE0Qrn09ZzTJraq962H3KdGJNnVumXatmy4Y7J/MTRRMR12PW4etirDwRLPAzsl8tC1zkk+SYiFJNaJ4eXqztZn2s52xPmIiIa+H/2Q=="
+        },
+        "url": "https://cdn.sanity.io/images/rnhuu2jm/production/aca556a850681155f4cf056fb4c60b13dde972be-474x461.jpg"
+      },
+      "credit": "Garderie Les P'tits Loups",
+      "enableCustomTooltip": false,
+      "enableOptions": false,
+      "tooltipText": null
+    }
+  },
+  "pedagogy": [
+    {
+      "_key": "1a7ee20113ba",
+      "_type": "block",
+      "children": [
+        {
+          "_key": "0034890b11d4",
+          "_type": "span",
+          "marks": [],
+          "text": "Les fondements pédagogiques"
+        }
+      ],
+      "markDefs": [],
+      "style": "h3"
+    },
+    {
+      "_key": "f0c7141404e5",
+      "_type": "block",
+      "children": [
+        {
+          "_key": "40872b986e5e",
+          "_type": "span",
+          "marks": [],
+          "text": "La garderie procure à l’enfant un univers d’expérience très riche. Il se retrouve au milieu d’un groupe et entouré d’une équipe qui doit mettre tout en œuvre pour lui fournir un milieu de vie enrichissant et harmonieux."
+        }
+      ],
+      "markDefs": [],
+      "style": "normal"
+    },
+    {
+      "_key": "cee10b3ec2d8",
+      "_type": "block",
+      "children": [
+        {
+          "_key": "62dbdedd8f15",
+          "_type": "span",
+          "marks": [],
+          "text": "Dans notre garderie, nous mettons donc l’accent sur une pédagogie active qui permet à l’enfant d’apprendre à son rythme et dans le respect de l’individu. Pour aider l’enfant dans son développement global, nous mettons en place un horaire structuré avec des périodes qui permettent à l’enfant de faire des choix et de favoriser son autonomie. Nous désirons lui amener un cadre, amener par des rituels, ainsi que par des ateliers créatifs ou autres (atelier cuisine, atelier lecture, atelier mobilité….) dirigés et en petit groupe l’aidant, ainsi à se préparer pour l’école. Tout en proposant également des moments de jeux et d’activité créatifs libres, permettant à chaque enfant de découvrir et de s’épanouir à son rythme. Ainsi l’enfant est libre de s’entourer de petits camarades ou de s’occuper seul."
+        }
+      ],
+      "markDefs": [],
+      "style": "normal"
+    },
+    {
+      "_key": "f5a52956cfc3",
+      "_type": "block",
+      "children": [
+        {
+          "_key": "8b70fdd4d63a",
+          "_type": "span",
+          "marks": ["strong"],
+          "text": "Les éducatrices doivent instaurer des rituels permettant à l’enfant de mettre en place des routines garantes de sécurité. Il doit pouvoir anticiper les différents moments qui gère son temps ; repas, sieste… Les adultes doivent s’organiser de façon rigoureuse, afin que ces moments ne soient en aucun cas une source de stress pour l’enfant."
+        }
+      ],
+      "markDefs": [],
+      "style": "blockquote"
+    },
+    {
+      "_key": "0feb32c09cef",
+      "_type": "block",
+      "children": [
+        {
+          "_key": "dd0a954c4d20",
+          "_type": "span",
+          "marks": [],
+          "text": "Nous assurons un encadrement stable et motivé par le renforcement positif afin de répondre aux différents besoins de l’enfant et de stimuler sa curiosité naturelle en mettant en place toutes sortes d’activités.\nDurant ces périodes, les enfants apprennent également les règles et limites qui les aideront à se construire. L’équipe a donc mis en place des rituels tels que ; Le petit accueil, la collation du matin, le repas de midis, le goûter, la sieste qui permettent d’acquérir des règles de société. Celles-ci permettent d’acquérir une multitude de petites autres règles qui leur seront nécessaires dans la vie quotidienne."
+        }
+      ],
+      "markDefs": [],
+      "style": "normal"
+    }
+  ],
+  "sectionHero": {
+    "description": "Nous sommes une petite garderie à taille humaine proche de vous et vos enfants",
+    "image": {
+      "alt": "Image About",
+      "asset": {
+        "_id": "image-0fd46fc0eaa9eb383657297833718c3af9397720-1087x964-png",
+        "metadata": {
+          "blurhash": null,
+          "dimensions": {
+            "aspectRatio": 1.1275933609958506,
+            "height": 964,
+            "width": 1087
+          },
+          "lqip": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAASCAYAAABb0P4QAAAACXBIWXMAAB7CAAAewgFu0HU+AAAEd0lEQVR4nB3R21IiBwKA4X6BvdlKzTiJjigoAt1NH2gQGhq6bWiOzUFEDmJU1HF1dDhojGPMJrvZTA6brdqbVCqp5GI3ldf8U8kTfBef8POPP7C4vWVyds7k/ILLy0s++XjOf9695fvvnvjvtw9888WCLz6b8/b+humbC25enzF9fcri5pS72SsWt9fcPX3Kd9//hHA/n2IX8oQjMcJRESOh0PBMRrsu470Sg06BbiNNq6Lj5mUyySjbiTBJdRND2SClh0klJQpll8l0jnA+OUZXZZ4vLbH04n0UMUjD1ak6GRzToJiV8KwInhUkn1pGl5aQws+Ihp4RCjxjdfU5y6sviGgyu0fHCGcnxxiawvLyCsH1AHZGYtSyaZc9ihmLSjZJo2jQqWns1kQqdghTX0eXNomKW6yEw7y3FmJd0WkeHCPMri4wkwkCq6vIsQ1aJYNR08F3d/DMLG5KxTElqkWFrq/RrWtUCgZpPUlUSRCQFZajItHtNP3jCcI/7meUC1lCawEUaZNOOcV+JUPdNqjkdZx0lHxqg1IhQq0k41eSND2Hil3AyibJ5eNYlojnbXN9fYLw2Uczao5FaH2NyNY6xXycVlHHLyr4JQUvH8MxtygWRBrlBE0vTdMx6ZVM+rUEA19m6Ec56hq8nY8R5ld/o2hl2AqtI8eCFPMxfE/G9+I0SnHqRfVPxDJF6tVtBn6OblZlLy0ydGUOWgonA4XpaYZ/PR4ivDqdsJNNk5DDuLkYw7bCsCPRrknUPIVaUaPq6Di2QumPmIbGnhWjpW3hp6P0fYXzwwSLVznePX2IcHJyjGul8HIyo3aC8wOF0wORw36SbitHs5yiW0nS72To9tLstnV6JZlWVqSaFRn6Chd9jYthhofZEcLx+QmOs43nqPR8jVE3wtFA5vjIoz/u0my7dOopPmylGXfSdOoGrbJKpxKn31C5HBpcDXQO2xlmlycI52/OyVVtNGubgqPSrovs7ZvUR22Kwz52t0GhmsW3VXqOSr2gYOdiVMoi457G67HBYUuiW0kxv5ogjF9N0Is24byF4RYoN3K4HRettEMsnyNeskl4Nu6OwX4tQ8t3yNsJ3J0Y+y2FQUPGM4PUHZ27mwlCsz9mQ9UJJnQMr4TVrKC7WVZiEu8FNnkpSai2idfI0xtUKQ97pOsVShWD3apI2dogo76kUlC5uz5CqHdHrGxKPF/bIJzQETMpNlWRlY0gLwJrrGyEiKVUcnWbQreJ1hkR9/cx6w75fIxtdQ1dXMbNScwuDxAae2M+CMn85XmAv64EWVoLEpXXyGReYmVfYiQDRNRNImaSrZ0y8cY+5t4QvewS1USkWJD41jJWKsLVWR/h7PqWtF0lqmWIamkkPYXtpOi0DHq7Cfx6kmw+iWFl2S6VqQ767E9GeLsNzB0H27FwCynadYePb68Qfv71Nz798mum949cL+65mt1xs7hlertgejtnuphzPZ3x+s2c+Ud3fP7lE+/+/Xc++fyRxcMD948PPD3e89W7f/L///3C7zpCk2ZVh8R9AAAAAElFTkSuQmCC"
+        },
+        "url": "https://cdn.sanity.io/images/rnhuu2jm/production/0fd46fc0eaa9eb383657297833718c3af9397720-1087x964.png"
+      },
+      "credit": "Garderie Les P'tits Loups",
+      "enableCustomTooltip": false,
+      "enableOptions": false,
+      "tooltipText": null
+    }
+  },
+  "seo": {
+    "keywords": ["A Propos", "Historique", "Pédagogie"],
+    "metaDescription": "Ceci est la page a propos de la garderie",
+    "metaTitle": "A Propos",
+    "shareImage": {
+      "alt": "La page a propos",
+      "asset": {
+        "_id": "image-aca556a850681155f4cf056fb4c60b13dde972be-474x461-jpg",
+        "metadata": {
+          "blurhash": null,
+          "dimensions": {
+            "aspectRatio": 1.0281995661605206,
+            "height": 461,
+            "width": 474
+          },
+          "lqip": "data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAATABQDASIAAhEBAxEB/8QAGQABAAMBAQAAAAAAAAAAAAAAAAMFBgcE/8QAJRAAAgICAQMDBQAAAAAAAAAAAQIAAwQRIQUSMQYTYRQiQUJR/8QAFwEAAwEAAAAAAAAAAAAAAAAAAAEEBf/EABoRAAMBAQEBAAAAAAAAAAAAAAABAiEDEjH/2gAMAwEAAhEDEQA/AOP9Aq+sp9j2aF7dd1rccTV5eDhW45x0RalsHDAfsJT+mBRZgmhWVbmOz3Dn41NFjKmWjU3ua7ANr8H+w62+d+ZxE0Qrn09ZzTJraq962H3KdGJNnVumXatmy4Y7J/MTRRMR12PW4etirDwRLPAzsl8tC1zkk+SYiFJNaJ4eXqztZn2s52xPmIiIa+H/2Q=="
+        },
+        "url": "https://cdn.sanity.io/images/rnhuu2jm/production/aca556a850681155f4cf056fb4c60b13dde972be-474x461.jpg"
+      },
+      "credit": "Garderie Les P'tits Loups",
+      "enableCustomTooltip": false,
+      "enableOptions": false,
+      "tooltipText": null
+    }
+  },
+  "team": [
+    {
+      "_key": "45253c3dfd57",
+      "_type": "block",
+      "children": [
+        {
+          "_key": "b786828c295b",
+          "_type": "span",
+          "marks": [],
+          "text": "L’équipe"
+        }
+      ],
+      "markDefs": [],
+      "style": "h3"
+    },
+    {
+      "_key": "43b3492bdfe1",
+      "_type": "block",
+      "children": [
+        {
+          "_key": "51d0c771378e",
+          "_type": "span",
+          "marks": [],
+          "text": "La Garderie accueille une équipe éducative de 6 personnes, ainsi qu’une intendante, un directeur administratif (Exploitant) et une directrice pédagogique. Nous accueillons également, afin de transmettre nos connaissances et donner l’envie de découvrir ce métier, des places de stage tout au long de l’année."
+        }
+      ],
+      "markDefs": [],
+      "style": "normal"
+    },
+    {
+      "_key": "f98e3ea4b4d1",
+      "_type": "block",
+      "children": [
+        {
+          "_key": "3666d99931b4",
+          "_type": "span",
+          "marks": [],
+          "text": "L’équipe éducative est composée actuellement de femmes. Chacune apporte ses connaissances, son approche singulière et ses expériences issues de son parcours, ce qui permet une ouverture sur des projets de chaque jour. Afin de permettre à chacune de mettre en place des projets, ainsi que d’avoir une approche réfléchie, la garderie met à leur disposition un pourcentage de leur temps de travail qui est une présence ‘hors enfants’."
+        }
+      ],
+      "markDefs": [],
+      "style": "normal"
+    },
+    {
+      "_key": "25c267634edf",
+      "_type": "block",
+      "children": [
+        {
+          "_key": "0e30ff4e5c9d",
+          "_type": "span",
+          "marks": ["em"],
+          "text": "Chaque membre de l’équipe travaille à instaurer une façon d’interagir efficacement au sein de l’équipe via :\n\n- Le respect de chaque collaboratrice.\n- La communication, l’échange et la transparence.\n- La capacité à se remettre en question, à s’enrichir des autres.\n- Le développement de ses savoirs-faire et savoirs-être par la formation continue."
+        }
+      ],
+      "markDefs": [],
+      "style": "blockquote"
+    }
+  ],
+  "title": "À Propos",
+  "values": [
+    {
+      "_key": "78f22174bfad",
+      "_type": "block",
+      "children": [
+        {
+          "_key": "30815f70ff27",
+          "_type": "span",
+          "marks": [],
+          "text": "Les valeurs institutionnelles"
+        }
+      ],
+      "markDefs": [],
+      "style": "h3"
+    },
+    {
+      "_key": "d5dce45b9d84",
+      "_type": "block",
+      "children": [
+        {
+          "_key": "9e8c4582b7be",
+          "_type": "span",
+          "marks": [],
+          "text": "La garderie accueille des enfants en fonction des besoins des parents et dans la mesure de ses capacités. Afin d’accompagner les enfants dans de bonnes conditions, l’équipe éducative a mis en place un système de valeurs institutionnelles."
+        }
+      ],
+      "markDefs": [],
+      "style": "normal"
+    },
+    {
+      "_key": "0a4225a1a83d",
+      "_type": "block",
+      "children": [
+        {
+          "_key": "e81bc00912a8",
+          "_type": "span",
+          "marks": ["strong"],
+          "text": "Ces valeurs principales sont :"
+        }
+      ],
+      "markDefs": [],
+      "style": "h4"
+    },
+    {
+      "_key": "99ff21c447cf",
+      "_type": "block",
+      "children": [
+        {
+          "_key": "482b197d30af",
+          "_type": "span",
+          "marks": [],
+          "text": "Le respect"
+        }
+      ],
+      "level": 1,
+      "listItem": "bullet",
+      "markDefs": [],
+      "style": "normal"
+    },
+    {
+      "_key": "77550545b442",
+      "_type": "block",
+      "children": [
+        {
+          "_key": "c8ec493dcb2a",
+          "_type": "span",
+          "marks": [],
+          "text": "La sécurité"
+        }
+      ],
+      "level": 1,
+      "listItem": "bullet",
+      "markDefs": [],
+      "style": "normal"
+    },
+    {
+      "_key": "4174a4f1faac",
+      "_type": "block",
+      "children": [
+        {
+          "_key": "2de07e7edac4",
+          "_type": "span",
+          "marks": [],
+          "text": "Le partenariat avec les familles"
+        }
+      ],
+      "level": 1,
+      "listItem": "bullet",
+      "markDefs": [],
+      "style": "normal"
+    },
+    {
+      "_key": "498141975e0d",
+      "_type": "block",
+      "children": [
+        {
+          "_key": "7586b9d04531",
+          "_type": "span",
+          "marks": [],
+          "text": "La relation individualisée"
+        }
+      ],
+      "level": 1,
+      "listItem": "bullet",
+      "markDefs": [],
+      "style": "normal"
+    },
+    {
+      "_key": "ccb6a4ab4f91",
+      "_type": "block",
+      "children": [
+        {
+          "_key": "b35346930ebf",
+          "_type": "span",
+          "marks": [],
+          "text": "La cohérence et la communication"
+        }
+      ],
+      "level": 1,
+      "listItem": "bullet",
+      "markDefs": [],
+      "style": "normal"
+    },
+    {
+      "_key": "3e6fe8592038",
+      "_type": "block",
+      "children": [
+        {
+          "_key": "ef3ea7385d3c",
+          "_type": "span",
+          "marks": [],
+          "text": ""
+        }
+      ],
+      "markDefs": [],
+      "style": "normal"
+    },
+    {
+      "_key": "60d141b418d2",
+      "_type": "block",
+      "children": [
+        {
+          "_key": "8cbd30803d7c",
+          "_type": "span",
+          "marks": [],
+          "text": "Le Respect"
+        }
+      ],
+      "markDefs": [],
+      "style": "h4"
+    },
+    {
+      "_key": "064c1e49c314",
+      "_type": "block",
+      "children": [
+        {
+          "_key": "b1b570627cb9",
+          "_type": "span",
+          "marks": [],
+          "text": "Le respect est une valeur essentielle qui selon nous, garantit le bien vivre ensemble et qui se situe à tous les niveaux de la garderie : le respect des autres (enfants, éducatrices, etc.), le respect du matériel ainsi que le respect de soi. Les éducatrices de la garderie veillent à ce que l’enfant soit respecté dans son rythme en évitant les comparaisons, en proposant des activités adaptées au niveau de son développement et en respectant les désirs de l’enfant."
+        }
+      ],
+      "markDefs": [],
+      "style": "normal"
+    },
+    {
+      "_key": "9c765d2939a3",
+      "_type": "block",
+      "children": [
+        {
+          "_key": "0e789a4c13c7",
+          "_type": "span",
+          "marks": [],
+          "text": "La sécurité"
+        }
+      ],
+      "markDefs": [],
+      "style": "h4"
+    },
+    {
+      "_key": "5a5d4c208b7e",
+      "_type": "block",
+      "children": [
+        {
+          "_key": "055faebd033b",
+          "_type": "span",
+          "marks": [],
+          "text": "La sécurité, tant physique que psychique et affective est très importante dans le développement de l’enfant. C’est pour cette raison que les éducatrices de la garderie apportent une attention particulière à ce domaine afin que l’enfant puisse se sentir en sécurité au sein de l’institution et puisse ainsi se développer au mieux. Elles sont donc attentives aux différents besoins de l’enfant (demande ou refus de câlins, besoin de temps calme, etc.) et veillent à ce qu’ils soient respectés par tous."
+        }
+      ],
+      "markDefs": [],
+      "style": "normal"
+    },
+    {
+      "_key": "737ea7a7f189",
+      "_type": "block",
+      "children": [
+        {
+          "_key": "866876de3660",
+          "_type": "span",
+          "marks": [],
+          "text": "Le partenariat avec les familles"
+        }
+      ],
+      "markDefs": [],
+      "style": "h4"
+    },
+    {
+      "_key": "1f58d86d01a9",
+      "_type": "block",
+      "children": [
+        {
+          "_key": "4815a1bb85c0",
+          "_type": "span",
+          "marks": [],
+          "text": "L’enfant grandit dans un milieu différent de la garderie, sa famille. C’est pour cela que l’équipe favorise le partenariat avec son entourage en créant une relation de confiance avec les parents et en organisant différentes fêtes afin de permettre aux familles de s’associer à la vie de la structure. La collaboration entre parents et éducatrices est très importante afin de créer une continuité entre ses différents lieux de développement et ainsi les accompagner à se construire le plus sereinement. L’équipe veille donc à entretenir une relation d’échange respectueuse et utile lors des accueils et départs des enfants, des entretiens et différentes rencontres avec les familles."
+        }
+      ],
+      "markDefs": [],
+      "style": "normal"
+    },
+    {
+      "_key": "b7fc0f8d50dc",
+      "_type": "block",
+      "children": [
+        {
+          "_key": "eebd97b49e48",
+          "_type": "span",
+          "marks": [],
+          "text": "La relation individualisée"
+        }
+      ],
+      "markDefs": [],
+      "style": "h4"
+    },
+    {
+      "_key": "ef5c4d81b85f",
+      "_type": "block",
+      "children": [
+        {
+          "_key": "001040d22574",
+          "_type": "span",
+          "marks": [],
+          "text": "Chaque personne est différente et a donc des besoins différents. Les éducatrices offrent une relation adaptée aux besoins de l’enfant ainsi qu’aux demandes de sa famille. Lors de l’arrivée de l’enfant, l’éducatrice prend le temps pour l’accueillir et se renseigner sur son état psychologique et physique. Lors de son départ, l’éducatrice transmet aux parents différentes informations importantes de la journée concernant l’enfant. Pendant la journée, les éducatrices sont attentives à tous les enfants et consacrent du temps à chacun d’entre eux. Elles s’adaptent à l’âge et aux capacités de l’enfant ainsi qu’à ses besoins."
+        }
+      ],
+      "markDefs": [],
+      "style": "normal"
+    },
+    {
+      "_key": "fb58ed8f4d27",
+      "_type": "block",
+      "children": [
+        {
+          "_key": "cfcbfbfb55b9",
+          "_type": "span",
+          "marks": [],
+          "text": "La cohérence et la communication"
+        }
+      ],
+      "markDefs": [],
+      "style": "h4"
+    },
+    {
+      "_key": "7da90129f3ef",
+      "_type": "block",
+      "children": [
+        {
+          "_key": "0777c856ac0f",
+          "_type": "span",
+          "marks": [],
+          "text": "Afin que l’enfant puisse se développer au mieux, il est primordial qu’il y ait de la cohérence dans l’équipe éducative. Cette cohérence nécessaire est garantie par le biais d’une bonne communication. Cette communication passe par de nombreux outils mis en place par l’équipe et qui seront détaillés plus loin (chap.7). Les éducatrices s’engagent à avoir un langage commun et clair auprès des enfants, ce qui leur apporte une sécurité nécessaire à leur bon développement."
+        }
+      ],
+      "markDefs": [],
+      "style": "normal"
+    }
+  ]
 }

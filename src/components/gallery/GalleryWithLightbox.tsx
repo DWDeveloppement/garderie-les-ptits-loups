@@ -3,10 +3,11 @@
 
 'use client';
 
-import * as React from 'react'
-import type { Photo } from 'react-photo-album'
-import { Gallery } from './Gallery'
-import { LightboxCustom } from './LightboxCustom'
+import * as React from 'react';
+
+import { Gallery } from './Gallery';
+import { LightboxCustom } from './LightboxCustom';
+import type { Photo } from 'react-photo-album';
 
 export type GalleryWithLightboxProps = {
   /** Photos à afficher */
@@ -17,18 +18,18 @@ export type GalleryWithLightboxProps = {
   targetRowHeight?: number;
   /** Classe CSS custom */
   className?: string;
-}
+};
 
 /**
  * Composant Gallery avec Lightbox intégré
- * 
+ *
  * **Features :**
  * - Clic sur photo → ouvre lightbox
  * - Navigation clavier (←/→, Esc)
  * - Swipe sur mobile
  * - State management automatique
  * - Zero configuration
- * 
+ *
  * @example
  * ```tsx
  * <GalleryWithLightbox
@@ -66,4 +67,3 @@ export function GalleryWithLightbox({
     </>
   );
 }
-

@@ -18,7 +18,7 @@
   }
 
   body {
-    @apply font-sans bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
     font-size: var(--fl-text-base);
   }
 

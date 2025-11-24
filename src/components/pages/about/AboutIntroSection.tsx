@@ -1,19 +1,19 @@
-import { RichTextRenderer } from '@/components/shared/richtext/RichTextRenderer'
-import { Card, CardContent } from '@/ui/card'
-import type { PortableTextBlock } from '@/sanity/types/core/portableText'
+import { RichTextRenderer } from '@/components/shared/richtext/RichTextRenderer';
+import type { PortableTextBlock } from '@/sanity/types/core/portableText';
+import { Card, CardContent } from '@/ui/card';
 
 type AboutIntroSectionProps = {
-	content: PortableTextBlock[]
-}
+  content: PortableTextBlock[];
+};
 
 export function AboutIntroSection({ content }: AboutIntroSectionProps) {
-	return (
-		<section className='py-16 px-4 sm:px-6 lg:px-8 gradient-section-a'>
-			<Card variant='primary' className='max-w-4xl mx-auto'>
-				<CardContent className='p-8'>
-					<RichTextRenderer content={content} />
-				</CardContent>
-			</Card>
-		</section>
-	)
+  return (
+    <section className='gradient-section-a px-4 py-16 sm:px-6 lg:px-8'>
+      <Card variant='primary' className='mx-auto max-w-4xl'>
+        <CardContent className='p-8'>
+          <RichTextRenderer content={content} />
+        </CardContent>
+      </Card>
+    </section>
+  );
 }

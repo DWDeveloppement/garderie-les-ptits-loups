@@ -1,12 +1,12 @@
-'use client'
+'use client';
 
-import { Input } from '@/ui/input'
-import { Label } from '@/ui/label'
+import { Input } from '@/ui/input';
+import { Label } from '@/ui/label';
 
 type HoneypotFieldProps = {
-  value: string
-  onChange: (value: string) => void
-}
+  value: string;
+  onChange: (value: string) => void;
+};
 
 export function HoneypotField({ value, onChange }: HoneypotFieldProps) {
   return (
@@ -27,10 +27,10 @@ export function HoneypotField({ value, onChange }: HoneypotFieldProps) {
             width: '1px',
             height: '1px',
             opacity: 0,
-            pointerEvents: 'none',
+            pointerEvents: 'none'
           }}
         />
       </div>
     </div>
-  )
+  );
 }

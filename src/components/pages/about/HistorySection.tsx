@@ -1,38 +1,40 @@
-import { RichTextRenderer } from '@/components/shared/richtext/RichTextRenderer'
-import { Card, CardContent } from '@/ui/card'
-import type { PortableTextBlock } from '@/sanity/types/core/portableText'
-import Image from 'next/image'
+import Image from 'next/image';
+
+import { RichTextRenderer } from '@/components/shared/richtext/RichTextRenderer';
+import type { PortableTextBlock } from '@/sanity/types/core/portableText';
+import { Card, CardContent } from '@/ui/card';
+
 type HistorySectionProps = {
-	content?: PortableTextBlock[]
-	historyImage: {
-		url: string
-		alt?: string
-		width: number
-		height: number
-	}
-}
+  content?: PortableTextBlock[];
+  historyImage: {
+    url: string;
+    alt?: string;
+    width: number;
+    height: number;
+  };
+};
 export function HistorySection({ content, historyImage }: HistorySectionProps) {
-	return (
-		<section className='py-16 px-4 sm:px-6 lg:px-8 gradient-section-b'>
-			<div className='max-w-7xl mx-auto'>
-				<div className='flex flex-col md:flex-row gap-8 md:gap-12 items-center justify-center'>
-					{/* Contenu Rich Text */}
-					<div className='flex justify-center items-center'>{content && <RichTextRenderer content={content} />}</div>
-					{historyImage && (
-						<Card className='w-full h-auto min-w-80 max-h-128 max-w-128 p-0 overflow-hidden flex justify-center items-center group'>
-							<CardContent className='p-0 relative w-full h-full'>
-								<Image
-									src={historyImage.url}
-									alt={historyImage.alt || 'Image historique'}
-									width={historyImage.width}
-									height={historyImage.height}
-									className='w-full h-full object-cover group-hover:scale-105 transition-all duration-300'
-								/>
-							</CardContent>
-						</Card>
-					)}
-				</div>
-			</div>
-		</section>
-	)
+  return (
+    <section className='gradient-section-b px-4 py-16 sm:px-6 lg:px-8'>
+      <div className='mx-auto max-w-7xl'>
+        <div className='flex flex-col items-center justify-center gap-8 md:flex-row md:gap-12'>
+          {/* Contenu Rich Text */}
+          <div className='flex items-center justify-center'>{content && <RichTextRenderer content={content} />}</div>
+          {historyImage && (
+            <Card className='group flex h-auto max-h-128 w-full max-w-128 min-w-80 items-center justify-center overflow-hidden p-0'>
+              <CardContent className='relative h-full w-full p-0'>
+                <Image
+                  src={historyImage.url}
+                  alt={historyImage.alt || 'Image historique'}
+                  width={historyImage.width}
+                  height={historyImage.height}
+                  className='h-full w-full object-cover transition-all duration-300 group-hover:scale-105'
+                />
+              </CardContent>
+            </Card>
+          )}
+        </div>
+      </div>
+    </section>
+  );
 }

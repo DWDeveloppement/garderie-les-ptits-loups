@@ -3,12 +3,12 @@
 
 'use client';
 
-import * as React from 'react'
+import * as React from 'react';
 
-import { cn } from '@/lib/utils'
-import { Slot } from '@radix-ui/react-slot'
+import { cn } from '@/lib/utils';
+import { Slot } from '@radix-ui/react-slot';
 
-import { ICONS, type IconName } from './registry'
+import { ICONS, type IconName } from './registry';
 
 /**
  * Tailles prédéfinies pour les icônes
@@ -22,12 +22,12 @@ const sizeClass: Record<IconSize, string> = {
   md: 'size-5',
   lg: 'size-6',
   xl: 'size-8',
-  avatar: 'size-22', // 48px - taille idéale pour les avatars
+  avatar: 'size-22' // 48px - taille idéale pour les avatars
 };
 
 /**
  * Props pour le mode Registry (icônes prédéfinies)
- * 
+ *
  * @example
  * ```tsx
  * <Icon name="success" size="md" aria-label="Succès" />
@@ -45,7 +45,7 @@ type RegistryIconProps = {
 
 /**
  * Props pour le mode Slot (icônes custom)
- * 
+ *
  * @example
  * ```tsx
  * <Icon size="lg">
@@ -87,19 +87,19 @@ function buildA11y(props: IconProps) {
 
 /**
  * Composant Icon hybride
- * 
+ *
  * **Mode 1 : Registry** (icônes prédéfinies)
  * ```tsx
  * <Icon name="success" size="md" />
  * ```
- * 
+ *
  * **Mode 2 : Slot** (icônes custom)
  * ```tsx
  * <Icon size="lg">
  *   <CustomSvg />
  * </Icon>
  * ```
- * 
+ *
  * **Avantages :**
  * - Tree-shaking (seules les icônes utilisées sont bundlées)
  * - Typage strict avec auto-complétion IDE
@@ -107,52 +107,37 @@ function buildA11y(props: IconProps) {
  * - Accessibilité automatique
  * - Sizing cohérent (Tailwind size-*)
  */
-export const Icon = React.forwardRef<HTMLElement, IconProps>(
-  (props, ref) => {
-    const { className, size = 'sm', ...rest } = props;
-    const classes = cn('shrink-0 pointer-events-none', sizeClass[size], className);
-    const a11y = buildA11y(props);
+export const Icon = React.forwardRef<HTMLElement, IconProps>((props, ref) => {
+  const { className, size = 'sm', ...rest } = props;
+  const classes = cn('shrink-0 pointer-events-none', sizeClass[size], className);
+  const a11y = buildA11y(props);
 
-    // Auto-détection : Mode Slot si pas de `name`
-    if (!props.name) {
-      const { children, ...slotProps } = rest as SlotIconProps;
-
-      return (
-        <Slot
-          ref={ref}
-          data-slot="icon"
-          className={classes}
-          {...a11y}
-          {...slotProps}
-        >
-          {children}
-        </Slot>
-      );
-    }
-
-    // Mode Registry : Icône prédéfinie
-    const { name, fallbackName, ...svgProps } = rest as RegistryIconProps;
-    const IconComponent = ICONS[name] ?? (fallbackName ? ICONS[fallbackName] : undefined);
-
-    if (!IconComponent) {
-      if (process.env.NODE_ENV !== 'production') {
-        console.warn(`[Icon] Icône inconnue "${name}". Fallback: "${fallbackName || 'aucun'}".`);
-      }
-
-      return null;
-    }
+  // Auto-détection : Mode Slot si pas de `name`
+  if (!props.name) {
+    const { children, ...slotProps } = rest as SlotIconProps;
 
     return (
-      <IconComponent
-        ref={ref as React.Ref<SVGSVGElement>}
-        data-slot="icon"
-        className={classes}
-        {...a11y}
-        {...svgProps}
-      />
+      <Slot ref={ref} data-slot='icon' className={classes} {...a11y} {...slotProps}>
+        {children}
+      </Slot>
     );
   }
-);
+
+  // Mode Registry : Icône prédéfinie
+  const { name, fallbackName, ...svgProps } = rest as RegistryIconProps;
+  const IconComponent = ICONS[name] ?? (fallbackName ? ICONS[fallbackName] : undefined);
+
+  if (!IconComponent) {
+    if (process.env.NODE_ENV !== 'production') {
+      console.warn(`[Icon] Icône inconnue "${name}". Fallback: "${fallbackName || 'aucun'}".`);
+    }
+
+    return null;
+  }
+
+  return (
+    <IconComponent ref={ref as React.Ref<SVGSVGElement>} data-slot='icon' className={classes} {...a11y} {...svgProps} />
+  );
+});
 
 Icon.displayName = 'Icon';
-

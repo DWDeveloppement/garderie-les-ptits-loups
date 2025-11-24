@@ -1,4 +1,5 @@
-import { SanityStudio } from '@/sanity/Studio'
+import { SanityStudio } from '@/sanity/Studio';
+
 export default function StudioPage() {
-	return <SanityStudio />
+  return <SanityStudio />;
 }
