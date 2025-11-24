@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { cn } from '@ui/lib/utils'
 import { buttonVariants } from '@ui/variants/button'
 import { ButtonProps } from '@ui/types/button'
-import { useButtonA11yProps } from '@hooks/a11y'
+import { useButtonA11yProps } from '@/hooks'
 import { getButtonComponent } from '@ui/lib/getButtonComponent'
 
 export const Button = React.forwardRef<HTMLElement, ButtonProps>(
