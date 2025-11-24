@@ -1,9 +1,12 @@
+// 📂 sanity.config.ts (racine)
+// 👉 Point d'entrée pour Sanity CLI - réexporte la config depuis sanity/
+
 import { table } from '@sanity/table'
 import { visionTool } from '@sanity/vision'
 import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
 
-// Imports nettoyés (rôles et sidebars développeur retirés)
+// Imports depuis le dossier sanity/
 import { deskStructure } from './sanity/deskStructure'
 import { schema } from './sanity/schema'
 

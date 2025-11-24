@@ -1,6 +1,6 @@
 'use client'
 
-import { useScrollParallax } from '@/hooks/useScollParalax'
+import { useScrollParallax } from '../../../hooks/useScollParalax'
 import Image from 'next/image'
 
 type ParalaxImageProps = {
@@ -57,14 +57,7 @@ export function ParalaxImage({ image, imageUrl, imageAlt, title, subtitle, heigh
 					transform: imageTransform,
 					transition: 'transform 0.1s ease-out',
 				}}>
-				<Image
-					src={finalImageUrl}
-					alt={finalImageAlt}
-					fill
-					className='object-cover object-center'
-					priority
-					sizes='100vw'
-				/>
+				<Image src={finalImageUrl} alt={finalImageAlt} fill className='object-cover object-center' priority sizes='100vw' />
 			</div>
 
 			{/* Overlay semi-transparent avec opacité dynamique */}

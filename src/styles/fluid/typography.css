@@ -31,30 +31,30 @@
 
 /* Variables de typographie fluide */
 @layer theme {
-  :root {
-    /* Calcul du facteur de zoom */
-    --fl-min-width: calc(320px / var(--zoom-factor));
-    --fl-max-width: calc(1200px / var(--zoom-factor));
+	:root {
+		/* Calcul du facteur de zoom */
+		--fl-min-width: calc(320px / var(--zoom-factor));
+		--fl-max-width: calc(1200px / var(--zoom-factor));
 
-    /* Hauteurs de ligne - Calculées avec des ratios */
-    /* Petit texte (--lh--2, --lh--1) → Ratio 1.2 (--ratio-sm) */
-    --fl-lh--2: calc(var(--size--2) * var(--ratio-sm));
-    --fl-lh--1: calc(var(--size--1) * var(--ratio-sm));
+		/* Hauteurs de ligne - Calculées avec des ratios */
+		/* Petit texte (--lh--2, --lh--1) → Ratio 1.2 (--ratio-sm) */
+		--fl-lh--2: calc(var(--size--2) * var(--ratio-sm));
+		--fl-lh--1: calc(var(--size--1) * var(--ratio-sm));
 
-    /* Texte normal (--lh-0, --lh-1) → Ratio 1.4 (--ratio-base) */
-    --fl-lh-0: calc(var(--size-0) * var(--ratio-base));
-    --fl-lh-1: calc(var(--size-1) * var(--ratio-base));
+		/* Texte normal (--lh-0, --lh-1) → Ratio 1.4 (--ratio-base) */
+		--fl-lh-0: calc(var(--size-0) * var(--ratio-base));
+		--fl-lh-1: calc(var(--size-1) * var(--ratio-base));
 
-    /* Titres (--lh-2 à --lh-5) → Ratio 1.6 (--ratio-lg) */
-    --fl-lh-2: calc(var(--size-2) * var(--ratio-lg));
-    --fl-lh-3: calc(var(--size-3) * var(--ratio-lg));
-    --fl-lh-4: calc(var(--size-4) * var(--ratio-lg));
-    --fl-lh-5: calc(var(--size-5) * var(--ratio-lg));
+		/* Titres (--lh-2 à --lh-5) → Ratio 1.6 (--ratio-lg) */
+		--fl-lh-2: calc(var(--size-2) * var(--ratio-lg));
+		--fl-lh-3: calc(var(--size-3) * var(--ratio-lg));
+		--fl-lh-4: calc(var(--size-4) * var(--ratio-lg));
+		--fl-lh-5: calc(var(--size-5) * var(--ratio-lg));
 
-    /* Hauteur de ligne pour titres Display */
-    --fl-lh-display-2: calc(var(--size-4) * var(--display-factor) * var(--ratio-sm));
-    --fl-lh-display-1: calc(var(--size-5) * var(--display-factor) * var(--ratio-sm));
-  }
+		/* Hauteur de ligne pour titres Display */
+		--fl-lh-display-2: calc(var(--size-4) * var(--display-factor) * var(--ratio-sm));
+		--fl-lh-display-1: calc(var(--size-5) * var(--display-factor) * var(--ratio-sm));
+	}
 }
 
 /*
@@ -70,194 +70,199 @@ https://utopia.fyi/type/calculator?c=330,18,1.2,1200,24,1.25,5,2,&s=0.75%7C0.5%7
 
 /* Variables typographiques */
 :root {
-  /* Extension des tailles Tailwind */
-  --fl-text-xs: calc(var(--size--2) * var(--zoom-factor, 1)); /* 11.11px → 12.8px */
-  --fl-text-sm: calc(var(--size--1) * var(--zoom-factor, 1)); /* 13.33px → 16px */
-  --fl-text-base: calc(var(--size-0) * var(--zoom-factor, 1)); /* 16px → 20px */
-  --fl-text-lg: calc(var(--size-1) * var(--zoom-factor, 1)); /* 19.2px → 25px */
-  --fl-text-xl: calc(var(--size-2) * var(--zoom-factor, 1)); /* 23.04px → 31.25px */
-  --fl-text-2xl: calc(var(--size-3) * var(--zoom-factor, 1)); /* 27.65px → 39.06px */
-  --fl-text-3xl: calc(var(--size-4) * var(--zoom-factor, 1)); /* 33.18px → 48.83px */
-  --fl-text-4xl: calc(var(--size-5) * var(--zoom-factor, 1)); /* 39.81px → 61.04px */
+	/* Extension des tailles Tailwind */
+	--fl-text-xs: calc(var(--size--2) * var(--zoom-factor, 1)); /* 10.1301px → 12.3812px */
+	--fl-text-sm: calc(var(--size--1) * var(--zoom-factor, 1)); /* 13.5034px → 16.5041px */
+	--fl-text-base: calc(var(--size-0) * var(--zoom-factor, 1)); /* 18px → 22px */
+	--fl-text-lg: calc(var(--size-1) * var(--zoom-factor, 1)); /* 23.994px → 29.326px */
+	--fl-text-xl: calc(var(--size-2) * var(--zoom-factor, 1)); /* 31.984px → 39.0916px */
+	--fl-text-2xl: calc(var(--size-3) * var(--zoom-factor, 1)); /* 42.6347px → 52.109px */
+	--fl-text-3xl: calc(var(--size-4) * var(--zoom-factor, 1)); /* 56.832px → 69.4614px */
+	--fl-text-4xl: calc(var(--size-5) * var(--zoom-factor, 1)); /* 75.7571px → 92.592px */
 
-  /* Texte Display */
-  --fl-text-display-2: calc(var(--size-4) * var(--display-factor) * var(--zoom-factor, 1)); /* 48.83px → 75px */
-  --fl-text-display-1: calc(var(--size-5) * var(--display-factor) * var(--zoom-factor, 1)); /* 61.04px → 95px */
+	/* Texte Display */
+	--fl-text-display-2: calc(var(--size-4) * var(--display-factor) * var(--zoom-factor, 1)); /* 48.83px → 75px */
+	--fl-text-display-1: calc(var(--size-5) * var(--display-factor) * var(--zoom-factor, 1)); /* 61.04px → 95px */
 
-  /* Extension des hauteurs de ligne Tailwind */
-  --fl-leading-3: calc(var(--fl-lh--2) * var(--zoom-factor, 1)); /* Ratio 1.2 */
-  --fl-leading-4: calc(var(--fl-lh--1) * var(--zoom-factor, 1)); /* Ratio 1.2 */
-  --fl-leading-5: calc(var(--fl-lh-0) * var(--zoom-factor, 1)); /* Ratio 1.4 */
-  --fl-leading-6: calc(var(--fl-lh-1) * var(--zoom-factor, 1)); /* Ratio 1.4 */
-  --fl-leading-7: calc(var(--fl-lh-2) * var(--zoom-factor, 1)); /* Ratio 1.6 */
-  --fl-leading-8: calc(var(--fl-lh-3) * var(--zoom-factor, 1)); /* Ratio 1.6 */
-  --fl-leading-9: calc(var(--fl-lh-4) * var(--zoom-factor, 1)); /* Ratio 1.6 */
-  --fl-leading-10: calc(var(--fl-lh-5) * var(--zoom-factor, 1)); /* Ratio 1.6 */
+	/* Extension des hauteurs de ligne Tailwind */
+	--fl-leading-3: calc(var(--fl-lh--2) * var(--zoom-factor, 1)); /* Ratio 1.2 */
+	--fl-leading-4: calc(var(--fl-lh--1) * var(--zoom-factor, 1)); /* Ratio 1.2 */
+	--fl-leading-5: calc(var(--fl-lh-0) * var(--zoom-factor, 1)); /* Ratio 1.4 */
+	--fl-leading-6: calc(var(--fl-lh-1) * var(--zoom-factor, 1)); /* Ratio 1.4 */
+	--fl-leading-7: calc(var(--fl-lh-2) * var(--zoom-factor, 1)); /* Ratio 1.6 */
+	--fl-leading-8: calc(var(--fl-lh-3) * var(--zoom-factor, 1)); /* Ratio 1.6 */
+	--fl-leading-9: calc(var(--fl-lh-4) * var(--zoom-factor, 1)); /* Ratio 1.6 */
+	--fl-leading-10: calc(var(--fl-lh-5) * var(--zoom-factor, 1)); /* Ratio 1.6 */
 
-  /* Hauteur de ligne pour titres Display */
-  --fl-leading-display-1: calc(var(--fl-lh-display-1) * var(--zoom-factor, 1)); /* Ratio 1.2 */
-  --fl-leading-display-2: calc(var(--fl-lh-display-2) * var(--zoom-factor, 1)); /* Ratio 1.2 */
+	/* Hauteur de ligne pour titres Display */
+	--fl-leading-display-1: calc(var(--fl-lh-display-1) * var(--zoom-factor, 1)); /* Ratio 1.2 */
+	--fl-leading-display-2: calc(var(--fl-lh-display-2) * var(--zoom-factor, 1)); /* Ratio 1.2 */
 }
 
 /* Reset de base / Base reset */
 @layer base {
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-size: var(--font-size);
-  }
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+		font-size: var(--font-size);
+	}
 
-  body {
-    font-size: var(--fl-text-base);
-    line-height: var(--fl-leading-5);
-    font-family: var(--font-sans);
-  }
+	body {
+		font-size: var(--fl-text-base);
+		line-height: var(--fl-leading-5);
+		font-family: var(--font-sans);
+	}
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-display);
-  }
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-family: var(--font-display);
+	}
 
-  h1 {
-    font-size: var(--fl-text-4xl);
-    line-height: var(--fl-leading-10);
-  }
+	h1 {
+		font-size: var(--fl-text-4xl);
+		line-height: var(--fl-leading-10);
+	}
 
-  h2 {
-    font-size: var(--fl-text-3xl);
-    line-height: var(--fl-leading-9);
-  }
+	h2 {
+		font-size: var(--fl-text-3xl);
+		line-height: var(--fl-leading-9);
+	}
 
-  h3 {
-    font-size: var(--fl-text-2xl);
-    line-height: var(--fl-leading-8);
-  }
+	h3 {
+		font-size: var(--fl-text-2xl);
+		line-height: var(--fl-leading-8);
+	}
 
-  h4 {
-    font-size: var(--fl-text-xl);
-    line-height: var(--fl-leading-7);
-  }
+	h4 {
+		font-size: var(--fl-text-xl);
+		line-height: var(--fl-leading-7);
+	}
 
-  h5 {
-    font-size: var(--fl-text-lg);
-    line-height: var(--fl-leading-6);
-  }
+	h5 {
+		font-size: var(--fl-text-lg);
+		line-height: var(--fl-leading-6);
+	}
 
-  h6 {
-    font-size: var(--fl-text-base);
-    line-height: var(--fl-leading-5);
-  }
+	h6 {
+		font-size: var(--fl-text-base);
+		line-height: var(--fl-leading-5);
+	}
 
-  small {
-    font-size: var(--fl-text-sm);
-    line-height: var(--fl-leading-4);
-  }
+	small {
+		font-size: var(--fl-text-sm);
+		line-height: var(--fl-leading-4);
+	}
 
-  .text-display-1 {
-    font-size: var(--fl-text-display-1);
-    line-height: var(--fl-leading-display-1);
-  }
+	.text-display-1 {
+		font-size: var(--fl-text-display-1);
+		line-height: var(--fl-leading-display-1);
+	}
 
-  .text-display-2 {
-    font-size: var(--fl-text-display-2);
-    line-height: var(--fl-leading-display-2);
-  }
+	.text-display-2 {
+		font-size: var(--fl-text-display-2);
+		line-height: var(--fl-leading-display-2);
+	}
 
-  .zoom-disabled {
-    zoom: var(--zoom-factor) !important;
-  }
+	.zoom-disabled {
+		zoom: var(--zoom-factor) !important;
+	}
 
-  .zoom-enabled {
-    --zoom-factor: var(--global-zoom-factor, 1) !important;
-  }
+	.zoom-enabled {
+		--zoom-factor: var(--global-zoom-factor, 1) !important;
+	}
 }
 
 /* Classes utilitaires */
 @layer utilities {
-  /* Classes de zoom */
-  .zoom-disabled {
-    zoom: var(--zoom-factor) !important;
-  }
+	/* Classes de zoom */
+	.zoom-disabled {
+		zoom: var(--zoom-factor) !important;
+	}
 
-  .zoom-enabled {
-    --zoom-factor: var(--global-zoom-factor, 1) !important;
-  }
+	.zoom-enabled {
+		--zoom-factor: var(--global-zoom-factor, 1) !important;
+	}
 
-  /* Classe pour les titres Display */
-  .text-display-1 {
-    font-size: var(--fl-text-display-1);
-    line-height: var(--fl-leading-display-1);
-  }
+	/* Classe pour les titres Display */
+	.text-display-1 {
+		font-size: var(--fl-text-display-1);
+		line-height: var(--fl-leading-display-1);
+	}
 
-  .text-display-2 {
-    font-size: var(--fl-text-display-2);
-    line-height: var(--fl-leading-display-2);
-  }
+	.text-display-2 {
+		font-size: var(--fl-text-display-2);
+		line-height: var(--fl-leading-display-2);
+	}
 
-  /* Classes de texte avec line-height par défaut */
-  .text-fl-xs {
-    font-size: var(--fl-text-xs);
-    line-height: var(--fl-leading-3);
-  }
+	/* Classes de texte avec line-height par défaut */
+	.text-fl-xs {
+		font-size: var(--fl-text-xs);
+		line-height: var(--fl-leading-3);
+	}
 
-  .text-fl-sm {
-    font-size: var(--fl-text-sm);
-    line-height: var(--fl-leading-4);
-  }
+	.text-fl-sm {
+		font-size: var(--fl-text-sm);
+		line-height: var(--fl-leading-4);
+	}
 
-  .text-fl-base {
-    font-size: var(--fl-text-base);
-    line-height: var(--fl-leading-5);
-  }
+	.text-fl-base {
+		font-size: var(--fl-text-base);
+		line-height: var(--fl-leading-5);
+	}
 
-  .text-fl-lg {
-    font-size: var(--fl-text-lg);
-    line-height: var(--fl-leading-6);
-  }
+	.text-fl-lg {
+		font-size: var(--fl-text-lg);
+		line-height: var(--fl-leading-6);
+	}
 
-  .text-fl-xl {
-    font-size: var(--fl-text-xl);
-    line-height: var(--fl-leading-7);
-  }
+	.text-fl-xl {
+		font-size: var(--fl-text-xl);
+		line-height: var(--fl-leading-7);
+	}
 
-  .text-fl-2xl {
-    font-size: var(--fl-text-2xl);
-    line-height: var(--fl-leading-8);
-  }
+	.text-fl-2xl {
+		font-size: var(--fl-text-2xl);
+		line-height: var(--fl-leading-8);
+	}
 
-  .text-fl-3xl {
-    font-size: var(--fl-text-3xl);
-    line-height: var(--fl-leading-9);
-  }
+	.text-fl-3xl {
+		font-size: var(--fl-text-3xl);
+		line-height: var(--fl-leading-9);
+	}
 
-  .text-fl-4xl {
-    font-size: var(--fl-text-4xl);
-    line-height: var(--fl-leading-10);
-  }
+	.text-fl-4xl {
+		font-size: var(--fl-text-4xl);
+		line-height: var(--fl-leading-10);
+	}
 
-  /* Classes de hauteur de ligne fluide */
-  .leading-fl-3 {
-    line-height: var(--fl-leading-3);
-  }
-  .leading-fl-4 {
-    line-height: var(--fl-leading-4);
-  }
-  .leading-fl-5 {
-    line-height: var(--fl-leading-5);
-  }
-  .leading-fl-6 {
-    line-height: var(--fl-leading-6);
-  }
-  .leading-fl-7 {
-    line-height: var(--fl-leading-7);
-  }
-  .leading-fl-8 {
-    line-height: var(--fl-leading-8);
-  }
-  .leading-fl-9 {
-    line-height: var(--fl-leading-9);
-  }
-  .leading-fl-10 {
-    line-height: var(--fl-leading-10);
-  }
+	/* Classes de hauteur de ligne fluide */
+	.leading-fl-3 {
+		line-height: var(--fl-leading-3);
+	}
+	.leading-fl-4 {
+		line-height: var(--fl-leading-4);
+	}
+	.leading-fl-5 {
+		line-height: var(--fl-leading-5);
+	}
+	.leading-fl-6 {
+		line-height: var(--fl-leading-6);
+	}
+	.leading-fl-7 {
+		line-height: var(--fl-leading-7);
+	}
+	.leading-fl-8 {
+		line-height: var(--fl-leading-8);
+	}
+	.leading-fl-9 {
+		line-height: var(--fl-leading-9);
+	}
+	.leading-fl-10 {
+		line-height: var(--fl-leading-10);
+	}
 }

@@ -1,6 +1,6 @@
 'use client'
 
-import { useBreakpoint } from '@/hooks/useWindowSize'
+import { useBreakpoint } from '../../../../hooks/useWindowSize'
 
 type SubsidiesTableProps = {
 	subsidies: {
