@@ -3,11 +3,11 @@
 import React from 'react'
 import Link from 'next/link'
 
-import { cn } from '@ui/lib/utils'
-import { buttonVariants } from '@ui/variants/button'
-import { ButtonProps } from '@ui/types/button'
+import { cn } from '@/ui/lib/utils'
+import { buttonVariants } from '@/ui/variants/button'
+import { ButtonProps } from '@/ui/types/button'
 import { useButtonA11yProps } from '@/hooks'
-import { getButtonComponent } from '@ui/lib/getButtonComponent'
+import { getButtonComponent } from '@/ui/lib/getButtonComponent'
 
 export const Button = React.forwardRef<HTMLElement, ButtonProps>(
 	(
@@ -19,6 +19,7 @@ export const Button = React.forwardRef<HTMLElement, ButtonProps>(
 			decorative = false,
 			asChild = false,
 			href,
+			type,
 			children,
 			className,
 			disabled,
@@ -77,7 +78,7 @@ export const Button = React.forwardRef<HTMLElement, ButtonProps>(
 		}
 
 		return (
-			<Comp ref={ref} href={href} className={classes} {...a11yProps} {...props}>
+			<Comp ref={ref} href={href} type={type} className={classes} {...a11yProps} {...props}>
 				{children}
 			</Comp>
 		)

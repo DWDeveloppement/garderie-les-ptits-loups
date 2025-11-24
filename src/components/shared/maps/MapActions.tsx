@@ -16,28 +16,26 @@ export function MapActions({ location, className = '' }: MapActionsProps) {
 	return (
 		<div className={`flex flex-wrap gap-2 justify-center ${className}`}>
 			<Button
-				asLink
+				mode="link"
 				href={urls.appleMaps}
-				variant='default'
-				ariaLabel="Ouvrir l'itinéraire dans Apple Plans"
-				external
+				variant="primary"
+				aria-label="Ouvrir l'itinéraire dans Apple Plans"
 				className='inline-flex items-center gap-2'>
 				<Icon name='send' />
 				Apple Plans
 			</Button>
 
 			<Button
-				asLink
+				mode="link"
 				href={urls.googleMaps}
-				variant='default'
-				ariaLabel="Ouvrir l'itinéraire dans Google Maps"
-				external
+				variant="primary"
+				aria-label="Ouvrir l'itinéraire dans Google Maps"
 				className='inline-flex items-center gap-2'>
 				<Icon name='mapPin' />
 				Google Maps
 			</Button>
 
-			<Button onClick={copyAddress} variant='default' ariaLabel="Copier l'adresse" className='inline-flex items-center gap-2'>
+			<Button onClick={copyAddress} variant="primary" aria-label="Copier l'adresse" className='inline-flex items-center gap-2'>
 				<Icon name='copy' />
 				Copier
 			</Button>

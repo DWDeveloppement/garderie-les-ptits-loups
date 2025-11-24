@@ -13,7 +13,7 @@
 
 import { useEffect } from 'react'
 // Import statique pour que Next.js compile le CSS, mais chargement non-bloquant
-import '@/styles/animations.css'
+import '@/styles/frontend/animations.css'
 
 export function AnimateCSS() {
 	useEffect(() => {

@@ -8,7 +8,7 @@ export function AccordionSection() {
 				Le composant `Accordion` s’appuie sur Radix UI. Les classes utilitaires appliquées respectent les focus rings et les animations
 				personnalisées configurées dans `globals.css`.
 			</p>
-			<Accordion type='single' collapsible className='p-4 w-full max-w-3xl rounded-lg border border-border bg-card/50'>
+			<Accordion type='single' collapsible className='p-4 w-full max-w-3xl rounded-lg border border-[var(--border)] bg-card/50'>
 				<AccordionItem value='item-1'>
 					<AccordionTrigger className='text-fl-base font-semibold'>Comment fonctionne l’accueil quotidien ?</AccordionTrigger>
 					<AccordionContent className='text-fl-base leading-relaxed'>

@@ -1,6 +1,6 @@
 // Accessibility hooks
-export * from './useButtonA11y'
-export * from './useButtonA11yProps'
+export { useButtonA11y } from './useButtonA11y'
+export { useButtonA11yProps, type ButtonA11yProps } from './useButtonA11yProps'
 export * from './useFocusA11y'
 export * from './useFormA11y'
 export * from './useGalleryA11y'

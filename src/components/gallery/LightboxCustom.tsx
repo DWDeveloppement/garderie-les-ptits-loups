@@ -4,7 +4,7 @@
 'use client';
 
 import { Icon } from '@/components/icons';
-import '@/styles/lightbox-override.css';
+import '@/styles/frontend/lightbox.css';
 
 import type { Photo } from 'react-photo-album';
 import YetAnotherLightbox from 'yet-another-react-lightbox';

@@ -55,7 +55,7 @@ export function CardExamples() {
       </Card>
 
       {/* Secondary avec size custom */}
-      <Card variant="secondary" size="xl">
+      <Card variant="secondary" size="lg">
         <CardHeader>
           <CardTitle>Secondary XL</CardTitle>
         </CardHeader>

@@ -28,7 +28,7 @@ export function HeroSection({ sectionHero }: HeroSectionProps) {
 
 						<p className='leading-relaxed text-fl-lg text-orange-11'>{description}</p>
 
-						<Button size='xl' variant='default' asNextLink href='/contact' className='text-fl-base'>
+						<Button size='lg' variant="primary" mode="next-link" href='/contact' className='text-fl-base'>
 							{buttonText}
 						</Button>
 					</div>

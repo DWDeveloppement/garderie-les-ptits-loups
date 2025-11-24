@@ -39,12 +39,12 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
               <h2 className='text-fl-xl font-bold'>Menu</h2>
               <DialogClose asChild>
                 <Button
-                  variant='default'
+                  variant="primary"
                   size='icon'
-                  ariaLabel='Fermer le menu mobile'
+                  aria-label='Fermer le menu mobile'
                   className='h-12 w-12 focus:outline-none'
                   aria-expanded={isOpen}>
-                  <Icon name='close' size='xl' aria-hidden />
+                  <Icon name='close' size='lg' aria-hidden />
                 </Button>
               </DialogClose>
             </div>
@@ -61,12 +61,12 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                           size='lg'
                           onClick={() => toggleSubmenu(item.label)}
                           variant='ghost'
-                          ariaLabel={`Ouvrir le sous-menu ${item.label}`}
+                          aria-label={`Ouvrir le sous-menu ${item.label}`}
                           className='text-purple-9 hover:text-purple-11 hover:bg-orange-3 text-fl-lg mb-0 flex w-full items-center justify-between rounded-md text-left font-medium transition-colors'>
                           <span className='flex-1'>{item.label}</span>
                           <Icon
                             name='chevronRight'
-                            size='xl'
+                            size='lg'
                             aria-hidden
                             className={`transition-transform ${expandedMenu === item.label ? 'rotate-90' : ''}`}
                           />
@@ -77,14 +77,14 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                           <div className='border-purple-6 mt-1 mb-2 ml-6 w-auto space-y-1 border-l-4 pl-1'>
                             {item.subMenu.map((subItem) => (
                               <Button
-                                asNextLink
+                                mode="next-link"
                                 size='lg'
                                 variant='ghost'
                                 key={subItem.href}
                                 href={subItem.href}
                                 onClick={onClose}
                                 className='text-fl-lg text-purple-9 hover:text-purple-11 hover:bg-orange-3 flex w-full items-center justify-start rounded-md text-left font-medium transition-colors'
-                                ariaLabel={`Aller à la page ${subItem.label}`}>
+                                aria-label={`Aller à la page ${subItem.label}`}>
                                 {subItem.label}
                               </Button>
                             ))}
@@ -94,13 +94,13 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                     ) : (
                       /* Simple item */
                       <Button
-                        asNextLink
+                        mode="next-link"
                         size='lg'
                         variant='ghost'
                         href={item.href || '/'}
                         onClick={onClose}
                         className='text-purple-9 hover:text-purple-11 hover:bg-orange-3 text-fl-lg flex w-full items-center justify-start rounded-md text-left font-medium transition-colors'
-                        ariaLabel={`Aller à la page ${item.label}`}>
+                        aria-label={`Aller à la page ${item.label}`}>
                         {item.label}
                       </Button>
                     )}
@@ -113,12 +113,12 @@ export function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
             <Separator className='my-4' />
             <div className='px-8 pb-4'>
               <Button
-                asNextLink
+                mode="next-link"
                 href='/contact'
-                ariaLabel='Aller à la page Contact'
+                aria-label='Aller à la page Contact'
                 onClick={onClose}
-                variant='default'
-                size='xl'
+                variant="primary"
+                size='lg'
                 className='w-full'>
                 Nous contacter
               </Button>

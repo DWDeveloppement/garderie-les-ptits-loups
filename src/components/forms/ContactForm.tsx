@@ -180,20 +180,20 @@ const ContactForm = () => {
       {/* Boutons */}
       <div className='mt-8 flex justify-around gap-4'>
         <Button
-          variant='default'
-          size='xl'
+          variant='primary'
+          size='lg'
           type='button'
-          ariaLabel='Envoyer le message'
+          aria-label='Envoyer le message'
           onClick={handleSubmit}
           disabled={isSubmitting}>
           {isSubmitting && <Spinner className='mr-2 size-4' />}
           {isSubmitting ? 'Envoi en cours...' : 'Envoyer'}
         </Button>
         <Button
-          variant='outline'
-          size='xl'
+          variant='primary-outline'
+          size='lg'
           type='button'
-          ariaLabel='Réinitialiser le formulaire'
+          aria-label='Réinitialiser le formulaire'
           onClick={handleReset}
           disabled={isSubmitting}>
           Réinitialiser

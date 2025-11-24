@@ -30,7 +30,7 @@ export function CardSection() {
 							</p>
 						</CardContent>
 						<CardFooter className='flex gap-3 justify-end'>
-							<Button variant='outline'>En savoir plus</Button>
+							<Button variant="primary-outline">En savoir plus</Button>
 							<Button>Action principale</Button>
 						</CardFooter>
 					</Card>

@@ -75,7 +75,7 @@ export function TypographySection() {
 				<div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
 					{/* Citation de Carte default et secondary */}
 					<BlockQuote
-						variant='default'
+						variant="default"
 						content='Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.'
 						author='John Doe'
 					/>
@@ -87,7 +87,7 @@ export function TypographySection() {
 				</div>
 				<div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
 					<BlockQuoteCard
-						variant='default'
+						variant="primary"
 						content='Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.'
 						author='John Doe'
 					/>

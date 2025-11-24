@@ -55,7 +55,7 @@ function renderNextImage(
         onClick={dispatchPhotoClick}
         className='focus-visible:ring-ring/60 focus-visible:ring-offset-background relative block h-full w-full rounded-lg focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none'
         aria-label={accessibleLabel}>
-        <Card variant='primary' interactive className='relative h-full w-full overflow-hidden rounded-lg p-4'>
+        <Card className='relative h-full w-full overflow-hidden rounded-lg p-4'>
           <CardContent>
             <Image
               fill

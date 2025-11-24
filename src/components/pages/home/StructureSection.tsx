@@ -71,9 +71,9 @@ export function StructureSection({ sectionStructure }: StructureSectionProps) {
 									{/* Indicateur visuel que c'est cliquable (décoratif uniquement, pas focusable) */}
 									<CardFooter className='!p-0 w-full h-16 flex justify-center items-end'>
 										<Button
-											variant='default'
-											asDecorative
-											size='xl'
+											variant="primary"
+											decorative
+											size='lg'
 											className='!text-primary-foreground font-medium group-hover:bg-primary/90 transition-colors text-fl-base'>
 											<span>Voir le secteur</span>
 											<Icon name='arrowRight' size='md' className='h-4 w-4 ml-2 transition-transform group-hover:translate-x-1' />

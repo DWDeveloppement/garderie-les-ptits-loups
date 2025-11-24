@@ -20,6 +20,11 @@ export interface ButtonProps extends React.HTMLAttributes<HTMLElement>, VariantP
 	href?: string
 
 	/**
+	 * Type de bouton (pour mode button)
+	 */
+	type?: 'button' | 'submit' | 'reset'
+
+	/**
 	 * Empêche l'interaction
 	 */
 	decorative?: boolean

@@ -2,7 +2,7 @@
 // 👉 Hook unifié pour la gestion de l'accessibilité du composant Button
 // Responsabilité unique : Fusionner toutes les props a11y selon le mode du Button
 
-import type { ButtonMode } from '@ui/types/button'
+import type { ButtonMode } from '@/ui/types/button'
 
 export type ButtonA11yProps = {
 	mode: ButtonMode

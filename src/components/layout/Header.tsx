@@ -43,11 +43,11 @@ export function Header() {
             <Button
               className='h-12 w-12 focus:outline-none'
               size='icon'
-              variant='default'
+              variant="primary"
               onClick={toggleMenu}
-              ariaLabel='Ouvrir le menu mobile'
+              aria-label='Ouvrir le menu mobile'
               aria-expanded={isMenuOpen}>
-              <Icon name='menu' size='xl' aria-hidden />
+              <Icon name='menu' size='lg' aria-hidden />
               <span className='sr-only'>Ouvrir le menu mobile</span>
             </Button>
           </div>

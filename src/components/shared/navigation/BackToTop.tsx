@@ -16,11 +16,11 @@ export function BackToTop() {
 	return (
 		<Button
 			onClick={scrollToTop}
-			ariaLabel='Retour en haut de la page'
-			variant='default'
+			aria-label='Retour en haut de la page'
+			variant="primary"
 			size='icon'
 			className='fixed bottom-24 right-4 z-50 h-12 w-12 !rounded-full shadow-lg shadow-purple-9/50'>
-			<Icon name='chevronUp' size='xl' aria-hidden />
+			<Icon name='chevronUp' size='lg' aria-hidden />
 		</Button>
 	)
 }

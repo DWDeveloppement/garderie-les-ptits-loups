@@ -96,10 +96,10 @@ export function BottomBar({ location = MAP_INFO_DEFAULT, phoneNumber, email, cla
 					return (
 						<Fragment key={action.id}>
 							<Button
-								variant='default'
+								variant="primary"
 								size='icon'
 								{...linkProps}
-								ariaLabel={action.ariaLabel}
+								aria-label={action.ariaLabel}
 								className='group flex flex-col items-center justify-center gap-1 transition-all active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-9/50 h-12 w-12'>
 								<Icon name={action.icon} size='lg' aria-hidden />
 								<span className='sr-only'>{action.srText}</span>
