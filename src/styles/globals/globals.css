@@ -1,0 +1,27 @@
+/* ========================================================================== */
+/*  GLOBAL STYLES - Main Entry Point                                         */
+/* ========================================================================== */
+/* This file imports all style layers in the correct order */
+
+/* Layer 1: Palette (raw colors) */
+@import './palette.css';
+
+/* Layer 2: Theme (semantic roles) */
+@import './theme.css';
+
+/* Layer 3: Fonts (typography system) */
+@import './fonts.css';
+
+/* Layer 4: Fluid (responsive sizing) */
+@import './fluid-variables.css';
+
+/* Tailwind CSS v4 */
+@import 'tailwindcss';
+
+/* Tailwind plugins */
+@plugin 'tailwindcss-animate';
+
+/* Frontend-specific styles */
+@import '../frontend/animations.css';
+@import '../frontend/images.css';
+@import '../frontend/lightbox.css';

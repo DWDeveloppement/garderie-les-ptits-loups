@@ -1,9 +1,0 @@
-/* variables/index.css */
-/* ——— layer base for variables ——— */
-@import './fluid-variables.css';
-
-/* ——— layer base for spacing ——— */
-@import './spacing.css';
-
-/* ——— layer base for typography ——— */
-@import './typography.css';
