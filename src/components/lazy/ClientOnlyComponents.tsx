@@ -21,6 +21,6 @@ export const MobileNavigationClient = dynamic(
 )
 
 // Toaster - Chargement uniquement côté client (toasts après interactions)
-export const ToasterClient = dynamic(() => import('@/components/ui/sonner').then((mod) => ({ default: mod.Toaster })), {
+export const ToasterClient = dynamic(() => import('@/ui/sonner').then((mod) => ({ default: mod.Toaster })), {
 	ssr: false, // Pas de SSR nécessaire (toasts uniquement après interactions)
 })

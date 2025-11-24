@@ -4,8 +4,8 @@
  * Des placeholders sont présents dans le composant pour guider l'utilisateur.
  */
 'use client'
-import { Button } from '@/components/ui/button'
-import { Spinner } from '@/components/ui/spinner'
+import { Button } from '@/ui/button'
+import { Spinner } from '@/ui/spinner'
 import { useFormValidation } from '../../../hooks/useFormValidation'
 import { useRecaptchaV2 } from '../../../hooks/useRecaptchaV2'
 import { Mail, MessageSquare, Phone, User } from 'lucide-react'

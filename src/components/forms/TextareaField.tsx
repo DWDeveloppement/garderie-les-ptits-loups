@@ -1,7 +1,7 @@
 'use client'
 
-import { Label } from '@/components/ui/label'
-import { Textarea } from '@/components/ui/textarea'
+import { Label } from '@/ui/label'
+import { Textarea } from '@/ui/textarea'
 import { AlertCircle, LucideIcon } from 'lucide-react'
 import { Callout, CalloutIcon, CalloutText } from '../ui/callout'
 

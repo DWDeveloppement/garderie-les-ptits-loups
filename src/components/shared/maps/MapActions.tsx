@@ -1,7 +1,7 @@
 'use client'
 
 import { Icon } from '@/components/icons/Icon'
-import { Button } from '@/components/ui/button'
+import { Button } from '@/ui/button'
 import { useMapLocation } from '../../../../hooks/useMaps'
 import type { MapLocation } from '@/types/map'
 

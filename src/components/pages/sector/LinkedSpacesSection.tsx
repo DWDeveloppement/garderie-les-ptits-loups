@@ -2,7 +2,7 @@
 // 👉 Section des espaces liés pour les pages secteurs
 
 import { RichTextRenderer } from '@/components/shared'
-import { Card } from '@/components/ui/card'
+import { Card } from '@/ui/card'
 import type { PortableTextBlock } from '@/sanity/types/core/portableText'
 import type { LinkedSpace } from '@/sanity/types/pages/sectorPage'
 import Image from 'next/image'

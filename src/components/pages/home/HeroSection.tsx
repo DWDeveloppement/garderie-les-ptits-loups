@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui/button'
+import { Button } from '@/ui/button'
 import type { HomePageData } from '@/sanity/types/pages/home'
 import Image from 'next/image'
 

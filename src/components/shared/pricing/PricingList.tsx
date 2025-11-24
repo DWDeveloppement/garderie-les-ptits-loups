@@ -1,8 +1,8 @@
 'use client'
 
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
-import { Card, CardContent, CardHeader } from '@/components/ui/card'
-import { Separator } from '@/components/ui/separator'
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/ui/accordion'
+import { Card, CardContent, CardHeader } from '@/ui/card'
+import { Separator } from '@/ui/separator'
 
 type SanityPriceItem = { service: string; price: string }
 type SanityAccordionItem = { accordionTitle: string; priceItems?: SanityPriceItem[] }

@@ -1,7 +1,7 @@
 'use client'
 
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
+import { Input } from '@/ui/input'
+import { Label } from '@/ui/label'
 import { AlertCircle, LucideIcon } from 'lucide-react'
 import { Callout, CalloutIcon, CalloutText } from '../ui/callout'
 

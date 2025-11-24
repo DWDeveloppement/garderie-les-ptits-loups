@@ -6,7 +6,7 @@ import {
 	NavigationMenuLink,
 	NavigationMenuList,
 	NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu"
+} from "@/ui/navigation-menu"
 import { navigationMenu } from "@/constants/navigation_menu"
 import Link from "next/link"
 

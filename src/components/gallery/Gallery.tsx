@@ -4,7 +4,7 @@
 'use client'
 
 import { Icon } from '@/components/icons'
-import { Card, CardContent } from '@/components/ui/card'
+import { Card, CardContent } from '@/ui/card'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
 import * as React from 'react'

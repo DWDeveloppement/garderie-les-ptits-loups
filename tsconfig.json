@@ -21,7 +21,7 @@
 		],
 		"paths": {
 			"@/*": ["src/*"],
-			"@ui/*": ["packages/ui/*"],
+			"@/ui/*": ["src/ui/*"],
 			"@hooks/*": ["hooks/*"],
 			"@lib/*": ["lib/*"],
 			"@sanity/*": ["sanity/*"]

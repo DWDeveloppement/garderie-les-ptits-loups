@@ -1,5 +1,5 @@
 // Composant Callout basé sur Shadcn UI Alert
-import { Alert, AlertDescription } from '@/components/ui/alert'
+import { Alert, AlertDescription } from '@/ui/alert'
 import { cn } from '@/lib/utils'
 import * as React from 'react'
 

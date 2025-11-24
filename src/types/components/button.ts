@@ -1,4 +1,4 @@
-import { buttonVariants } from '@/components/ui/variants/button'
+import { buttonVariants } from '@/ui/variants/button'
 import type { VariantProps } from 'class-variance-authority'
 import type * as React from 'react'
 

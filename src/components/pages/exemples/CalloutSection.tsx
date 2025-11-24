@@ -1,5 +1,5 @@
 // Exemples des callouts
-import { Callout, CalloutIcon, CalloutText } from '@/components/ui/callout'
+import { Callout, CalloutIcon, CalloutText } from '@/ui/callout'
 import { AlertCircle, CheckCircle2, Info, Lightbulb } from 'lucide-react'
 
 export function CalloutSection() {

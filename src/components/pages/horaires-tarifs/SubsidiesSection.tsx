@@ -2,7 +2,7 @@
 
 import { RichTextRenderer } from '@/components/shared'
 import { SubsidiesTable } from '@/components/shared/pricing'
-import { Card } from '@/components/ui/card'
+import { Card } from '@/ui/card'
 
 import type { PortableTextBlock } from '@/sanity/types/core/portableText'
 

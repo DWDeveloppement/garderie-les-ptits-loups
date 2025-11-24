@@ -3,8 +3,8 @@
  * Les données proviennent de Sanity CMS
  * Composant autonome qui gère sa propre query
  */
-import { Card } from '@/components/ui/card'
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
+import { Card } from '@/ui/card'
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/ui/tooltip'
 import { getLayoutData } from 'lib/sanity/queries/shared'
 import Image from 'next/image'
 export async function Partners() {

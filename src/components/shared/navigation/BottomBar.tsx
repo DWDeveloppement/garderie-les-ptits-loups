@@ -3,8 +3,8 @@
 import { Fragment, useEffect, useState } from 'react'
 
 import { Icon } from '@/components/icons/Icon'
-import { Button } from '@/components/ui/button'
-import { Separator } from '@/components/ui/separator'
+import { Button } from '@/ui/button'
+import { Separator } from '@/ui/separator'
 import { MAP_INFO_DEFAULT } from '@/constants/map_info_default'
 import { useMapLocation } from '../../../../hooks/useMaps'
 import { useScrollDirection } from '../../../../hooks/useScroll'

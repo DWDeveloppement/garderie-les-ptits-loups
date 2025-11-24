@@ -1,9 +1,9 @@
 // Exemples des cards, Callouts, BlockQuotes spéciaux avec design de carte
 import { Icon } from '@/components/icons/Icon'
 import { BlockQuoteCard } from '@/components/shared/BlockQuote'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
-import { Separator } from '@/components/ui/separator'
+import { Button } from '@/ui/button'
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/ui/card'
+import { Separator } from '@/ui/separator'
 
 export function CardSection() {
 	return (

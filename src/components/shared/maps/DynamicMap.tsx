@@ -1,7 +1,7 @@
 'use client'
 
 import { MapSkeleton } from '@/components/lazy/skeletons'
-import { Card, CardContent } from '@/components/ui/card'
+import { Card, CardContent } from '@/ui/card'
 import type { MapLocation } from '@/types/map'
 import { MapPin } from 'lucide-react'
 import { forwardRef } from 'react'

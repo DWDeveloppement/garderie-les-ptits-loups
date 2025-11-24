@@ -1,7 +1,7 @@
 'use client'
 
 import { Icon } from '@/components/icons/Icon'
-import { Button } from '@/components/ui/button'
+import { Button } from '@/ui/button'
 import { useScrollDirection, useScrollToTop } from '../../../../hooks/useScroll'
 
 export function BackToTop() {

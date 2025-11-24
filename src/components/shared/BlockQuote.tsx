@@ -1,6 +1,6 @@
 import { Icon } from '@/components/icons/Icon'
 import type { IconName } from '@/components/icons/registry'
-import { Card, CardContent } from '@/components/ui/card'
+import { Card, CardContent } from '@/ui/card'
 import { cn } from '@/lib/utils'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { Quote } from 'lucide-react'

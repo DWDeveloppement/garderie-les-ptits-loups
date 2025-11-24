@@ -1,6 +1,6 @@
 // Exemples des boutons avec les variants Shadcn, les tailles et les états
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
+import { Badge } from '@/ui/badge'
+import { Button } from '@/ui/button'
 export function ButtonSection() {
 	return (
 		<section className='space-y-6'>

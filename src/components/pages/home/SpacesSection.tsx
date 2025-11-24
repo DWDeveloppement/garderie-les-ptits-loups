@@ -5,7 +5,7 @@
  * Pas besoin de condition de rendu car le champ de la query contient uniquement les espaces souhaités.
  */
 import { RichTextRenderer } from '@/components/shared'
-import { Card } from '@/components/ui/card'
+import { Card } from '@/ui/card'
 import type { LinkedOtherSpace } from '@/sanity/types/pages/home'
 import type { PortableTextBlock } from '@/sanity/types/core/portableText'
 import Image from 'next/image'
