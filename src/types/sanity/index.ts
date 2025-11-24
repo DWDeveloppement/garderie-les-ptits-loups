@@ -1,28 +1,9 @@
-// 📂 src/types/sanity/index.ts
-// 👉 DEPRECATED - Ce fichier redirige vers les nouveaux emplacements dans sanity/types/
-// ⚠️ Utilisez @/sanity/types/* à la place
+// 📂 sanity/types/index.ts
+// 👉 Barrel export principal pour tous les types Sanity
 
-// Re-exports pour compatibilité (à supprimer progressivement)
-export type {
-	SanityImageDimensions,
-	SanityImageMetadata,
-	SanityImageAssetRef,
-	SanityImage,
-} from '@/sanity/types/core/image'
+export * from './core'
+export * from './content'
+export * from './validation'
+// pages exports après content pour éviter les conflits (content/prices.ts prend priorité)
+export * from './pages'
 
-export type {
-	PortableTextBlock,
-	PortableTextSpan,
-	PortableTextLink,
-	PortableTextAlign,
-	PortableTextMarkDef,
-} from '@/sanity/types/core/portableText'
-
-export type {
-	GalleryItem,
-	LinkedSpace,
-	SectionHero,
-	Parallax,
-	SeoMetadata,
-	SectorPageData
-} from '@/sanity/types/pages/sectorPage'
