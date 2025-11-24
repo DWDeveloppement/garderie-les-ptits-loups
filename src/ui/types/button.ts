@@ -1,5 +1,5 @@
 import { VariantProps } from 'class-variance-authority'
-import { buttonVariants } from '@ui/variants/button'
+import { buttonVariants } from '@/ui/variants/button'
 
 export type ButtonMode = 'button' | 'link' | 'next-link' | 'decorative'
 

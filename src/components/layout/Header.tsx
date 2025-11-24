@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { MainNavigationMenu, MobileMenu } from '@/components/layout';
 import { Button } from '@/ui/button';
 
-import { useMobileMenuControl } from '../../../hooks/useWindowSize';
+import { useMobileMenuControl } from '@/hooks/useWindowSize';
 import { Icon } from '../icons/Icon';
 
 export function Header() {

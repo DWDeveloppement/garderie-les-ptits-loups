@@ -2,7 +2,7 @@
 
 import { Icon } from '@/components/icons/Icon'
 import { Button } from '@/ui/button'
-import { useScrollDirection, useScrollToTop } from '../../../../hooks/useScroll'
+import { useScrollDirection, useScrollToTop } from '@/hooks/useScroll'
 
 export function BackToTop() {
 	const { visible, scrollToTop } = useScrollToTop(300)

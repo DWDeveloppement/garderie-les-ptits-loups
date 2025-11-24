@@ -1,7 +1,7 @@
 'use client'
 
 import { Card, CardContent } from '@/ui/card'
-import { useScrollParallax } from '../../../hooks/useScollParalax'
+import { useScrollParallax } from '@/hooks/useScollParalax'
 import Image from 'next/image'
 
 type HeroGlobalProps = {

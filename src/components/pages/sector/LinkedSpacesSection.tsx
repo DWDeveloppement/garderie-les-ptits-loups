@@ -3,8 +3,8 @@
 
 import { RichTextRenderer } from '@/components/shared'
 import { Card } from '@/ui/card'
-import type { PortableTextBlock } from '@/sanity/types/core/portableText'
-import type { LinkedSpace } from '@/sanity/types/pages/sectorPage'
+import type { PortableTextBlock } from '@/types/sanity/core/portableText'
+import type { LinkedSpace } from '@/types/sanity/pages/sectorPage'
 import Image from 'next/image'
 
 export type LinkedSpacesSectionProps = {

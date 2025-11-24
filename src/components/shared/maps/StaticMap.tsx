@@ -1,7 +1,7 @@
 'use client'
 
-import { useMapLocation } from '../../../../hooks/useMaps'
-import type { StaticMapProps } from '@/types/map'
+import { useMapLocation } from '@/hooks/useMaps'
+import type { StaticMapProps } from '@/types/frontend/map'
 import { MapPin } from 'lucide-react'
 import Image from 'next/image'
 

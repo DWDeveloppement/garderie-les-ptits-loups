@@ -1,4 +1,4 @@
-import type { HomePageData } from '@/sanity/types/pages/home'
+import type { HomePageData } from '@/types/sanity/pages/home'
 import { groq } from 'next-sanity'
 import { sanityFetch } from '../client'
 import { BASIC_IMAGE_QUERY_LIGHT } from '../helpers/imageProps'

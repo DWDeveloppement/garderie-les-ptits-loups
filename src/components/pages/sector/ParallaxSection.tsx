@@ -2,7 +2,7 @@
 // 👉 Section parallaxe pour les pages secteurs (wrapper de ParalaxImage)
 
 import { ParalaxImage } from '@/components/shared'
-import type { SanityImage } from '@/sanity/types/core/image'
+import type { SanityImage } from '@/types/sanity/core/image'
 
 export type ParallaxSectionProps = {
 	image: SanityImage

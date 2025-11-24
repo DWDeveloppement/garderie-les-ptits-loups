@@ -8,7 +8,7 @@ import { SpacesSection } from '@/components/pages/home/SpacesSection';
 import { StructureSection } from '@/components/pages/home/StructureSection';
 import { TestimonialsSection } from '@/components/pages/home/Testimonals';
 import { ParalaxImage } from '@/components/shared';
-import type { TestimonialsTypesProps } from '@/sanity/types/pages/testimonials';
+import type { TestimonialsTypesProps } from '@/types/sanity/pages/testimonials';
 
 import { fetchHome, fetchTestimonials } from 'lib/sanity/queries/home';
 

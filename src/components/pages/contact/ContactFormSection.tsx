@@ -7,7 +7,7 @@
 import { ContactForm } from '@/components/forms'
 //import { ContactFormDebug } from '@/components/debug/ContactFormDebug'
 import { SuccessAnimation } from '@/components/shared/feedback'
-import { useFormValidation } from '../../../../hooks/useFormValidation'
+import { useFormValidation } from '@/hooks/useFormValidation'
 
 export function ContactFormSection() {
 	// Hook personnalisé pour la gestion du formulaire (pour l'animation de succès)

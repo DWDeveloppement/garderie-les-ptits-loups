@@ -2,8 +2,8 @@
 
 import { Icon } from '@/components/icons/Icon'
 import { Button } from '@/ui/button'
-import { useMapLocation } from '../../../../hooks/useMaps'
-import type { MapLocation } from '@/types/map'
+import { useMapLocation } from '@/hooks/useMaps'
+import type { MapLocation } from '@/types/frontend/map'
 
 type MapActionsProps = {
 	location: MapLocation

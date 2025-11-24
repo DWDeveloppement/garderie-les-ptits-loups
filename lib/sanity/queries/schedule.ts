@@ -1,4 +1,4 @@
-import type { SchedulePageData } from '@/sanity/types/pages/schedule'
+import type { SchedulePageData } from '@/types/sanity/pages/schedule'
 import { groq } from 'next-sanity'
 import { sanityFetch } from '../client'
 import { BASIC_IMAGE_QUERY, BASIC_IMAGE_QUERY_LIGHT } from '../helpers/imageProps'

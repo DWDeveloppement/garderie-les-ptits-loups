@@ -1,4 +1,4 @@
-import { PriceDocument, SubsidiesDocument } from '@/sanity/types/content/prices'
+import { PriceDocument, SubsidiesDocument } from '@/types/sanity/content/prices'
 import { useEffect, useState } from 'react'
 
 // Types pour les données JSON

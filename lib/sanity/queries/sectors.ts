@@ -1,4 +1,4 @@
-import type { SectorPageData } from '@/sanity/types/pages/sectorPage'
+import type { SectorPageData } from '@/types/sanity/pages/sectorPage'
 import { groq } from 'next-sanity'
 import { sanityFetch } from '../client'
 import { BASIC_IMAGE_QUERY, BASIC_IMAGE_QUERY_LIGHT, GALLERY_IMAGE_QUERY_LIGHT } from '../helpers/imageProps'

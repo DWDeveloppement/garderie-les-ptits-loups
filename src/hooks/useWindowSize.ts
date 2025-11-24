@@ -8,7 +8,7 @@ import {
 	isMobile,
 	isSmallScreen,
 	isTablet,
-} from '@/types/breakpoints'
+} from '@/types/frontend/breakpoints'
 import { useEffect, useState } from 'react'
 
 type WindowSize = {

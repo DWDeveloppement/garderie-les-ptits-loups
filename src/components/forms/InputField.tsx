@@ -3,7 +3,7 @@
 import { Input } from '@/ui/input';
 import { Label } from '@/ui/label';
 
-import { Callout, CalloutIcon, CalloutText } from '../ui/callout';
+import { Callout, CalloutIcon, CalloutText } from '@/ui/callout';
 import { AlertCircle, LucideIcon } from 'lucide-react';
 
 type InputFieldProps = {

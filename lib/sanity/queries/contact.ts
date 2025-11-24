@@ -1,4 +1,4 @@
-import type { ContactPageData } from '@/sanity/types/pages/contactPage'
+import type { ContactPageData } from '@/types/sanity/pages/contactPage'
 import { groq } from 'next-sanity'
 import { sanityFetch } from '../client'
 import { BASIC_IMAGE_QUERY, BASIC_IMAGE_QUERY_LIGHT } from '../helpers/imageProps'

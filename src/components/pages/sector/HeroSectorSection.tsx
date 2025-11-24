@@ -2,7 +2,7 @@
 // 👉 Hero section pour les pages secteurs (wrapper de HeroGlobal)
 
 import { HeroGlobal } from '@/components/shared'
-import type { SanityImage } from '@/sanity/types/core/image'
+import type { SanityImage } from '@/types/sanity/core/image'
 
 export type HeroSectorSectionProps = {
 	title: string

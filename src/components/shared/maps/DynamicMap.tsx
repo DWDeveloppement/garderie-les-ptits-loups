@@ -2,7 +2,7 @@
 
 import { MapSkeleton } from '@/components/lazy/skeletons'
 import { Card, CardContent } from '@/ui/card'
-import type { MapLocation } from '@/types/map'
+import type { MapLocation } from '@/types/frontend/map'
 import { MapPin } from 'lucide-react'
 import { forwardRef } from 'react'
 

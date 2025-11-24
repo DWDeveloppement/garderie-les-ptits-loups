@@ -1,4 +1,4 @@
-import { StructureBuilder } from '@/sanity/structure'
+import { StructureBuilder } from 'sanity/structure'
 // Affichage simple pour utilisateurs (pas d'ajout)
 
 export const deskStructure = (S: StructureBuilder) => {

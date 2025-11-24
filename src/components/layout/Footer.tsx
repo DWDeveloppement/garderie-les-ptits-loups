@@ -4,7 +4,7 @@ import { MobileNavigationClient } from '@/components/lazy/ClientOnlyComponents';
 import { MAP_INFO_DEFAULT } from '@/constants/map_info_default';
 
 import { Icon } from '../icons/Icon';
-import { Separator } from '../ui/separator';
+import { Separator } from '@/ui/separator';
 import { getLayoutData } from 'lib/sanity/queries/shared';
 
 export async function Footer() {

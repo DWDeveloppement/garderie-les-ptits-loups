@@ -12,8 +12,8 @@ import { RichTextQuote, RichTextQuoteSpecial } from '@/components/shared/richtex
 import type { HeadingTag, RichTextTitleVariant } from '@/components/shared/richtext/RichTextTitle'
 import { RichTextTitle } from '@/components/shared/richtext/RichTextTitle'
 import { cn } from '@/lib/utils'
-import { RichTextBlock } from '@/types/richText'
-import type { PortableTextAlign, PortableTextBlock } from '@/sanity/types/core/portableText'
+import { RichTextBlock } from '@/types/frontend/richText'
+import type { PortableTextAlign, PortableTextBlock } from '@/types/sanity/core/portableText'
 import Link from 'next/link'
 import { Fragment, type ReactNode } from 'react'
 

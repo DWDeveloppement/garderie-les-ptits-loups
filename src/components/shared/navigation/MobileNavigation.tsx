@@ -1,7 +1,7 @@
 'use client'
 
-import { useWindowSize } from '../../../../hooks/useWindowSize'
-import type { MapLocation } from '@/types/map'
+import { useWindowSize } from '@/hooks/useWindowSize'
+import type { MapLocation } from '@/types/frontend/map'
 import { BackToTop } from './BackToTop'
 import { BottomBar } from './BottomBar'
 

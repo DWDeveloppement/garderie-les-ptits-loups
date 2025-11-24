@@ -3,8 +3,8 @@
 import { DynamicMap, StaticMap } from '@/components/shared/maps'
 import { MapActions } from '@/components/shared/maps/MapActions'
 import { MAP_INFO_DEFAULT } from '@/constants/map_info_default'
-import { useDynamicMap } from '../../../../hooks/useMaps'
-import type { MapLocation } from '@/types/map'
+import { useDynamicMap } from '@/hooks/useMaps'
+import type { MapLocation } from '@/types/frontend/map'
 import { useCallback, useEffect, useRef, useState } from 'react'
 
 type MapSectionProps = {

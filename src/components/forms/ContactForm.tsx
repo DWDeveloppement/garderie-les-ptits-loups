@@ -7,8 +7,8 @@
 import { Button } from '@/ui/button';
 import { Spinner } from '@/ui/spinner';
 
-import { useFormValidation } from '../../../hooks/useFormValidation';
-import { useRecaptchaV2 } from '../../../hooks/useRecaptchaV2';
+import { useFormValidation } from '@/hooks/useFormValidation';
+import { useRecaptchaV2 } from '@/hooks/useRecaptchaV2';
 import { HoneypotField } from './HoneypotField';
 import { InputField } from './InputField';
 import { TextareaField } from './TextareaField';

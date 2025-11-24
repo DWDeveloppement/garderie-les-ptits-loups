@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
 import { RichTextRenderer } from '@/components/shared/richtext/RichTextRenderer';
-import type { PortableTextBlock } from '@/sanity/types/core/portableText';
+import type { PortableTextBlock } from '@/types/sanity/core/portableText';
 import { Card, CardContent } from '@/ui/card';
 
 type HistorySectionProps = {

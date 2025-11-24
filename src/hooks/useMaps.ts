@@ -1,6 +1,6 @@
 'use client'
 
-import type { DynamicMapProps, MapLocation, StaticMapProps } from '@/types/map'
+import type { DynamicMapProps, MapLocation, StaticMapProps } from '@/types/frontend/map'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 // Configuration par défaut pour la garderie
