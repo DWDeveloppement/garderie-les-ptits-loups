@@ -33,13 +33,15 @@ export function HeroSection({ sectionHero }: HeroSectionProps) {
 						</Button>
 					</div>
 
-					{/* Logo Droite - Image statique LCP (pas de latence CDN) */}
+					{/* Logo Droite - Image LCP optimisée */}
 					<div className='flex justify-center lg:justify-end'>
 						<Image
 							src={logoStatic}
 							alt="Logo Garderie Les P'tits Loups"
 							className='w-120 h-70 object-contain'
 							priority
+							fetchPriority='high'
+							loading='eager'
 							placeholder='blur'
 						/>
 					</div>
