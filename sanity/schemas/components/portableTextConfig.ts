@@ -1,5 +1,5 @@
 // Configuration réutilisable pour les blocs Portable Text
-// Barre d'outils complète : styles, formatage, listes, blockquotes personnalisés
+// Barre d'outils complète : styles, formatage, listes, blockquote personnalisé
 
 import { defineArrayMember, defineField, type Rule } from 'sanity'
 
@@ -61,16 +61,19 @@ const linkAnnotation = {
 }
 
 // ============================================================================
-// BLOCKQUOTES PERSONNALISÉS - Types de blocs spéciaux
+// BLOCKQUOTE - Type unifié avec options dans la modale
 // ============================================================================
 
 /**
- * Blockquote Primary - Citation standard avec style principal
+ * Blockquote unifié - Un seul type avec 2 booleans pour définir le style
+ *
+ * - isSecondary: false = Primary (violet), true = Secondary (orange)
+ * - isSpecial: false = Standard (bordure gauche), true = Special (card avec icône)
  */
-export const blockquotePrimary = defineField({
-	name: 'blockquotePrimary',
+export const blockquote = defineField({
+	name: 'blockquote',
 	type: 'object',
-	title: 'Citation Primary',
+	title: 'Citation',
 	icon: () => '💬',
 	fields: [
 		defineField({
@@ -85,118 +88,31 @@ export const blockquotePrimary = defineField({
 			type: 'string',
 			title: 'Auteur (optionnel)',
 		}),
-	],
-	preview: {
-		select: { text: 'text', author: 'author' },
-		prepare: ({ text, author }) => ({
-			title: text ? `${text.substring(0, 50)}...` : 'Citation Primary',
-			subtitle: author ? `— ${author}` : 'Citation Primary',
-		}),
-	},
-})
-
-/**
- * Blockquote Secondary - Citation avec style secondaire
- */
-export const blockquoteSecondary = defineField({
-	name: 'blockquoteSecondary',
-	type: 'object',
-	title: 'Citation Secondary',
-	icon: () => '📝',
-	fields: [
 		defineField({
-			name: 'text',
-			type: 'text',
-			title: 'Texte de la citation',
-			rows: 3,
-			validation: (rule) => rule.required(),
-		}),
-		defineField({
-			name: 'author',
-			type: 'string',
-			title: 'Auteur (optionnel)',
-		}),
-	],
-	preview: {
-		select: { text: 'text', author: 'author' },
-		prepare: ({ text, author }) => ({
-			title: text ? `${text.substring(0, 50)}...` : 'Citation Secondary',
-			subtitle: author ? `— ${author}` : 'Citation Secondary',
-		}),
-	},
-})
-
-/**
- * Blockquote Special Primary - Citation mise en avant (style primary)
- */
-export const blockquoteSpecialPrimary = defineField({
-	name: 'blockquoteSpecialPrimary',
-	type: 'object',
-	title: 'Citation Spéciale Primary',
-	icon: () => '⭐',
-	fields: [
-		defineField({
-			name: 'text',
-			type: 'text',
-			title: 'Texte de la citation',
-			rows: 3,
-			validation: (rule) => rule.required(),
-		}),
-		defineField({
-			name: 'author',
-			type: 'string',
-			title: 'Auteur (optionnel)',
-		}),
-		defineField({
-			name: 'highlight',
+			name: 'isSecondary',
 			type: 'boolean',
-			title: 'Mettre en évidence',
-			initialValue: true,
-		}),
-	],
-	preview: {
-		select: { text: 'text', author: 'author' },
-		prepare: ({ text, author }) => ({
-			title: text ? `${text.substring(0, 50)}...` : 'Citation Spéciale Primary',
-			subtitle: author ? `⭐ ${author}` : 'Citation Spéciale Primary',
-		}),
-	},
-})
-
-/**
- * Blockquote Special Secondary - Citation mise en avant (style secondary)
- */
-export const blockquoteSpecialSecondary = defineField({
-	name: 'blockquoteSpecialSecondary',
-	type: 'object',
-	title: 'Citation Spéciale Secondary',
-	icon: () => '✨',
-	fields: [
-		defineField({
-			name: 'text',
-			type: 'text',
-			title: 'Texte de la citation',
-			rows: 3,
-			validation: (rule) => rule.required(),
+			title: 'Style secondaire',
+			description: 'Désactivé = Primary (violet) | Activé = Secondary (orange)',
+			initialValue: false,
 		}),
 		defineField({
-			name: 'author',
-			type: 'string',
-			title: 'Auteur (optionnel)',
-		}),
-		defineField({
-			name: 'highlight',
+			name: 'isSpecial',
 			type: 'boolean',
-			title: 'Mettre en évidence',
-			initialValue: true,
+			title: 'Style spécial (carte)',
+			description: 'Désactivé = Bordure simple | Activé = Carte avec icône',
+			initialValue: false,
 		}),
 	],
 	preview: {
-		select: { text: 'text', author: 'author' },
-		prepare: ({ text, author }) => ({
-			title: text ? `${text.substring(0, 50)}...` : 'Citation Spéciale Secondary',
-			subtitle: author ? `✨ ${author}` : 'Citation Spéciale Secondary',
-		}),
+		select: { text: 'text', author: 'author', isSecondary: 'isSecondary', isSpecial: 'isSpecial' },
+		prepare: ({ text, author, isSecondary, isSpecial }) => {
+			const variant = isSecondary ? 'Secondary' : 'Primary'
+			const style = isSpecial ? '⭐ Spéciale' : 'Standard'
+			return {
+				title: text ? `${text.substring(0, 50)}...` : 'Citation',
+				subtitle: author ? `${style} ${variant} — ${author}` : `${style} ${variant}`,
+			}
+		},
 	},
 })
 
@@ -223,34 +139,22 @@ export const portableTextBlockConfig = defineArrayMember({
 // ============================================================================
 
 /**
- * Configuration complète avec tous les blockquotes
+ * Configuration complète avec blockquote
  * Usage: defineField({ name: 'content', type: 'array', of: portableTextWithBlockquotes })
  */
-export const portableTextWithBlockquotes = [
-	portableTextBlockConfig,
-	blockquotePrimary,
-	blockquoteSecondary,
-	blockquoteSpecialPrimary,
-	blockquoteSpecialSecondary,
-]
+export const portableTextWithBlockquotes = [portableTextBlockConfig, blockquote]
 
 /**
- * Configuration simple (texte uniquement, sans blockquotes)
+ * Configuration simple (texte uniquement, sans blockquote)
  * Usage: defineField({ name: 'content', type: 'array', of: portableTextSimple })
  */
 export const portableTextSimple = [portableTextBlockConfig]
-
-/**
- * Configuration avec blockquotes basiques uniquement
- * Usage: defineField({ name: 'content', type: 'array', of: portableTextWithBasicQuotes })
- */
-export const portableTextWithBasicQuotes = [portableTextBlockConfig, blockquotePrimary, blockquoteSecondary]
 
 // ============================================================================
 // HELPER POUR CRÉER UN CHAMP PORTABLE TEXT
 // ============================================================================
 
-type PortableTextVariant = 'full' | 'simple' | 'basic-quotes'
+type PortableTextVariant = 'full' | 'simple'
 
 interface CreatePortableTextFieldOptions {
 	name: string
@@ -263,7 +167,7 @@ interface CreatePortableTextFieldOptions {
  * Helper pour créer un champ Portable Text avec la configuration souhaitée
  *
  * @example
- * // Champ avec toutes les options
+ * // Champ avec blockquote
  * createPortableTextField({ name: 'content', title: 'Contenu', variant: 'full' })
  *
  * // Champ simple (texte seulement)
@@ -273,7 +177,6 @@ export function createPortableTextField({ name, title, variant = 'full', require
 	const variantMap: Record<PortableTextVariant, typeof portableTextWithBlockquotes> = {
 		full: portableTextWithBlockquotes,
 		simple: portableTextSimple,
-		'basic-quotes': portableTextWithBasicQuotes,
 	}
 
 	return defineField({

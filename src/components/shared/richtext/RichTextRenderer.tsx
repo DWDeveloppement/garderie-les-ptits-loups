@@ -5,7 +5,7 @@
  * - Paragraphes (normal)
  * - Titres (h1-h6)
  * - Listes (bullet/number)
- * - Blockquotes personnalisés (Primary, Secondary, Special Primary, Special Secondary)
+ * - Blockquote unifié (avec options isSecondary et isSpecial)
  * - Liens, formatage (bold, italic, underline)
  */
 
@@ -16,14 +16,7 @@ import { RichTextQuote, RichTextQuoteSpecial } from '@/components/shared/richtex
 import type { HeadingTag, RichTextTitleVariant } from '@/components/shared/richtext/RichTextTitle'
 import { RichTextTitle } from '@/components/shared/richtext/RichTextTitle'
 import { cn } from '@/lib/utils'
-import type {
-	BlockquotePrimary,
-	BlockquoteSecondary,
-	BlockquoteSpecialPrimary,
-	BlockquoteSpecialSecondary,
-	PortableTextBlock,
-	PortableTextContent,
-} from '@/sanity/types/core/portableText'
+import type { Blockquote, PortableTextBlock, PortableTextContent } from '@/sanity/types/core/portableText'
 import { RichTextBlock } from '@/types/richText'
 import Link from 'next/link'
 import { Fragment, type ReactNode } from 'react'
@@ -58,24 +51,9 @@ export function RichTextRenderer({ content, className = '' }: RichTextRendererPr
 	for (let i = 0; i < content.length; i += 1) {
 		const block = content[i]
 
-		// Gestion des blockquotes personnalisés Sanity
-		if (isBlockquotePrimary(block)) {
-			renderedBlocks.push(renderBlockquotePrimary(block, i))
-			continue
-		}
-
-		if (isBlockquoteSecondary(block)) {
-			renderedBlocks.push(renderBlockquoteSecondary(block, i))
-			continue
-		}
-
-		if (isBlockquoteSpecialPrimary(block)) {
-			renderedBlocks.push(renderBlockquoteSpecialPrimary(block, i))
-			continue
-		}
-
-		if (isBlockquoteSpecialSecondary(block)) {
-			renderedBlocks.push(renderBlockquoteSpecialSecondary(block, i))
+		// Gestion du blockquote unifié Sanity
+		if (isBlockquote(block)) {
+			renderedBlocks.push(renderBlockquote(block, i))
 			continue
 		}
 
@@ -107,20 +85,8 @@ export function RichTextRenderer({ content, className = '' }: RichTextRendererPr
 // TYPE GUARDS - Détection des types de blocs
 // ============================================================================
 
-function isBlockquotePrimary(block: unknown): block is BlockquotePrimary {
-	return typeof block === 'object' && block !== null && (block as { _type?: string })._type === 'blockquotePrimary'
-}
-
-function isBlockquoteSecondary(block: unknown): block is BlockquoteSecondary {
-	return typeof block === 'object' && block !== null && (block as { _type?: string })._type === 'blockquoteSecondary'
-}
-
-function isBlockquoteSpecialPrimary(block: unknown): block is BlockquoteSpecialPrimary {
-	return typeof block === 'object' && block !== null && (block as { _type?: string })._type === 'blockquoteSpecialPrimary'
-}
-
-function isBlockquoteSpecialSecondary(block: unknown): block is BlockquoteSpecialSecondary {
-	return typeof block === 'object' && block !== null && (block as { _type?: string })._type === 'blockquoteSpecialSecondary'
+function isBlockquote(block: unknown): block is Blockquote {
+	return typeof block === 'object' && block !== null && (block as { _type?: string })._type === 'blockquote'
 }
 
 type PortableTextListBlock = PortableTextBlock & {
@@ -135,51 +101,20 @@ function isListBlock(block: unknown): block is PortableTextListBlock {
 }
 
 // ============================================================================
-// RENDERERS - Blockquotes personnalisés
+// RENDERER - Blockquote unifié
 // ============================================================================
 
-function renderBlockquotePrimary(block: BlockquotePrimary, index: number) {
-	return (
-		<RichTextQuote
-			key={block._key ?? `blockquote-primary-${index}`}
-			variant='default'
-			content={block.text}
-			author={block.author}
-		/>
-	)
-}
+function renderBlockquote(block: Blockquote, index: number) {
+	const variant = block.isSecondary ? 'secondary' : 'default'
+	const key = block._key ?? `blockquote-${index}`
 
-function renderBlockquoteSecondary(block: BlockquoteSecondary, index: number) {
-	return (
-		<RichTextQuote
-			key={block._key ?? `blockquote-secondary-${index}`}
-			variant='secondary'
-			content={block.text}
-			author={block.author}
-		/>
-	)
-}
+	// Style spécial (carte avec icône)
+	if (block.isSpecial) {
+		return <RichTextQuoteSpecial key={key} variant={variant} content={block.text} author={block.author} />
+	}
 
-function renderBlockquoteSpecialPrimary(block: BlockquoteSpecialPrimary, index: number) {
-	return (
-		<RichTextQuoteSpecial
-			key={block._key ?? `blockquote-special-primary-${index}`}
-			variant='default'
-			content={block.text}
-			author={block.author}
-		/>
-	)
-}
-
-function renderBlockquoteSpecialSecondary(block: BlockquoteSpecialSecondary, index: number) {
-	return (
-		<RichTextQuoteSpecial
-			key={block._key ?? `blockquote-special-secondary-${index}`}
-			variant='secondary'
-			content={block.text}
-			author={block.author}
-		/>
-	)
+	// Style standard (bordure gauche)
+	return <RichTextQuote key={key} variant={variant} content={block.text} author={block.author} />
 }
 
 // ============================================================================
@@ -418,8 +353,7 @@ function renderSpanNodes(spans: MinimalSpan[] = [], keyPrefix: string, markDefs:
 						| undefined
 
 					if (linkDef?.href) {
-						const isExternal =
-							linkDef.href.startsWith('http') || linkDef.href.startsWith('mailto:') || linkDef.href.startsWith('tel:')
+						const isExternal = linkDef.href.startsWith('http') || linkDef.href.startsWith('mailto:') || linkDef.href.startsWith('tel:')
 
 						if (!isExternal && linkDef.href.startsWith('/')) {
 							node = (

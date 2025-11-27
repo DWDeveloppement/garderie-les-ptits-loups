@@ -31,45 +31,18 @@ export type PortableTextBlock = {
 }
 
 // ============================================================================
-// BLOCKQUOTES PERSONNALISÉS
+// BLOCKQUOTE - Type unifié
 // ============================================================================
 
-export type BlockquotePrimary = {
+export type Blockquote = {
 	_key: string
-	_type: 'blockquotePrimary'
+	_type: 'blockquote'
 	text: string
 	author?: string
+	isSecondary?: boolean // false = Primary (violet), true = Secondary (orange)
+	isSpecial?: boolean // false = Standard (bordure), true = Special (carte)
 }
-
-export type BlockquoteSecondary = {
-	_key: string
-	_type: 'blockquoteSecondary'
-	text: string
-	author?: string
-}
-
-export type BlockquoteSpecialPrimary = {
-	_key: string
-	_type: 'blockquoteSpecialPrimary'
-	text: string
-	author?: string
-	highlight?: boolean
-}
-
-export type BlockquoteSpecialSecondary = {
-	_key: string
-	_type: 'blockquoteSpecialSecondary'
-	text: string
-	author?: string
-	highlight?: boolean
-}
-
-export type PortableTextBlockquote =
-	| BlockquotePrimary
-	| BlockquoteSecondary
-	| BlockquoteSpecialPrimary
-	| BlockquoteSpecialSecondary
 
 // Union de tous les types de contenu Portable Text
-export type PortableTextContent = PortableTextBlock | PortableTextBlockquote
+export type PortableTextContent = PortableTextBlock | Blockquote
 
