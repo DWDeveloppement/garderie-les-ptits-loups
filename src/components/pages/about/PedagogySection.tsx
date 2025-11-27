@@ -10,7 +10,7 @@ export function PedagogySection({ content, quoteContent }: PedagogySectionProps)
 	if (!content && !quoteContent) return null
 
 	return (
-		<section className='py-16 px-4 sm:px-6 lg:px-8 gradient-section-a'>
+		<section className='py-16 px-8 md:px-16 gradient-section-a'>
 			{content && <RichTextRenderer content={content} />}
 
 			{quoteContent && (

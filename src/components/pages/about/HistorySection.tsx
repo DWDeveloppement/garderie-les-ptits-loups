@@ -13,7 +13,7 @@ type HistorySectionProps = {
 }
 export function HistorySection({ content, historyImage }: HistorySectionProps) {
 	return (
-		<section className='py-16 px-4 sm:px-6 lg:px-8 gradient-section-b'>
+		<section className='py-16 px-8 md:px-16 gradient-section-b'>
 			<div className='max-w-7xl mx-auto'>
 				<div className='flex flex-col md:flex-row gap-8 md:gap-12 items-center justify-center'>
 					{/* Contenu Rich Text */}
