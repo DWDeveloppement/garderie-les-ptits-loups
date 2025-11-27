@@ -1,6 +1,6 @@
 import { type Rule, type SchemaTypeDefinition } from 'sanity'
 import { ReadOnlySlug } from '../../components/ReadOnlySlug'
-import { heroHome, paralaxImage, portableTextBlockConfig, seo } from '../components'
+import { heroHome, paralaxImage, portableTextWithBlockquotes, seo } from '../components'
 
 // Désactivé: page fixe gérée dans le code Next
 export const home: SchemaTypeDefinition = {
@@ -116,7 +116,7 @@ export const home: SchemaTypeDefinition = {
 			name: 'contentComplement',
 			title: 'Contenu complémentaire',
 			type: 'array',
-			of: [portableTextBlockConfig],
+			of: portableTextWithBlockquotes,
 			description: 'Contenu complémentaire de la page',
 		},
 
