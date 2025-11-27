@@ -3,7 +3,7 @@
 @import './fluid-variables.css';
 
 /* ——— layer base for spacing ——— */
-@import './spacing.css';
+/* @import './spacing.css'; // Désactivé - non utilisé actuellement (~948 lignes économisées) */
 
 /* ——— layer base for typography ——— */
 @import './typography.css';

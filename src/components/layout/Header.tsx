@@ -23,7 +23,7 @@ export function Header() {
 					{/* Logo */}
 					<div className='flex items-center space-x-2'>
 						<Link href='/'>
-							<Image src='/navbar-logo.webp' alt='Logo' width={100} height={100} />
+							<Image src='/navbar-logo2.svg' alt='Logo' width={100} height={100} fetchPriority='high' loading='eager' />
 						</Link>
 						<h1 className='hidden sr-only'>Garderie Les P&apos;tits Loups</h1>
 					</div>
