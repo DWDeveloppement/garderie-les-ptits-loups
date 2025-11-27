@@ -2,23 +2,17 @@ import { Button } from '@/components/ui/button'
 import type { HomePageData } from '@/sanity/types/pages/home'
 import Image from 'next/image'
 
+// Image statique pour un LCP optimal (élimine la latence CDN)
+import logoStatic from '/public/logo-les-ptits-loups.webp'
+
 type HeroSectionProps = {
 	sectionHero?: HomePageData['sectionHero']
 }
 
-// Dimensions optimisées pour le LCP (w-120 = 480px, h-70 = 280px)
-// On utilise 2x pour la densité de pixels (retina)
-const LOGO_WIDTH = 960
-const LOGO_HEIGHT = 560
-
 export function HeroSection({ sectionHero }: HeroSectionProps) {
 	if (!sectionHero) return null
 
-	const { title, garderieName, description, logo, buttonText } = sectionHero
-
-	// URL Sanity optimisée : dimensions réduites + format WebP + qualité 85
-	// Évite le double traitement Next.js Image → Sanity CDN fait l'optimisation
-	const logoUrl = `${logo.asset.url}?w=${LOGO_WIDTH}&h=${LOGO_HEIGHT}&fit=max&auto=format&q=85`
+	const { title, garderieName, description, buttonText } = sectionHero
 
 	return (
 		<section className='w-full relative min-h-[80vh] px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16 bg-gradient-to-br from-orange-2 to-purple-1 flex items-center'>
@@ -39,17 +33,14 @@ export function HeroSection({ sectionHero }: HeroSectionProps) {
 						</Button>
 					</div>
 
-					{/* Logo Droite - Image LCP optimisée */}
+					{/* Logo Droite - Image statique LCP (pas de latence CDN) */}
 					<div className='flex justify-center lg:justify-end'>
 						<Image
-							src={logoUrl}
-							alt={logo.alt}
-							width={LOGO_WIDTH}
-							height={LOGO_HEIGHT}
+							src={logoStatic}
+							alt="Logo Garderie Les P'tits Loups"
 							className='w-120 h-70 object-contain'
 							priority
-							fetchPriority='high'
-							unoptimized // Évite double traitement (Sanity CDN fait déjà l'optimisation)
+							placeholder='blur'
 						/>
 					</div>
 				</div>
