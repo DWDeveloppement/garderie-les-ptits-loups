@@ -3,7 +3,7 @@
 // Interface conditionnelle selon le type de document
 
 import { SchemaTypeDefinition, type Rule } from 'sanity'
-import { portableTextBlockConfig } from './components/portableTextConfig'
+import { portableTextWithBlockquotes } from './components/portableTextConfig'
 // Document principal pour les prix
 export const prices: SchemaTypeDefinition = {
 	name: 'prices',
@@ -86,7 +86,7 @@ export const prices: SchemaTypeDefinition = {
 			name: 'tableSubsidiesInfo',
 			title: 'Information importante sur les subventions',
 			type: 'array',
-			of: [portableTextBlockConfig],
+			of: portableTextWithBlockquotes,
 			hidden: ({ document }) => document?.documentType !== 'table',
 			validation: (Rule: Rule) => Rule.required().max(200),
 			description: 'Information importante sur les subventions',

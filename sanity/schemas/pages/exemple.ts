@@ -1,6 +1,6 @@
 // Exemple de schéma pour une page de contenu
 import { type Rule, type SchemaTypeDefinition } from 'sanity'
-import { portableTextBlockConfig } from '../components/portableTextConfig'
+import { portableTextWithBlockquotes } from '../components/portableTextConfig'
 
 export const exemplePage: SchemaTypeDefinition = {
 	name: 'exemplePage',
@@ -18,7 +18,7 @@ export const exemplePage: SchemaTypeDefinition = {
 			name: 'content',
 			title: 'Contenu',
 			type: 'array',
-			of: [portableTextBlockConfig],
+			of: portableTextWithBlockquotes,
 			validation: (Rule: Rule) => Rule.required(),
 		},
 	],
