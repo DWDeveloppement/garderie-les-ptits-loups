@@ -20,10 +20,10 @@ export function HeroSection({ sectionHero }: HeroSectionProps) {
 				<div className='flex flex-col-reverse lg:flex-row gap-8 lg:gap-12 items-center'>
 					{/* Contenu Gauche - Texte et Boutons */}
 					<div className='flex flex-col flex-wrap justify-center items-center gap-6 md:gap-12 w-full md:max-w-[60%]'>
-						<h1 className='text-fl-3xl text-center leading-relaxed font-bold text-orange-11'>
+						<h1 className='text-fl-xl text-center leading-relaxed font-bold text-orange-11'>
 							<span className='text-orange-11'>{title}</span>
 							<br />
-							<span className='text-purple-9'>{garderieName}</span>
+							<span className='text-fl-3xl text-purple-9'>{garderieName}</span>
 						</h1>
 
 						<p className='leading-relaxed text-fl-lg text-orange-11'>{description}</p>
