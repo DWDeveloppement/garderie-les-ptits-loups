@@ -45,9 +45,4 @@ export const navigationMenu = [
 		label: 'Contact',
 		href: '/contact',
 	},
-	{
-		id: 5,
-		label: 'Exemples',
-		href: '/exemples',
-	},
 ]
