@@ -1,2 +1,151 @@
 /* Animations CSS - Chargé dynamiquement après le FCP */
 @import 'tw-animate-css';
+
+/* ============================================
+   ANIMATIONS SCROLL ONE-TIME (Intersection Observer)
+   Ces animations se déclenchent une seule fois
+   quand l'élément entre dans le viewport
+   ============================================ */
+
+/* États initiaux (avant animation) */
+.animate-ready-fade {
+	opacity: 0;
+	transition: opacity 0.6s ease-out;
+}
+
+.animate-ready-slide-up {
+	opacity: 0;
+	transform: translateY(30px);
+	transition:
+		opacity 0.6s ease-out,
+		transform 0.6s ease-out;
+}
+
+.animate-ready-slide-down {
+	opacity: 0;
+	transform: translateY(-30px);
+	transition:
+		opacity 0.6s ease-out,
+		transform 0.6s ease-out;
+}
+
+.animate-ready-slide-left {
+	opacity: 0;
+	transform: translateX(30px);
+	transition:
+		opacity 0.6s ease-out,
+		transform 0.6s ease-out;
+}
+
+.animate-ready-slide-right {
+	opacity: 0;
+	transform: translateX(-30px);
+	transition:
+		opacity 0.6s ease-out,
+		transform 0.6s ease-out;
+}
+
+.animate-ready-scale {
+	opacity: 0;
+	transform: scale(0.95);
+	transition:
+		opacity 0.6s ease-out,
+		transform 0.6s ease-out;
+}
+
+.animate-ready-scale-up {
+	opacity: 0;
+	transform: scale(0.8);
+	transition:
+		opacity 0.6s ease-out,
+		transform 0.6s ease-out;
+}
+
+.animate-ready-rotate {
+	opacity: 0;
+	transform: rotate(-5deg) scale(0.95);
+	transition:
+		opacity 0.6s ease-out,
+		transform 0.6s ease-out;
+}
+
+.animate-ready-blur {
+	opacity: 0;
+	filter: blur(10px);
+	transition:
+		opacity 0.6s ease-out,
+		filter 0.6s ease-out;
+}
+
+/* État final (après animation) */
+.animate-done {
+	opacity: 1;
+	transform: none;
+	filter: none;
+}
+
+/* Vitesses d'animation */
+.animate-fast {
+	transition-duration: 0.3s;
+}
+
+.animate-slow {
+	transition-duration: 0.8s;
+}
+
+.animate-slower {
+	transition-duration: 1.2s;
+}
+
+/* Easings */
+.animate-bounce {
+	transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.animate-elastic {
+	transition-timing-function: cubic-bezier(0.68, -0.6, 0.32, 1.6);
+}
+
+/* Délais en cascade (stagger) */
+.animate-delay-1 {
+	transition-delay: 0ms;
+}
+.animate-delay-2 {
+	transition-delay: 100ms;
+}
+.animate-delay-3 {
+	transition-delay: 200ms;
+}
+.animate-delay-4 {
+	transition-delay: 300ms;
+}
+.animate-delay-5 {
+	transition-delay: 400ms;
+}
+.animate-delay-6 {
+	transition-delay: 500ms;
+}
+.animate-delay-7 {
+	transition-delay: 600ms;
+}
+.animate-delay-8 {
+	transition-delay: 700ms;
+}
+
+/* Respect des préférences utilisateur */
+@media (prefers-reduced-motion: reduce) {
+	.animate-ready-fade,
+	.animate-ready-slide-up,
+	.animate-ready-slide-down,
+	.animate-ready-slide-left,
+	.animate-ready-slide-right,
+	.animate-ready-scale,
+	.animate-ready-scale-up,
+	.animate-ready-rotate,
+	.animate-ready-blur {
+		opacity: 1;
+		transform: none;
+		filter: none;
+		transition: none;
+	}
+}
