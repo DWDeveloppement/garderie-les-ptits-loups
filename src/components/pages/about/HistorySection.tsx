@@ -14,7 +14,7 @@ type HistorySectionProps = {
 export function HistorySection({ content, historyImage }: HistorySectionProps) {
 	return (
 		<section className='py-16 px-8 md:px-16 gradient-section-b'>
-			<div className='max-w-7xl mx-auto'>
+			<div className='max-w-6xl mx-auto'>
 				<div className='flex flex-col md:flex-row gap-8 md:gap-12 items-center justify-center'>
 					{/* Contenu Rich Text */}
 					<div className='flex justify-center items-center'>{content && <RichTextRenderer content={content} />}</div>

@@ -73,7 +73,7 @@ export function RichTextRenderer({ content, className = '' }: RichTextRendererPr
 	}
 
 	return (
-		<div className={cn('max-w-7xl mx-auto', className)}>
+		<div className={cn('max-w-6xl mx-auto', className)}>
 			{renderedBlocks.map((node, idx) => (
 				<Fragment key={idx}>{node}</Fragment>
 			))}
