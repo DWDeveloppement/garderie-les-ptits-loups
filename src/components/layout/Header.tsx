@@ -3,7 +3,7 @@ import { MainNavigationMenu, MobileMenu } from '@/components/layout'
 import { Button } from '@/components/ui/button'
 import { useMobileMenuControl } from '@/hooks/useWindowSize'
 import Image from 'next/image'
-import Link from 'next/link'
+import { TransitionLink } from '@/components/transition-link'
 import { useState } from 'react'
 import { Icon } from '../icons/Icon'
 
@@ -22,9 +22,9 @@ export function Header() {
 				<div className='flex items-center justify-between h-16'>
 					{/* Logo */}
 					<div className='flex items-center space-x-2'>
-						<Link href='/'>
+						<TransitionLink href='/'>
 							<Image src='/navbar-logo2.svg' alt='Logo' width={100} height={100} fetchPriority='high' loading='eager' />
-						</Link>
+						</TransitionLink>
 						<h1 className='hidden sr-only'>Garderie Les P&apos;tits Loups</h1>
 					</div>
 

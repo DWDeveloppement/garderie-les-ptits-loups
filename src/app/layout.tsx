@@ -10,7 +10,7 @@ import { CriticalCSS } from '@/components/shared/CriticalCSS'
 
 // Composants chargés uniquement côté client (imports dynamiques avec ssr: false)
 import { AnimateCSSClient, ToasterClient } from '@/components/lazy/ClientOnlyComponents'
-
+import TransitionProvider, { PageTransition } from '@/providers/Transition'
 const chelseaMarket = Chelsea_Market({
 	variable: '--font-chelsea-market',
 	subsets: ['latin'],
@@ -53,10 +53,12 @@ export default function RootLayout({
 				<AnimateCSSClient />
 			</head>
 			<body className='antialiased'>
-				<Header />
-				<main>{children}</main>
-				<Partners />
-				<Footer />
+				<TransitionProvider>
+					<Header />
+					<PageTransition>{children}</PageTransition>
+					<Partners />
+					<Footer />
+				</TransitionProvider>
 				{/* Toaster - Chargement uniquement côté client (toasts après interactions) */}
 				<ToasterClient />
 			</body>

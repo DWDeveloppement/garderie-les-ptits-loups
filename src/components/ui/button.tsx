@@ -4,7 +4,7 @@ import { useButtonA11y } from "@/hooks/a11y"
 import { useLinkA11y } from "@/hooks/a11y/useLinkA11y"
 import { Slot } from "@radix-ui/react-slot"
  
-import Link from "next/link"
+import { TransitionLink } from "@/components/transition-link"
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
@@ -78,10 +78,10 @@ function Button(props: ButtonAsNextLinkProps | ButtonAsAnchorProps | ButtonAsBut
   const onClickForAnchor: React.MouseEventHandler<HTMLAnchorElement> | undefined =
     (isNextLink || isAnchorLink) ? (props.onClick as React.MouseEventHandler<HTMLAnchorElement> | undefined) : undefined
 
-  // Rendu en Next.js Link
+  // Rendu en Next.js Link avec transition directionnelle
   if (isNextLink && href) {
     return (
-      <Link
+      <TransitionLink
         href={href}
         target={linkA11y.target}
         rel={linkA11y.rel}
@@ -92,7 +92,7 @@ function Button(props: ButtonAsNextLinkProps | ButtonAsAnchorProps | ButtonAsBut
         onClick={onClickForAnchor}
       >
         {children}
-      </Link>
+      </TransitionLink>
     )
   }
 

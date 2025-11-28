@@ -4,7 +4,7 @@
 /* Variables fluides pour font-size uniquement */
 @import '../styles/fluid/fluid-variables.css';
 /* tw-animate-css chargé dynamiquement - Voir src/components/shared/AnimateCSS.tsx */
-
+@import '../styles/animations.css';
 @layer base {
 	* {
 		@apply border-border;
@@ -165,6 +165,27 @@
 	--radius-md: calc(var(--radius) - 2px);
 	--radius-lg: var(--radius);
 	--radius-xl: calc(var(--radius) + 4px);
+
+	/*accordion annimation*/
+	--animate-accordion-down: accordion-down 0.5s ease-out;
+	--animate-accordion-up: accordion-up 0.5s ease-out;
+	@keyframes accordion-down {
+		from {
+			height: 0;
+		}
+		to {
+			height: var(--radix-accordion-content-height);
+		}
+	}
+
+	@keyframes accordion-up {
+		from {
+			height: var(--radix-accordion-content-height);
+		}
+		to {
+			height: 0;
+		}
+	}
 }
 
 /* Classes Tailwind pour font-size fluides (override possible dans les composants) */
@@ -210,46 +231,5 @@
 
 	.gradient-section-b {
 		background: linear-gradient(225deg, var(--orange-2) 0%, var(--purple-2) 50%, var(--purple-3) 100%);
-	}
-
-	/* Alignement du texte via annotations dans Rich Text */
-	.rich-text-align-wrapper.text-left > h1,
-	.rich-text-align-wrapper.text-left > h2,
-	.rich-text-align-wrapper.text-left > h3,
-	.rich-text-align-wrapper.text-left > h4,
-	.rich-text-align-wrapper.text-left > h5,
-	.rich-text-align-wrapper.text-left > h6,
-	.rich-text-align-wrapper.text-left > p {
-		text-align: left;
-	}
-
-	.rich-text-align-wrapper.text-center > h1,
-	.rich-text-align-wrapper.text-center > h2,
-	.rich-text-align-wrapper.text-center > h3,
-	.rich-text-align-wrapper.text-center > h4,
-	.rich-text-align-wrapper.text-center > h5,
-	.rich-text-align-wrapper.text-center > h6,
-	.rich-text-align-wrapper.text-center > p {
-		text-align: center;
-	}
-
-	.rich-text-align-wrapper.text-right > h1,
-	.rich-text-align-wrapper.text-right > h2,
-	.rich-text-align-wrapper.text-right > h3,
-	.rich-text-align-wrapper.text-right > h4,
-	.rich-text-align-wrapper.text-right > h5,
-	.rich-text-align-wrapper.text-right > h6,
-	.rich-text-align-wrapper.text-right > p {
-		text-align: right;
-	}
-
-	.rich-text-align-wrapper.text-justify > h1,
-	.rich-text-align-wrapper.text-justify > h2,
-	.rich-text-align-wrapper.text-justify > h3,
-	.rich-text-align-wrapper.text-justify > h4,
-	.rich-text-align-wrapper.text-justify > h5,
-	.rich-text-align-wrapper.text-justify > h6,
-	.rich-text-align-wrapper.text-justify > p {
-		text-align: justify;
 	}
 }

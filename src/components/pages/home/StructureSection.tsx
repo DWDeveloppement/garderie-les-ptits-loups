@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { structures } from '@/data/structures'
 import type { LinkedSector } from '@/sanity/types/pages/home'
 import { getSectorIconByTitle } from '@/utils/sectorIcons'
-import Link from 'next/link'
+import { TransitionLink } from '@/components/transition-link'
 
 type StructureSectionProps = {
 	sectionStructure: {
@@ -40,7 +40,7 @@ export function StructureSection({ sectionStructure }: StructureSectionProps) {
 				<div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12'>
 					{displaySectors.map((structure) => {
 						return (
-							<Link
+							<TransitionLink
 								key={structure.id}
 								href={`/la-structure/${structure.id}`}
 								className='group flex h-full focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] focus-visible:rounded-lg'>
@@ -80,7 +80,7 @@ export function StructureSection({ sectionStructure }: StructureSectionProps) {
 										</Button>
 									</CardFooter>
 								</Card>
-							</Link>
+							</TransitionLink>
 						)
 					})}
 				</div>
