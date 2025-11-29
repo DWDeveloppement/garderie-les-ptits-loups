@@ -15,7 +15,7 @@
 
 .animate-ready-slide-up {
 	opacity: 0;
-	transform: translateY(30px);
+	transform: translateY(50px);
 	transition:
 		opacity 0.6s ease-out,
 		transform 0.6s ease-out;
@@ -23,7 +23,7 @@
 
 .animate-ready-slide-down {
 	opacity: 0;
-	transform: translateY(-30px);
+	transform: translateY(-50px);
 	transition:
 		opacity 0.6s ease-out,
 		transform 0.6s ease-out;
@@ -31,7 +31,7 @@
 
 .animate-ready-slide-left {
 	opacity: 0;
-	transform: translateX(30px);
+	transform: translateX(50px);
 	transition:
 		opacity 0.6s ease-out,
 		transform 0.6s ease-out;
@@ -39,7 +39,7 @@
 
 .animate-ready-slide-right {
 	opacity: 0;
-	transform: translateX(-30px);
+	transform: translateX(-50px);
 	transition:
 		opacity 0.6s ease-out,
 		transform 0.6s ease-out;

@@ -232,4 +232,31 @@
 	.gradient-section-b {
 		background: linear-gradient(225deg, var(--orange-2) 0%, var(--purple-2) 50%, var(--purple-3) 100%);
 	}
+
+	.rich-text-legacy > h2 {
+		font-size: var(--fl-text-2xl);
+	}
+	.rich-text-legacy > h3 {
+		font-size: var(--fl-text-xl);
+	}
+	.rich-text-legacy > h4 {
+		font-size: var(--fl-text-lg);
+	}
+	.rich-text-legacy > h5 {
+		font-size: var(--fl-text-base);
+	}
+	.rich-text-legacy > p,
+	.rich-text-legacy > p > * {
+		font-size: var(--fl-text-sm);
+	}
+	.rich-text-legacy > ul,
+	.rich-text-legacy > ol,
+	.rich-text-legacy > ul > *,
+	.rich-text-legacy > ol > * {
+		font-size: var(--fl-text-sm);
+	}
+	.rich-text-legacy > blockquote,
+	.rich-text-legacy > blockquote > * {
+		font-size: var(--fl-text-sm);
+	}
 }

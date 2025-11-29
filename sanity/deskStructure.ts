@@ -29,6 +29,14 @@ export const deskStructure = (S: StructureBuilder) => {
 								.icon(() => '💰')
 								.title('Page Tarifs')
 								.child(S.document().schemaType('schedulePage').documentId('schedulePage')),
+							S.listItem()
+								.icon(() => '📄')
+								.title('Mentions Légales')
+								.child(S.document().schemaType('legacyPage').documentId('legacyPage')),
+							S.listItem()
+								.icon(() => '📄')
+								.title('Politique de Confidentialité')
+								.child(S.document().schemaType('privatePolicyPage').documentId('privatePolicyPage')),
 						])
 				),
 
@@ -141,15 +149,6 @@ export const deskStructure = (S: StructureBuilder) => {
 				.child(
 					S.documentTypeList('partners')
 						.title('Partenaires')
-						.defaultOrdering([{ field: '_createdAt', direction: 'desc' }])
-				),
-			// Contenu Sanity pour la page de test
-			S.listItem()
-				.title('Contenu Sanity pour la page de test')
-				.icon(() => '🧪')
-				.child(
-					S.documentTypeList('exemplePage')
-						.title('Contenu Sanity pour la page de test')
 						.defaultOrdering([{ field: '_createdAt', direction: 'desc' }])
 				),
 		])

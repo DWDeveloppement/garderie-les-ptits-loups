@@ -7,6 +7,7 @@ import { Card } from '@/components/ui/card'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { getLayoutData } from 'lib/sanity/queries/shared'
 import Image from 'next/image'
+import { AnimateGroup } from '../animate-once'
 export async function Partners() {
 	// Récupération des données de layout (Footer + Partners) depuis Sanity (avec cache React)
 	const { partners } = await getLayoutData()
@@ -26,7 +27,13 @@ export async function Partners() {
 					</p>
 				</div>
 
-				<div className='grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-12 md:gap-36 max-w-sm sm:max-w-3xl mx-auto'>
+				<AnimateGroup
+					animation='slide-up'
+					speed='normal'
+					easing='smooth'
+					threshold={0.2}
+					as='div'
+					className='grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-12 md:gap-36 max-w-sm sm:max-w-3xl mx-auto'>
 					{partners.map((partner) => {
 						const imageUrl = partner.logo?.asset?.url
 						const imageAlt = partner.logo?.alt || partner.name
@@ -64,7 +71,7 @@ export async function Partners() {
 							</a>
 						)
 					})}
-				</div>
+				</AnimateGroup>
 			</div>
 		</section>
 	)
