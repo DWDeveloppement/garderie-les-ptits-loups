@@ -1,3 +1,4 @@
+import { AnimateOnce } from '@/components/animate-once'
 import { IconName } from '@/components/icons'
 import { Icon } from '@/components/icons/Icon'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
@@ -6,7 +7,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { structures } from '@/data/structures'
 import type { LinkedSector } from '@/sanity/types/pages/home'
 import { getSectorIconByTitle } from '@/utils/sectorIcons'
-import Link from 'next/link'
+import { TransitionLink } from '@/components/transition-link'
 
 type StructureSectionProps = {
 	sectionStructure: {
@@ -38,10 +39,9 @@ export function StructureSection({ sectionStructure }: StructureSectionProps) {
 				</div>
 
 				<div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12'>
-					{displaySectors.map((structure) => {
-						return (
-							<Link
-								key={structure.id}
+					{displaySectors.map((structure, index) => (
+						<AnimateOnce key={structure.id} animation='slide-up' speed='slow' staggerIndex={index} className='h-full'>
+							<TransitionLink
 								href={`/la-structure/${structure.id}`}
 								className='group flex h-full focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] focus-visible:rounded-lg'>
 								<Card
@@ -68,7 +68,6 @@ export function StructureSection({ sectionStructure }: StructureSectionProps) {
 										<p className='leading-relaxed text-center'>{structure.description}</p>
 									</CardContent>
 
-									{/* Indicateur visuel que c'est cliquable (décoratif uniquement, pas focusable) */}
 									<CardFooter className='!p-0 w-full h-16 flex justify-center items-end'>
 										<Button
 											variant='default'
@@ -80,9 +79,9 @@ export function StructureSection({ sectionStructure }: StructureSectionProps) {
 										</Button>
 									</CardFooter>
 								</Card>
-							</Link>
-						)
-					})}
+							</TransitionLink>
+						</AnimateOnce>
+					))}
 				</div>
 			</div>
 		</section>

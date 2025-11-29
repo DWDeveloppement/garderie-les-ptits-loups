@@ -6,9 +6,5 @@ type ValuesSectionProps = {
 }
 
 export function ValuesSection({ content }: ValuesSectionProps) {
-	return (
-		<section className='py-16 px-4 sm:px-6 lg:px-8 gradient-section-b'>
-			<div className='max-w-6xl mx-auto'>{content && <RichTextRenderer content={content} />}</div>
-		</section>
-	)
+	return <section className='py-16 px-8 md:px-16 gradient-section-b'>{content && <RichTextRenderer content={content} />}</section>
 }

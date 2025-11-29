@@ -8,7 +8,7 @@ import {
 	NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu"
 import { navigationMenu } from "@/constants/navigation_menu"
-import Link from "next/link"
+import { TransitionLink } from "@/components/transition-link"
 
 
 
@@ -30,11 +30,11 @@ export function MainNavigationMenu() {
 									<NavigationMenuList className='flex flex-col w-[200px] gap-1 p-2'>
 										{item.subMenu.map((subItem) => (
 											<NavigationMenuLink key={subItem.href} asChild className='w-full justify-center items-center'>
-												<Link
+												<TransitionLink
 													href={subItem.href}
 													className='flex items-center w-full border-none rounded-md select-none p-3 leading-none no-underline outline-none transition-colors hover:bg-orange-3 hover:text-purple-9 focus:bg-orange-3 focus:text-purple-9 text-sm font-medium text-orange-12'>
 													{subItem.label}
-												</Link>
+												</TransitionLink>
 											</NavigationMenuLink>
 										))}
 									</NavigationMenuList>
@@ -42,11 +42,11 @@ export function MainNavigationMenu() {
 							</>
 						) : (
 							<NavigationMenuLink asChild>
-								<Link
+								<TransitionLink
 									href={item.href || '/'}
 									className='group inline-flex h-10 gap-2 w-max items-center justify-center bg-transparent px-4 text-lg border-b-2 border-transparent hover:border-orange-9 font-medium text-purple-9 transition-colors hover:text-orange-9 focus:text-orange-9 focus:border-orange-9 focus:outline-none disabled:pointer-events-none disabled:opacity-50'>
 									{item.label}
-								</Link>
+								</TransitionLink>
 							</NavigationMenuLink>
 						)}
 					</NavigationMenuItem>

@@ -1,5 +1,6 @@
 import type { IconName } from '@/components/icons/registry'
 import { BlockQuote, BlockQuoteCard } from '@/components/shared/BlockQuote'
+import { cn } from '@/lib/utils'
 import type { ReactNode } from 'react'
 
 type RichTextQuoteProps = {
@@ -22,5 +23,5 @@ type RichTextQuoteSpecialProps = {
 }
 
 export function RichTextQuoteSpecial({ content, author, variant = 'default', className, iconName }: RichTextQuoteSpecialProps) {
-	return <BlockQuoteCard content={content} author={author} variant={variant} className={className} iconName={iconName} />
+	return <BlockQuoteCard content={content} author={author} variant={variant} className={cn('mt-32', className)} iconName={iconName} />
 }

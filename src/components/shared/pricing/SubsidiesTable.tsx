@@ -24,7 +24,7 @@ export function SubsidiesTable({ subsidies }: SubsidiesTableProps) {
 						<div className='text-fl-base font-bold text-orange-11 uppercase mb-2 tracking-wider'>Revenus</div>
 						<div className='text-fl-base font-semibold text-purple-11 mb-3 leading-relaxed'>{item.incomeRange}</div>
 						<div className='text-fl-base font-bold text-orange-11 uppercase mb-2 tracking-wider'>Subvention</div>
-						<div className='text-fl-base text-orange-10 font-semibold'>{`${item.subsidy}`}</div>
+						<div className='text-fl-base text-orange-10 font-semibold'>{`CHF ${item.subsidy}`}</div>
 					</div>
 				))}
 			</div>
@@ -49,7 +49,7 @@ export function SubsidiesTable({ subsidies }: SubsidiesTableProps) {
 					{subsidies.items.map((item, index) => (
 						<tr key={index} className={`hover:bg-orange-1 transition-colors duration-200 ${index % 2 === 0 ? 'bg-white' : 'bg-orange-1'}`}>
 							<td className='px-6 py-4 text-fl-base font-semibold text-purple-11 whitespace-nowrap'>{item.incomeRange}</td>
-							<td className='px-6 py-4 text-fl-base text-orange-10 font-semibold whitespace-nowrap'>{`${item.subsidy}`}</td>
+							<td className='px-6 py-4 text-fl-base text-orange-10 font-semibold whitespace-nowrap'>{`CHF ${item.subsidy}`}</td>
 						</tr>
 					))}
 				</tbody>

@@ -1,17 +1,21 @@
-// Exemple de schéma pour une page de contenu
+/*
+ * @name legacyPage
+ * @description Schema pour les pages de contenu legacy
+ * @description Ces pages sont utilisées pour stocker du contenu qui n'est plus utilisé dans l'application
+ */
+
 import { type Rule, type SchemaTypeDefinition } from 'sanity'
 import { portableTextWithBlockquotes } from '../components/portableTextConfig'
 
-export const exemplePage: SchemaTypeDefinition = {
-	name: 'exemplePage',
-	title: 'Exemple de page de contenu',
+export const legacyPage: SchemaTypeDefinition = {
+	name: 'legacyPage',
+	title: 'Page de contenu legacy',
 	type: 'document',
 	fields: [
 		{
 			name: 'title',
 			title: 'Titre',
 			type: 'string',
-			initialValue: 'Exemple de page de contenu',
 			validation: (Rule: Rule) => Rule.required(),
 		},
 		{
@@ -22,4 +26,9 @@ export const exemplePage: SchemaTypeDefinition = {
 			validation: (Rule: Rule) => Rule.required(),
 		},
 	],
-}
+	preview: {
+		select: {
+			title: 'title',
+		},
+	},
+} as SchemaTypeDefinition

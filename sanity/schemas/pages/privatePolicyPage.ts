@@ -1,17 +1,20 @@
-// Exemple de schéma pour une page de contenu
+/* Schema pour la page de politique de confidentialité
+ * @name privatePolicyPage
+ * @description Schema pour la page de politique de confidentialité
+ */
+
 import { type Rule, type SchemaTypeDefinition } from 'sanity'
 import { portableTextWithBlockquotes } from '../components/portableTextConfig'
 
-export const exemplePage: SchemaTypeDefinition = {
-	name: 'exemplePage',
-	title: 'Exemple de page de contenu',
+export const privatePolicyPage: SchemaTypeDefinition = {
+	name: 'privatePolicyPage',
+	title: 'Politique de Confidentialité',
 	type: 'document',
 	fields: [
 		{
 			name: 'title',
 			title: 'Titre',
 			type: 'string',
-			initialValue: 'Exemple de page de contenu',
 			validation: (Rule: Rule) => Rule.required(),
 		},
 		{
@@ -22,4 +25,9 @@ export const exemplePage: SchemaTypeDefinition = {
 			validation: (Rule: Rule) => Rule.required(),
 		},
 	],
-}
+	preview: {
+		select: {
+			title: 'title',
+		},
+	},
+} as SchemaTypeDefinition

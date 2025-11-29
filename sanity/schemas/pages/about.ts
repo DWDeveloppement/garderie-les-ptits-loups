@@ -1,6 +1,6 @@
 import { type Rule, type SchemaTypeDefinition } from 'sanity'
 import { ReadOnlySlug } from '../../components/ReadOnlySlug'
-import { hero, paralaxImage, portableTextBlockConfig, seo } from '../components'
+import { hero, paralaxImage, portableTextWithBlockquotes, seo } from '../components'
 
 // Désactivé: page fixe gérée dans le code Next
 export const aboutPage: SchemaTypeDefinition = {
@@ -26,7 +26,7 @@ export const aboutPage: SchemaTypeDefinition = {
 			name: 'introduction',
 			title: 'Introduction',
 			type: 'array',
-			of: [portableTextBlockConfig],
+			of: portableTextWithBlockquotes,
 			validation: (Rule: Rule) => Rule.required(),
 		},
 		// 2) Image Parallaxe
@@ -46,7 +46,7 @@ export const aboutPage: SchemaTypeDefinition = {
 					name: 'content',
 					title: 'Contenu',
 					type: 'array',
-					of: [portableTextBlockConfig],
+					of: portableTextWithBlockquotes,
 				},
 				{
 					name: 'historyImage',
@@ -70,21 +70,21 @@ export const aboutPage: SchemaTypeDefinition = {
 			name: 'team',
 			title: 'Équipe',
 			type: 'array',
-			of: [portableTextBlockConfig],
+			of: portableTextWithBlockquotes,
 		},
 		// valeurs
 		{
 			name: 'values',
 			title: 'Valeurs',
 			type: 'array',
-			of: [portableTextBlockConfig],
+			of: portableTextWithBlockquotes,
 		},
 		// pédagogie
 		{
 			name: 'pedagogy',
 			title: 'Pédagogie',
 			type: 'array',
-			of: [portableTextBlockConfig],
+			of: portableTextWithBlockquotes,
 		},
 
 		// === SEO & CONFIGURATION ===

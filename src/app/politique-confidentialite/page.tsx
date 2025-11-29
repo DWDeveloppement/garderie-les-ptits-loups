@@ -1,7 +1,31 @@
-export default function PolitiqueConfidentialite() {
-  return (
-    <div>
-      <h1>Politique de confidentialité</h1>
-    </div>
-  )
+/**
+ * Page Politique de Confidentialité - Garderie Les P'tits Loups
+ * Données depuis Sanity CMS
+ */
+
+import { RichTextRenderer } from '@/components/shared/richtext/RichTextRenderer'
+import { Card, CardContent } from '@/components/ui/card'
+import { getPrivatePolicyPageData } from 'lib/sanity/queries/privatePolicyPage'
+import { notFound } from 'next/navigation'
+
+export const metadata = {
+	title: "Politique de Confidentialité | Garderie Les P'tits Loups",
+	description: "Politique de confidentialité de la Garderie Les P'tits Loups",
+}
+
+export default async function PolitiqueConfidentialitePage() {
+	const data = await getPrivatePolicyPageData()
+
+	if (!data) {
+		notFound()
+	}
+
+	return (
+		<section className='py-16 px-4 sm:px-6 lg:px-8 gradient-section-a'>
+			<div className='max-w-6xl mx-auto'>
+				<h1 className='text-fl-3xl font-bold text-center mb-12 text-purple-9'>{data.title}</h1>
+				{data.content && data.content.length > 0 && <RichTextRenderer content={data.content} className='rich-text-legacy' />}
+			</div>
+		</section>
+	)
 }

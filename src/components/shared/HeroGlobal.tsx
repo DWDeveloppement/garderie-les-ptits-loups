@@ -28,7 +28,7 @@ export function HeroGlobal({ title, description, imageUrl = '/jardin.webp', clas
 					transform: imageTransform,
 					transition: 'transform 0.1s ease-out',
 				}}>
-				<Image src={imageUrl} alt={title} fill className='object-cover object-center' priority sizes='100vw' />
+				<Image src={imageUrl} alt={title} fill className='object-cover object-center' priority fetchPriority='high' sizes='100vw' />
 			</div>
 
 			{/* Overlay semi-transparent */}

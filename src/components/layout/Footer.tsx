@@ -77,7 +77,7 @@ export async function Footer() {
 				{/* Ligne de séparation */}
 				<Separator orientation='horizontal' className='flex my-12 ' />
 				<div className='flex flex-col md:flex-row justify-between items-center '>
-					<p className='text-orange-4 text-fl-sm'>
+					<p className='text-orange-4 text-fl-sm mb-0'>
 						&copy; {new Date().getFullYear()} {data?.contactInfo?.name}. Tous droits réservés.
 					</p>
 					<div className='flex space-x-6 mt-4 md:mt-0'>

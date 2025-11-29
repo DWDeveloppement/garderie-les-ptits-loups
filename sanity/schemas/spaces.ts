@@ -1,5 +1,5 @@
 import { type Rule, type SchemaTypeDefinition } from 'sanity'
-import { portableTextBlockConfig } from './components/portableTextConfig'
+import { portableTextWithBlockquotes } from './components/portableTextConfig'
 
 export const spacePage: SchemaTypeDefinition = {
 	name: 'spacePage',
@@ -74,7 +74,7 @@ export const spacePage: SchemaTypeDefinition = {
 			name: 'description',
 			title: 'Description',
 			type: 'array',
-			of: [portableTextBlockConfig],
+			of: portableTextWithBlockquotes,
 			validation: (Rule: Rule) => Rule.required(),
 		},
 	],

@@ -1,6 +1,6 @@
 import { type Rule, type SchemaTypeDefinition } from 'sanity'
 import { ReadOnlySlug } from '../../components/ReadOnlySlug'
-import { hero, paralaxImage, portableTextBlockConfig, seo } from '../components'
+import { hero, paralaxImage, portableTextWithBlockquotes, seo } from '../components'
 
 export const schedulePage: SchemaTypeDefinition = {
 	name: 'schedulePage',
@@ -106,7 +106,7 @@ export const schedulePage: SchemaTypeDefinition = {
 					name: 'informationImportantSubsidies',
 					type: 'array',
 					title: 'Conditions pour bénéficier des subventions',
-					of: [portableTextBlockConfig],
+					of: portableTextWithBlockquotes,
 				},
 
 				{

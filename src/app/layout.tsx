@@ -10,7 +10,7 @@ import { CriticalCSS } from '@/components/shared/CriticalCSS'
 
 // Composants chargés uniquement côté client (imports dynamiques avec ssr: false)
 import { AnimateCSSClient, ToasterClient } from '@/components/lazy/ClientOnlyComponents'
-
+import TransitionProvider, { PageTransition } from '@/providers/Transition'
 const chelseaMarket = Chelsea_Market({
 	variable: '--font-chelsea-market',
 	subsets: ['latin'],
@@ -45,22 +45,20 @@ export default function RootLayout({
 				{/* CSS critique inline - Évite le blocage du rendu initial */}
 				<CriticalCSS />
 
-				{/* Preconnect vers Google Fonts pour accélérer le chargement */}
-				{/* Note: next/font gère automatiquement le preload quand preload: true est défini */}
-				<link rel='preconnect' href='https://fonts.googleapis.com' />
-				<link rel='preconnect' href='https://fonts.gstatic.com' crossOrigin='anonymous' />
-
-				{/* Preconnect vers Sanity CDN pour images optimisées */}
+				{/* Preconnect vers Sanity CDN pour images optimisées 
 				<link rel='preconnect' href='https://cdn.sanity.io' />
 				<link rel='dns-prefetch' href='https://cdn.sanity.io' />
+				*/}
 				{/* CSS Animations - Chargement uniquement côté client (non-critique pour le FCP) */}
 				<AnimateCSSClient />
 			</head>
 			<body className='antialiased'>
-				<Header />
-				<main>{children}</main>
-				<Partners />
-				<Footer />
+				<TransitionProvider>
+					<Header />
+					<PageTransition>{children}</PageTransition>
+					<Partners />
+					<Footer />
+				</TransitionProvider>
 				{/* Toaster - Chargement uniquement côté client (toasts après interactions) */}
 				<ToasterClient />
 			</body>

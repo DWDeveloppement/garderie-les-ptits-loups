@@ -6,9 +6,5 @@ type TeamSectionProps = {
 }
 
 export function TeamSection({ content }: TeamSectionProps) {
-	return (
-		<section className='py-16 px-4 sm:px-6 lg:px-8 gradient-section-a'>
-			<div className='max-w-6xl mx-auto'>{content && <RichTextRenderer content={content} />}</div>
-		</section>
-	)
+	return <section className='py-16 px-8 md:px-16 gradient-section-a'>{content && <RichTextRenderer content={content} />}</section>
 }

@@ -10,4 +10,4 @@ export { heroImage } from './heroImage'
 export { seoImage } from './seoImage'
 
 // Configuration Portable Text
-export { portableTextBlockConfig } from './portableTextConfig'
+export { portableTextBlockConfig, portableTextWithBlockquotes, portableTextSimple, blockquote, createPortableTextField } from './portableTextConfig'
