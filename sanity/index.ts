@@ -3,7 +3,8 @@
 // ============================================================================
 
 // Client et configuration
-export { client, sanityFetch } from './client'
+export { client, sanityFetch, imageBuilder, groq } from './client'
+export { apiVersion, dataset, projectId } from './env'
 
 // Queries modulaires (toutes les pages)
 export * from './queries'
@@ -18,6 +19,11 @@ export {
 	getHeroImagePropsOptimized,
 	getSeoImageProps,
 	getSeoShareImageProps,
+	BASIC_IMAGE_QUERY,
+	GALLERY_IMAGE_QUERY,
+	HERO_IMAGE_QUERY,
+	IMAGE_QUERY_FRAGMENT,
+	SEO_IMAGE_QUERY,
 } from './helpers/imageProps'
 
 // Gallery transformation
@@ -32,5 +38,3 @@ export {
 // Types
 export type { NextImageProps, NextImagePropsWithPriority } from './helpers/imageProps'
 
-// Query fragments (pour queries custom)
-export { BASIC_IMAGE_QUERY, GALLERY_IMAGE_QUERY, HERO_IMAGE_QUERY, IMAGE_QUERY_FRAGMENT, SEO_IMAGE_QUERY } from './helpers/imageProps'

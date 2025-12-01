@@ -1,8 +1,8 @@
 import { DevJsonViewer } from '@/components/dev'
 import { ContentSection, GallerySection, HeroSectorSection, LinkedSpacesSection } from '@/components/pages/sector'
 import { ParalaxImage } from '@/components/shared'
-import { transformSanityGalleryToPhotos } from 'lib/sanity/helpers/galleryTransform'
-import { fetchSectorPage } from 'lib/sanity/queries/sectors'
+import { transformSanityGalleryToPhotos } from '@/sanity/helpers/galleryTransform'
+import { fetchSectorPage } from '@/sanity/queries/sectors'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 

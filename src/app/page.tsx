@@ -9,7 +9,7 @@ import { StructureSection } from '@/components/pages/home/StructureSection'
 import { TestimonialsSection } from '@/components/pages/home/Testimonals'
 import { ParalaxImage } from '@/components/shared'
 import type { TestimonialsTypesProps } from '@/sanity/types/pages/testimonials'
-import { fetchHome, fetchTestimonials } from 'lib/sanity/queries/home'
+import { fetchHome, fetchTestimonials } from '@/sanity/queries/home'
 
 export default async function Home() {
 	const [data, testimonialsData] = await Promise.all([fetchHome(), fetchTestimonials()])

@@ -2,7 +2,7 @@
 import { DevJsonViewer } from '@/components/dev'
 import { AboutIntroSection, HeroAboutSection, HistorySection, PedagogySection, TeamSection, ValuesSection } from '@/components/pages/about'
 import { ParalaxImage } from '@/components/shared'
-import { fetchAbout } from 'lib/sanity/queries/about'
+import { fetchAbout } from '@/sanity/queries/about'
 
 export default async function AboutPage() {
 	const data = await fetchAbout()

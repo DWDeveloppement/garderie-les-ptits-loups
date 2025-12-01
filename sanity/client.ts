@@ -4,7 +4,7 @@
 
 import imageUrlBuilder from '@sanity/image-url'
 import { createClient } from 'next-sanity'
-import { measureSanityQuery } from '../performance/measure'
+import { measureSanityQuery } from '../lib/performance/measure'
 
 export const client = createClient({
 	projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || '',
@@ -51,3 +51,4 @@ export async function sanityFetch<T = unknown>(
 }
 
 export { groq } from 'next-sanity'
+

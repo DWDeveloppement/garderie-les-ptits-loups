@@ -7,7 +7,7 @@ import { HeroHorairesTarifsSection } from '@/components/pages/horaires-tarifs/He
 import { PricesSection } from '@/components/pages/horaires-tarifs/PricesSection'
 import { SubsidiesSection } from '@/components/pages/horaires-tarifs/SubsidiesSection'
 import { ParalaxImage } from '@/components/shared'
-import { fetchSchedule } from 'lib/sanity/queries/schedule'
+import { fetchSchedule } from '@/sanity/queries/schedule'
 import { fetchDailyNursery, fetchDailyTG, fetchMonthlyNursery, fetchMonthlyTG, fetchSubsidies } from '../../../lib/sanity/queries/prices'
 
 export default async function HorairesTarifsPage() {

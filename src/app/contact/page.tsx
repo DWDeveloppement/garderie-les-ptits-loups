@@ -6,7 +6,7 @@ import { ContactFormSection } from "@/components/pages/contact/ContactFormSectio
 import { HeroContactSection } from "@/components/pages/contact/HeroContactSection"
 import { MapSection } from "@/components/pages/contact/MapSection"
 import { ParalaxImage } from "@/components/shared"
-import { fetchContact } from "lib/sanity/queries/contact"
+import { fetchContact } from "@/sanity/queries/contact"
 
 export default async function ContactPage() {
   const data = await fetchContact()
