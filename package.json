@@ -21,8 +21,6 @@
 		"fix:orphans": "node scripts/clean/fix-orphaned-references.mjs",
 		"cleanup:sanity-cache": "node scripts/clean/cleanup-sanity-cache.mjs",
 		"delete:draft-assets": "node scripts/clean/delete-draft-and-assets.mjs",
-		"fix:page": "node scripts/fix/fix-page.mjs",
-		"fix:prices": "node scripts/fix/fix-prices-types.mjs",
 		"kill:dev": "sh scripts/tools/kill-ports.sh 3000 3333",
 		"kill:prod": "sh scripts/tools/kill-ports.sh 3100",
 		"kill:all": "sh scripts/tools/kill-ports.sh 3000 3100 3333",
