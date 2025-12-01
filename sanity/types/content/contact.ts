@@ -1,5 +1,5 @@
-// 📂 sanity/types/pages/contact.ts
-// 👉 Types pour la page Contact depuis Sanity
+// 📂 sanity/types/content/contact.ts
+// 👉 Types pour les informations de contact Sanity
 
 import type { MapLocation } from '@/types/map'
 

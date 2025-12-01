@@ -1,4 +1,4 @@
-import type { Partner } from '@/sanity/types/pages/partners'
+import type { Partner } from '@/sanity/types/content/partners'
 import { groq } from 'next-sanity'
 import { sanityFetch } from '../client'
 import { BASIC_IMAGE_QUERY } from '../helpers/imageProps'
