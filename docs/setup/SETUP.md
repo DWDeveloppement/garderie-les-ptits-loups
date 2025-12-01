@@ -25,9 +25,13 @@ NEXT_PUBLIC_SANITY_API_VERSION="2024-01-01"
 # Configuration Studio
 SANITY_STUDIO_PROJECT_ID="your_project_id"
 SANITY_STUDIO_DATASET="production"
+NEXT_PUBLIC_SANITY_STUDIO_URL="http://localhost:3333"
 
 # Token API (pour scripts et mutations côté serveur)
 SANITY_API_TOKEN="your_api_token"
+
+# Secret pour la revalidation via webhook Sanity
+SANITY_REVALIDATE_SECRET="your_revalidate_secret"
 
 # ============================================================================
 # RESEND (Email)
@@ -38,18 +42,14 @@ RESEND_TO_EMAIL="contact@garderie.com"
 RESEND_FROM_EMAIL="onboarding@resend.dev"
 
 # ============================================================================
-# GOOGLE reCAPTCHA v2
+# GOOGLE reCAPTCHA v2 (ACTIF)
 # ============================================================================
 
 RECAPTCHA_SITE_KEY="your_site_key"
 RECAPTCHA_SECRET_KEY="your_secret_key"
-
-# ============================================================================
-# REVALIDATION (optionnel - pour ISR)
-# ============================================================================
-
-REVALIDATE_SECRET="your_revalidate_secret"
 ```
+
+> **📝 Note** : Toutes les variables sont centralisées dans `.env.local` pour simplifier la configuration.
 
 ---
 
@@ -159,7 +159,9 @@ curl -X POST https://api.resend.com/emails \
 
 ---
 
-## 🛡️ Configuration reCAPTCHA (Optionnel)
+## 🛡️ Configuration reCAPTCHA v2 (ACTIF)
+
+> **⚠️ Important** : reCAPTCHA v2 est **actif** et **requis** pour le formulaire de contact. Pour plus de détails sur la sécurité, voir [SECURITY.md](./SECURITY.md).
 
 ### 1. Créer un Site reCAPTCHA
 
@@ -193,6 +195,20 @@ RECAPTCHA_SECRET_KEY="6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe"
 
 ⚠️ **Production** : Remplacez par vos vraies clés avant le déploiement !
 
+### 4. API Routes de Sécurité
+
+Le projet utilise 3 couches de sécurité (voir [SECURITY.md](./SECURITY.md)) :
+
+- **reCAPTCHA v2** : Protection anti-bot visible
+- **Honeypot** : Champ invisible anti-bot
+- **Validation Double** : Client + Serveur
+
+API routes disponibles :
+
+- `src/app/api/contact/route.ts` - Formulaire de contact avec validations
+- `src/app/api/recaptcha-config/route.ts` - Configuration reCAPTCHA côté client
+- `src/app/api/revalidate/route.ts` - Revalidation cache via webhook Sanity
+
 ---
 
 ## 🚀 Déploiement Vercel
@@ -212,14 +228,18 @@ RECAPTCHA_SECRET_KEY="6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe"
 NEXT_PUBLIC_SANITY_PROJECT_ID="your_project_id"
 NEXT_PUBLIC_SANITY_DATASET="production"
 NEXT_PUBLIC_SANITY_API_VERSION="2024-01-01"
+SANITY_STUDIO_PROJECT_ID="your_project_id"
+SANITY_STUDIO_DATASET="production"
+NEXT_PUBLIC_SANITY_STUDIO_URL="http://localhost:3333"
 SANITY_API_TOKEN="your_api_token"
+SANITY_REVALIDATE_SECRET="your_revalidate_secret"
 
 # Resend
 RESEND_API_KEY="re_xxxxxxxxxxxx"
 RESEND_TO_EMAIL="contact@garderie.com"
 RESEND_FROM_EMAIL="onboarding@resend.dev"
 
-# reCAPTCHA
+# reCAPTCHA v2
 RECAPTCHA_SITE_KEY="your_site_key"
 RECAPTCHA_SECRET_KEY="your_secret_key"
 ```
@@ -227,153 +247,166 @@ RECAPTCHA_SECRET_KEY="your_secret_key"
 ### 3. Environnements
 
 Configurer les variables pour :
+
 - ✅ **Production** : Variables de production
 - ✅ **Preview** : Variables de test (clés reCAPTCHA test)
 - ✅ **Development** : Variables locales
 
-### 4. Webhooks Sanity → Vercel (SSG)
+### 4. Webhooks Sanity → Next.js (ISR)
 
-Pour rebuild automatiquement le site à chaque publication Sanity :
+Le projet utilise **2 méthodes de revalidation** :
+
+#### A. Revalidation On-Demand (Recommandé)
+
+Revalidation ciblée via l'API `/api/revalidate` :
+
+1. **Configurer le secret** dans Vercel :
+
+   ```bash
+   SANITY_REVALIDATE_SECRET="your_revalidate_secret"
+   ```
+
+2. **Sanity Dashboard** → **API** → **Webhooks** → **Create Webhook** :
+   - Name: `Next.js Revalidation`
+   - URL: `https://votre-domaine.com/api/revalidate?secret=your_revalidate_secret`
+   - Dataset: `production`
+   - Trigger on: `Create`, `Update`, `Delete`
+   - Filter GROQ: `_type in ["home", "aboutPage", "contactPage", "schedulePage", "sectorPage", "spacePage", "prices", "testimonials", "partners"]`
+
+3. L'API revalidera automatiquement les pages concernées selon le type de document modifié.
+
+#### B. Deploy Hook Vercel (Fallback)
+
+Pour un rebuild complet (plus lent, ~30-60s) :
 
 1. **Vercel** → **Settings** → **Git** → **Deploy Hooks**
 2. **Create Hook** :
-   - Name: `Sanity Publish`
+   - Name: `Sanity Full Rebuild`
    - Branch: `main`
 3. Copier l'URL du webhook
 
-4. **Sanity Dashboard** → **API** → **Webhooks**
-5. **Create Webhook** :
-   - Name: `Vercel Rebuild`
+4. **Sanity Dashboard** → **API** → **Webhooks** → **Create Webhook** :
+   - Name: `Vercel Full Rebuild`
    - URL: [URL du webhook Vercel]
    - Dataset: `production`
    - Trigger on: `Create`, `Update`, `Delete`
-   - Filter: `_type in ["home", "aboutPage", "contactPage", "schedulePage", "sectorPage", "spaces", "prices"]`
+   - Filter GROQ: `_type in ["siteSettings", "navigation"]` (documents structurels uniquement)
 
 ---
 
-## 🔗 Webhooks Sanity → Vercel (SSG Auto-Rebuild)
+## 🔁 Revalidation et Mise à Jour du Site
 
 ### Principe
 
-Permettre au client de publier du contenu dans Sanity Studio et que le site se rebuild **automatiquement** sur Vercel.
+Le site utilise **Next.js ISR (Incremental Static Regeneration)** pour mettre à jour le contenu sans rebuild complet.
 
 **Workflow :**
-```
+
+```text
 1. Client publie dans Sanity Studio
    ↓
-2. Webhook Sanity → Vercel Deploy Hook
+2. Webhook Sanity → API /api/revalidate
    ↓
-3. Vercel rebuild automatique (~30-60s)
+3. Next.js revalide la page concernée (~1-2s)
    ↓
 4. Site mis à jour avec nouvelles données
 ```
 
-### 1. Créer un Deploy Hook Vercel
+### 1. Configuration de l'API Revalidate
 
-1. **Vercel Dashboard** → Sélectionner le projet
-2. **Settings** → **Git** → **Deploy Hooks**
-3. **Create Hook** :
-   - Name: `Sanity Publish`
-   - Branch: `main`
-4. **Copier l'URL** générée :
-   ```
-   https://api.vercel.com/v1/integrations/deploy/prj_XXXXX/YYYYY
-   ```
+L'API `/api/revalidate` est déjà configurée dans `src/app/api/revalidate/route.ts`.
 
-### 2. Configurer le Webhook dans Sanity
+**Types de documents supportés :**
 
-1. **Sanity Dashboard** → [sanity.io/manage](https://sanity.io/manage)
-2. Sélectionner le projet
-3. **API** → **Webhooks** → **Add webhook**
-4. Configuration :
+- `home` → Revalide `/`
+- `aboutPage` → Revalide `/a-propos`
+- `contactPage` → Revalide `/contact`
+- `schedulePage` → Revalide `/tarifs`
+- `legacyPage` → Revalide `/mentions-legales`
+- `privatePolicyPage` → Revalide `/politique-confidentialite`
+- `sectorPage` → Revalide `/la-structure/[slug]`
+- `spacePage` → Revalide les secteurs associés
+- `prices` → Revalide `/tarifs`
+- `testimonials` → Revalide `/` (home)
+- `partners` → Revalide toutes les pages (footer)
 
-```yaml
-Name: Vercel Production Deploy
-URL: [URL du Deploy Hook Vercel]
-Dataset: production
-Trigger on: ☑ Create  ☑ Update  ☑ Delete
-HTTP method: POST
-API version: v2021-06-07
+### 2. Tester l'API Revalidate
+
+**Test local :**
+
+```bash
+# Test GET (vérifier que l'endpoint fonctionne)
+curl "http://localhost:3000/api/revalidate?secret=your_revalidate_secret"
+
+# Test POST (simuler un webhook Sanity)
+curl -X POST "http://localhost:3000/api/revalidate?secret=your_revalidate_secret" \
+  -H "Content-Type: application/json" \
+  -d '{"_type": "home", "slug": {"current": "home"}}'
 ```
 
-5. **Filter GROQ** (rebuild sélectif) :
-```groq
-_type in ["home", "aboutPage", "contactPage", "schedulePage", "sectorPage", "spaces", "prices", "testimonials"]
+**Test en production :**
+
+```bash
+curl "https://votre-domaine.com/api/revalidate?secret=your_revalidate_secret"
 ```
 
-6. **Projection** (optionnel) :
-```groq
-{
-  _type,
-  _id,
-  title,
-  "publishedAt": _updatedAt
-}
-```
-
-7. **Save**
-
-### 3. Tester le Webhook
-
-**Test dans Sanity Studio :**
-1. Éditer n'importe quelle page
-2. Faire une petite modification
-3. Cliquer sur **Publish** 🟢
-4. Vérifier Vercel Dashboard → Deployments
-5. Un nouveau deployment devrait se lancer ! 🚀
-
-**Test dans Sanity Dashboard :**
-1. **API** → **Webhooks** → Sélectionner le webhook
-2. **Test webhook**
-3. Vérifier le statut dans les logs (200 = OK)
-
-### 4. Vérification des Logs
+### 3. Vérification des Logs
 
 **Sanity :**
+
 - **API** → **Webhooks** → [Webhook] → **Logs**
-- Voir tous les déclenchements et statuts
+- Voir tous les déclenchements et statuts (200 = OK)
 
 **Vercel :**
-- **Deployments** → "Triggered by Deploy Hook"
+
+- **Deployments** → **Function Logs**
+- Rechercher `[Revalidate]` pour voir les revalidations
 
 ### Troubleshooting
 
 **Webhook ne se déclenche pas :**
-- Vérifier l'URL du Deploy Hook dans Sanity
-- Vérifier le filtre GROQ
-- Consulter les logs webhook dans Sanity
-- Vérifier que le document modifié est dans le filtre
 
-**Rebuilds trop fréquents :**
-- Affiner le filtre GROQ pour exclure certains types
-- Changer `Trigger on` pour uniquement `Update`
+- Vérifier l'URL de l'API dans Sanity Dashboard
+- Vérifier le secret (`SANITY_REVALIDATE_SECRET`)
+- Consulter les logs webhook dans Sanity
+- Vérifier que le document modifié est dans le filtre GROQ
+
+**Revalidation échoue :**
+
+- Vérifier les logs Vercel pour les erreurs
+- Tester manuellement l'endpoint avec curl
+- Vérifier que le type de document est supporté dans `route.ts`
+
+**Page ne se met pas à jour :**
+
+- Vider le cache du navigateur (Ctrl+F5)
+- Attendre quelques secondes (revalidation peut prendre 1-2s)
+- Vérifier que le bon chemin est revalidé dans les logs
 
 ---
 
 ## 🔧 Vérification de la Configuration
 
-### Script de Test
-
-```bash
-# Vérifier toutes les variables
-node scripts/check-env.js
-```
-
-### Checklist
+### Checklist Variables d'Environnement
 
 ```bash
 ✅ Sanity
   ✓ NEXT_PUBLIC_SANITY_PROJECT_ID défini
   ✓ NEXT_PUBLIC_SANITY_DATASET défini
-  ✓ SANITY_API_TOKEN défini (optionnel)
-  ✓ Studio accessible sur localhost:3333
+  ✓ NEXT_PUBLIC_SANITY_API_VERSION défini
+  ✓ SANITY_STUDIO_PROJECT_ID défini
+  ✓ SANITY_STUDIO_DATASET défini
+  ✓ NEXT_PUBLIC_SANITY_STUDIO_URL défini
+  ✓ SANITY_API_TOKEN défini
+  ✓ SANITY_REVALIDATE_SECRET défini
 
 ✅ Resend
   ✓ RESEND_API_KEY défini
   ✓ RESEND_TO_EMAIL défini
+  ✓ RESEND_FROM_EMAIL défini
   ✓ Test d'envoi réussi
 
-✅ reCAPTCHA (optionnel)
+✅ reCAPTCHA v2 (ACTIF)
   ✓ RECAPTCHA_SITE_KEY défini
   ✓ RECAPTCHA_SECRET_KEY défini
   ✓ Domaines autorisés configurés
@@ -382,22 +415,66 @@ node scripts/check-env.js
 ✅ Vercel
   ✓ Variables d'environnement configurées
   ✓ Webhook Sanity fonctionnel
-  ✓ Déploiement automatique actif
+  ✓ API Revalidate active
 ```
 
 ### Tests Manuels
 
 ```bash
-# 1. Tester Sanity
+# 1. Tester Sanity Studio
 npm run sanity
 # → Studio accessible sur http://localhost:3333
 
-# 2. Tester le formulaire de contact
+# 2. Tester le site en développement
 npm run dev
-# → Remplir et envoyer le formulaire sur http://localhost:3000/contact
+# → Site accessible sur http://localhost:3000
 
-# 3. Vérifier les emails
-# → Checker la boîte de réception configurée dans RESEND_TO_EMAIL
+# 3. Tester le formulaire de contact
+# → Aller sur http://localhost:3000/contact
+# → Remplir et envoyer le formulaire
+# → Vérifier la boîte de réception (RESEND_TO_EMAIL)
+
+# 4. Tester la revalidation (local)
+curl "http://localhost:3000/api/revalidate?secret=your_revalidate_secret"
+# → Devrait retourner {"status":"ok","message":"Revalidation endpoint is working"}
+
+# 5. Tester le build production (local)
+npm run build
+npm run start
+# → Site accessible sur http://localhost:3100
+```
+
+### Scripts NPM Disponibles
+
+```bash
+# Développement
+npm run dev              # Serveur dev Next.js (port 3000)
+npm run sanity           # Sanity Studio (port 3333)
+npm run refresh          # Kill + clean + dev
+
+# Production locale
+npm run build            # Build production
+npm run start            # Serveur production (port 3100)
+npm run review           # Kill + clean + build + start
+npm run rebuild          # Kill + clean + build
+
+# Maintenance Sanity
+npm run cleanup:media           # Nettoyer médias inutilisés
+npm run verify:assets           # Vérifier assets supprimés
+npm run fix:orphans             # Corriger références orphelines
+npm run cleanup:sanity-cache    # Nettoyer cache Sanity
+npm run delete:draft-assets     # Supprimer drafts et assets
+
+# Utilitaires
+npm run kill:dev         # Libérer ports 3000 et 3333
+npm run kill:prod        # Libérer port 3100
+npm run kill:all         # Libérer tous les ports
+
+# Performance
+npm run perf             # Tests de performance
+npm run lighthouse       # Audit Lighthouse
+npm run lighthouse:analyze   # Analyser résultats Lighthouse
+npm run analyze          # Bundle analyzer
 ```
 
 ---
@@ -420,27 +497,59 @@ git status
 ### Rotation des Clés
 
 Changer régulièrement :
+
 - ✅ **SANITY_API_TOKEN** : Tous les 6 mois
+- ✅ **SANITY_REVALIDATE_SECRET** : Tous les 6 mois ou en cas de fuite
 - ✅ **RESEND_API_KEY** : En cas de fuite
 - ✅ **RECAPTCHA_SECRET_KEY** : En cas de fuite
 
 ### Permissions Minimales
 
 Utiliser le principe du moindre privilège :
-- **SANITY_API_TOKEN** : `Viewer` si lecture seule suffit
+
+- **SANITY_API_TOKEN** : `Viewer` si lecture seule suffit, `Editor` pour les scripts de maintenance
 - **RESEND_API_KEY** : Limiter au domaine si possible
+
+### Variables Publiques vs Privées
+
+**Variables exposées au client (NEXT*PUBLIC*\*) :**
+
+- ✅ `NEXT_PUBLIC_SANITY_PROJECT_ID` - Identifiant projet Sanity
+- ✅ `NEXT_PUBLIC_SANITY_DATASET` - Dataset Sanity
+- ✅ `NEXT_PUBLIC_SANITY_API_VERSION` - Version API Sanity
+- ✅ `NEXT_PUBLIC_SANITY_STUDIO_URL` - URL du studio
+
+**Variables côté serveur uniquement :**
+
+- 🔒 `SANITY_API_TOKEN` - Token API Sanity (lecture/écriture)
+- 🔒 `SANITY_REVALIDATE_SECRET` - Secret pour revalidation
+- 🔒 `RESEND_API_KEY` - Clé API Resend
+- 🔒 `RECAPTCHA_SECRET_KEY` - Clé secrète reCAPTCHA
+
+⚠️ **Attention** : Ne JAMAIS préfixer une variable sensible avec `NEXT_PUBLIC_` !
 
 ---
 
 ## 📚 Ressources
 
+### Documentation Projet
+
+- [README.md](../../README.md) - Documentation principale du projet
+- [SECURITY.md](./SECURITY.md) - Sécurité du formulaire (reCAPTCHA + Honeypot)
+- [DOMAINS.md](./DOMAINS.md) - Configuration des domaines et URLs
+- [SANITY_DEPLOYMENT.md](./SANITY_DEPLOYMENT.md) - Déploiement Sanity
+- [GITHUB.md](./GITHUB.md) - Gestion GitHub et organisations
+
 ### Documentation Officielle
+
+- [Next.js Documentation](https://nextjs.org/docs)
 - [Sanity Documentation](https://www.sanity.io/docs)
 - [Resend Documentation](https://resend.com/docs)
 - [reCAPTCHA Documentation](https://developers.google.com/recaptcha)
 - [Vercel Documentation](https://vercel.com/docs)
 
 ### Dashboards
+
 - [Sanity Manage](https://sanity.io/manage)
 - [Resend Dashboard](https://resend.com/dashboard)
 - [reCAPTCHA Admin](https://www.google.com/recaptcha/admin)
@@ -452,7 +561,8 @@ Utiliser le principe du moindre privilège :
 
 ### Problèmes Courants
 
-**1. Sanity Studio ne démarre pas**
+#### 1. Sanity Studio ne démarre pas
+
 ```bash
 # Vérifier les variables
 echo $NEXT_PUBLIC_SANITY_PROJECT_ID
@@ -466,7 +576,8 @@ rm -rf node_modules .next
 npm install
 ```
 
-**2. Emails ne partent pas**
+#### 2. Emails ne partent pas
+
 ```bash
 # Vérifier la clé Resend
 curl -X GET https://api.resend.com/emails \
@@ -476,14 +587,102 @@ curl -X GET https://api.resend.com/emails \
 vercel logs [deployment-url]
 ```
 
-**3. reCAPTCHA ne fonctionne pas**
-- Vérifier que les domaines sont autorisés
-- Vérifier que les clés sont correctes
-- Vérifier la console navigateur pour les erreurs
-- Tester avec les clés de test
+#### 3. reCAPTCHA ne fonctionne pas
+
+```bash
+# Vérifier que les domaines sont autorisés dans Google reCAPTCHA Admin
+# Vérifier que les clés sont correctes dans .env.local
+# Vérifier la console navigateur pour les erreurs
+# Tester avec les clés de test
+```
+
+#### 4. API Revalidate ne fonctionne pas
+
+```bash
+# Tester l'endpoint localement
+curl "http://localhost:3000/api/revalidate?secret=your_secret"
+
+# Vérifier les logs Vercel
+vercel logs [deployment-url] --follow
+
+# Vérifier que SANITY_REVALIDATE_SECRET est défini
+echo $SANITY_REVALIDATE_SECRET
+
+# Vérifier le webhook dans Sanity Dashboard
+# → API → Webhooks → Logs
+```
+
+#### 5. Build échoue
+
+```bash
+# Nettoyer et rebuild
+npm run clean
+npm install
+npm run build
+
+# Vérifier les variables d'environnement
+cat .env.local
+
+# Vérifier les dépendances
+npm outdated
+```
 
 ---
 
-**Dernière mise à jour :** Octobre 2024  
-**Version :** Next.js 15 + Sanity v3 + Resend + reCAPTCHA v2
+## 🎯 Résumé
 
+### Architecture du Projet
+
+```md
+📦 garderie-les-ptits-loups/
+├── .env.local              # ⚙️ Toutes les variables d'environnement
+├── next.config.ts          # ⚙️ Configuration Next.js
+├── sanity.config.ts        # ⚙️ Configuration Sanity
+├── package.json            # 📦 Scripts npm disponibles
+├── src/
+│   ├── app/
+│   │   └── api/
+│   │       ├── contact/route.ts          # 📧 Formulaire de contact
+│   │       ├── recaptcha-config/route.ts # 🛡️ Config reCAPTCHA
+│   │       └── revalidate/route.ts       # 🔁 Revalidation ISR
+│   ├── components/         # 🧩 Composants React
+│   ├── lib/                # 🔧 Utilitaires
+│   └── styles/             # 🎨 Styles CSS
+├── sanity/
+│   ├── schemas/            # 📋 Schémas de contenu
+│   ├── queries/            # 🔍 Requêtes GROQ
+│   └── types/              # 🟦 Types TypeScript
+├── scripts/
+│   ├── clean/              # 🧹 Scripts de nettoyage Sanity
+│   ├── tests/              # 🧪 Tests de performance
+│   └── tools/              # 🔧 Utilitaires système
+└── docs/                   # 📚 Documentation complète
+```
+
+### Workflow de Publication
+
+```text
+1. Éditer dans Sanity Studio (localhost:3333 ou sanity.studio)
+   ↓
+2. Publier le document
+   ↓
+3. Webhook Sanity → /api/revalidate?secret=xxx
+   ↓
+4. Next.js revalide la page concernée (~1-2s)
+   ↓
+5. Site mis à jour (pas de rebuild complet)
+```
+
+### Prochaines Étapes
+
+1. ✅ Configurer `.env.local` avec toutes les variables
+2. ✅ Tester Sanity Studio : `npm run sanity`
+3. ✅ Tester le site : `npm run dev`
+4. ✅ Configurer les webhooks Sanity
+5. ✅ Déployer sur Vercel
+6. ✅ Tester la revalidation en production
+
+---
+
+**Dernière mise à jour :** Décembre 2024
+**Version :** Next.js 15 + Sanity v3 + Resend + reCAPTCHA v2 + ISR
