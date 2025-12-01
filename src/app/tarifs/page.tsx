@@ -8,7 +8,7 @@ import { PricesSection } from '@/components/pages/horaires-tarifs/PricesSection'
 import { SubsidiesSection } from '@/components/pages/horaires-tarifs/SubsidiesSection'
 import { ParalaxImage } from '@/components/shared'
 import { fetchSchedule } from '@/sanity/queries/schedule'
-import { fetchDailyNursery, fetchDailyTG, fetchMonthlyNursery, fetchMonthlyTG, fetchSubsidies } from '../../../lib/sanity/queries/prices'
+import { fetchDailyNursery, fetchDailyTG, fetchMonthlyNursery, fetchMonthlyTG, fetchSubsidies } from '@/sanity/queries/prices'
 
 export default async function HorairesTarifsPage() {
 	// Récupérer les données page + prix en parallèle
