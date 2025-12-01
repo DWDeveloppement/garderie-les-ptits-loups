@@ -1,8 +1,8 @@
 // Hooks de scroll
 export { useScrollDirection, useScrollToTop } from './utils/useScroll'
 
-// Hooks de cartes (version racine conservée car différente)
-export { useDynamicMap, useMapLocation, useStaticMap } from './useMaps'
+// Hooks de cartes (statique et dynamique)
+export { useDynamicMap, useMapLocation, useStaticMap } from './components/useMaps'
 
 // Hooks de fenêtre
 export { useBreakpoint, useMobileMenuControl, useWindowSize } from './utils/useWindowSize'
