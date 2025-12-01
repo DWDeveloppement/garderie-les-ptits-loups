@@ -2,7 +2,7 @@
 
 import { Icon } from '@/components/icons/Icon'
 import { Button } from '@/components/ui/button'
-import { useMapLocation } from '@/hooks/useMaps'
+import { useMapLocation } from '@/hooks'
 import type { MapLocation } from '@/types/map'
 import { useState } from 'react'
 

@@ -1,7 +1,7 @@
 'use client'
 import { MainNavigationMenu, MobileMenu } from '@/components/layout'
 import { Button } from '@/components/ui/button'
-import { useMobileMenuControl } from '@/hooks/useWindowSize'
+import { useMobileMenuControl } from '@/hooks'
 import Image from 'next/image'
 import { TransitionLink } from '@/components/transition-link'
 import { useState } from 'react'
