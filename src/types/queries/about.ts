@@ -1,7 +1,7 @@
 // Types pour la page À propos depuis Sanity
 
-import type { PortableTextBlock } from '../sanity/portableText'
-import type { SanityImage } from '../sanity/sectorPage'
+import type { PortableTextBlock } from '@/sanity/types/core/portableText'
+import type { SanityImage } from '@/sanity/types/core/image'
 
 /**
  * Structure complète de la page À propos

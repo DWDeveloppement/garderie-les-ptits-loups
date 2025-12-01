@@ -1,7 +1,7 @@
 // Types pour la page Horaires & Tarifs depuis Sanity
 
-import type { PortableTextBlock } from '../sanity/portableText'
-import type { SanityImage } from '../sanity/sectorPage'
+import type { PortableTextBlock } from '@/sanity/types/core/portableText'
+import type { SanityImage } from '@/sanity/types/core/image'
 
 /**
  * Item de prix dans un accordion

@@ -1,6 +1,6 @@
 // Types pour la page Contact depuis Sanity
 
-import type { SanityImage } from '../sanity/sectorPage'
+import type { SanityImage } from '@/sanity/types/core/image'
 
 /**
  * Structure complète de la page Contact

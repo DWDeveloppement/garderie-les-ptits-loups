@@ -1,4 +1,4 @@
-import type { SanityImage } from '../sanity/sectorPage'
+import type { SanityImage } from '@/sanity/types/core/image'
 
 /**
  * Partenaire depuis Sanity
