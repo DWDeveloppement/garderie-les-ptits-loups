@@ -1,7 +1,19 @@
 import { MetadataRoute } from 'next'
 
+// Construire l'URL de base avec le bon protocole
+const getBaseUrl = () => {
+	if (process.env.NEXT_PUBLIC_SITE_URL) {
+		return process.env.NEXT_PUBLIC_SITE_URL
+	}
+	// Sur Vercel, VERCEL_URL est défini sans protocole
+	if (process.env.VERCEL_URL) {
+		return `https://${process.env.VERCEL_URL}`
+	}
+	return 'http://localhost:3000'
+}
+
 export default function robots(): MetadataRoute.Robots {
-	const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://garderielesptitsloups-pataco80s-projects.vercel.app'
+	const baseUrl = getBaseUrl()
 
 	// Définir les domaines de production autorisés à être indexés
 	const productionDomains = [
