@@ -7,8 +7,11 @@ import { HeroHorairesTarifsSection } from '@/components/pages/horaires-tarifs/He
 import { PricesSection } from '@/components/pages/horaires-tarifs/PricesSection'
 import { SubsidiesSection } from '@/components/pages/horaires-tarifs/SubsidiesSection'
 import { ParalaxImage } from '@/components/shared'
-import { fetchSchedule } from 'lib/sanity/queries/schedule'
-import { fetchDailyNursery, fetchDailyTG, fetchMonthlyNursery, fetchMonthlyTG, fetchSubsidies } from '../../../lib/sanity/queries/prices'
+import { fetchSchedule } from '@/sanity/queries/schedule'
+import { fetchDailyNursery, fetchDailyTG, fetchMonthlyNursery, fetchMonthlyTG, fetchSubsidies } from '@/sanity/queries/prices'
+
+// ISR: Revalidation on-demand uniquement (via webhook Sanity)
+export const revalidate = 0
 
 export default async function HorairesTarifsPage() {
 	// Récupérer les données page + prix en parallèle

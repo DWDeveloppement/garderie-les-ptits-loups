@@ -1,28 +1,7 @@
 'use client'
 
 import type { DynamicMapProps, MapLocation, StaticMapProps } from '@/types/map'
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-
-// Configuration par défaut pour la garderie
-export const DEFAULT_MAP_LOCATION: MapLocation = {
-	name: "Garderie Les P'tits Loups",
-	address: '123 Rue de la Paix',
-	postalCode: '1000',
-	city: 'Lausanne',
-	country: 'Suisse',
-	lat: 46.541742,
-	lng: 6.636635,
-}
-
-// Configuration des cartes
-export const MAP_CONFIG = {
-	timeout: 3000, // Timeout pour fallback vers carte statique
-	height: 400,
-	zoom: {
-		dynamic: 17,
-		static: 15,
-	},
-} as const
+import { useCallback, useEffect, useMemo, useState } from 'react'
 
 // Hook pour la gestion des directions et adresses
 export function useMapLocation(location: MapLocation) {
@@ -118,13 +97,14 @@ export function useStaticMap({ location, zoom = 15 }: StaticMapProps) {
 // Hook pour les cartes dynamiques
 export function useDynamicMap({
 	location,
+	ref,
 	zoom = 15,
 	showMarker = true,
 	showControls = true,
 	interactive = true,
 	zIndex = 1,
+	onError,
 }: DynamicMapProps) {
-	const mapRef = useRef<HTMLDivElement>(null)
 	const [isLoaded, setIsLoaded] = useState(false)
 	const [error, setError] = useState<string | null>(null)
 
@@ -141,10 +121,10 @@ export function useDynamicMap({
 				// @ts-expect-error - Import CSS dynamique
 				await import('leaflet/dist/leaflet.css')
 
-				if (!mapRef.current) return
+				if (!ref?.current) return
 
 				// Initialisation de la carte
-				map = L.map(mapRef.current, {
+				map = L.map(ref.current, {
 					center: [location.lat, location.lng],
 					zoom: zoom,
 					zoomControl: showControls,
@@ -196,7 +176,12 @@ export function useDynamicMap({
 				setIsLoaded(true)
 			} catch (err) {
 				console.error('Erreur lors du chargement de la carte:', err)
-				setError('Impossible de charger la carte')
+				const errorMessage = 'Impossible de charger la carte'
+				setError(errorMessage)
+				// Appel du callback d'erreur si fourni
+				if (onError) {
+					onError(errorMessage)
+				}
 			}
 		}
 
@@ -208,10 +193,9 @@ export function useDynamicMap({
 				map.remove()
 			}
 		}
-	}, [location, zoom, showMarker, showControls, interactive, zIndex])
+	}, [location, zoom, showMarker, showControls, interactive, zIndex, ref, onError])
 
 	return {
-		mapRef,
 		isLoaded,
 		error,
 	}

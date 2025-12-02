@@ -1,10 +1,13 @@
 import { DevJsonViewer } from '@/components/dev'
 import { ContentSection, GallerySection, HeroSectorSection, LinkedSpacesSection } from '@/components/pages/sector'
 import { ParalaxImage } from '@/components/shared'
-import { transformSanityGalleryToPhotos } from 'lib/sanity/helpers/galleryTransform'
-import { fetchSectorPage } from 'lib/sanity/queries/sectors'
+import { transformSanityGalleryToPhotos } from '@/sanity/helpers/galleryTransform'
+import { fetchSectorPage } from '@/sanity/queries/sectors'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
+
+// ISR: Revalidation on-demand uniquement (via webhook Sanity)
+export const revalidate = 0
 
 // 4 secteurs fixes pour SSG
 const SECTOR_SLUGS = ['nurserie', 'trotteurs', 'grands', 'autres-espaces'] as const

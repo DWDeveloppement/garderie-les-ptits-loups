@@ -5,7 +5,7 @@
  */
 import { Card } from '@/components/ui/card'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
-import { getLayoutData } from 'lib/sanity/queries/shared'
+import { getLayoutData } from '@/sanity/queries/shared'
 import Image from 'next/image'
 import { AnimateGroup } from '../animate-once'
 export async function Partners() {

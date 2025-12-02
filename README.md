@@ -1,13 +1,13 @@
 # 🏫 Garderie Les P'tits Loups
 
-Une application web moderne pour la gestion d'une garderie, construite avec Next.js, Radix UI et Sanity CMS.
+Une application web moderne pour la gestion d'une garderie, construite avec Next.js, Shadcn UI et Sanity CMS.
 
 ## 🚀 Stack Technique
 
 - **Framework**: [Next.js 15](https://nextjs.org/) + App Router
 - **Langage**: [TypeScript](https://www.typescriptlang.org/)
 - **Styling**: [Tailwind CSS V4](https://tailwindcss.com/)
-- **UI Components**: [Radix UI](https://www.radix-ui.com/) + [Shadcn UI](https://ui.shadcn.com/)
+- **UI Components**: [Shadcn UI](https://ui.shadcn.com/)
 - **CMS**: [Sanity](https://www.sanity.io/)
 - **Email**: [Resend](https://resend.com/)
 - **Déploiement**: [Vercel](https://vercel.com/)
@@ -29,6 +29,7 @@ npm run sanity
 ## ⚙️ Configuration
 
 ### Variables d'environnement
+
 Créez un fichier `.env.local` avec :
 
 ```env
@@ -46,6 +47,7 @@ RECAPTCHA_SECRET_KEY=your_secret_key
 ```
 
 ### Configuration Sanity
+
 1. Créez un nouveau projet sur [sanity.io](https://sanity.io)
 2. Ajoutez vos identifiants dans `.env.local`
 3. Lancez le studio : `npm run sanity`
@@ -59,26 +61,27 @@ RECAPTCHA_SECRET_KEY=your_secret_key
 ├── 🗄️ src/
 │   ├── 📱 app/              # Pages Next.js (App Router)
 │   ├── 🧩 components/       # Composants React
-│   │   ├── ui/              # Composants Shadcn originaux
+│   │   ├── ui/              # Composants Shadcn
 │   │   ├── pages/           # Sections de pages
 │   │   ├── shared/          # Composants partagés
-│   │   ├── layout/          # Composants de layout
-│   │   └── forms/           # Composants de formulaires
+│   │   ├── layout/          # Header, Footer, Navigation
+│   │   ├── forms/           # Formulaires
+│   │   ├── gallery/         # Galerie photos
+│   │   └── dev/             # Outils développement
 │   ├── 🎣 hooks/            # Hooks personnalisés
-│   ├── 🔧 lib/              # Utilitaires (sanity, performance)
+│   ├── 🔧 lib/              # Utilitaires (utils.ts)
 │   ├── 🎨 styles/           # CSS et variables
 │   └── 🟦 types/            # Types TypeScript applicatifs
 ├── 🎨 sanity/               # Configuration Sanity CMS
 │   ├── schemas/             # Schémas de contenu
 │   ├── components/          # Composants Studio
 │   ├── queries/             # Requêtes GROQ
-│   ├── lib/                 # Utilitaires Sanity
-│   └── types/               # ✅ Types TypeScript Sanity (centralisés)
+│   ├── helpers/             # Utilitaires (images, transforms)
+│   └── types/               # Types Sanity (core/content/pages)
 ├── 📝 scripts/              # Scripts de maintenance
-│   ├── clean/               # ✅ Scripts de nettoyage
-│   ├── fix/                 # ✅ Scripts de correction
-│   ├── tests/               # ✅ Scripts de test
-│   └── tools/               # ✅ Outils utilitaires
+│   ├── clean/               # Nettoyage Sanity
+│   ├── tests/               # Performance & Lighthouse
+│   └── tools/               # Utilitaires système
 ├── ⚙️ .env.local            # Variables d'environnement
 └── ✍️ README.md
 ```
@@ -88,10 +91,14 @@ RECAPTCHA_SECRET_KEY=your_secret_key
 ## 🎨 Design System
 
 ### Palette de Couleurs
+
+Palette basée sur [Radix Colors](https://www.radix-ui.com/colors) (Custom Palette) :
+
 - **Orange** : Couleur neutre/système (remplace gray)
 - **Purple** : Couleur d'accent principale
 
 ### Usage
+
 ```css
 bg-purple-9          /* Boutons principaux */
 text-orange-11       /* Texte principal */
@@ -101,16 +108,20 @@ border-orange-6      /* Bordures */
 ## 🧩 Composants Principaux
 
 ### Structure
-- `src/components/ui/` : Composants Shadcn originaux (ne pas modifier)
-- `src/components/pages/` : Sections spécifiques aux pages
-- `src/components/debug/` : Composants de debug (développement)
-- `src/components/examples/` : Exemples de composants
 
-### Exemples
+- `src/components/ui/` : Composants Shadcn
+- `src/components/pages/` : Sections spécifiques aux pages
+- `src/components/shared/` : Composants réutilisables
+- `src/components/layout/` : Header, Footer, Navigation
+- `src/components/dev/` : Outils de développement
+
+### Fonctionnalités
+
 - **Button** : Variants avec icônes et focus states
 - **ContactForm** : Validation, localStorage, reCAPTCHA
-- **Maps** : OpenStreetMap + Leaflet (pas Google Maps)
+- **Maps** : OpenStreetMap + Leaflet
 - **Navigation** : Mobile bottom bar avec auto-hide
+- **Gallery** : Galerie avec react-photo-album et Lightbox avec Yet-Another-Lightbox
 
 ## 🔒 Sécurité
 
@@ -131,19 +142,20 @@ border-orange-6      /* Bordures */
 # Développement
 npm run dev              # Serveur dev Next.js (port 3000)
 npm run sanity           # Sanity Studio (port 3333)
+npm run refresh          # Kill + clean + dev
 
 # Production
 npm run build            # Build production
 npm run start            # Serveur production (port 3100)
+npm run review           # Kill + clean + build + start
 
-# Utilitaires
-npm run cleanup:media    # Nettoyer médias non utilisés
-npm run fix:page -- [page]  # Réparer document Sanity
+# Maintenance
+npm run cleanup:media    # Nettoyer médias Sanity
 npm run kill:dev         # Libérer ports 3000 et 3333
-npm run kill:prod        # Libérer port 3100
+npm run kill:all         # Libérer tous les ports
 ```
 
-> 💡 **Tous les scripts** : Voir [docs/README.md](./docs/README.md#-scripts-principaux) pour la liste complète.
+> 💡 **Tous les scripts** : Voir [scripts/README.md](./scripts/README.md) pour la liste complète.
 
 ## 📚 Documentation
 

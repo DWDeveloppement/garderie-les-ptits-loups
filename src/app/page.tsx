@@ -8,8 +8,11 @@ import { SpacesSection } from '@/components/pages/home/SpacesSection'
 import { StructureSection } from '@/components/pages/home/StructureSection'
 import { TestimonialsSection } from '@/components/pages/home/Testimonals'
 import { ParalaxImage } from '@/components/shared'
-import type { TestimonialsTypesProps } from '@/sanity/types/pages/testimonials'
-import { fetchHome, fetchTestimonials } from 'lib/sanity/queries/home'
+import type { TestimonialsTypesProps } from '@/sanity/types/content/testimonials'
+import { fetchHome, fetchTestimonials } from '@/sanity/queries/home'
+
+// ISR: Revalidation on-demand uniquement (via webhook Sanity)
+export const revalidate = 0
 
 export default async function Home() {
 	const [data, testimonialsData] = await Promise.all([fetchHome(), fetchTestimonials()])

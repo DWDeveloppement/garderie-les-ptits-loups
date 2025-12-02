@@ -6,8 +6,7 @@ import { Icon } from '@/components/icons/Icon'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { MAP_INFO_DEFAULT } from '@/constants/map_info_default'
-import { useMapLocation } from '@/hooks/useMaps'
-import { useScrollDirection } from '@/hooks/useScroll'
+import { useMapLocation, useScrollDirection } from '@/hooks'
 import type { MapLocation } from '@/types/map'
 
 type BottomBarProps = {

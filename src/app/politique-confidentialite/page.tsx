@@ -5,8 +5,11 @@
 
 import { RichTextRenderer } from '@/components/shared/richtext/RichTextRenderer'
 import { Card, CardContent } from '@/components/ui/card'
-import { getPrivatePolicyPageData } from 'lib/sanity/queries/privatePolicyPage'
+import { getPrivatePolicyPageData } from '@/sanity/queries/privatePolicyPage'
 import { notFound } from 'next/navigation'
+
+// ISR: Revalidation on-demand uniquement (via webhook Sanity)
+export const revalidate = 0
 
 export const metadata = {
 	title: "Politique de Confidentialité | Garderie Les P'tits Loups",

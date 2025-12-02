@@ -1,6 +1,6 @@
 'use client'
 
-import { useScrollParallax } from '@/hooks/useScollParalax'
+import { useScrollParallax } from '@/hooks'
 import Image from 'next/image'
 
 type ParalaxImageProps = {

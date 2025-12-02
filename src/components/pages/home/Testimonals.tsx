@@ -1,7 +1,7 @@
 'use client'
 import { AnimateOnce } from '@/components/animate-once'
 import { Card, CardContent } from '@/components/ui/card'
-import { TestimonialsTypesProps } from '@/sanity/types/pages/testimonials'
+import { TestimonialsTypesProps } from '@/sanity/types/content/testimonials'
 import { Quote } from 'lucide-react'
 import { useCallback, useEffect, useState } from 'react'
 
