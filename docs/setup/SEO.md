@@ -58,20 +58,39 @@ Après configuration DNS (propagation 5min - 48h):
 
 ### 1. `/src/app/robots.ts`
 
-Génère automatiquement le fichier `robots.txt`:
+Génère automatiquement le fichier `robots.txt` en fonction du domaine:
+
+**Liste des domaines de production autorisés:**
+- `www.garderielesptitsloups.ch`
+- `garderielesptitsloups.ch`
+- Vous pouvez ajouter d'autres alias dans le code
+
+**Comportement:**
 
 ```txt
-# Sur *.vercel.app (preview)
+# Sur *.vercel.app ou domaine non listé (preview/staging)
 User-agent: *
 Disallow: /
 
-# Sur domaine personnalisé (production)
+# Sur domaine de production autorisé
 User-agent: *
 Allow: /
 Disallow: /api/
 Disallow: /sanity/
 Disallow: /_next/
 Sitemap: https://www.garderielesptitsloups.ch/sitemap.xml
+```
+
+**Ajouter un nouvel alias:**
+
+Si vous ajoutez un alias dans Vercel (ex: `garderie.example.com`), ajoutez-le dans `src/app/robots.ts`:
+
+```typescript
+const productionDomains = [
+  'www.garderielesptitsloups.ch',
+  'garderielesptitsloups.ch',
+  'garderie.example.com', // Nouvel alias
+]
 ```
 
 ### 2. `/src/app/sitemap.ts`
