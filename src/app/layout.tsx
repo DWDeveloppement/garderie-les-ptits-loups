@@ -30,8 +30,43 @@ const openSans = Open_Sans({
 })
 
 export const metadata: Metadata = {
-	title: "Garderie Les P'tits Loups",
-	description: "Garderie Les P'tits Loups",
+	metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://garderielesptitsloups-pataco80s-projects.vercel.app'),
+	title: {
+		default: "Garderie Les P'tits Loups - Accueil chaleureux pour vos enfants",
+		template: "%s | Garderie Les P'tits Loups",
+	},
+	description:
+		"Garderie Les P'tits Loups offre un environnement sécurisé et stimulant pour le développement de vos enfants. Découvrez nos services de garde professionnels.",
+	keywords: ['garderie', 'crèche', 'enfants', 'garde enfants', 'éducation petite enfance', 'Suisse'],
+	authors: [{ name: "Garderie Les P'tits Loups" }],
+	openGraph: {
+		type: 'website',
+		locale: 'fr_CH',
+		url: '/',
+		title: "Garderie Les P'tits Loups",
+		description: "Accueil chaleureux et professionnel pour vos enfants",
+		siteName: "Garderie Les P'tits Loups",
+	},
+	twitter: {
+		card: 'summary_large_image',
+		title: "Garderie Les P'tits Loups",
+		description: "Accueil chaleureux et professionnel pour vos enfants",
+	},
+	robots: {
+		index: true,
+		follow: true,
+		googleBot: {
+			index: true,
+			follow: true,
+			'max-video-preview': -1,
+			'max-image-preview': 'large',
+			'max-snippet': -1,
+		},
+	},
+	verification: {
+		// Ajouter Google Search Console verification code ici quand disponible
+		// google: 'votre-code-verification',
+	},
 }
 
 export default function RootLayout({
