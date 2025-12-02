@@ -10,6 +10,9 @@ import { ParalaxImage } from '@/components/shared'
 import { fetchSchedule } from '@/sanity/queries/schedule'
 import { fetchDailyNursery, fetchDailyTG, fetchMonthlyNursery, fetchMonthlyTG, fetchSubsidies } from '@/sanity/queries/prices'
 
+// ISR: Revalidation on-demand uniquement (via webhook Sanity)
+export const revalidate = 0
+
 export default async function HorairesTarifsPage() {
 	// Récupérer les données page + prix en parallèle
 	const [scheduleData, monthlyNursery, dailyNursery, monthlyTG, dailyTG, subsidiesDoc] = await Promise.all([

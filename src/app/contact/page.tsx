@@ -8,6 +8,9 @@ import { MapSection } from "@/components/pages/contact/MapSection"
 import { ParalaxImage } from "@/components/shared"
 import { fetchContact } from "@/sanity/queries/contact"
 
+// ISR: Revalidation on-demand uniquement (via webhook Sanity)
+export const revalidate = 0
+
 export default async function ContactPage() {
   const data = await fetchContact()
 

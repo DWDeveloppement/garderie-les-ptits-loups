@@ -4,6 +4,9 @@ import { AboutIntroSection, HeroAboutSection, HistorySection, PedagogySection, T
 import { ParalaxImage } from '@/components/shared'
 import { fetchAbout } from '@/sanity/queries/about'
 
+// ISR: Revalidation on-demand uniquement (via webhook Sanity)
+export const revalidate = 0
+
 export default async function AboutPage() {
 	const data = await fetchAbout()
 

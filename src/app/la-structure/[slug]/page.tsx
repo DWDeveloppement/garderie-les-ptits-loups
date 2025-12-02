@@ -6,6 +6,9 @@ import { fetchSectorPage } from '@/sanity/queries/sectors'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
+// ISR: Revalidation on-demand uniquement (via webhook Sanity)
+export const revalidate = 0
+
 // 4 secteurs fixes pour SSG
 const SECTOR_SLUGS = ['nurserie', 'trotteurs', 'grands', 'autres-espaces'] as const
 

@@ -27,6 +27,7 @@
 		"perf": "tsx scripts/tests/test-performance.mjs",
 		"lighthouse": "node scripts/tests/run-lighthouse.mjs",
 		"lighthouse:analyze": "node scripts/tests/analyze-lighthouse.mjs",
+		"test:revalidate": "node scripts/tests/test-revalidation.mjs",
 		"analyze": "ANALYZE=true npm run build"
 	},
 	"dependencies": {

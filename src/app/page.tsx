@@ -11,6 +11,9 @@ import { ParalaxImage } from '@/components/shared'
 import type { TestimonialsTypesProps } from '@/sanity/types/content/testimonials'
 import { fetchHome, fetchTestimonials } from '@/sanity/queries/home'
 
+// ISR: Revalidation on-demand uniquement (via webhook Sanity)
+export const revalidate = 0
+
 export default async function Home() {
 	const [data, testimonialsData] = await Promise.all([fetchHome(), fetchTestimonials()])
 

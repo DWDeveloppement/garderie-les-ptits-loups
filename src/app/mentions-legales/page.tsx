@@ -8,6 +8,9 @@ import { Card, CardContent } from '@/components/ui/card'
 import { getLegacyPageData } from '@/sanity/queries/legacyPage'
 import { notFound } from 'next/navigation'
 
+// ISR: Revalidation on-demand uniquement (via webhook Sanity)
+export const revalidate = 0
+
 export const metadata = {
 	title: "Mentions Légales | Garderie Les P'tits Loups",
 	description: "Mentions légales de la Garderie Les P'tits Loups",
