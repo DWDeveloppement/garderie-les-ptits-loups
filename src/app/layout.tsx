@@ -29,20 +29,7 @@ const openSans = Open_Sans({
 	fallback: ['Arial', 'sans-serif'], // Fallback explicite
 })
 
-// Construire l'URL de base avec le bon protocole
-const getBaseUrl = () => {
-	if (process.env.NEXT_PUBLIC_SITE_URL) {
-		return process.env.NEXT_PUBLIC_SITE_URL
-	}
-	// Sur Vercel, VERCEL_URL est défini sans protocole
-	if (process.env.VERCEL_URL) {
-		return `https://${process.env.VERCEL_URL}`
-	}
-	return 'http://localhost:3000'
-}
-
 export const metadata: Metadata = {
-	metadataBase: new URL(getBaseUrl()),
 	title: {
 		default: "Garderie Les P'tits Loups - Accueil chaleureux pour vos enfants",
 		template: "%s | Garderie Les P'tits Loups",

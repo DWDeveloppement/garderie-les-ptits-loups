@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /sanity/
+Disallow: /_next/
+
+Sitemap: https://www.garderielesptitsloups.ch/sitemap.xml
