@@ -4,7 +4,6 @@
  */
 
 import { RichTextRenderer } from '@/components/shared/richtext/RichTextRenderer'
-import { Card, CardContent } from '@/components/ui/card'
 import { getPrivatePolicyPageData } from '@/sanity/queries/privatePolicyPage'
 import { notFound } from 'next/navigation'
 

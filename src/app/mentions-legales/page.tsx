@@ -4,7 +4,6 @@
  */
 
 import { RichTextRenderer } from '@/components/shared/richtext/RichTextRenderer'
-import { Card, CardContent } from '@/components/ui/card'
 import { getLegacyPageData } from '@/sanity/queries/legacyPage'
 import { notFound } from 'next/navigation'
 
