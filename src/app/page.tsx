@@ -11,8 +11,9 @@ import { ParalaxImage } from '@/components/shared'
 import type { TestimonialsTypesProps } from '@/sanity/types/content/testimonials'
 import { fetchHome, fetchTestimonials } from '@/sanity/queries/home'
 
-// ISR: Revalidation on-demand uniquement (via webhook Sanity)
-export const revalidate = 0
+// ISR: Cache de 60s + revalidation on-demand (via webhook Sanity)
+// Note: revalidate = 0 cause des problèmes de cache trop agressif sur Vercel
+export const revalidate = 60
 
 export default async function Home() {
 	const [data, testimonialsData] = await Promise.all([fetchHome(), fetchTestimonials()])

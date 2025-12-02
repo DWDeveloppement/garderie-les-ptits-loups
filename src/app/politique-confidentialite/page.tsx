@@ -8,8 +8,8 @@ import { Card, CardContent } from '@/components/ui/card'
 import { getPrivatePolicyPageData } from '@/sanity/queries/privatePolicyPage'
 import { notFound } from 'next/navigation'
 
-// ISR: Revalidation on-demand uniquement (via webhook Sanity)
-export const revalidate = 0
+// ISR: Cache de 60s + revalidation on-demand (via webhook Sanity)
+export const revalidate = 60
 
 export const metadata = {
 	title: "Politique de Confidentialité | Garderie Les P'tits Loups",
