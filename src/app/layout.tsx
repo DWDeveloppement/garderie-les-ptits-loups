@@ -29,10 +29,7 @@ const openSans = Open_Sans({
 	fallback: ['Arial', 'sans-serif'], // Fallback explicite
 })
 
-import { getBaseUrl } from '@/lib/url'
-
 export const metadata: Metadata = {
-	metadataBase: new URL(getBaseUrl()),
 	title: {
 		default: "Garderie Les P'tits Loups - Accueil chaleureux pour vos enfants",
 		template: "%s | Garderie Les P'tits Loups",
