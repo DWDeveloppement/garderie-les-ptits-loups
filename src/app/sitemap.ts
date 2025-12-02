@@ -1,16 +1,5 @@
 import { MetadataRoute } from 'next'
-
-// Construire l'URL de base avec le bon protocole
-const getBaseUrl = () => {
-	if (process.env.NEXT_PUBLIC_SITE_URL) {
-		return process.env.NEXT_PUBLIC_SITE_URL
-	}
-	// Sur Vercel, VERCEL_URL est défini sans protocole
-	if (process.env.VERCEL_URL) {
-		return `https://${process.env.VERCEL_URL}`
-	}
-	return 'http://localhost:3000'
-}
+import { getBaseUrl } from '@/lib/url'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	const baseUrl = getBaseUrl()
