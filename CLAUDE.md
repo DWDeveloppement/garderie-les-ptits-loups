@@ -6,17 +6,102 @@
 
 ---
 
+## 🤖 Utilisation des modèles Claude (Optimisation des tokens)
+
+Pour optimiser la consommation de tokens et les coûts, les assistants IA doivent utiliser le modèle approprié selon la complexité de la tâche :
+
+### Modèles disponibles
+
+| Modèle | Complexité | Cas d'usage | Autorisation requise |
+|--------|------------|-------------|---------------------|
+| **Haiku** (gratuit) | Simple | Documentation, composants UI basiques, lecture de code | ❌ Non |
+| **Sonnet** (moyen) | Moyenne | Composants avec logique, hooks personnalisés, intégrations | ❌ Non |
+| **Opus** (avancé) | Complexe | Architecture avancée, optimisations complexes, refactoring majeur | ✅ **Oui** |
+
+### Règles d'utilisation
+
+#### ✅ Utiliser Haiku pour :
+- Rédaction ou mise à jour de documentation (README, CLAUDE.md, etc.)
+- Création de composants UI simples (Button, Card, Badge)
+- Lecture et analyse de code existant
+- Corrections de typos ou formatage
+- Création de types TypeScript basiques
+- Ajout de commentaires dans le code
+
+#### ✅ Utiliser Sonnet pour :
+- Composants avec logique métier (formulaires, validation)
+- Hooks personnalisés avec état et effets
+- Intégrations API (Sanity, Resend, reCAPTCHA)
+- Optimisations de performance standard
+- Corrections de bugs moyens
+- Schémas Sanity avec relations
+
+#### ⚠️ Utiliser Opus (avec autorisation) pour :
+- Architecture système complexe
+- Refactoring majeur de l'application
+- Optimisations de performance avancées
+- Résolution de bugs critiques complexes
+- Implémentation de patterns architecturaux
+- Migration de versions majeures
+- Sécurité avancée (authentification, autorisation)
+
+### Processus de demande d'autorisation
+
+Si une tâche nécessite **Opus**, l'assistant doit :
+
+1. **Analyser la complexité** de la tâche
+2. **Estimer** le nombre de tokens nécessaires
+3. **Demander l'autorisation** à l'utilisateur avec justification :
+   ```
+   Cette tâche nécessite le modèle Opus car :
+   - [Raison 1 : complexité architecturale]
+   - [Raison 2 : impact sur plusieurs modules]
+   - [Raison 3 : optimisations avancées requises]
+
+   Estimation : ~X tokens
+   Puis-je procéder avec Opus ?
+   ```
+4. **Attendre confirmation** avant de démarrer
+
+### Exemples pratiques
+
+```typescript
+// ✅ Haiku : Composant Button simple
+export function Button({ children, ...props }: ButtonProps) {
+  return <button className="px-4 py-2 bg-purple-9" {...props}>{children}</button>
+}
+
+// ✅ Sonnet : Hook avec logique
+export function useFormValidation() {
+  const [errors, setErrors] = useState<Record<string, string>>({})
+  // Validation logic avec Zod
+  // localStorage persistence
+  // État de soumission
+  return { errors, validate, handleSubmit }
+}
+
+// ⚠️ Opus : Architecture ISR complexe
+// Nécessite autorisation pour :
+// - Implémentation complète du système ISR
+// - Configuration webhooks Sanity
+// - Optimisation cache multi-niveaux
+// - Stratégie de revalidation conditionnelle
+```
+
+---
+
 ## 📋 Table des matières
 
-1. [Vue d'ensemble du projet](#-vue-densemble-du-projet)
-2. [Architecture technique](#-architecture-technique)
-3. [Structure du code](#-structure-du-code)
-4. [Workflows de développement](#-workflows-de-développement)
-5. [Conventions et bonnes pratiques](#-conventions-et-bonnes-pratiques)
-6. [Intégration Sanity CMS](#-intégration-sanity-cms)
-7. [Guide de tâches courantes](#-guide-de-tâches-courantes)
-8. [Sécurité et performance](#-sécurité-et-performance)
-9. [Troubleshooting](#-troubleshooting)
+1. [Utilisation des modèles Claude](#-utilisation-des-modèles-claude-optimisation-des-tokens)
+2. [Vue d'ensemble du projet](#-vue-densemble-du-projet)
+3. [Architecture technique](#-architecture-technique)
+4. [Structure du code](#-structure-du-code)
+5. [Workflows de développement](#-workflows-de-développement)
+6. [Conventions et bonnes pratiques](#-conventions-et-bonnes-pratiques)
+7. [Intégration Sanity CMS](#-intégration-sanity-cms)
+8. [Guide de tâches courantes](#-guide-de-tâches-courantes)
+9. [Sécurité et performance](#-sécurité-et-performance)
+10. [Troubleshooting](#-troubleshooting)
 
 ---
 
