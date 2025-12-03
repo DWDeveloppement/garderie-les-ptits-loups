@@ -12,15 +12,19 @@ Pour optimiser la consommation de tokens et les coûts, les assistants IA doiven
 
 ### Modèles disponibles
 
-| Modèle | Complexité | Cas d'usage | Autorisation requise |
-|--------|------------|-------------|---------------------|
-| **Haiku** (gratuit) | Simple | Documentation, composants UI basiques, lecture de code | ❌ Non |
-| **Sonnet** (moyen) | Moyenne | Composants avec logique, hooks personnalisés, intégrations | ❌ Non |
-| **Opus** (avancé) | Complexe | Architecture avancée, optimisations complexes, refactoring majeur | ✅ **Oui** |
+| Modèle              | Complexité | Cas d'usage                                                       | Autorisation requise |
+| ------------------- | ---------- | ----------------------------------------------------------------- | -------------------- |
+| **Haiku** (gratuit) | Simple     | Documentation, composants UI basiques, lecture de code            | ❌ Non               |
+| **Sonnet** (moyen)  | Moyenne    | Composants avec logique, hooks personnalisés, intégrations        | ❌ Non               |
+| **Opus** (avancé)   | Complexe   | Architecture avancée, optimisations complexes, refactoring majeur | ✅ **Oui**           |
+
+> **Note importante:**
+> mentionner le moteur utilisé dans le contexte chargent
 
 ### Règles d'utilisation
 
 #### ✅ Utiliser Haiku pour :
+
 - Rédaction ou mise à jour de documentation (README, CLAUDE.md, etc.)
 - Création de composants UI simples (Button, Card, Badge)
 - Lecture et analyse de code existant
@@ -29,6 +33,7 @@ Pour optimiser la consommation de tokens et les coûts, les assistants IA doiven
 - Ajout de commentaires dans le code
 
 #### ✅ Utiliser Sonnet pour :
+
 - Composants avec logique métier (formulaires, validation)
 - Hooks personnalisés avec état et effets
 - Intégrations API (Sanity, Resend, reCAPTCHA)
@@ -37,6 +42,7 @@ Pour optimiser la consommation de tokens et les coûts, les assistants IA doiven
 - Schémas Sanity avec relations
 
 #### ⚠️ Utiliser Opus (avec autorisation) pour :
+
 - Architecture système complexe
 - Refactoring majeur de l'application
 - Optimisations de performance avancées
@@ -52,6 +58,7 @@ Si une tâche nécessite **Opus**, l'assistant doit :
 1. **Analyser la complexité** de la tâche
 2. **Estimer** le nombre de tokens nécessaires
 3. **Demander l'autorisation** à l'utilisateur avec justification :
+
    ```
    Cette tâche nécessite le modèle Opus car :
    - [Raison 1 : complexité architecturale]
@@ -61,6 +68,7 @@ Si une tâche nécessite **Opus**, l'assistant doit :
    Estimation : ~X tokens
    Puis-je procéder avec Opus ?
    ```
+
 4. **Attendre confirmation** avant de démarrer
 
 ### Exemples pratiques
@@ -138,23 +146,23 @@ export function useFormValidation() {
 
 ### Stack principal
 
-| Couche | Technologies |
-|--------|-------------|
-| **Framework** | Next.js 15.5.2 (App Router) |
-| **Langage** | TypeScript 5 (strict mode) |
-| **UI** | React 19.1.0 |
-| **Styling** | Tailwind CSS v4 + styled-components |
-| **Composants UI** | Shadcn UI + Radix UI primitives |
-| **CMS** | Sanity v4.6.1 + next-sanity |
-| **Formulaires** | React Hook Form + Zod |
-| **Email** | Resend 6.0.2 |
-| **Maps** | Leaflet + OpenStreetMap |
-| **Galerie** | react-photo-album + yet-another-react-lightbox |
-| **Animations** | Framer Motion 12.23.24 |
-| **Icônes** | Lucide React |
-| **Notifications** | Sonner (toasts) |
-| **Sécurité** | reCAPTCHA v2 + Honeypot |
-| **Déploiement** | Vercel |
+| Couche            | Technologies                                   |
+| ----------------- | ---------------------------------------------- |
+| **Framework**     | Next.js 15.5.2 (App Router)                    |
+| **Langage**       | TypeScript 5 (strict mode)                     |
+| **UI**            | React 19.1.0                                   |
+| **Styling**       | Tailwind CSS v4 + styled-components            |
+| **Composants UI** | Shadcn UI + Radix UI primitives                |
+| **CMS**           | Sanity v4.6.1 + next-sanity                    |
+| **Formulaires**   | React Hook Form + Zod                          |
+| **Email**         | Resend 6.0.2                                   |
+| **Maps**          | Leaflet + OpenStreetMap                        |
+| **Galerie**       | react-photo-album + yet-another-react-lightbox |
+| **Animations**    | Framer Motion 12.23.24                         |
+| **Icônes**        | Lucide React                                   |
+| **Notifications** | Sonner (toasts)                                |
+| **Sécurité**      | reCAPTCHA v2 + Honeypot                        |
+| **Déploiement**   | Vercel                                         |
 
 ### Patterns architecturaux
 
