@@ -2,9 +2,9 @@
 
 ## 🎯 Vue d'Ensemble
 
-Site web pour la garderie "Les P'tits Loups" développé avec **Next.js 15**, **Sanity CMS v3**, **Radix UI**, et **Tailwind CSS v4**.
+Site web pour la garderie "Les P'tits Loups" développé avec **Next.js 15**, **Sanity CMS v4.6.1**, **Radix UI**, et **Tailwind CSS v4**.
 
-**Stack Technique :** Next.js 15 · React 19 · TypeScript · Sanity v3 · Tailwind v4 · Radix UI
+**Stack Technique :** Next.js 15 · React 19 · TypeScript · Sanity v4.6.1 · Tailwind v4 · Radix UI
 
 ---
 
