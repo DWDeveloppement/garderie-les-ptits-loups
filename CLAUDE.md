@@ -202,23 +202,44 @@ npm run lint       # Vérifier le code
 
 ### Navigation
 
-La documentation détaillée est organisée dans le dossier `docs/` :
+La documentation détaillée est organisée dans le dossier `docs/` en **6 catégories** :
 
-- **[01-code-style/](./docs/01-code-style/)** : TypeScript, React, formatage
-- **[02-components/](./docs/02-components/)** : Patterns UI, Server/Client
-- **[03-architecture/](./docs/03-architecture/)** : Structure, design system
-- **[04-sanity/](./docs/04-sanity/)** : CMS, schémas, queries, images
-- **[05-features/](./docs/05-features/)** : Formulaires, galeries, maps
-- **[06-performance/](./docs/06-performance/)** : SEO, Lighthouse, ISR
-- **[07-git-workflow/](./docs/07-git-workflow/)** : Branches, commits, déploiement
-- **[08-reference/](./docs/08-reference/)** : Scripts, troubleshooting, env
+**🏗️ Architecture** (4 fichiers) :
+- **[components.md](./docs/architecture/components.md)** : 87 composants organisés (ui/, pages/, layout/, forms/, gallery/)
+- **[hooks.md](./docs/architecture/hooks.md)** : 23 hooks dans 7 catégories (a11y/, forms/, queries/)
+- **[types.md](./docs/architecture/types.md)** : 22 fichiers de types (applicatifs + Sanity)
+- **[overview.md](./docs/architecture/overview.md)** : Vue d'ensemble de l'architecture
+
+**🗄️ Sanity CMS** (4 fichiers) :
+- **[setup.md](./docs/sanity/setup.md)** : Installation, configuration, Studio, webhooks
+- **[schemas.md](./docs/sanity/schemas.md)** : 22 schémas (composants, pages, entités)
+- **[queries.md](./docs/sanity/queries.md)** : 11 queries GROQ avec React Cache
+- **[images.md](./docs/sanity/images.md)** : Optimisation images (LQIP, blurhash, WebP)
+
+**⚙️ Features** (4 fichiers) :
+- **[forms.md](./docs/features/forms.md)** : Formulaire contact (Zod + reCAPTCHA + Resend)
+- **[gallery.md](./docs/features/gallery.md)** : Galerie photos (react-photo-album + lightbox)
+- **[maps.md](./docs/features/maps.md)** : Cartes Leaflet + OpenStreetMap
+- **[navigation.md](./docs/features/navigation.md)** : Navigation responsive + menu mobile
+
+**⚡ Performance** (1 fichier) :
+- **[seo.md](./docs/performance/seo.md)** : SEO complet (metadata, sitemap, structured data)
+
+**📖 Référence** (3 fichiers) :
+- **[environment.md](./docs/reference/environment.md)** : Variables d'environnement
+- **[scripts.md](./docs/reference/scripts.md)** : Scripts NPM disponibles
+- **[troubleshooting.md](./docs/reference/troubleshooting.md)** : Solutions aux problèmes courants
+
+**🧪 Tests & Dev Tools** (2 dossiers) :
+- **[tests/](./docs/tests/)** : Tests (a11y, SSR, performance, responsive)
+- **[dev/](./docs/dev/)** : Outils dev (Vision queries, JSON viewer)
 
 ### Fichiers clés
 
 - **[README.md](./README.md)** : Vue d'ensemble et démarrage rapide
 - **[CONTRIBUTING.md](./CONTRIBUTING.md)** : Guide de contribution
 - **[.cursorrules.md](./.cursorrules.md)** : Règles de développement Cursor
-- **[docs/README.md](./docs/README.md)** : Index complet de la documentation
+- **[docs/README.md](./docs/README.md)** : Index complet de la documentation (25+ fichiers)
 
 ---
 
