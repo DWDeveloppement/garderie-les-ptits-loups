@@ -1,0 +1,155 @@
+/**
+ * GLOBALS.CSS
+ * Point d'entrée principal pour les styles de l'application
+ * 
+ * Structure :
+ * 1. Import Tailwind CSS v4
+ * 2. Import de la palette de couleurs Radix
+ * 3. Import des tokens Shadcn UI
+ * 4. Styles de base personnalisés
+ */
+
+/* ============================================
+   TAILWIND CSS V4
+   ============================================ */
+@import "tailwindcss";
+
+/* ============================================
+   PALETTE RADIX COLORS
+   Toutes les couleurs de base en OKLCH
+   ============================================ */
+@import "./palette.css";
+
+/* ============================================
+   SHADCN UI TOKENS
+   Mapping des couleurs Radix vers Shadcn
+   ============================================ */
+@import "./shadcn-tokens.css";
+
+/* ============================================
+   BASE STYLES
+   Styles de base pour l'application
+   ============================================ */
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  /* Typography de base */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+  
+  h1 {
+    @apply text-4xl lg:text-5xl;
+  }
+  
+  h2 {
+    @apply text-3xl lg:text-4xl;
+  }
+  
+  h3 {
+    @apply text-2xl lg:text-3xl;
+  }
+  
+  h4 {
+    @apply text-xl lg:text-2xl;
+  }
+  
+  h5 {
+    @apply text-lg lg:text-xl;
+  }
+  
+  h6 {
+    @apply text-base lg:text-lg;
+  }
+  
+  /* Focus visible pour accessibilité */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+  
+  /* Smooth scroll */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Selection styles */
+  ::selection {
+    @apply bg-primary/20;
+  }
+}
+
+/* ============================================
+   UTILITY PATTERNS
+   Patterns réutilisables pour les composants
+   ============================================ */
+
+@layer utilities {
+  /* Animation d'entrée douce */
+  .animate-in {
+    animation: animate-in 0.2s ease-out;
+  }
+  
+  @keyframes animate-in {
+    from {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Text truncate multi-ligne */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* ============================================
+   CUSTOM SCROLLBAR
+   Scrollbar personnalisée pour cohérence
+   ============================================ */
+
+@layer base {
+  /* Webkit scrollbar */
+  ::-webkit-scrollbar {
+    @apply w-2 h-2;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-muted;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-border rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary-border;
+  }
+  
+  /* Firefox scrollbar */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border)) hsl(var(--muted));
+  }
+}
