@@ -1,7 +1,7 @@
 # CONVENTIONS - Garderie Les P'tits Loups
 
 **Version:** 1.0.0
-**Date:** 2025-11-24
+**Date:** 2024-11-24
 **Statut:** Production
 
 Ce document définit les conventions de structure, nommage et organisation pour le projet Garderie Les P'tits Loups (Next.js 15 + Sanity CMS).
@@ -501,6 +501,6 @@ npm run sanity           # Sanity Studio
 
 ---
 
-**Dernière mise à jour:** 2025-11-24
+**Dernière mise à jour:** 2024-11-24
 **Version:** 1.0.0
 **Auteur:** Claude Code

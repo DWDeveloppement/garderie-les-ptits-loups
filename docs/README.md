@@ -10,7 +10,7 @@ Site web pour la garderie "Les P'tits Loups" développé avec **Next.js 15**, **
 
 ## 📁 Organisation de la Documentation
 
-Cette documentation est organisée en **6 catégories principales** pour faciliter la navigation.
+Cette documentation est organisée en **7 catégories principales** pour faciliter la navigation.
 
 ---
 
@@ -96,11 +96,32 @@ Guides de référence pour configuration et troubleshooting.
 | **[environment.md](./reference/environment.md)** | Variables d'environnement (Sanity, Resend, reCAPTCHA) |
 | **[scripts.md](./reference/scripts.md)** | Scripts NPM disponibles (dev, build, clean, kill) |
 | **[troubleshooting.md](./reference/troubleshooting.md)** | Solutions aux problèmes courants |
+| **[DOMAINS.md](./reference/DOMAINS.md)** | Liste des domaines et URLs (local, preview, production) |
+| **[SANITY_DEPLOYMENT.md](./reference/SANITY_DEPLOYMENT.md)** | Checklist de déploiement Sanity (cleanup media, etc.) |
 
 **Points clés** :
 - `.env.local` template
 - Scripts de nettoyage (`npm run clean`)
 - Debug port occupé, cache corrompu, etc.
+- Configuration domaines et déploiement
+
+---
+
+## 👤 Client
+
+Documentation destinée aux utilisateurs finaux pour la gestion du contenu.
+
+| Fichier | Description |
+|---------|-------------|
+| **[GUIDE_SANITY.md](./client/GUIDE_SANITY.md)** | Guide complet Sanity Studio pour éditer le contenu |
+| **[TRANSFER_PROJECT.md](./client/TRANSFER_PROJECT.md)** | Procédure de transfert du projet Sanity |
+| **[README.md](./client/README.md)** | Vue d'ensemble de la documentation client |
+
+**Points clés** :
+- Accès Sanity Studio
+- Modifier pages, galeries, contenu
+- Procédure de transfert de propriété
+- Guides pour utilisateurs non-techniques
 
 ---
 
@@ -211,7 +232,8 @@ npm run sanity    # Studio → http://localhost:3333
 │   ├── sanity/              # Sanity CMS (4 fichiers)
 │   ├── features/            # Features (4 fichiers)
 │   ├── performance/         # Performance (1 fichier)
-│   ├── reference/           # Référence (3 fichiers)
+│   ├── reference/           # Référence (5 fichiers)
+│   ├── client/              # Documentation client (3 fichiers)
 │   ├── tests/               # Tests (7 fichiers)
 │   └── dev/                 # Dev tools (2 fichiers)
 ├── 📁 public/               # Assets statiques
@@ -394,7 +416,7 @@ Site professionnel avec :
 - ✅ Performance optimisée (SSG, Zero CLS, Core Web Vitals)
 - ✅ SEO-ready (metadata, sitemap, structured data)
 - ✅ Architecture maintenable (TypeScript strict, modulaire)
-- ✅ Documentation complète (25+ fichiers)
+- ✅ Documentation complète (30+ fichiers, 7 catégories)
 
 **Status** : ✅ Production Ready
 
