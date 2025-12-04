@@ -1,8 +1,7 @@
 # ♿ Accessibility Testing Plan
 
-**Date :** 17 octobre 2025 - 15:05  
-**Dernière mise à jour :** 17 octobre 2025 - 15:05  
-**Branche :** `feat/design-system-cva`  
+**Date de création :** 17 octobre 2024
+**Dernière mise à jour :** 2025-12-03
 **Standard :** WCAG 2.1 Level AA
 
 ---

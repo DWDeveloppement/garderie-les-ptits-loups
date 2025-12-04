@@ -43,5 +43,5 @@ Ces fichiers sont **purement documentaires** :
 
 - [Guide Vision Queries](../VISION_QUERIES.md)
 - [Sanity Schemas](/sanity/schemas/)
-- [GROQ Queries](/lib/sanity/queries/)
+- [GROQ Queries](/sanity/queries/)
 

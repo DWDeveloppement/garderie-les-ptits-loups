@@ -72,14 +72,8 @@ Documentation complète de l'architecture technique : structure du code, design 
 │   │   └── dev/                  # Outils développement
 │   │       └── DevJsonViewer.tsx
 │   │
-│   ├── 📁 lib/                    # Utilitaires et helpers
-│   │   ├── sanity/               # Client et queries Sanity
-│   │   │   ├── client.ts
-│   │   │   ├── index.ts
-│   │   │   ├── queries/
-│   │   │   └── helpers/
-│   │   └── performance/          # Mesure de performance
-│   │       └── measure.ts
+│   ├── 📁 lib/                    # Utilitaires
+│   │   └── utils.ts              # Fonctions utilitaires (cn, etc.)
 │   │
 │   ├── 📁 hooks/                  # Hooks personnalisés
 │   │   ├── useWindowSize.ts
@@ -99,7 +93,12 @@ Documentation complète de l'architecture technique : structure du code, design 
 │   └── 📁 constants/              # Constantes
 │       └── navigation_menu.ts
 │
-├── 📁 sanity/                     # Sanity Studio
+├── 📁 sanity/                     # Sanity CMS (à la racine)
+│   ├── client.ts                 # Client Sanity configuré
+│   ├── index.ts                  # Exports centralisés
+│   ├── env.ts                    # Variables d'environnement
+│   ├── schema.ts                 # Schémas consolidés
+│   ├── deskStructure.ts          # Structure navigation Studio
 │   ├── schemas/                  # Schémas de contenu
 │   │   ├── pages/               # Schémas pages
 │   │   ├── components/          # Composants réutilisables
@@ -107,11 +106,20 @@ Documentation complète de l'architecture technique : structure du code, design 
 │   │   ├── spaces.ts
 │   │   ├── testimonials.ts
 │   │   └── index.ts
+│   ├── queries/                  # Requêtes GROQ
+│   │   ├── home.ts
+│   │   ├── about.ts
+│   │   ├── sectors.ts
+│   │   └── ...
+│   ├── helpers/                  # Helpers images et optimisation
+│   │   ├── imageProps.ts
+│   │   └── imageBuilder.ts
+│   ├── types/                    # Types Sanity générés
+│   │   └── ...
 │   ├── components/               # Composants Studio
 │   │   ├── GalleryInput.tsx
 │   │   └── ReadOnlySlug.tsx
-│   ├── deskStructure.ts          # Structure navigation Studio
-│   └── sanity.config.ts          # Configuration Studio
+│   └── styles/                   # Styles Studio
 │
 ├── 📁 public/                     # Assets statiques
 │   ├── images/
@@ -477,7 +485,7 @@ const SPACING = {
 
 **Client Configuration :**
 ```typescript
-// lib/sanity/client.ts
+// sanity/client.ts
 export const client = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
@@ -568,7 +576,7 @@ export function Gallery({ photos }: GalleryProps) {
 ### Data Fetching Pattern
 
 ```typescript
-// 1. Query GROQ dans lib/sanity/queries/
+// 1. Query GROQ dans sanity/queries/
 export const HOME_QUERY = groq`...`
 
 // 2. Fonction fetch avec cache
@@ -635,6 +643,6 @@ __tests__/
 
 ---
 
-**Dernière mise à jour :** Octobre 2024  
-**Version :** 1.0.0
+**Dernière mise à jour :** 2025-12-03
+**Version :** 2.0.0
 

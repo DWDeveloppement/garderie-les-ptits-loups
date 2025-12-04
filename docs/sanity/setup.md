@@ -5,7 +5,7 @@
 Sanity CMS intégré comme solution de gestion de contenu pour la garderie "Les P'tits Loups". Système flexible, sécurisé et optimisé pour SSG avec Next.js 15.
 
 ### Stack Technologique
-- **Sanity v3** avec `structureTool`
+- **Sanity v4.6.1** avec `structureTool`
 - **Next.js 15** avec App Router
 - **TypeScript** pour type safety complet
 - **GROQ** pour queries optimisées
@@ -592,5 +592,5 @@ Ajouter les domaines autorisés dans Sanity Dashboard :
 ---
 
 **Dernière mise à jour :** Octobre 2024  
-**Version :** Sanity v3 + Next.js 15 + TypeScript
+**Version :** Sanity v4.6.1 + Next.js 15 + TypeScript
 
