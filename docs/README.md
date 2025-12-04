@@ -2,45 +2,137 @@
 
 ## 🎯 Vue d'Ensemble
 
-Site web pour la garderie "Les P'tits Loups" développé avec **Next.js 15**, **Sanity CMS v3**, **Radix UI**, et **Tailwind CSS v4**.
+Site web pour la garderie "Les P'tits Loups" développé avec **Next.js 15**, **Sanity CMS v4.6.1**, **Radix UI**, et **Tailwind CSS v4**.
 
-**Stack Technique :** Next.js 15 · React 19 · TypeScript · Sanity v3 · Tailwind v4 · Radix UI
+**Stack Technique** : Next.js 15 · React 19 · TypeScript 5 · Sanity v4.6.1 · Tailwind v4 · Radix UI
 
 ---
 
-## 📁 Navigation de la Documentation
+## 📁 Organisation de la Documentation
 
-### 🗄️ [Sanity CMS](./sanity/)
+Cette documentation est organisée en **7 catégories principales** pour faciliter la navigation.
 
-Configuration, schémas, queries et optimisation des images.
+---
 
-- **[SANITY.md](./sanity/SANITY.md)** - Setup, schémas, queries GROQ, usage Studio
-- **[SANITY_IMAGES.md](./sanity/SANITY_IMAGES.md)** - Système d'images, optimisation, SEO, protection
+## 🏗️ Architecture
 
-### ⚙️ [Configuration & Setup](./setup/)
+Documentation de l'architecture applicative et des patterns utilisés.
 
-Installation, variables d'environnement et Git.
+| Fichier | Description |
+|---------|-------------|
+| **[components.md](./architecture/components.md)** | 87 composants organisés (ui/, pages/, layout/, forms/, gallery/, shared/) |
+| **[hooks.md](./architecture/hooks.md)** | 23 hooks dans 7 catégories (a11y/, forms/, queries/, utils/) |
+| **[types.md](./architecture/types.md)** | 22 fichiers de types TypeScript (applicatifs + Sanity) |
+| **[overview.md](./architecture/overview.md)** | Vue d'ensemble de l'architecture globale |
 
-- **[SETUP.md](./setup/SETUP.md)** - Variables d'env, Sanity, Resend, reCAPTCHA, Vercel
-- **[SECURITY.md](./setup/SECURITY.md)** - reCAPTCHA v2, Honeypot, validation double
-- **[GITHUB.md](./setup/GITHUB.md)** - Git workflow, branches, commits conventionnels, CI/CD
+**Points clés** :
+- Pattern Server/Client Components
+- Barrel exports (`index.ts`)
+- Unions discriminées
+- React Cache pour déduplication
 
-### 🎨 [Features & Composants](./features/)
+---
 
-Fonctionnalités et architecture de l'application.
+## 🗄️ Sanity CMS
 
-- **[ARCHITECTURE.md](./features/ARCHITECTURE.md)** - Structure code, design system, hooks, patterns
-- **[GALLERY.md](./features/GALLERY.md)** - React Photo Album, layouts, SSR, Zero CLS
-- **[FORM.md](./features/FORM.md)** - Formulaire contact, validation, localStorage, Resend
-- **[MAP.md](./features/MAP.md)** - Cartes Google Maps (Static + Dynamic)
-- **[MOBILE_NAV.md](./features/MOBILE_NAV.md)** - Navigation mobile, BottomBar, BackToTop
+Configuration, schémas, queries et optimisation Sanity v4.6.1.
 
-### ⚡ [Performance & SEO](./performance/)
+| Fichier | Description |
+|---------|-------------|
+| **[setup.md](./sanity/setup.md)** | Installation, configuration, Studio, webhooks |
+| **[schemas.md](./sanity/schemas.md)** | 22 schémas (composants réutilisables, pages, entités) |
+| **[queries.md](./sanity/queries.md)** | 11 queries GROQ avec populate, cache, React Cache |
+| **[images.md](./sanity/images.md)** | Optimisation images (LQIP, blurhash, WebP, Zero CLS) |
+
+**Points clés** :
+- SSG + ISR (60s cache)
+- 1 query par page (populate relations)
+- Tags pour revalidation granulaire
+- BASIC_IMAGE_QUERY_LIGHT pour DRY
+
+---
+
+## ⚙️ Features
+
+Fonctionnalités principales de l'application.
+
+| Fichier | Description |
+|---------|-------------|
+| **[forms.md](./features/forms.md)** | Formulaire contact (Zod + reCAPTCHA v2 + Honeypot + Resend) |
+| **[gallery.md](./features/gallery.md)** | Galerie photos (react-photo-album + yet-another-react-lightbox) |
+| **[maps.md](./features/maps.md)** | Cartes interactives (Leaflet + OpenStreetMap, migration Google Maps) |
+| **[navigation.md](./features/navigation.md)** | Navigation responsive (Radix UI + menu mobile + a11y) |
+
+**Points clés** :
+- Validation double (client + serveur)
+- Lazy loading images
+- Dynamic import (Leaflet SSR-safe)
+- Focus trap et navigation clavier
+
+---
+
+## ⚡ Performance
 
 Optimisation des performances et référencement.
 
-- **[LIGHTHOUSE.md](./performance/LIGHTHOUSE.md)** - SSG, cache, images, Core Web Vitals, monitoring
-- **[SEO.md](./performance/SEO.md)** - Référencement, meta tags, Schema.org, Open Graph, sitemap
+| Fichier | Description |
+|---------|-------------|
+| **[seo.md](./performance/seo.md)** | SEO complet (metadata, sitemap, robots.txt, structured data) |
+
+**Points clés** :
+- Metadata dynamique (App Router)
+- JSON-LD (Organization, Breadcrumbs)
+- Open Graph + Twitter Cards
+- Lighthouse SEO > 90
+
+---
+
+## 📖 Référence
+
+Guides de référence pour configuration et troubleshooting.
+
+| Fichier | Description |
+|---------|-------------|
+| **[environment.md](./reference/environment.md)** | Variables d'environnement (Sanity, Resend, reCAPTCHA) |
+| **[scripts.md](./reference/scripts.md)** | Scripts NPM disponibles (dev, build, clean, kill) |
+| **[troubleshooting.md](./reference/troubleshooting.md)** | Solutions aux problèmes courants |
+| **[DOMAINS.md](./reference/DOMAINS.md)** | Liste des domaines et URLs (local, preview, production) |
+| **[SANITY_DEPLOYMENT.md](./reference/SANITY_DEPLOYMENT.md)** | Checklist de déploiement Sanity (cleanup media, etc.) |
+
+**Points clés** :
+- `.env.local` template
+- Scripts de nettoyage (`npm run clean`)
+- Debug port occupé, cache corrompu, etc.
+- Configuration domaines et déploiement
+
+---
+
+## 👤 Client
+
+Documentation destinée aux utilisateurs finaux pour la gestion du contenu.
+
+| Fichier | Description |
+|---------|-------------|
+| **[GUIDE_SANITY.md](./client/GUIDE_SANITY.md)** | Guide complet Sanity Studio pour éditer le contenu |
+| **[TRANSFER_PROJECT.md](./client/TRANSFER_PROJECT.md)** | Procédure de transfert du projet Sanity |
+| **[README.md](./client/README.md)** | Vue d'ensemble de la documentation client |
+
+**Points clés** :
+- Accès Sanity Studio
+- Modifier pages, galeries, contenu
+- Procédure de transfert de propriété
+- Guides pour utilisateurs non-techniques
+
+---
+
+## 🧪 Tests & Dev Tools
+
+Documentation des tests et outils de développement.
+
+| Dossier | Description |
+|---------|-------------|
+| **[tests/](./tests/)** | Tests (a11y, SSR, performance, responsive) |
+| **[dev/](./dev/)** | Outils dev (Vision queries, JSON viewer) |
 
 ---
 
@@ -49,26 +141,29 @@ Optimisation des performances et référencement.
 ### Installation
 
 ```bash
-# Cloner et installer
-git clone [repository-url]
+git clone https://github.com/DWDeveloppement/garderie-les-ptits-loups.git
 cd garderie-les-ptits-loups
 npm install
 ```
 
 ### Configuration
 
-Créer `.env.local` à la racine (voir [setup/SETUP.md](./setup/SETUP.md)) :
+Créer `.env.local` (voir [reference/environment.md](./reference/environment.md)) :
 
 ```bash
 # Sanity CMS
-NEXT_PUBLIC_SANITY_PROJECT_ID="your_project_id"
-NEXT_PUBLIC_SANITY_DATASET="production"
-SANITY_API_TOKEN="your_api_token"
+NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id
+NEXT_PUBLIC_SANITY_DATASET=production
 
-# Services
-RESEND_API_KEY="re_xxxxxxxxxxxx"
-RECAPTCHA_SITE_KEY="your_site_key"
-RECAPTCHA_SECRET_KEY="your_secret_key"
+# Email
+RESEND_API_KEY=re_xxxxxxxxxxxx
+
+# reCAPTCHA v2
+NEXT_PUBLIC_RECAPTCHA_SITE_KEY=6LeXXXXXXXXXXXXXXXXXXXXXXX
+RECAPTCHA_SECRET_KEY=6LeXXXXXXXXXXXXXXXXXXXXXXX
+
+# Revalidation
+REVALIDATE_SECRET=your_random_secret
 ```
 
 ### Lancement
@@ -84,46 +179,79 @@ npm run sanity    # Studio → http://localhost:3333
 
 ### Pages
 
-| Route                     | Description          |
-| ------------------------- | -------------------- |
-| `/`                       | Page d'accueil       |
-| `/a-propos`               | Histoire & pédagogie |
-| `/contact`                | Formulaire & carte   |
-| `/tarifs`                 | Tarifs & subventions |
-| `/la-structure/nurserie`  | Secteur 0-24 mois    |
-| `/la-structure/trotteurs` | Secteur 24-36 mois   |
-| `/la-structure/grands`    | Secteur 3-4 ans      |
+| Route | Description |
+|-------|-------------|
+| `/` | Page d'accueil (hero, secteurs, autres espaces) |
+| `/a-propos` | Histoire, pédagogie, équipe, valeurs |
+| `/contact` | Formulaire contact + carte Leaflet |
+| `/horaires-tarifs` | Tarifs (nurserie, trotteurs & grands) + subventions |
+| `/la-structure/nurserie` | Secteur 0-24 mois (galerie, espaces liés) |
+| `/la-structure/trotteurs` | Secteur 24-36 mois |
+| `/la-structure/grands` | Secteur 3-4 ans |
+| `/mentions-legales` | Mentions légales |
+| `/politique-confidentialite` | Politique de confidentialité |
 
-### Architecture Code
+---
 
-Voir [features/ARCHITECTURE.md](./features/ARCHITECTURE.md) pour la structure détaillée.
+## 📂 Structure du Code
 
-```md
-src/
-├── app/          # Pages Next.js
-├── components/   # Composants React
-├── lib/          # Utilitaires (sanity, performance)
-├── hooks/        # Hooks personnalisés
-└── types/        # Types TypeScript applicatifs
-
-sanity/
-├── schemas/      # Schémas CMS
-├── components/   # Composants Studio
-├── types/        # ✅ Types TypeScript Sanity (centralisés)
-├── queries/      # Requêtes GROQ
-├── lib/          # Utilitaires Sanity
-└── deskStructure.ts
-
-scripts/
-├── clean/        # ✅ Scripts de nettoyage
-├── fix/          # ✅ Scripts de correction
-├── tests/        # ✅ Scripts de test
-└── tools/        # ✅ Outils utilitaires
 ```
+📁 garderie-les-ptits-loups/
+├── 📁 src/
+│   ├── 📁 app/              # Pages Next.js (App Router)
+│   ├── 📁 components/       # 87 composants React
+│   │   ├── ui/              # Primitives Shadcn UI (19)
+│   │   ├── pages/           # Sections de pages (25)
+│   │   ├── layout/          # Header, Footer, Navigation (8)
+│   │   ├── shared/          # Composants réutilisables (20)
+│   │   ├── forms/           # Formulaires (5)
+│   │   ├── gallery/         # Galerie photos (4)
+│   │   ├── lazy/            # Lazy loaded (3)
+│   │   ├── icons/           # Icônes (2)
+│   │   └── dev/             # Dev tools (1)
+│   ├── 📁 hooks/            # 23 hooks personnalisés
+│   │   ├── a11y/            # Accessibilité (8)
+│   │   ├── components/      # Composants (2)
+│   │   ├── forms/           # Formulaires (3)
+│   │   ├── queries/         # Queries Sanity (1)
+│   │   ├── tests/           # Tests (3)
+│   │   ├── utils/           # Utilitaires (5)
+│   │   └── *.ts             # Root hooks (1)
+│   ├── 📁 types/            # Types applicatifs (4)
+│   ├── 📁 lib/              # Utilitaires
+│   ├── 📁 styles/           # CSS (palette, fonts)
+│   └── 📁 constants/        # Constantes
+├── 📁 sanity/
+│   ├── 📁 schemas/          # 22 schémas Sanity
+│   ├── 📁 queries/          # 11 queries GROQ
+│   ├── 📁 types/            # 18 types Sanity (core/, content/, pages/)
+│   ├── 📁 helpers/          # Optimisation images
+│   └── client.ts            # Client configuré
+├── 📁 docs/                 # Documentation complète
+│   ├── architecture/        # Architecture (4 fichiers)
+│   ├── sanity/              # Sanity CMS (4 fichiers)
+│   ├── features/            # Features (4 fichiers)
+│   ├── performance/         # Performance (1 fichier)
+│   ├── reference/           # Référence (5 fichiers)
+│   ├── client/              # Documentation client (3 fichiers)
+│   ├── tests/               # Tests (7 fichiers)
+│   └── dev/                 # Dev tools (2 fichiers)
+├── 📁 public/               # Assets statiques
+├── package.json
+├── tsconfig.json
+├── tailwind.config.ts
+├── next.config.ts
+├── CLAUDE.md                # Guide pour assistants IA
+└── .cursorrules.md          # Règles de développement
+```
+
+Voir [architecture/components.md](./architecture/components.md) pour la structure détaillée des composants.
 
 ---
 
 ## 🔧 Scripts Principaux
+
+Voir [reference/scripts.md](./reference/scripts.md) pour la liste complète.
 
 ### Développement
 
@@ -131,6 +259,8 @@ scripts/
 npm run dev              # Serveur dev Next.js
 npm run sanity           # Sanity Studio
 npm run lint             # ESLint
+npm run typecheck        # Vérification TypeScript
+npm run refresh          # Clean + restart
 ```
 
 ### Production
@@ -144,12 +274,10 @@ npm run start            # Serveur production
 
 ```bash
 npm run kill:dev         # Libérer port 3000
-npm run kill:studio      # Libérer port 3333
-npm run fix:page -- contact  # Réparer document Sanity
-npm run cleanup:media    # Nettoyer médias non utilisés
+npm run kill:sanity      # Libérer port 3333
+npm run clean            # Nettoyer caches
+npm run clean:all        # Tout supprimer + réinstaller
 ```
-
-Voir [setup/SETUP.md](./setup/SETUP.md) pour tous les scripts disponibles.
 
 ---
 
@@ -158,62 +286,52 @@ Voir [setup/SETUP.md](./setup/SETUP.md) pour tous les scripts disponibles.
 ### ✅ Production Ready
 
 **Backend :**
-
-- ✅ Sanity Studio configuré avec desk structure personnalisée
-- ✅ Queries GROQ optimisées (1 requête/page, populate relations)
-- ✅ Système d'images SEO (alt obligatoire, LQIP, Zero CLS)
-- ✅ Performance tracking automatique
+- ✅ Sanity v4.6.1 avec structureTool
+- ✅ 22 schémas (9 composants, 8 pages, 4 entités)
+- ✅ 11 queries GROQ optimisées (populate relations)
+- ✅ React Cache pour déduplication layout
+- ✅ Images SEO (alt obligatoire, LQIP, blurhash)
 
 **Frontend :**
-
-- ✅ 7 pages statiques (SSG)
-- ✅ Formulaire contact avec protection anti-spam
+- ✅ 87 composants organisés (7 catégories)
+- ✅ 23 hooks personnalisés (7 catégories)
+- ✅ 22 fichiers de types TypeScript
 - ✅ Navigation responsive (desktop + mobile)
-- ✅ Optimisation images (priority hero, lazy gallery)
+- ✅ Formulaire contact (Zod + reCAPTCHA + Resend)
+- ✅ Galerie photos (react-photo-album + lightbox)
+- ✅ Cartes Leaflet + OpenStreetMap
 
 **Performance :**
-
-- ✅ Bundle <125kB par page
+- ✅ SSG + ISR (60s cache)
 - ✅ Core Web Vitals optimisés
 - ✅ Zero CLS (LQIP + dimensions)
-- ✅ Cache SSG + Vercel Edge
-
-### 🚧 En Développement
-
-- 🔄 Galeries React Photo Album
-- 🔄 Lightbox yet-another-react-lightbox
-- 🔄 Schema.org ChildCare
-- 🔄 Tests automatisés
+- ✅ SEO complet (metadata, sitemap, structured data)
 
 ---
 
 ## 🆘 Aide Rapide
 
+Voir [reference/troubleshooting.md](./reference/troubleshooting.md) pour toutes les solutions.
+
 ### Problèmes Courants
 
 **Port occupé :**
-
 ```bash
-npm run kill:dev   # ou npm run kill:studio
+npm run kill:dev   # Port 3000
+npm run kill:sanity # Port 3333
 ```
 
-**Document Sanity bloqué :**
-
+**Cache corrompu :**
 ```bash
-npm run fix:page -- contact
+npm run refresh
 ```
 
 **Build échoue :**
-
 ```bash
-rm -rf .next node_modules && npm install && npm run build
+npm run typecheck  # Vérifier types
+npm run lint       # Vérifier ESLint
+npm run build      # Tester build local
 ```
-
-### Logs & Debug
-
-- **Vercel** : `vercel logs [url]`
-- **Sanity Vision** : http://localhost:3333/vision
-- **Performance** : Voir `lib/performance/measure.ts`
 
 ---
 
@@ -221,24 +339,72 @@ rm -rf .next node_modules && npm install && npm run build
 
 ### 🎓 Nouveau sur le projet ?
 
-1. **Démarrer** → [setup/SETUP.md](./setup/SETUP.md)
-2. **Comprendre Sanity** → [sanity/SANITY.md](./sanity/SANITY.md)
-3. **Explorer l'architecture** → [features/ARCHITECTURE.md](./features/ARCHITECTURE.md)
-4. **Voir les features** → [features/](./features/)
+1. **Démarrer** → [reference/environment.md](./reference/environment.md) + [reference/scripts.md](./reference/scripts.md)
+2. **Comprendre Sanity** → [sanity/setup.md](./sanity/setup.md) + [sanity/schemas.md](./sanity/schemas.md)
+3. **Explorer l'architecture** → [architecture/overview.md](./architecture/overview.md) + [architecture/components.md](./architecture/components.md)
+4. **Voir les composants** → [architecture/hooks.md](./architecture/hooks.md) + [architecture/types.md](./architecture/types.md)
 
 ### 🎨 Développer une feature ?
 
-1. **Architecture** → [features/ARCHITECTURE.md](./features/ARCHITECTURE.md)
-2. **Design system** → [features/ARCHITECTURE.md#design-system](./features/ARCHITECTURE.md)
-3. **Composants** → [features/](./features/)
-4. **Performance** → [performance/LIGHTHOUSE.md](./performance/LIGHTHOUSE.md)
+1. **Architecture** → [architecture/overview.md](./architecture/overview.md)
+2. **Composants** → [architecture/components.md](./architecture/components.md)
+3. **Hooks** → [architecture/hooks.md](./architecture/hooks.md)
+4. **Types** → [architecture/types.md](./architecture/types.md)
+5. **Features** → [features/](./features/)
+
+### 🗄️ Travailler avec Sanity ?
+
+1. **Setup** → [sanity/setup.md](./sanity/setup.md)
+2. **Schémas** → [sanity/schemas.md](./sanity/schemas.md)
+3. **Queries** → [sanity/queries.md](./sanity/queries.md)
+4. **Images** → [sanity/images.md](./sanity/images.md)
 
 ### 🚀 Déployer en production ?
 
-1. **Configuration** → [setup/SETUP.md](./setup/SETUP.md)
-2. **Sécurité** → [setup/SECURITY.md](./setup/SECURITY.md)
-3. **Git & CI/CD** → [setup/GITHUB.md](./setup/GITHUB.md)
-4. **SEO** → [performance/SEO.md](./performance/SEO.md)
+1. **Configuration** → [reference/environment.md](./reference/environment.md)
+2. **Build** → [reference/scripts.md](./reference/scripts.md)
+3. **SEO** → [performance/seo.md](./performance/seo.md)
+4. **Troubleshooting** → [reference/troubleshooting.md](./reference/troubleshooting.md)
+
+---
+
+## 🏆 Technologies
+
+### Frontend
+
+- **Framework** : Next.js 15.5.2 (App Router)
+- **Langage** : TypeScript 5 (strict mode)
+- **UI** : React 19.1.0
+- **Styles** : Tailwind CSS v4
+- **Composants** : Shadcn UI + Radix UI
+- **Animations** : Framer Motion
+
+### Backend
+
+- **CMS** : Sanity v4.6.1 + next-sanity
+- **Email** : Resend 6.0.2
+- **Sécurité** : reCAPTCHA v2 + Honeypot
+
+### Features
+
+- **Formulaires** : React Hook Form + Zod
+- **Galerie** : react-photo-album + yet-another-react-lightbox
+- **Cartes** : Leaflet + OpenStreetMap
+
+### Déploiement
+
+- **Hosting** : Vercel
+- **CI/CD** : GitHub Actions
+- **Cache** : SSG + ISR (60s) + Vercel Edge
+
+---
+
+## 📄 Fichiers Principaux
+
+- **[CLAUDE.md](../CLAUDE.md)** : Guide complet pour assistants IA
+- **[.cursorrules.md](../.cursorrules.md)** : Règles de développement pour Cursor
+- **[CONTRIBUTING.md](../CONTRIBUTING.md)** : Guide de contribution
+- **[LICENSE.md](../LICENSE.md)** : Licence MIT
 
 ---
 
@@ -247,13 +413,13 @@ rm -rf .next node_modules && npm install && npm run build
 Site professionnel avec :
 
 - ✅ Design moderne et responsive
-- ✅ Performance optimisée (SSG, Zero CLS, Bundle <125kB)
-- ✅ SEO-ready (meta tags, alt text, Open Graph)
+- ✅ Performance optimisée (SSG, Zero CLS, Core Web Vitals)
+- ✅ SEO-ready (metadata, sitemap, structured data)
 - ✅ Architecture maintenable (TypeScript strict, modulaire)
-- ✅ Documentation complète et structurée
+- ✅ Documentation complète (30+ fichiers, 7 catégories)
 
-**Status :** ✅ Production Ready
+**Status** : ✅ Production Ready
 
 ---
 
-**Dernière mise à jour :** Octobre 2024 · **Version :** 1.0.0
+**Dernière mise à jour** : 2025-12-03 · **Version** : 2.0.0

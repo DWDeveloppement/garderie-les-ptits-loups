@@ -624,5 +624,5 @@ npx sanity documents query '*[_type == "sanity.imageAsset" && !defined(metadata.
 ---
 
 **Dernière mise à jour :** Octobre 2024  
-**Version :** Sanity v3 + Next.js Image + TypeScript
+**Version :** Sanity v4.6.1 + Next.js Image + TypeScript
 

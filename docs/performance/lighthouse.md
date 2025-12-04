@@ -115,11 +115,11 @@ export default async function Page() {
 }
 ```
 
-#### **2. Helpers d'images (lib/sanity/helpers/imageProps.ts)**
+#### **2. Helpers d'images (sanity/helpers/imageProps.ts)**
 
 ```typescript
 import imageUrlBuilder from '@sanity/image-url'
-import { client } from '@/lib/sanity/client'
+import { client } from '@/sanity/client'
 
 const builder = imageUrlBuilder(client)
 
@@ -167,7 +167,7 @@ export function getGalleryImageProps(image: SanityGalleryImage) {
 
 ```typescript
 import Image from 'next/image'
-import { getHeroImageProps, getGalleryImageProps } from '@/lib/sanity'
+import { getHeroImageProps, getGalleryImageProps } from '@/sanity'
 
 // Hero (above the fold)
 const heroProps = getHeroImageProps(data.sectionHero.image)
@@ -334,7 +334,7 @@ export default function RootLayout({ children }) {
 ### **Mesure temps requêtes Sanity**
 
 ```typescript
-// lib/sanity/client.ts
+// sanity/client.ts
 export async function sanityFetch(query, params = {}) {
   const start = Date.now()
   
