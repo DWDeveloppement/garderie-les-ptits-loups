@@ -32,17 +32,27 @@ export const imageBuilder = imageUrlBuilder(client)
 
 /**
  * Wrapper de fetch avec mesure de performance
+ *
+ * @param query - Query GROQ à exécuter
+ * @param params - Paramètres de la query
+ * @param options - Options de cache et tags
+ *
+ * Cache Strategy (Next.js 15):
+ * - Le cache est géré automatiquement par Next.js via `export const revalidate` des pages
+ * - Les tags permettent une revalidation granulaire via `revalidateTag()`
+ * - Pas de `force-cache` explicite pour éviter les conflits avec ISR
  */
 export async function sanityFetch<T = unknown>(
 	query: string,
 	params: Record<string, unknown> = {},
-	options: { tag?: string; cache?: RequestCache } = {}
+	options: { tag?: string } = {}
 ): Promise<T> {
 	const queryLabel = options.tag || 'Unknown Query'
 
 	return measureSanityQuery(queryLabel, () =>
 		client.fetch<T>(query, params, {
-			cache: options.cache || 'force-cache', // Cache pour SSG
+			// Laisser Next.js gérer le cache automatiquement
+			// Le revalidate est défini au niveau des pages (export const revalidate = 60)
 			next: {
 				tags: options.tag ? [options.tag] : undefined,
 			},
