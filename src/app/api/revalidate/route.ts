@@ -25,46 +25,62 @@ export async function POST(request: NextRequest) {
 		console.log(`[Revalidate] Type: ${_type}, Slug: ${slug?.current || 'N/A'}`)
 
 		// Revalidation basée sur le type de document
+		// Stratégie: revalidateTag() pour invalidation granulaire + revalidatePath() pour sécurité
 		switch (_type) {
 			case 'home':
+				revalidateTag('home-page')
 				revalidatePath('/')
 				break
 			case 'aboutPage':
+				revalidateTag('about-page')
 				revalidatePath('/a-propos')
 				break
 			case 'contactPage':
+				revalidateTag('contact-page')
 				revalidatePath('/contact')
 				break
 			case 'schedulePage':
+				revalidateTag('schedule-page')
 				revalidatePath('/tarifs')
 				break
 			case 'legacyPage':
+				revalidateTag('legacy-page')
 				revalidatePath('/mentions-legales')
 				break
 			case 'privatePolicyPage':
+				revalidateTag('private-policy-page')
 				revalidatePath('/politique-confidentialite')
 				break
 			case 'sectorPage':
 				// Revalidate toutes les pages secteur
-				revalidatePath('/la-structure/[slug]', 'page')
 				if (slug?.current) {
+					revalidateTag(`sector-${slug.current}`)
 					revalidatePath(`/la-structure/${slug.current}`)
 				}
+				revalidatePath('/la-structure/[slug]', 'page')
 				break
 			case 'spacePage':
 				// Les espaces sont affichés dans les secteurs
 				revalidatePath('/la-structure/[slug]', 'page')
 				break
 			case 'prices':
+				// Revalidate tous les tags de tarifs
+				revalidateTag('prices-monthly-nursery')
+				revalidateTag('prices-daily-nursery')
+				revalidateTag('prices-monthly-tg')
+				revalidateTag('prices-daily-tg')
+				revalidateTag('prices-subsidies')
 				revalidatePath('/tarifs')
 				break
 			case 'testimonials':
 				// Témoignages sur la home
+				revalidateTag('testimonials')
 				revalidatePath('/')
 				break
 			case 'partners':
-				// Partenaires sur toutes les pages (footer)
+				// Partenaires sur toutes les pages (footer via layout-data)
 				revalidateTag('partners')
+				revalidateTag('layout-data')
 				revalidatePath('/', 'layout')
 				break
 			default:
