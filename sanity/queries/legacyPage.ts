@@ -4,7 +4,7 @@
  */
 
 import { type LegalPageData } from '@/sanity/types/pages'
-import { client } from '../client'
+import { sanityFetch } from '../client'
 
 const LEGACY_PAGE_QUERY = `*[_type == "legacyPage"][0]{
 	title,
@@ -12,5 +12,5 @@ const LEGACY_PAGE_QUERY = `*[_type == "legacyPage"][0]{
 }`
 
 export async function getLegacyPageData(): Promise<LegalPageData | null> {
-	return client.fetch(LEGACY_PAGE_QUERY)
+	return sanityFetch<LegalPageData | null>(LEGACY_PAGE_QUERY, {}, { tag: 'legacy-page' })
 }
