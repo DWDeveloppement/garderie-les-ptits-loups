@@ -37,7 +37,7 @@ export default async function Home() {
           Le composant ParalaxImage attend image?.asset?.url et image?.alt, ce qui correspond à la structure SanityImage. */}
 			{data?.parallax?.image && <ParalaxImage image={data.parallax.image} />}
 			{testimonials.length > 0 && <TestimonialsSection testimonials={testimonials} />}
-			<DevJsonViewer data={data} slug='home' collapsed isHidden />
+			<DevJsonViewer data={data} slug='home' collapsed />
 		</div>
 	)
 }
