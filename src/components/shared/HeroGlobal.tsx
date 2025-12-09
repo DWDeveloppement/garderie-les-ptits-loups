@@ -31,7 +31,7 @@ export function HeroGlobal({ title, description, imageUrl = '/jardin.webp', clas
 				<Image src={imageUrl} alt={title} fill className='object-cover object-center' priority fetchPriority='high' sizes='100vw' />
 			</div>
 
-			{/* Overlay semi-transparent */}
+			{/* Overlay semi-transparent - Commenté car on ne veut pas d'overlay sur les Heros des pages pour le moment.
 			<div
 				className='absolute inset-0 bg-gradient-to-b from-orange-12/20 via-orange-12/30 to-orange-12/40'
 				style={{
@@ -39,7 +39,7 @@ export function HeroGlobal({ title, description, imageUrl = '/jardin.webp', clas
 					transition: 'background-color 0.1s ease-out',
 				}}
 			/>
-
+			*/}
 			{/* Contenu centré */}
 			<div className='relative z-10 h-full flex flex-col justify-center px-4 sm:px-6 lg:px-8'>
 				<div className='max-w-4xl mx-auto text-center'>

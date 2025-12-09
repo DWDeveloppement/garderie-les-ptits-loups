@@ -157,8 +157,7 @@ const ContactForm = () => {
 				icon={MessageSquare}
 				hasError={hasFieldError('message')}
 				errorMessage={getFieldError('message')}
-				minHeight='120px'
-				className='mb-12'
+				className='mb-12 resize-none'
 			/>
 
 			{/* Champ Honeypot - Anti-bot invisible */}
