@@ -2,8 +2,9 @@
 // 5 documents séparés : 4 accordéons + 1 tableau de subventions
 // Interface conditionnelle selon le type de document
 
-import { SchemaTypeDefinition, type Rule } from 'sanity'
+import { type Rule, type SchemaTypeDefinition } from 'sanity'
 import { portableTextWithBlockquotes } from './components/portableTextConfig'
+
 // Document principal pour les prix
 export const prices: SchemaTypeDefinition = {
 	name: 'prices',
@@ -43,7 +44,7 @@ export const prices: SchemaTypeDefinition = {
 			name: 'frequentationType',
 			title: 'Type de fréquentation',
 			type: 'string',
-			hidden: ({ document }) => document?.documentType !== 'accordion',
+			hidden: ({ document }: any) => (document as any)?.documentType !== 'accordion',
 			options: {
 				list: [
 					{
@@ -69,17 +70,17 @@ export const prices: SchemaTypeDefinition = {
 				],
 			},
 			validation: (Rule: Rule) =>
-				Rule.custom((val, ctx) => (ctx?.document?.documentType === 'accordion' ? (val ? true : 'Requis pour les tarifs accordéon') : true)),
+				Rule.custom((val: unknown, ctx: any) => ((ctx?.document as any)?.documentType === 'accordion' ? (val ? true : 'Requis pour les tarifs accordéon') : true)),
 		},
 		{
 			name: 'accordionItems',
 			title: 'AccordionItems',
 			type: 'array',
-			hidden: ({ document }) => document?.documentType !== 'accordion',
+			hidden: ({ document }: any) => (document as any)?.documentType !== 'accordion',
 			of: [{ type: 'accordionItem' }],
 			validation: (Rule: Rule) =>
-				Rule.custom((val, ctx) =>
-					ctx?.document?.documentType === 'accordion' ? (Array.isArray(val) && val.length > 0 ? true : 'Au moins un item requis') : true
+				Rule.custom((val: unknown, ctx: any) =>
+					(ctx?.document as any)?.documentType === 'accordion' ? (Array.isArray(val) && val.length > 0 ? true : 'Au moins un item requis') : true
 				),
 		},
 		{
@@ -87,44 +88,77 @@ export const prices: SchemaTypeDefinition = {
 			title: 'Information importante sur les subventions',
 			type: 'array',
 			of: portableTextWithBlockquotes,
-			hidden: ({ document }) => document?.documentType !== 'table',
-			validation: (Rule: Rule) => Rule.required().max(200),
+			hidden: ({ document }: any) => (document as any)?.documentType !== 'table',
+			validation: (Rule: Rule) =>
+			  Rule.custom((val: unknown, ctx: any) => {
+				const doc = ctx?.document as any
+				// Si ce n'est PAS un document "table" (subventions), on ne valide pas ce champ
+				if (doc?.documentType !== 'table') {
+				  return true
+				}
+		  
+				if (!val || !Array.isArray(val) || val.length === 0) {
+				  return 'Information requise pour le tableau des subventions'
+				}
+		  
+				// Si tu veux garder une limite, tu peux adapter ce check
+				if (val.length > 200) {
+				  return 'Maximum 200 blocs de texte'
+				}
+		  
+				return true
+			  }),
 			description: 'Information importante sur les subventions',
-		},
-		{
+		  },
+		  {
 			name: 'tableContent',
 			title: 'Contenu du tableau',
 			type: 'object',
-			hidden: ({ document }) => document?.documentType !== 'table',
+			hidden: ({ document }: any) => (document as any)?.documentType !== 'table',
 			fields: [
-				{
-					name: 'incomeRangeTitle',
-					title: 'Titre des revenus',
-					type: 'string',
-					validation: (Rule: Rule) => Rule.required(),
-				},
-				{
-					name: 'reductionTitle',
-					title: 'Titre du montant',
-					type: 'string',
-					validation: (Rule: Rule) => Rule.required(),
-				},
-				{
-					name: 'subsidyItems',
-					title: 'Items de subvention',
-					type: 'array',
-					of: [{ type: 'subsidyItem' }],
-					validation: (Rule: Rule) =>
-						Rule.custom((val, ctx) =>
-							ctx?.document?.documentType === 'table'
-								? Array.isArray(val) && val.length > 0
-									? true
-									: 'Au moins une ligne de subvention'
-								: true
-						),
-				},
+			  {
+				name: 'incomeRangeTitle',
+				title: 'Titre des revenus',
+				type: 'string',
+				validation: (Rule: Rule) =>
+				  Rule.custom((val: unknown, ctx: any) => {
+					const doc = ctx?.document as any
+					if (doc?.documentType !== 'table') {
+					  return true
+					}
+					return val ? true : 'Titre des revenus requis pour le tableau des subventions'
+				  }),
+			  },
+			  {
+				name: 'reductionTitle',
+				title: 'Titre du montant',
+				type: 'string',
+				validation: (Rule: Rule) =>
+				  Rule.custom((val: unknown, ctx: any) => {
+					const doc = ctx?.document as any
+					if (doc?.documentType !== 'table') {
+					  return true
+					}
+					return val ? true : 'Titre du montant requis pour le tableau des subventions'
+				  }),
+			  },
+			  {
+				name: 'subsidyItems',
+				title: 'Items de subvention',
+				type: 'array',
+				of: [{ type: 'subsidyItem' }],
+				validation: (Rule: Rule) =>
+				  Rule.custom((val: unknown, ctx: any) => {
+					const doc = ctx?.document as any
+					if (doc?.documentType !== 'table') {
+					  return true
+					}
+					return Array.isArray(val) && val.length > 0 ? true : 'Au moins une ligne de subvention'
+				  }),
+			  },
 			],
-		},
+		  },
+		  
 	],
 	preview: {
 		select: {
@@ -132,7 +166,7 @@ export const prices: SchemaTypeDefinition = {
 			documentType: 'documentType',
 			frequentationType: 'frequentationType',
 		},
-		prepare(selection) {
+		prepare(selection: { title?: string; documentType?: string; frequentationType?: string }) {
 			const { title, documentType, frequentationType } = selection
 
 			// Labels pour les types de fréquentation
@@ -150,7 +184,7 @@ export const prices: SchemaTypeDefinition = {
 			}
 
 			// Sous-titre : Type + Fréquentation
-			let subtitle = typeLabels[documentType] || documentType
+			let subtitle = (documentType && typeLabels[documentType]) || documentType || ''
 			if (frequentationType && frequentationLabels[frequentationType]) {
 				subtitle = frequentationLabels[frequentationType]
 			}
@@ -188,7 +222,7 @@ export const accordionItem: SchemaTypeDefinition = {
 			title: 'accordionTitle',
 			priceItems: 'priceItems',
 		},
-		prepare(selection) {
+		prepare(selection: { title?: string; priceItems?: unknown[] }) {
 			const { title, priceItems } = selection
 			const itemCount = priceItems ? priceItems.length : 0
 			return {
@@ -225,7 +259,7 @@ export const priceItem: SchemaTypeDefinition = {
 			title: 'service',
 			subtitle: 'price',
 		},
-		prepare(selection) {
+		prepare(selection: { title?: string; subtitle?: string }) {
 			const { title, subtitle } = selection
 			return {
 				title: title,
@@ -261,7 +295,7 @@ export const subsidyItem: SchemaTypeDefinition = {
 			title: 'incomeRange',
 			subtitle: 'subsidy',
 		},
-		prepare(selection) {
+		prepare(selection: { title?: string; subtitle?: string }) {
 			const { title, subtitle } = selection
 			return {
 				title: title,
