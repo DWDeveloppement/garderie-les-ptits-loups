@@ -84,7 +84,7 @@ export const spacePage: SchemaTypeDefinition = {
 			sector: 'sector',
 			media: 'image',
 		},
-		prepare(selection) {
+		prepare(selection: { title?: string; sector?: string; media?: any }) {
 			const { title, sector, media } = selection
 			// Mapping des codes secteurs vers les labels français
 			const sectorLabels: Record<string, string> = {
@@ -95,7 +95,7 @@ export const spacePage: SchemaTypeDefinition = {
 			}
 			return {
 				title: title || 'Sans titre',
-				subtitle: sectorLabels[sector] || sector || 'Secteur non défini',
+				subtitle: (sector && sectorLabels[sector]) || sector || 'Secteur non défini',
 				media,
 			}
 		},

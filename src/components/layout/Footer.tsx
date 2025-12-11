@@ -52,7 +52,7 @@ export async function Footer() {
 								<Icon name='mail' size='lg' aria-hidden />
 								<a
 									href={`mailto:${data?.contactInfo?.email}`}
-									className='px-2 py-1 text-orange-4 hover:text-orange-2 transition-colors outline-none focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] focus-visible:rounded-lg focus-visible:ring-offset-2'>
+									className='px-2 py-1 text-orange-4 hover:text-orange-2 transition-colors outline-none focus-visible:outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px] focus-visible:rounded-lg focus-visible:ring-offset-2 whitespace-nowrap'>
 									{data?.contactInfo?.email}
 								</a>
 							</div>

@@ -17,7 +17,6 @@ type TextareaFieldProps = {
 	icon: LucideIcon
 	hasError: boolean
 	errorMessage?: string
-	minHeight?: string
 	className?: string
 }
 
@@ -33,7 +32,6 @@ export function TextareaField({
 	icon: Icon,
 	hasError,
 	errorMessage,
-	minHeight = '120px',
 	className,
 }: TextareaFieldProps) {
 	return (
@@ -47,10 +45,9 @@ export function TextareaField({
 				<Textarea
 					id={name}
 					name={name}
-					className={`w-full pl-10 pr-3 py-4 text-fl-base !text-purple-11 placeholder:text-fl-sm placeholder:text-purple-9/70 focus:placeholder:text-orange-9 resize-none ${
+					className={`w-full pl-10 pr-3 py-4 text-fl-base !text-purple-11 placeholder:text-fl-sm placeholder:text-purple-9/70 focus:placeholder:text-orange-9 resize-none min-h-32 md:min-h-38 lg:min-h-48 ${
 						hasError ? 'border-red-500' : 'border-orange-6'
 					} ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
-					style={{ minHeight }}
 					value={value}
 					onChange={(e) => onChange(e.target.value)}
 					onBlur={onBlur}
