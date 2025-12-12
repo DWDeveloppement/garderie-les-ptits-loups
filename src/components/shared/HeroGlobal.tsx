@@ -12,11 +12,11 @@ type HeroGlobalProps = {
 }
 
 export function HeroGlobal({ title, description, imageUrl = '/jardin.webp', className = '' }: HeroGlobalProps) {
-	const { elementRef, imageTransform, textTransform, overlayOpacity } = useScrollParallax({
+	// overlayOpacity mis à 0 pour ne pas avoir d'overlay sur les Heros des pages pour le moment.
+	const { elementRef, imageTransform, textTransform } = useScrollParallax({
 		speed: 20,
 		scale: 0.1,
 		textSpeed: -15,
-		overlayIntensity: 0.3,
 	})
 
 	return (
