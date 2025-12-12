@@ -20,11 +20,11 @@ type ParalaxImageProps = {
 
 export function ParalaxImage({ image, imageUrl, imageAlt, title, subtitle, height = 'lg', textPosition = 'center' }: ParalaxImageProps) {
 	// Utilisation du hook personnalisé
-	const { elementRef, imageTransform, textTransform, overlayOpacity } = useScrollParallax({
+	// overlayOpacity mis à 0 pour ne pas avoir d'overlay sur les parallaxes images pour le moment.
+	const { elementRef, imageTransform, textTransform } = useScrollParallax({
 		speed: 20,
 		scale: 0.1,
 		textSpeed: -15,
-		overlayIntensity: 0.3,
 	})
 
 	// Valeurs par défaut avec fallbacks title et subtitle ne sont pas présents dans les parallaxes images.
@@ -60,7 +60,7 @@ export function ParalaxImage({ image, imageUrl, imageAlt, title, subtitle, heigh
 				<Image src={finalImageUrl} alt={finalImageAlt} fill className='object-cover object-center' priority sizes='100vw' />
 			</div>
 
-			{/* Overlay semi-transparent avec opacité dynamique */}
+			{/* Overlay semi-transparent avec opacité dynamique
 			<div
 				className='h-full absolute inset-0 bg-gradient-to-b from-orange-12/20 via-orange-12/30 to-orange-12/40'
 				style={{
@@ -68,7 +68,7 @@ export function ParalaxImage({ image, imageUrl, imageAlt, title, subtitle, heigh
 					transition: 'background-color 0.1s ease-out',
 				}}
 			/>
-
+ */}
 			{/* Contenu textuel avec effet de flottement au scroll */}
 			{(finalTitle || finalSubtitle) && (
 				<div className={`relative z-10 h-full flex flex-col justify-center px-4 sm:px-6 lg:px-8`}>
