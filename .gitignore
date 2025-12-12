@@ -48,3 +48,4 @@ vendor/
 # Rapports de performance
 reports/*.json
 reports/*.md
+.sanity/runtime/
