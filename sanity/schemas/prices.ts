@@ -74,7 +74,7 @@ export const prices: SchemaTypeDefinition = {
 		},
 		{
 			name: 'accordionItems',
-			title: 'AccordionItems',
+			title: 'Liste des prestations',
 			type: 'array',
 			hidden: ({ document }: any) => (document as any)?.documentType !== 'accordion',
 			of: [{ type: 'accordionItem' }],
@@ -200,19 +200,22 @@ export const prices: SchemaTypeDefinition = {
 // Composant pour les items d'accordéon
 export const accordionItem: SchemaTypeDefinition = {
 	name: 'accordionItem',
-	title: 'AccordionItem',
+	title: 'Prestation',
 	type: 'object',
 	fields: [
 		{
 			name: 'accordionTitle',
-			title: 'AccordionTrigger',
+			title: 'Type de prestation',
 			type: 'string',
+			placeholder: 'Ex: "Journée Complète", "Matin avec repas", "Après-midi sans repas"',
+			description: 'Nom de la prestation (sera affiché comme titre de l\'accordéon)',
 			validation: (Rule: Rule) => Rule.required(),
 		},
 		{
 			name: 'priceItems',
-			title: 'Items de prix',
+			title: 'Tarifs détaillés',
 			type: 'array',
+			description: 'Liste des prix selon la fréquence (1 jour/semaine, 2 jours/semaine, etc.)',
 			of: [{ type: 'priceItem' }],
 			validation: (Rule: Rule) => Rule.required().min(1),
 		},
@@ -226,7 +229,7 @@ export const accordionItem: SchemaTypeDefinition = {
 			const { title, priceItems } = selection
 			const itemCount = priceItems ? priceItems.length : 0
 			return {
-				title: title,
+				title: title || 'Sans titre',
 				subtitle: `${itemCount} item(s) de prix`,
 			}
 		},
@@ -236,34 +239,36 @@ export const accordionItem: SchemaTypeDefinition = {
 // Composant pour les items de prix (dans les accordéons)
 export const priceItem: SchemaTypeDefinition = {
 	name: 'priceItem',
-	title: 'Item de prix',
+	title: 'Tarif',
 	type: 'object',
 	fields: [
 		{
 			name: 'service',
-			title: 'Prestation',
+			title: 'Fréquence / Description',
 			type: 'string',
+			placeholder: 'Ex: "1 jour / semaine" ou "de 7h.00 à 18h.00 (repas inclus)"',
+			description: 'Description de la fréquence ou des horaires',
 			validation: (Rule: Rule) => Rule.required(),
 		},
 		{
 			name: 'price',
 			title: 'Prix (CHF)',
 			type: 'string',
-			placeholder: 'Ex: "22.-" ou "33.25"',
+			placeholder: 'Ex: "540.-" ou "123.50"',
 			validation: (Rule: Rule) => Rule.required(),
-			description: 'Format texte: "22.-" (sans centimes) ou "33.25" (avec centimes)',
+			description: 'Montant en francs suisses : "540.-" (sans centimes) ou "123.50" (avec centimes)',
 		},
 	],
 	preview: {
 		select: {
-			title: 'service',
-			subtitle: 'price',
+			service: 'service',
+			price: 'price',
 		},
-		prepare(selection: { title?: string; subtitle?: string }) {
-			const { title, subtitle } = selection
+		prepare(selection: { service?: string; price?: string }) {
+			const { service, price } = selection
 			return {
-				title: title,
-				subtitle: `${subtitle} CHF`,
+				title: service || 'Sans titre',
+				subtitle: price ? `${price} CHF` : '',
 			}
 		},
 	},
@@ -272,34 +277,36 @@ export const priceItem: SchemaTypeDefinition = {
 // Composant pour les items de subvention (tableau)
 export const subsidyItem: SchemaTypeDefinition = {
 	name: 'subsidyItem',
-	title: 'Item de subvention',
+	title: 'Ligne de subvention',
 	type: 'object',
 	fields: [
 		{
 			name: 'incomeRange',
-			title: 'Revenus annuels familiaux',
+			title: 'Tranche de revenus annuels',
 			type: 'string',
+			placeholder: 'Ex: "De CHF 60\'001 à CHF 66\'000" ou "Moins de CHF 60\'000"',
+			description: 'Tranche de revenus familiaux annuels',
 			validation: (Rule: Rule) => Rule.required(),
 		},
 		{
 			name: 'subsidy',
-			title: 'Subvention (CHF/jour)',
+			title: 'Subvention accordée (CHF/jour)',
 			type: 'string',
-			placeholder: 'Ex: "45.-" ou "45.50"',
+			placeholder: 'Ex: "74.77" ou "45.-"',
 			validation: (Rule: Rule) => Rule.required(),
-			description: 'Format texte: "45.-" (sans centimes) ou "45.50" (avec centimes)',
+			description: 'Montant de la subvention par jour : "74.77" (avec centimes) ou "45.-" (sans centimes)',
 		},
 	],
 	preview: {
 		select: {
-			title: 'incomeRange',
-			subtitle: 'subsidy',
+			incomeRange: 'incomeRange',
+			subsidy: 'subsidy',
 		},
-		prepare(selection: { title?: string; subtitle?: string }) {
-			const { title, subtitle } = selection
+		prepare(selection: { incomeRange?: string; subsidy?: string }) {
+			const { incomeRange, subsidy } = selection
 			return {
-				title: title,
-				subtitle: `${subtitle} CHF/jour`,
+				title: incomeRange || 'Sans titre',
+				subtitle: subsidy ? `${subsidy} CHF/jour` : '',
 			}
 		},
 	},
