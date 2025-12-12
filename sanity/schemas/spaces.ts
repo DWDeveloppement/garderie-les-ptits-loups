@@ -30,6 +30,7 @@ export const spacePage: SchemaTypeDefinition = {
 				if (id.includes('gardenspace')) return 'Le Jardin'
 				if (id.includes('kitchenspace')) return 'La Cuisine'
 				if (id.includes('bricolagespace')) return "L'armoire à bricolages"
+				if (id.includes('multiSensorialspace')) return 'La Salle Multi-Sensorielle'
 				return undefined
 			},
 			validation: (Rule: Rule) => Rule.required().max(100),
@@ -47,7 +48,7 @@ export const spacePage: SchemaTypeDefinition = {
 				if (id.includes('nursery')) return 'nursery'
 				if (id.includes('trotteurs')) return 'trotteurs'
 				if (id.includes('grands')) return 'grands'
-				if (id.includes('garden') || id.includes('kitchen') || id.includes('bricolage')) return 'other'
+				if (id.includes('garden') || id.includes('kitchen') || id.includes('bricolage')||id.includes('multiSensorial')) return 'other'
 				return 'other' // Par défaut
 			},
 			validation: (Rule: Rule) => Rule.required(),
@@ -92,6 +93,7 @@ export const spacePage: SchemaTypeDefinition = {
 				trotteurs: 'Trotteurs',
 				grands: 'Grands',
 				other: 'Autres Espaces',
+
 			}
 			return {
 				title: title || 'Sans titre',

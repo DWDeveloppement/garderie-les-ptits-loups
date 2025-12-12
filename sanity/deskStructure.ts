@@ -123,6 +123,7 @@ export const deskStructure = (S: StructureBuilder) => {
 											S.listItem().title('Le Jardin').child(S.document().schemaType('spacePage').documentId('gardenSpace')),
 											S.listItem().title('La Cuisine').child(S.document().schemaType('spacePage').documentId('kitchenSpace')),
 											S.listItem().title("L'armoire à bricolages").child(S.document().schemaType('spacePage').documentId('bricolageSpace')),
+											S.listItem().title('La Salle Multi-Sensorielle').child(S.document().schemaType('spacePage').documentId('multiSensorialspace')),
 										])
 								),
 						])
