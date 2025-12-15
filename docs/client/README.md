@@ -9,6 +9,7 @@ Documentation destinée aux utilisateurs finaux (client) pour la gestion du cont
 | Fichier | Description |
 |---------|-------------|
 | **[GUIDE_SANITY.md](./GUIDE_SANITY.md)** | Guide complet Sanity Studio pour éditer le contenu |
+| **[GUIDE_EXPORT_IMAGES.md](./GUIDE_EXPORT_IMAGES.md)** | 📸 Guide simple pour exporter les images depuis Photoshop |
 | **[TRANSFER_PROJECT.md](./TRANSFER_PROJECT.md)** | Procédure de transfert du projet Sanity |
 
 ---
@@ -44,11 +45,12 @@ Ces documents sont destinés à :
 5. Cliquer "Publish"
 
 **Ajouter des photos à une galerie** :
-1. Aller dans "Galeries"
-2. Sélectionner la galerie
-3. Cliquer "+ Ajouter image"
-4. Upload image + remplir alt text (obligatoire)
-5. Cliquer "Publish"
+1. Exporter les images avec les bonnes dimensions (voir [GUIDE_EXPORT_IMAGES.md](./GUIDE_EXPORT_IMAGES.md))
+2. Aller dans "Galeries" (Sanity Studio)
+3. Sélectionner la galerie
+4. Cliquer "+ Ajouter image"
+5. Upload image + remplir alt text (obligatoire)
+6. Cliquer "Publish"
 
 **Modifier les infos de contact** :
 1. Aller dans "Configuration" → "Footer"
@@ -59,9 +61,11 @@ Ces documents sont destinés à :
 
 ## 📚 Ressources
 
-- **Guide complet** : [GUIDE_SANITY.md](./GUIDE_SANITY.md)
+- **Guide Sanity Studio** : [GUIDE_SANITY.md](./GUIDE_SANITY.md)
+- **Export images Photoshop** : [GUIDE_EXPORT_IMAGES.md](./GUIDE_EXPORT_IMAGES.md)
 - **Transfert projet** : [TRANSFER_PROJECT.md](./TRANSFER_PROJECT.md)
 - **Documentation Sanity** : https://www.sanity.io/docs
+- **Outil conversion WebP** : https://squoosh.app/ (si Photoshop ne supporte pas WebP)
 - **Support** : contact@garderielesptitsloups.ch
 
 ---

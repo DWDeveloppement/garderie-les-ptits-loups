@@ -42,13 +42,18 @@ Configuration, schémas, queries et optimisation Sanity v4.6.1.
 | **[setup.md](./sanity/setup.md)** | Installation, configuration, Studio, webhooks |
 | **[schemas.md](./sanity/schemas.md)** | 22 schémas (composants réutilisables, pages, entités) |
 | **[queries.md](./sanity/queries.md)** | 11 queries GROQ avec populate, cache, React Cache |
-| **[images.md](./sanity/images.md)** | Optimisation images (LQIP, blurhash, WebP, Zero CLS) |
+| **[images.md](./sanity/images.md)** | Système d'optimisation images (LQIP, blurhash, WebP, Zero CLS) |
+| **[GUIDE_EXPORT_IMAGES.md](./client/GUIDE_EXPORT_IMAGES.md)** | 👥 Guide client simple export Photoshop (largeur + proportions) |
+| **[IMAGE_EXPORT_GUIDE.md](./sanity/IMAGE_EXPORT_GUIDE.md)** | 🔧 Guide technique développeurs (analyse composants, breakpoints) |
+| **[QUICK_IMAGE_SPECS.md](./sanity/QUICK_IMAGE_SPECS.md)** | ⚡ Référence rapide specs images |
 
 **Points clés** :
 - SSG + ISR (60s cache)
 - 1 query par page (populate relations)
 - Tags pour revalidation granulaire
-- BASIC_IMAGE_QUERY_LIGHT pour DRY
+- **Export simple** : Largeur correcte, hauteur auto, proportions conservées
+- Hero/Parallax: 2400px | Gallery horizontal: 1600px | Gallery vertical: 1200px
+- Breakpoints auto : 400-1920px via Sanity
 
 ---
 
@@ -114,12 +119,14 @@ Documentation destinée aux utilisateurs finaux pour la gestion du contenu.
 | Fichier | Description |
 |---------|-------------|
 | **[GUIDE_SANITY.md](./client/GUIDE_SANITY.md)** | Guide complet Sanity Studio pour éditer le contenu |
+| **[GUIDE_EXPORT_IMAGES.md](./client/GUIDE_EXPORT_IMAGES.md)** | 📸 Guide simple export images Photoshop (largeur + WebP) |
 | **[TRANSFER_PROJECT.md](./client/TRANSFER_PROJECT.md)** | Procédure de transfert du projet Sanity |
 | **[README.md](./client/README.md)** | Vue d'ensemble de la documentation client |
 
 **Points clés** :
 - Accès Sanity Studio
 - Modifier pages, galeries, contenu
+- Export images simplifié : largeur correcte, proportions conservées
 - Procédure de transfert de propriété
 - Guides pour utilisateurs non-techniques
 

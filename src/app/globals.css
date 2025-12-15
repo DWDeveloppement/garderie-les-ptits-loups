@@ -51,6 +51,18 @@
 	small {
 		font-size: var(--fl-text-xs);
 	}
+	/* Cacher la scrollbar */
+	*::-webkit-scrollbar {
+		width: 0px;
+	}
+	/* Transparent */
+	*::-webkit-scrollbar-track {
+		background: transparent;
+	}
+	
+	*::-webkit-scrollbar-thumb {
+		background: transparent;
+	}
 }
 
 @custom-variant dark (&:is(.dark *));

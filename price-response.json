@@ -1,0 +1,516 @@
+[
+    {
+      "parallax": {
+        "image": {
+          "alt": "Photo du jardin",
+          "asset": {
+            "_id": "image-d4fd4703559ae83d392b2388445357992334545c-6144x4096-jpg",
+            "metadata": {
+              "dimensions": {
+                "aspectRatio": 1.5,
+                "height": 4096,
+                "width": 6144
+              }
+            },
+            "url": "https://cdn.sanity.io/images/rnhuu2jm/production/d4fd4703559ae83d392b2388445357992334545c-6144x4096.jpg"
+          }
+        }
+      },
+      "sectionHero": {
+        "description": null,
+        "image": {
+          "alt": "Les tarifs",
+          "asset": {
+            "_id": "image-070cbf7472d33dc5d8cd16eda701775e9e9e097f-2448x1624-jpg",
+            "metadata": {
+              "dimensions": {
+                "aspectRatio": 1.5073891625615763,
+                "height": 1624,
+                "width": 2448
+              }
+            },
+            "url": "https://cdn.sanity.io/images/rnhuu2jm/production/070cbf7472d33dc5d8cd16eda701775e9e9e097f-2448x1624.jpg"
+          }
+        }
+      },
+      "seo": {
+        "keywords": [
+          "horaires",
+          "tarifs",
+          "subventions",
+          "garderie",
+          "crèche"
+        ],
+        "metaDescription": "Découvrez nos horaires, tarifs et subventions pour la garderie Les P'tits Loups.",
+        "metaTitle": "Horaires & Tarifs - Garderie Les P'tits Loups",
+        "shareImage": null
+      },
+      "subsidiesTable": {
+        "informationImportantSubsidies": [
+          {
+            "_key": "95eb693ea474",
+            "_type": "block",
+            "children": [
+              {
+                "_key": "0bc73d6a67c2",
+                "_type": "span",
+                "marks": [
+                  "strong"
+                ],
+                "text": "Pour les parents domiciliés au Mont-sur-Lausanne, un calcule des subventions est fait par"
+              },
+              {
+                "_key": "bf6bf9541605",
+                "_type": "span",
+                "marks": [],
+                "text": " "
+              },
+              {
+                "_key": "eff0e0d4e7c2",
+                "_type": "span",
+                "marks": [
+                  "strong",
+                  "412665a0f238"
+                ],
+                "text": "L’EFAJE"
+              }
+            ],
+            "markDefs": [
+              {
+                "_key": "412665a0f238",
+                "_type": "link",
+                "href": "https://www.lemontsurlausanne.ch/fileadmin/documents/Tous_documents/4_Le_Mont_officiel/4.5_Services_communaux/4.5.10_SEJL/Estimation_revenu_determinant_annuel_2018.10.24_yvarx.xlsx"
+              }
+            ],
+            "style": "normal"
+          }
+        ],
+        "title": "Subventions communales"
+      },
+      "title": "Horaires & Tarifs"
+    },
+    {
+      "accordionItems": [
+        {
+          "accordionTitle": "Journée Complète",
+          "priceItems": [
+            {
+              "price": "540.-",
+              "service": "1 jour / semaine"
+            },
+            {
+              "price": "620.-",
+              "service": "2 jours / semaine"
+            },
+            {
+              "price": "1620.-",
+              "service": "3 jours / semaine"
+            },
+            {
+              "price": "2160.-",
+              "service": "4 jours / semaine"
+            },
+            {
+              "price": "2700.-",
+              "service": "5 jours / semaine"
+            }
+          ]
+        },
+        {
+          "accordionTitle": "Matin avec repas",
+          "priceItems": [
+            {
+              "price": "340.-",
+              "service": "1 jour / semaine"
+            },
+            {
+              "price": "680.-",
+              "service": "2 jours / semaine"
+            },
+            {
+              "price": "1020.-",
+              "service": "3 jours / semaine"
+            },
+            {
+              "price": "1360.-",
+              "service": "4 jours / semaine"
+            },
+            {
+              "price": "1700.-",
+              "service": "5 jours / semaine"
+            }
+          ]
+        },
+        {
+          "accordionTitle": "Matin sans repas",
+          "priceItems": [
+            {
+              "price": "320.-",
+              "service": "1 jour / semaine"
+            },
+            {
+              "price": "640.-",
+              "service": "2 jours / semaine"
+            },
+            {
+              "price": "960.-",
+              "service": "3 jours / semaine"
+            },
+            {
+              "price": "1280.-",
+              "service": "4 jours / semaine"
+            },
+            {
+              "price": "1600.-",
+              "service": "5 jours / semaine"
+            }
+          ]
+        },
+        {
+          "accordionTitle": "Après-midi avec repas",
+          "priceItems": [
+            {
+              "price": "360.-",
+              "service": "1 jour / semaine"
+            },
+            {
+              "price": "720.-",
+              "service": "2 jours / semaine"
+            },
+            {
+              "price": "1080.-",
+              "service": "3 jours / semaine"
+            },
+            {
+              "price": "1440.-",
+              "service": "4 jours / semaine"
+            },
+            {
+              "price": "1800.-",
+              "service": "5 jours / semaine"
+            }
+          ]
+        },
+        {
+          "accordionTitle": "Après-midi sans repas",
+          "priceItems": [
+            {
+              "price": "332.-",
+              "service": "1 jour / semaine"
+            },
+            {
+              "price": "662.-",
+              "service": "2 jours / semaine"
+            },
+            {
+              "price": "996.-",
+              "service": "3 jours / semaine"
+            },
+            {
+              "price": "1328.-",
+              "service": "4 jours / semaine"
+            },
+            {
+              "price": "1660.-",
+              "service": "5 jours / semaine"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "accordionItems": [
+        {
+          "accordionTitle": "Journée",
+          "priceItems": [
+            {
+              "price": "135.-",
+              "service": "de 7h.00 à 18h.00 (repas inclus)"
+            }
+          ]
+        },
+        {
+          "accordionTitle": "Matinée",
+          "priceItems": [
+            {
+              "price": "80.-",
+              "service": "de 7h.00 à 11h.15 (sans repas)"
+            },
+            {
+              "price": "85.-",
+              "service": "de 7h.00 à 12h.30 (repas inclus)"
+            },
+            {
+              "price": "85.-",
+              "service": "de 7h.00 à 14h.30 (repas et sieste inclus)"
+            }
+          ]
+        },
+        {
+          "accordionTitle": "Après-midi",
+          "priceItems": [
+            {
+              "price": "90.-",
+              "service": "de 11h.15 à 18h.00 (repas et sieste inclus)"
+            },
+            {
+              "price": " 85.-",
+              "service": "de 14h.30 à 18 heures"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "accordionItems": [
+        {
+          "accordionTitle": "Journée Complète",
+          "priceItems": [
+            {
+              "price": "492.-",
+              "service": "1 jour / semaine\t"
+            },
+            {
+              "price": "984.-",
+              "service": "2 jours / semaine\t"
+            },
+            {
+              "price": "1476.-",
+              "service": "3 jours / semaine"
+            },
+            {
+              "price": "1968.-",
+              "service": "4 jours / semaine"
+            },
+            {
+              "price": "2460.-",
+              "service": "5 jours / semaine"
+            }
+          ]
+        },
+        {
+          "accordionTitle": "Matin avec repas",
+          "priceItems": [
+            {
+              "price": "332.-",
+              "service": "1 jour / semaine"
+            },
+            {
+              "price": "664.-",
+              "service": "2 jours / semaine"
+            },
+            {
+              "price": "996.-",
+              "service": "3 jours / semaine"
+            },
+            {
+              "price": "1328.-",
+              "service": "4 jours / semaine"
+            },
+            {
+              "price": "1660.-",
+              "service": "5 jours / semaine"
+            }
+          ]
+        },
+        {
+          "accordionTitle": "Matin sans repas",
+          "priceItems": [
+            {
+              "price": "312.-",
+              "service": "1 jour / semaine"
+            },
+            {
+              "price": "624.-",
+              "service": "2 jours / semaine"
+            },
+            {
+              "price": "936.-",
+              "service": "3 jours / semaine"
+            },
+            {
+              "price": "1248.-",
+              "service": "4 jours / semaine"
+            },
+            {
+              "price": "1560.-",
+              "service": "5 jours / semaine"
+            }
+          ]
+        },
+        {
+          "accordionTitle": "Après-midi avec repas",
+          "priceItems": [
+            {
+              "price": "352.-",
+              "service": "1 jour / semaine"
+            },
+            {
+              "price": "704.-",
+              "service": "2 jours / semaine"
+            },
+            {
+              "price": "1056.-",
+              "service": "3 jours / semaine"
+            },
+            {
+              "price": "1408.-",
+              "service": "4 jours / semaine"
+            },
+            {
+              "price": "1760.-",
+              "service": "5 jours / semaine"
+            }
+          ]
+        },
+        {
+          "accordionTitle": "Après-midi sans repas",
+          "priceItems": [
+            {
+              "price": "317.-",
+              "service": "1 jour / semaine"
+            },
+            {
+              "price": "634.-",
+              "service": "2 jours / semaine"
+            },
+            {
+              "price": "951.-",
+              "service": "3 jours / semaine"
+            },
+            {
+              "price": "1268.-",
+              "service": "4 jours / semaine"
+            },
+            {
+              "price": "1585.-",
+              "service": "5 jours / semaine"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "accordionItems": [
+        {
+          "accordionTitle": "Journée",
+          "priceItems": [
+            {
+              "price": "123.-",
+              "service": "de 7h.00 à 18h.00 (repas inclus)"
+            }
+          ]
+        },
+        {
+          "accordionTitle": "Matinée",
+          "priceItems": [
+            {
+              "price": "78.-",
+              "service": "de 7h.00 à 11h.15 (sans repas)"
+            },
+            {
+              "price": "83.-",
+              "service": "de 7h.00 à 12h.30 (repas inclus)"
+            },
+            {
+              "price": "83.-",
+              "service": "de 7h.00 à 14h.30 (repas et sieste inclus)"
+            }
+          ]
+        },
+        {
+          "accordionTitle": "Après-midi",
+          "priceItems": [
+            {
+              "price": "88.-",
+              "service": "de 11h.15 à 18h.00 (repas et sieste inclus)"
+            },
+            {
+              "price": " 79.25",
+              "service": "de 14h.30 à 18 heures"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "tableContent": {
+        "incomeRangeTitle": "Revenus annuels familial",
+        "reductionTitle": "Subvention accordée/jour",
+        "subsidyItems": [
+          {
+            "incomeRange": "Moins de\tCHF 60’000",
+            "subsidy": "74.77"
+          },
+          {
+            "incomeRange": "De CHF 60’001 à CHF 66’000",
+            "subsidy": "70.62"
+          },
+          {
+            "incomeRange": "De CHF 66’001 à CHF 72’000",
+            "subsidy": "66.46"
+          },
+          {
+            "incomeRange": "De CHF 72’001 à CHF 78‘000",
+            "subsidy": "62.31"
+          },
+          {
+            "incomeRange": "De CHF 78’001 à CHF 84’000",
+            "subsidy": "58.16"
+          },
+          {
+            "incomeRange": "De CHF 84’001 à CHF 90’000",
+            "subsidy": "54.00"
+          },
+          {
+            "incomeRange": "De CHF 90’001 à CHF 96'000",
+            "subsidy": "49.85"
+          },
+          {
+            "incomeRange": "De CHF 102’001 à CHF 108’000",
+            "subsidy": "41.54"
+          },
+          {
+            "incomeRange": "De CHF 108’001 à CHF 114’000",
+            "subsidy": "37.39"
+          },
+          {
+            "incomeRange": "De CHF 114’001 à CHF 120’000",
+            "subsidy": "33.23"
+          },
+          {
+            "incomeRange": "De CHF 120’001 à CHF 126’000",
+            "subsidy": "29.08"
+          },
+          {
+            "incomeRange": "De CHF 126’001 à CHF 132’000",
+            "subsidy": "24.93"
+          },
+          {
+            "incomeRange": "De CHF 132’001 à CHF 138’000",
+            "subsidy": "20.77"
+          },
+          {
+            "incomeRange": "De CHF 138’001 à CHF 144’000",
+            "subsidy": "16.62"
+          },
+          {
+            "incomeRange": "De CHF 144’001 à CHF 150’000",
+            "subsidy": "12.46"
+          },
+          {
+            "incomeRange": "De CHF 150’001 à CHF 156’000",
+            "subsidy": "8.31"
+          },
+          {
+            "incomeRange": "De CHF 156’001 à CHF 162’000",
+            "subsidy": "4.16"
+          },
+          {
+            "incomeRange": "Plus de CHF 162’000",
+            "subsidy": "0.00"
+          }
+        ]
+      }
+    }
+  ]

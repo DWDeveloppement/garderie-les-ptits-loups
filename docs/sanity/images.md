@@ -4,6 +4,16 @@
 
 Système complet de gestion des images optimisées pour performance, SEO et accessibilité. Architecture centralisée avec génération automatique des variantes selon le contexte d'usage.
 
+## 📸 Guides d'export Photoshop
+
+Avant d'uploader des images dans Sanity, consultez ces guides simples basés sur la largeur d'export :
+
+- **[GUIDE_EXPORT_IMAGES.md](../client/GUIDE_EXPORT_IMAGES.md)** - 👥 Guide client ultra-simple (largeur + WebP)
+- **[QUICK_IMAGE_SPECS.md](./QUICK_IMAGE_SPECS.md)** - ⚡ Référence rapide développeurs
+- **[IMAGE_EXPORT_GUIDE.md](./IMAGE_EXPORT_GUIDE.md)** - 🔧 Guide technique complet
+
+**Principe :** Exporter la bonne largeur, conserver les proportions, la hauteur s'adapte automatiquement.
+
 ---
 
 ## 🏗️ Architecture du Système
@@ -120,16 +130,22 @@ export const galleryImage = {
 
 ## 📏 Standards de Qualité par Usage
 
-### Dimensions Recommandées
+### Largeurs d'Export Recommandées
 
-| Usage | Dimensions | Qualité | Format | Description |
-|-------|------------|---------|--------|-------------|
-| **Hero** | 1920x1080 | 90% | WebP | Bannières principales |
-| **Gallery** | 1200x800 | 85% | WebP | Galeries d'images |
-| **Section** | 960x640 | 80% | WebP | Images de sections |
-| **Thumbnail** | 400x300 | 75% | WebP | Miniatures |
-| **Article** | 800x600 | 80% | WebP | Images d'articles |
-| **OG/Twitter** | 1200x630 | 90% | WebP | Partage social |
+| Usage | Largeur export | Hauteur | Qualité | Format |
+|-------|---------------|---------|---------|--------|
+| **Hero / Parallax** | 2400px | Auto | 85-90% | WebP |
+| **Gallery paysage** | 1600px | Auto | 85% | WebP |
+| **Gallery portrait** | 1200px | Auto | 85% | WebP |
+| **Gallery carré** | 1600px | Auto | 85% | WebP |
+| **OG/Twitter** | 1200px | 630px fixe | 90% | WebP |
+
+**Principe :** 
+- Exporter uniquement la **largeur** (la hauteur s'adapte automatiquement avec les proportions)
+- ✅ Toujours cocher "Conserver les proportions" dans Photoshop (sauf OG/Twitter)
+- 📐 Exemple : Photo portrait 1200px de large en ratio 2:3 → hauteur auto = 1800px
+
+> **Note :** Sanity génère automatiquement les breakpoints (400, 600, 800, 1200, 1600, 1920px) à partir de votre image source. Inutile d'exporter plus large que recommandé.
 
 ### Breakpoints Responsive (alignés Tailwind CSS)
 
@@ -537,10 +553,14 @@ const imageStats = {
 ## 📚 Bonnes Pratiques
 
 ### Upload
-- ✅ **Formats recommandés** : WebP, AVIF, JPEG
-- ✅ **Taille maximale** : 5MB par image
-- ✅ **Dimensions minimales** : 1200px de large
-- ✅ **Compression** : Qualité 80-90% selon usage
+- ✅ **Format prioritaire** : WebP (85-90% qualité)
+- ✅ **Taille maximale** : 500 KB par image (Hero/Parallax), 400 KB (Gallery)
+- ✅ **Dimensions recommandées** : 
+  - Hero/Parallax : 2400px max
+  - Gallery : 2400px max (paysage), 1600px max (portrait)
+  - OG/SEO : 1200x630px fixe
+- ✅ **Compression Photoshop** : Qualité 85-90% selon usage
+- ❌ **À éviter** : Export 4K (3840px+), qualité 100%, fichiers PNG non-compressés
 
 ### Organisation
 - ✅ **Alt text systématique** : Obligatoire pour toutes les images

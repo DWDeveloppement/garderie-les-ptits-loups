@@ -9,7 +9,7 @@ import type { ReactNode } from 'react'
 type BaseVariant = 'default' | 'secondary'
 type BlockQuoteVariant = BaseVariant | 'primary'
 
-const blockQuoteVariants = cva(['relative my-6 pl-4 md:pl-6', 'border-l-4', 'leading-relaxed text-2xl italic'], {
+const blockQuoteVariants = cva(['relative my-6 pl-4 md:pl-6', 'border-l-4', 'leading-relaxed text-fl-base italic'], {
 	variants: {
 		variant: {
 			default: ['border-purple-7 text-purple-10'],
@@ -110,7 +110,7 @@ export function BlockQuoteCard({
 
 			<CardContent className='p-6 text-center'>
 				{children}
-				<blockquote className={cn('text-2xl italic leading-relaxed mb-4', palette.quote, quoteClassName)}>{content}</blockquote>
+				<blockquote className={cn('italic leading-relaxed mb-4', palette.quote, quoteClassName)}>{content}</blockquote>
 
 				{author && <cite className={cn('block text-md font-semibold not-italic', palette.author, authorClassName)}>{author}</cite>}
 			</CardContent>
